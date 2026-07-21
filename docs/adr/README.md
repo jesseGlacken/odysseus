@@ -43,3 +43,11 @@ Instruction files make the rules *visible* to coding agents; they do not by them
 
 An agent (or human) that believes an ADR is wrong should **propose a superseding ADR**,
 not quietly work around it.
+
+## Related documents
+
+- [`quality-gates.md`](quality-gates.md) — the catalog of pre-commit/CI gates that mechanically
+  enforce these ADRs (tool, stage, and whether each can block).
+- [`../architecture-review.md`](../architecture-review.md) — the v1 baseline review these decisions
+  respond to.
+- [`../migration-roadmap.md`](../migration-roadmap.md) — the phased plan to reach the v2 target.
