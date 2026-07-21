@@ -1,0 +1,27 @@
+# Odysseus v2 engineering standards — Cline
+
+**Read [`AGENTS.md`](../AGENTS.md) and the relevant [`docs/adr/`](../docs/adr/) record before
+writing code.** `AGENTS.md` is the canonical brief; the ADRs are binding. On conflict, ADRs win.
+
+Odysseus is **mid-migration** to a v2 Nx monorepo (contract-first FastAPI + React/shadcn). New
+and modified code follows v2 standards. Don't extend legacy `static/js/*`; new UI lives in
+`apps/web` on `packages/ui`.
+
+## Non-negotiables (full list in AGENTS.md)
+
+1. **Contract-first** (ADR-0001): typed `response_model` per endpoint; FE calls the API only via
+   the **generated** `packages/client-sdk` — no raw `fetch()`; never hand-edit the SDK.
+2. **Layering** (ADR-0001/0002): domain code never imports `routes/`; FE↔BE only via the SDK;
+   `packages/*` never import `apps/*`; use the Nx task graph.
+3. **Black-box tests only** (ADR-0004): HTTP endpoints + DOM by role/name; never test privates or
+   mock internal collaborators for coverage.
+4. **Gherkin** (ADR-0004): `features/*.feature` drive `pytest-bdd`/`playwright-bdd`.
+5. **100% line+branch** (ADR-0004): never lower thresholds or add `# pragma: no cover` /
+   `c8 ignore` / `istanbul ignore`.
+6. **Mutation testing** (ADR-0004): fix surviving mutants with real assertions.
+7. **Dead code is deleted** (ADR-0004) after confirming no black-box scenario should reach it.
+8. **Accessibility is absolute** (ADR-0005): WCAG 2.2 AA, `axe` 0, Lighthouse a11y 100; use
+   `packages/ui` (Radix/React Aria) primitives — never hand-roll; i18n all strings.
+9. **Perf budgeted** (ADR-0005); **strict types** (no `any` / `type: ignore` escapes); **SOLID**,
+   no new God modules; keep the security CI green.
+10. **Honor ADRs**: significant decision → add/update an ADR; never silently contradict one.
