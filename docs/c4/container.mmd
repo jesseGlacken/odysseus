@@ -1,0 +1,43 @@
+# C4 Container — Odysseus v2
+
+```mermaid
+graph TB
+    subgraph browser["Web Browser"]
+        spa["⚛️ React SPA<br/>apps/web<br/>Shadcn/ui + React Aria + Tailwind"]
+    end
+
+    subgraph backend["API Server (Uvicorn)"]
+        api["🐍 FastAPI<br/>apps/api<br/>Contract-first (OpenAPI)<br/>SSE streaming · OTel spans"]
+    end
+
+    subgraph data["Data & Storage"]
+        db[("🗄️ SQLite<br/>WAL mode<br/>Alembic migrations")]
+        fs[("📁 File System<br/>Uploads · Backups<br/>Model cache")]
+        vectors[("🧬 ChromaDB<br/>Vector embeddings<br/>RAG knowledge base")]
+    end
+
+    subgraph generated["Generated SDK"]
+        sdk["📦 @odysseus/client-sdk<br/>packages/client-sdk<br/>Typed API client<br/>OpenAPI-generated"]
+    end
+
+    subgraph pkg["Shared Packages"]
+        ui["🎨 packages/ui<br/>Component library<br/>Design tokens"]
+        contracts["📋 packages/contracts<br/>OpenAPI schema<br/>Snapshot tests"]
+        config["⚙️ packages/config<br/>ESLint · Tailwind · TSConfig"]
+    end
+
+    spa -->|"HTTPS (SSE events)"| api
+    spa -->|"typed calls"| sdk
+    sdk -->|"HTTP fetch"| api
+    api -->|"SQLAlchemy"| db
+    api -->|"read/write"| fs
+    api -->|"chromadb-client"| vectors
+
+    classDef container fill:#1168bd,color:#fff,stroke:#0b4884
+    classDef db fill:#438d3c,color:#fff,stroke:#2d632a
+    classDef pkg fill:#6e5494,color:#fff,stroke:#4d3a6b
+
+    class spa,api container
+    class db,fs,vectors db
+    class sdk,ui,contracts,config pkg
+```

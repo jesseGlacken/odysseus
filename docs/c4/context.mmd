@@ -1,0 +1,37 @@
+# C4 System Context — Odysseus
+
+```mermaid
+graph TB
+    subgraph external[" "]
+        user["👤 End User<br/>Browser"]
+        admin["👤 Admin<br/>Browser"]
+    end
+
+    subgraph system["Odysseus System"]
+        odysseus["🧠 Odysseus<br/>AI-powered personal assistant<br/>Chat, email, documents, image editing, and more"]
+    end
+
+    subgraph systems["External Systems"]
+        llm["🤖 LLM Providers<br/>OpenAI · Anthropic · Google<br/>Ollama · vLLM (local)"]
+        search["🔍 Search Providers<br/>Brave · Tavily · Perplexity"]
+        email["📧 Email Servers<br/>IMAP / SMTP"]
+        mcp["🔧 MCP Servers<br/>Filesystem · Databases · APIs"]
+        calendar["📅 CalDAV Servers<br/>Calendar sync"]
+    end
+
+    user -->|"HTTPS"| odysseus
+    admin -->|"HTTPS"| odysseus
+    odysseus -->|"HTTPS / SSE"| llm
+    odysseus -->|"HTTPS"| search
+    odysseus -->|"IMAP/SMTP (TLS)"| email
+    odysseus -->|"stdio / SSE"| mcp
+    odysseus -->|"CalDAV (TLS)"| calendar
+
+    classDef person fill:#08427b,color:#fff,stroke:#052e56
+    classDef system fill:#1168bd,color:#fff,stroke:#0b4884
+    classDef external fill:#999,color:#fff,stroke:#666
+
+    class user,admin person
+    class odysseus system
+    class llm,search,email,mcp,calendar external
+```
