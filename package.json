@@ -1,9 +1,25 @@
 {
+  "name": "odysseus",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/odysseus-dev/odysseus.git"
   },
+  "scripts": {
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
+    "lint": "nx run-many -t lint",
+    "typecheck": "nx run-many -t typecheck",
+    "affected:build": "nx affected -t build",
+    "affected:test": "nx affected -t test",
+    "affected:lint": "nx affected -t lint",
+    "affected:typecheck": "nx affected -t typecheck",
+    "graph": "nx graph"
+  },
   "devDependencies": {
-    "@antithesishq/bombadil": "^0.6.1"
+    "@antithesishq/bombadil": "^0.6.1",
+    "@nx/js": "^23.1.0",
+    "@nxlv/python": "^22.2.2",
+    "nx": "^23.1.0"
   }
 }
