@@ -20,6 +20,13 @@ work — human or agent — until it is explicitly **Superseded** by a newer ADR
 | [0003](0003-react-spa-shadcn-react-aria.md) | React SPA on shadcn/ui + React Aria | Accepted |
 | [0004](0004-testing-standards-blackbox-100pct-mutation.md) | Testing standards: black-box, Gherkin, 100% coverage, mutation | Accepted |
 | [0005](0005-accessibility-and-performance.md) | Accessibility (WCAG 2.2 AA) & performance as gates | Accepted |
+| [0006](0006-code-review-and-merge-standards.md) | Code review & merge standards | Accepted |
+| [0007](0007-coding-standards-and-complexity-budget.md) | Coding standards & cyclomatic-complexity budget | Accepted |
+| [0008](0008-security-architecture.md) | Security architecture | Accepted |
+| [0009](0009-api-versioning-and-backward-compatibility.md) | API versioning & backward compatibility | Accepted |
+| [0010](0010-structured-concurrency-and-async-patterns.md) | Structured concurrency & async patterns | Accepted |
+| [0011](0011-database-management-and-schema-evolution.md) | Database management & schema evolution | Accepted |
+| [0012](0012-observability-and-error-handling.md) | Observability & error handling | Accepted |
 
 New records use [`0000-template.md`](0000-template.md) and the next free number.
 
