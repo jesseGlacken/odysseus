@@ -1,0 +1,9 @@
+{
+  "subagents": {
+    "agentOverrides": {
+      "planner": {
+        "model": "clinepass/cline-pass/qwen3.7-max"
+      }
+    }
+  }
+}

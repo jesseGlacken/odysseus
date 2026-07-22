@@ -1,0 +1,254 @@
+{
+  "runId": "397a3adf",
+  "agent": "planner",
+  "task": "You are a delegated subagent running from a fork of the parent session. Treat the inherited conversation as reference-only context, not a live thread to continue. Do not continue or answer prior messages as if they are waiting for a reply. Your sole job is to execute the task below and return a focused result for that task using your tools.\n\nTask:\nYou are devising a phased, executable refactoring plan for the Odysseus project — a migration from a v1 FastAPI + vanilla-JS monolith to a v2 Nx polyglot monorepo with rigorous architectural standards.\n\n## Background context from the docs\n\n### Current state (v1 — what we have now)\n- FastAPI monolith, single-process Uvicorn serving a static vanilla-JS frontend\n- Flat structure: app.py (1,281 LOC), core/ (11 files, 4,855 LOC), routes/ (67 files, 43,699 LOC — 6 subpackaged), src/ (139 files, 53,814 LOC — flat, no domain grouping), services/ (40 files, 10,055 LOC), mcp_servers/ (5 files), integrations/ (2 files)\n- God modules: src/agent_loop.py (4,529 LOC, stream_agent_loop CC=531), routes/email_routes.py (5,226 LOC), src/llm_core.py (2,869 LOC, _stream_llm_inner CC=216), core/database.py (2,562 LOC, 56-file fan-in)\n- 36 backward src→routes imports\n- Frontend: 153 vanilla ES modules, 133k LOC, zero tests, 40k-line style.css\n- 465 endpoints, only 3 declare a response_model\n- 876 raw fetch() calls from frontend to backend\n- 4,678 Python tests at 47.5% overall coverage (routes 36%, frontend 0%)\n- Strong security CI (Trivy, gitleaks, zizmor, hadolint, pip-audit)\n\n### Target state (v2 — where we're going per the ADRs)\nNx polyglot monorepo with:\n- apps/api/ — FastAPI backend (relocated from root, src-layout + pyproject build)\n- apps/web/ — React 19 + TypeScript + Vite SPA\n- packages/contracts/ — openapi.json (source of truth) + schema snapshot tests\n- packages/client-sdk/ — generated typed TS client (replaces 876 raw fetch() calls)\n- packages/ui/ — shadcn/ui on Radix + React Aria components + design tokens + Tailwind\n- packages/config/ — shared ESLint/tsconfig/Tailwind/Vitest/ruff presets\n- features/ — Gherkin .feature files (shared FE+BE product requirements)\n- e2e/ — Playwright + playwright-bdd black-box tests\n- tools/ — Nx generators, codegen, migration scripts\n- docs/ — ADRs, C4 diagrams, docs site\n\n### Five Accepted ADRs governing everything:\n1. ADR-0001: Contract-first API — OpenAPI schema is source of truth, typed response_model on every endpoint, generated TS SDK, no raw fetch(), no src→routes imports\n2. ADR-0002: Nx polyglot monorepo with strict boundaries (packages/* never import apps/*)\n3. ADR-0003: React SPA on shadcn/ui + React Aria, TanStack Query + Router, Tailwind tokens\n4. ADR-0004: Black-box tests only, Gherkin .feature files, 100% line+branch coverage, mutation testing must pass, dead code is deleted\n5. ADR-0005: WCAG 2.2 AA non-negotiable (axe=0, Lighthouse a11y=100), performance budgeted per-route\n\n### The ADR states that all gates start advisory and flip to blocking per-domain once clean.\n\n### Migration roadmap phases (from docs/migration-roadmap.md):\n- Phase 0 (Foundation & guardrails): Nx workspace, relocate backend into apps/api, CI scaffolding advisory-first\n- Phase 1 (Contract-first backend): Typed response_models across 465 endpoints domain-by-domain, emit openapi.json, generate SDK, .feature files as black-box API tests\n- Phase 2 (Backend decoupling & SOLID): Decompose stream_agent_loop, regroup flat src/, repository layer, remove 36 src→routes imports\n- Phase 3 (Front-end foundation): Scaffold apps/web + packages/ui, wire SDK behind TanStack Query, Lighthouse + axe budgets\n- Phase 4 (Feature migration vertical slices): One domain at a time, delete legacy static/js modules\n- Phase 5 (Harden, observe, cut over): Full OTel, manual WCAG audit, delete remaining dead code, publish docs\n\n## Your task\n\nProduce a **detailed, phased, step-by-step implementation plan** that a coding agent can execute. For each phase, list:\n\n1. **Concrete steps** — what files to create, move, or modify; what commands to run; what the exit criteria are\n2. **Tooling choices** — exact Nx/TypeScript/Python package versions and configurations\n3. **Dependencies between steps** — what must be done before what\n4. **Git strategy** — branch naming, PR sequencing, commit conventions\n5. **Risk areas** — what could break, how to mitigate\n6. **Testing strategy per phase** — how to validate each step (consistent with black-box/Gherkin/100% coverage)\n\nBe precise and actionable — this will be given to engineering agents to execute. Include the exact Nx project configuration (project.json, workspace layout, generators), the Python package structure (pyproject.toml with build-system, src-layout), and the CI pipeline shape.\n\nAssume the engineer has access to the current tree at /home/jesse/git/odysseus-jg.\n\n---\n**Output:**\nWrite your findings to exactly this path: /home/jesse/git/odysseus-jg/.pi-subagents/artifacts/outputs/397a3adf/plan.md\nThis path is authoritative for this run.\nIgnore any other output filename or output path mentioned elsewhere, including output destinations in the base agent prompt, system prompt, or task instructions.",
+  "exitCode": 0,
+  "usage": {
+    "input": 218732,
+    "output": 50377,
+    "cacheRead": 717568,
+    "cacheWrite": 0,
+    "cost": 1.2834415,
+    "turns": 15
+  },
+  "model": "clinepass/cline-pass/qwen3.7-max:high",
+  "attemptedModels": [
+    "clinepass/cline-pass/qwen3.7-max:high"
+  ],
+  "modelAttempts": [
+    {
+      "model": "clinepass/cline-pass/qwen3.7-max:high",
+      "success": true,
+      "exitCode": 0,
+      "usage": {
+        "input": 218732,
+        "output": 50377,
+        "cacheRead": 717568,
+        "cacheWrite": 0,
+        "cost": 1.2834415,
+        "turns": 15
+      }
+    }
+  ],
+  "durationMs": 971191,
+  "toolCount": 24,
+  "acceptance": {
+    "status": "checked",
+    "explicit": false,
+    "effectiveAcceptance": {
+      "level": "reviewed",
+      "explicit": false,
+      "inferredReason": [
+        "risky write-capable run"
+      ],
+      "criteria": [
+        {
+          "id": "criterion-1",
+          "must": "Implement the requested change without widening scope",
+          "evidence": [
+            "changed-files",
+            "tests-added",
+            "commands-run",
+            "validation-output",
+            "residual-risks",
+            "no-staged-files"
+          ],
+          "severity": "required"
+        },
+        {
+          "id": "criterion-2",
+          "must": "Return evidence sufficient for an independent acceptance review",
+          "evidence": [
+            "changed-files",
+            "tests-added",
+            "commands-run",
+            "validation-output",
+            "residual-risks",
+            "no-staged-files"
+          ],
+          "severity": "required"
+        }
+      ],
+      "evidence": [
+        "changed-files",
+        "tests-added",
+        "commands-run",
+        "validation-output",
+        "residual-risks",
+        "no-staged-files"
+      ],
+      "verify": [],
+      "review": {
+        "agent": "reviewer",
+        "required": true
+      },
+      "stopRules": []
+    },
+    "inferredReason": [
+      "risky write-capable run"
+    ],
+    "criteria": [
+      {
+        "id": "criterion-1",
+        "must": "Implement the requested change without widening scope",
+        "evidence": [
+          "changed-files",
+          "tests-added",
+          "commands-run",
+          "validation-output",
+          "residual-risks",
+          "no-staged-files"
+        ],
+        "severity": "required"
+      },
+      {
+        "id": "criterion-2",
+        "must": "Return evidence sufficient for an independent acceptance review",
+        "evidence": [
+          "changed-files",
+          "tests-added",
+          "commands-run",
+          "validation-output",
+          "residual-risks",
+          "no-staged-files"
+        ],
+        "severity": "required"
+      }
+    ],
+    "runtimeChecks": [
+      {
+        "id": "criterion:criterion-1",
+        "status": "passed",
+        "message": "Required criterion 'criterion-1' satisfied."
+      },
+      {
+        "id": "criterion:criterion-2",
+        "status": "passed",
+        "message": "Required criterion 'criterion-2' satisfied."
+      },
+      {
+        "id": "evidence:changed-files",
+        "status": "passed",
+        "message": "changed-files evidence present."
+      },
+      {
+        "id": "evidence:tests-added",
+        "status": "not-applicable",
+        "message": "tests-added evidence explicitly reported as not applicable."
+      },
+      {
+        "id": "evidence:commands-run",
+        "status": "passed",
+        "message": "commands-run evidence present."
+      },
+      {
+        "id": "evidence:validation-output",
+        "status": "passed",
+        "message": "validation-output evidence present."
+      },
+      {
+        "id": "evidence:residual-risks",
+        "status": "passed",
+        "message": "residual-risks evidence present."
+      },
+      {
+        "id": "evidence:no-staged-files",
+        "status": "passed",
+        "message": "no-staged-files evidence present."
+      },
+      {
+        "id": "no-staged-files",
+        "status": "passed",
+        "message": "No staged files detected."
+      }
+    ],
+    "verifyRuns": [],
+    "childReport": {
+      "criteriaSatisfied": [
+        {
+          "id": "criterion-1",
+          "status": "satisfied",
+          "evidence": "Plan covers all 5 phases from docs/migration-roadmap.md with 27 concrete steps. No scope widening — plan stays within the refactoring intent defined by ADRs 0001-0005 and the architecture review."
+        },
+        {
+          "id": "criterion-2",
+          "status": "satisfied",
+          "evidence": "Plan file written to /home/jesse/git/odysseus-jg/.pi-subagents/artifacts/outputs/397a3adf/plan.md (72,840 bytes, 2,758 lines). Includes exact file paths, commands, configs, exit criteria, risks, and validation steps for every phase."
+        }
+      ],
+      "changedFiles": [
+        ".pi-subagents/artifacts/outputs/397a3adf/plan.md"
+      ],
+      "testsAddedOrUpdated": [],
+      "commandsRun": [
+        {
+          "command": "read docs/adr/README.md, docs/migration-roadmap.md, docs/architecture-review.md",
+          "result": "passed",
+          "summary": "Read all 5 ADRs, quality-gates catalog, migration roadmap, and architecture review"
+        },
+        {
+          "command": "read docs/adr/0001-0005, quality-gates.md",
+          "result": "passed",
+          "summary": "Read all accepted ADRs and quality gate catalog"
+        },
+        {
+          "command": "read docs/setup.md",
+          "result": "passed",
+          "summary": "Read setup guide for deployment and configuration context"
+        },
+        {
+          "command": "ls routes/, src/, core/, services/, tests/, static/, .github/workflows/",
+          "result": "passed",
+          "summary": "Explored current codebase structure: 67 route files, 139 src files, 11 core files, 10 service dirs, 700+ test files, vanilla JS frontend"
+        },
+        {
+          "command": "read pyproject.toml, package.json, .gitignore, requirements.txt, ci.yml",
+          "result": "passed",
+          "summary": "Read current config files to understand tooling baseline"
+        },
+        {
+          "command": "write plan.md",
+          "result": "passed",
+          "summary": "Wrote 72,840-byte plan to output path"
+        },
+        {
+          "command": "read plan.md (verification)",
+          "result": "passed",
+          "summary": "Verified plan is complete and readable end-to-end"
+        }
+      ],
+      "validationOutput": [
+        "Plan written to .pi-subagents/artifacts/outputs/397a3adf/plan.md (72,840 bytes, 2,758 lines)",
+        "Plan covers 5 phases, 27 steps, with concrete files, commands, configs, risks, and validation criteria",
+        "All ADRs (0001-0005) referenced and enforced in the plan",
+        "Target structure matches ADR-0002 (apps/api, apps/web, packages/contracts, packages/client-sdk, packages/ui, packages/config, features, e2e, tools, docs)",
+        "Advisory-first gate strategy from quality-gates.md implemented in Phase 0",
+        "Strangler migration approach preserved: legacy runs until replacement passes gates"
+      ],
+      "residualRisks": [
+        "Phase 1 (465 endpoints typed) is the largest effort — may need sub-phasing by domain priority",
+        "stream_agent_loop decomposition (CC 531) is the highest-risk refactor — needs careful incremental extraction",
+        "100% black-box coverage + 100% line+branch is inherently demanding — some error branches may force code deletion",
+        "Frontend migration (Phase 4) is a re-platform, not a port — ~133k LOC of behavior must be re-specified as Gherkin"
+      ],
+      "noStagedFiles": true,
+      "diffSummary": "Created .pi-subagents/artifacts/outputs/397a3adf/plan.md — a 72,840-byte phased refactoring plan covering Nx monorepo setup, contract-first API, backend SOLID cleanup, React SPA scaffold, feature migration, and v2.0 release",
+      "reviewFindings": [
+        "no blockers — plan is complete and actionable"
+      ],
+      "manualNotes": "This is a planning artifact only — no code changes were made. The plan is designed to be executed by engineering agents phase by phase. Each phase has clear exit criteria that must be met before proceeding to the next. The advisory-first gate strategy ensures early phases don't block development velocity."
+    },
+    "reviewResult": {
+      "status": "needs-parent-decision",
+      "findings": [
+        {
+          "severity": "non-blocking",
+          "issue": "Reviewed acceptance requires an independent reviewer result.",
+          "rationale": "The run cannot be marked reviewed from child evidence alone."
+        }
+      ]
+    }
+  },
+  "transcriptPath": "/home/jesse/git/odysseus-jg/.pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
+  "timestamp": 1784700350004
+}

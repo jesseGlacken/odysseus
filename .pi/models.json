@@ -1,0 +1,48 @@
+{
+  "providers": {
+    "qwen_local": {
+      "baseUrl": "http://127.0.0.1:8080/v1",
+      "api": "openai-completions",
+      "apiKey": "local",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false
+      },
+      "models": [
+        {
+          "id": "qwen3.6-35b-a3b-distilled-q4_k_m.gguf",
+          "name": "Qwen 3.6 35B A3B (Local TurboQuant)",
+          "contextWindow": 262144,
+          "maxTokens": 65536
+        }
+      ]
+    },
+    "clinepass": {
+      "baseUrl": "https://api.clinepass.com/v1",
+      "api": "openai-completions",
+      "apiKey": "$CLINEPASS_API_KEY",
+      "models": [
+        {
+          "id": "kimi-k2.7-code",
+          "name": "Kimi K2.7 Code",
+          "contextWindow": 256000
+        },
+        {
+          "id": "deepseek-v4-pro",
+          "name": "DeepSeek V4 Pro",
+          "contextWindow": 976000
+        },
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "contextWindow": 976000
+        },
+        {
+          "id": "glm-5.2",
+          "name": "GLM 5.2",
+          "contextWindow": 976000
+        }
+      ]
+    }
+  }
+}

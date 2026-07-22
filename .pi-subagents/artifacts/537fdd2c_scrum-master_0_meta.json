@@ -1,0 +1,99 @@
+{
+  "runId": "537fdd2c",
+  "agent": "scrum-master",
+  "task": "Review issue ODY-66: \"ADR-0006: Accept Code Review & Merge Standards\". The ADR draft at docs/adr/0006-code-review-and-merge-standards.md is fully written and ready for acceptance. I need you to:\n\n1. Understand the issue scope\n2. Post a comment on ODY-66 that the ADR is being accepted and a PR is being prepared\n3. After I create the PR, update the issue with the PR link\n\nFor now, just do steps 1 and 2. I'll handle the ADR file update and PR creation.",
+  "exitCode": 1,
+  "usage": {
+    "input": 0,
+    "output": 0,
+    "cacheRead": 0,
+    "cacheWrite": 0,
+    "cost": 0,
+    "turns": 0
+  },
+  "model": "qwen_local/qwen3.6",
+  "attemptedModels": [
+    "qwen_local/qwen3.6"
+  ],
+  "modelAttempts": [
+    {
+      "model": "qwen_local/qwen3.6",
+      "success": false,
+      "exitCode": 1,
+      "error": "Error: Model \"qwen_local/qwen3.6\" not found. Use --list-models to see available models.",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": 0,
+        "turns": 0
+      }
+    }
+  ],
+  "durationMs": 1077,
+  "toolCount": 0,
+  "error": "Error: Model \"qwen_local/qwen3.6\" not found. Use --list-models to see available models.",
+  "acceptance": {
+    "status": "rejected",
+    "explicit": false,
+    "effectiveAcceptance": {
+      "level": "checked",
+      "explicit": false,
+      "inferredReason": [
+        "write-capable worker/task"
+      ],
+      "criteria": [
+        {
+          "id": "criterion-1",
+          "must": "Implement the requested change without widening scope",
+          "evidence": [
+            "changed-files",
+            "tests-added",
+            "commands-run",
+            "residual-risks",
+            "no-staged-files"
+          ],
+          "severity": "required"
+        }
+      ],
+      "evidence": [
+        "changed-files",
+        "tests-added",
+        "commands-run",
+        "residual-risks",
+        "no-staged-files"
+      ],
+      "verify": [],
+      "stopRules": []
+    },
+    "inferredReason": [
+      "write-capable worker/task"
+    ],
+    "criteria": [
+      {
+        "id": "criterion-1",
+        "must": "Implement the requested change without widening scope",
+        "evidence": [
+          "changed-files",
+          "tests-added",
+          "commands-run",
+          "residual-risks",
+          "no-staged-files"
+        ],
+        "severity": "required"
+      }
+    ],
+    "runtimeChecks": [
+      {
+        "id": "attestation",
+        "status": "failed",
+        "message": "Structured acceptance report not found."
+      }
+    ],
+    "verifyRuns": [],
+    "childReportParseError": "Structured acceptance report not found."
+  },
+  "transcriptPath": "/home/jesse/git/odysseus-jg/.pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
+  "timestamp": 1784743741223
+}
