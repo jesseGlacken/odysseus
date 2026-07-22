@@ -1,0 +1,80 @@
+# C4 Component — Backend Core (apps/api)
+
+```mermaid
+graph TB
+    subgraph routes["Routes Layer"]
+        direction LR
+        auth_routes["🔐 Auth<br/>login · logout<br/>signup · 2FA · TOTP"]
+        chat_routes["💬 Chat<br/>sessions · messages<br/>SSE streaming"]
+        doc_routes["📄 Documents<br/>upload · viewer<br/>editor · export"]
+        email_routes["📧 Email<br/>accounts · inbox<br/>compose · drafts"]
+        backup_routes["💾 Backup<br/>export · import<br/>restore"]
+        settings_routes["⚙️ Settings<br/>models · search<br/>users · MCP"]
+    end
+
+    subgraph middleware["Middleware Stack"]
+        direction LR
+        auth_mw["🔑 AuthMiddleware<br/>Session validation<br/>Owner scoping"]
+        security_mw["🛡️ SecurityHeaders<br/>CSP · CORS<br/>Rate limiting"]
+        logging_mw["📋 LoggingMiddleware<br/>Structured JSON<br/>Redaction"]
+        otel_mw["🔭 OTelMiddleware<br/>Span creation<br/>Request ID propagation"]
+        req_id_mw["🏷️ RequestID<br/>UUID generation<br/>Error correlation"]
+    end
+
+    subgraph core["Core Infrastructure"]
+        direction LR
+        database["🗄️ database.py<br/>SQLAlchemy models<br/>Session management"]
+        auth["🔐 auth.py<br/>Session tokens<br/>Password hashing"]
+        log_safety["🛡️ log_safety.py<br/>PII redaction<br/>Secret masking"]
+        middleware_core["⚙️ middleware.py<br/>Slow-request logging<br/>Security checks"]
+    end
+
+    subgraph domain["Domain / Agent (src/)"]
+        direction LR
+        agent_loop["🧠 agent_loop.py<br/>Streaming agent execution<br/>Tool orchestration"]
+        llm_core["🤖 llm_core.py<br/>LLM API clients<br/>Model routing"]
+        builtin_actions["🔧 builtin_actions.py<br/>Built-in tools<br/>Skill execution"]
+        task_scheduler["⏰ task_scheduler.py<br/>Cron engine<br/>Reminder system"]
+        email_pollers["📬 email_pollers.py<br/>IMAP polling<br/>Auto-summarisation"]
+        cookbook["🍳 cookbook_*.py<br/>Model download/serve<br/>Local AI lifecycle"]
+    end
+
+    subgraph services["Services Layer"]
+        direction LR
+        search["🔍 search_service<br/>Brave · Tavily<br/>Perplexity"]
+        memory["🧠 memory_service<br/>Conversation context<br/>Vector search"]
+        tts_stt["🎙️ tts/stt<br/>Text-to-speech<br/>Speech-to-text"]
+        hwfit["📐 hwfit<br/>Hardware detection<br/>Capability fitting"]
+    end
+
+    subgraph external["External Boundaries"]
+        llm["🤖 LLM APIs<br/>OpenAI · Anthropic<br/>Google · Ollama"]
+        imap["📧 IMAP/SMTP<br/>Email servers"]
+        chroma["🧬 ChromaDB<br/>Vector store"]
+        mcp["🔧 MCP Servers<br/>External tools"]
+    end
+
+    %% Request flow
+    routes --> middleware
+    middleware --> core
+    routes --> domain
+    domain --> services
+    domain --> core
+    services --> core
+    domain --> external
+    services --> external
+
+    classDef route fill:#d73a49,color:#fff,stroke:#b32d3a
+    classDef mw fill:#f66a0a,color:#fff,stroke:#c24e00
+    classDef core fill:#6f42c1,color:#fff,stroke:#4c2882
+    classDef domain fill:#0366d6,color:#fff,stroke:#024ea2
+    classDef service fill:#22863a,color:#fff,stroke:#19612a
+    classDef ext fill:#586069,color:#fff,stroke:#3a3f44
+
+    class auth_routes,chat_routes,doc_routes,email_routes,backup_routes,settings_routes route
+    class auth_mw,security_mw,logging_mw,otel_mw,req_id_mw mw
+    class database,auth,log_safety,middleware_core core
+    class agent_loop,llm_core,builtin_actions,task_scheduler,email_pollers,cookbook domain
+    class search,memory,tts_stt,hwfit service
+    class llm,imap,chroma,mcp ext
+```
