@@ -47,6 +47,7 @@ dev = [
   "pytest-asyncio",
   "pytest-bdd",
   "httpx2",
+  "ruff>=0.15.22",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -84,9 +85,3 @@ show_missing = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-bdd_features_base_dir = "../../features"
-
-[dependency-groups]
-dev = [
-    "ruff>=0.15.22",
-]

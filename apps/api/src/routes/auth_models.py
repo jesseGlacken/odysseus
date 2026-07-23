@@ -5,6 +5,11 @@ They are imported by auth_routes.py for response_model annotations and may be
 used by the frontend via packages/contracts.
 """
 
+# Note: dict[str, Any] is used for privileges, integrations, and presets
+# fields because these are dynamic user/configuration data with no fixed
+# schema. They are validated at runtime by the auth layer and integration
+# handlers, not by Pydantic. See ADR-0008 §5 for input validation layering.
+
 from typing import Any
 
 from pydantic import BaseModel, Field
