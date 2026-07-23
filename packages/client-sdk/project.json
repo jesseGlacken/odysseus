@@ -1,0 +1,38 @@
+{
+  "name": "client-sdk",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/client-sdk",
+  "projectType": "library",
+  "targets": {
+    "generate": {
+      "executor": "@nx/js:run-commands",
+      "dependsOn": ["contracts:generate"],
+      "options": {
+        "command": "node generate.js",
+        "cwd": "packages/client-sdk"
+      }
+    },
+    "test": {
+      "executor": "@nx/js:run-commands",
+      "dependsOn": ["generate"],
+      "options": {
+        "command": "npx vitest run",
+        "cwd": "packages/client-sdk"
+      }
+    },
+    "lint": {
+      "executor": "@nx/js:run-commands",
+      "options": {
+        "command": "echo 'client-sdk — no lint target yet'"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:run-commands",
+      "dependsOn": ["generate"],
+      "options": {
+        "command": "npx tsc --noEmit",
+        "cwd": "packages/client-sdk"
+      }
+    }
+  }
+}

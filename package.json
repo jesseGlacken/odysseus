@@ -20,6 +20,12 @@
     "@antithesishq/bombadil": "^0.6.1",
     "@nx/js": "^23.1.0",
     "@nxlv/python": "^22.2.2",
-    "nx": "^23.1.0"
+    "@types/node": "^26.1.1",
+    "nx": "^23.1.0",
+    "openapi-typescript": "^7.13.0",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
   }
 }
