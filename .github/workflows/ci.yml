@@ -142,6 +142,8 @@ jobs:
           cache: pip
       - run: pip install -r apps/api/requirements.txt
         if: steps.docs-check.outputs.docs_only != 'true'
+      - run: pip install pytest pytest-asyncio
+        if: steps.docs-check.outputs.docs_only != 'true'
       - run: mkdir -p data  # sqlite DB lives at ./data/app.db
         if: steps.docs-check.outputs.docs_only != 'true'
       - run: python -m pytest -q
