@@ -56,7 +56,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/routes__auth_routes__SetupRequest"
+                "$ref": "#/components/schemas/routes__auth_models__SetupRequest"
               }
             }
           },
@@ -67,7 +67,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SetupResponse"
+                }
               }
             }
           },
@@ -107,7 +109,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
               }
             }
           },
@@ -146,7 +150,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
               }
             }
           },
@@ -175,7 +181,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
               }
             }
           }
@@ -194,7 +202,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AuthStatusResponse"
+                }
               }
             }
           }
@@ -214,7 +224,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AuthPolicyResponse"
+                }
               }
             }
           }
@@ -243,7 +255,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePasswordResponse"
+                }
               }
             }
           },
@@ -273,7 +287,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/TotpSetupResponse"
+                }
               }
             }
           }
@@ -303,7 +319,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/TotpConfirmResponse"
+                }
               }
             }
           },
@@ -343,7 +361,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/TotpDisableResponse"
+                }
               }
             }
           },
@@ -373,7 +393,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/TotpStatusResponse"
+                }
               }
             }
           }
@@ -392,7 +414,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
               }
             }
           }
@@ -419,7 +443,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserResponse"
+                }
               }
             }
           },
@@ -456,7 +482,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUserResponse"
+                }
               }
             }
           },
@@ -496,7 +524,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/UserPrivilegesUpdateResponse"
+                }
               }
             }
           },
@@ -546,7 +576,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/RenameUserResponse"
+                }
               }
             }
           },
@@ -597,7 +629,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SetAdminResponse"
+                }
               }
             }
           },
@@ -627,7 +661,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureToggleResponse"
+                }
               }
             }
           }
@@ -658,7 +694,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SetOpenRegistrationResponse"
+                }
               }
             }
           },
@@ -764,7 +802,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationListResponse"
+                }
               }
             }
           }
@@ -782,7 +822,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationItemResponse"
+                }
               }
             }
           }
@@ -802,7 +844,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationPresetListResponse"
+                }
               }
             }
           }
@@ -833,7 +877,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationItemResponse"
+                }
               }
             }
           },
@@ -872,7 +918,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
               }
             }
           },
@@ -913,7 +961,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationTestResponse"
+                }
               }
             }
           },
@@ -19334,6 +19384,104 @@
         "type": "object",
         "title": "AssistantSettingsUpdate"
       },
+      "AuthPolicyResponse": {
+        "properties": {
+          "password_min_length": {
+            "type": "integer",
+            "title": "Password Min Length",
+            "description": "Minimum allowed password length"
+          },
+          "reserved_usernames": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reserved Usernames",
+            "description": "Usernames that cannot be registered"
+          },
+          "signup_enabled": {
+            "type": "boolean",
+            "title": "Signup Enabled",
+            "description": "Whether open registration is currently enabled"
+          },
+          "session_days": {
+            "type": "integer",
+            "title": "Session Days",
+            "description": "Default session lifetime in days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "password_min_length",
+          "reserved_usernames",
+          "signup_enabled",
+          "session_days"
+        ],
+        "title": "AuthPolicyResponse"
+      },
+      "AuthStatusResponse": {
+        "properties": {
+          "configured": {
+            "type": "boolean",
+            "title": "Configured",
+            "description": "Whether any account exists"
+          },
+          "authenticated": {
+            "type": "boolean",
+            "title": "Authenticated",
+            "description": "Whether the caller is logged in"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "description": "Logged-in username"
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin",
+            "description": "Whether the logged-in user is an admin",
+            "default": false
+          },
+          "privileges": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Privileges",
+            "description": "Effective privilege map for the logged-in user"
+          },
+          "signup_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signup Enabled",
+            "description": "Whether open registration is currently enabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configured",
+          "authenticated"
+        ],
+        "title": "AuthStatusResponse"
+      },
       "Body_add_server_api_mcp_servers_post": {
         "properties": {
           "name": {
@@ -20037,11 +20185,13 @@
         "properties": {
           "current_password": {
             "type": "string",
-            "title": "Current Password"
+            "title": "Current Password",
+            "description": "Existing password"
           },
           "new_password": {
             "type": "string",
-            "title": "New Password"
+            "title": "New Password",
+            "description": "New password"
           }
         },
         "type": "object",
@@ -20050,6 +20200,20 @@
           "new_password"
         ],
         "title": "ChangePasswordRequest"
+      },
+      "ChangePasswordResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the password was changed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "ChangePasswordResponse"
       },
       "ChatRequest": {
         "properties": {
@@ -20224,15 +20388,18 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "Username for the new account"
           },
           "password": {
             "type": "string",
-            "title": "Password"
+            "title": "Password",
+            "description": "Plain-text password"
           },
           "is_admin": {
             "type": "boolean",
             "title": "Is Admin",
+            "description": "Whether the new account is an admin",
             "default": false
           }
         },
@@ -20243,11 +20410,26 @@
         ],
         "title": "CreateUserRequest"
       },
+      "CreateUserResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether account creation succeeded"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "CreateUserResponse"
+      },
       "DeleteUserRequest": {
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "Username of the account to delete"
           }
         },
         "type": "object",
@@ -20255,6 +20437,20 @@
           "username"
         ],
         "title": "DeleteUserRequest"
+      },
+      "DeleteUserResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether deletion succeeded"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "DeleteUserResponse"
       },
       "DirectoryRequest": {
         "properties": {
@@ -20699,6 +20895,32 @@
         "type": "object",
         "title": "ExtractStyleRequest"
       },
+      "FeatureToggleResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the toggle succeeded"
+          },
+          "signup_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signup Enabled",
+            "description": "Current open-registration state after toggle"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "FeatureToggleResponse"
+      },
       "GalleryPatch": {
         "properties": {
           "tags": {
@@ -20764,6 +20986,83 @@
         ],
         "title": "HideImageRequest"
       },
+      "IntegrationItemResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the operation succeeded"
+          },
+          "integration": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Integration",
+            "description": "Integration definition"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "integration"
+        ],
+        "title": "IntegrationItemResponse"
+      },
+      "IntegrationListResponse": {
+        "properties": {
+          "integrations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Integrations",
+            "description": "Integration definitions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "integrations"
+        ],
+        "title": "IntegrationListResponse"
+      },
+      "IntegrationPresetListResponse": {
+        "properties": {
+          "presets": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "object",
+            "title": "Presets",
+            "description": "Named integration presets"
+          }
+        },
+        "type": "object",
+        "required": [
+          "presets"
+        ],
+        "title": "IntegrationPresetListResponse"
+      },
+      "IntegrationTestResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the test succeeded"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "message"
+        ],
+        "title": "IntegrationTestResponse"
+      },
       "KillPidRequest": {
         "properties": {
           "pid": {
@@ -20808,15 +21107,18 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "Username to authenticate with"
           },
           "password": {
             "type": "string",
-            "title": "Password"
+            "title": "Password",
+            "description": "Plain-text password"
           },
           "remember": {
             "type": "boolean",
             "title": "Remember",
+            "description": "Whether to issue a persistent session cookie",
             "default": true
           },
           "totp_code": {
@@ -20828,7 +21130,8 @@
                 "type": "null"
               }
             ],
-            "title": "Totp Code"
+            "title": "Totp Code",
+            "description": "Optional TOTP / backup code"
           }
         },
         "type": "object",
@@ -20837,6 +21140,58 @@
           "password"
         ],
         "title": "LoginRequest"
+      },
+      "LoginResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether login succeeded"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "description": "Authenticated username on success"
+          },
+          "requires_totp": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requires Totp",
+            "description": "True when password was valid but a TOTP code is required"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "LoginResponse"
+      },
+      "LogoutResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether logout completed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "LogoutResponse"
       },
       "MemoryAddRequest": {
         "properties": {
@@ -21353,7 +21708,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "New username"
           }
         },
         "type": "object",
@@ -21361,6 +21717,44 @@
           "username"
         ],
         "title": "RenameUserRequest"
+      },
+      "RenameUserResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the rename succeeded"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "description": "New username"
+          },
+          "renamed_self": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Renamed Self",
+            "description": "True when the admin renamed their own account"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "RenameUserResponse"
       },
       "ResearchStartRequest": {
         "properties": {
@@ -21726,7 +22120,8 @@
         "properties": {
           "is_admin": {
             "type": "boolean",
-            "title": "Is Admin"
+            "title": "Is Admin",
+            "description": "Target admin status"
           }
         },
         "type": "object",
@@ -21735,11 +22130,38 @@
         ],
         "title": "SetAdminRequest"
       },
+      "SetAdminResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the update succeeded"
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin",
+            "description": "Updated admin status"
+          },
+          "self": {
+            "type": "boolean",
+            "title": "Self",
+            "description": "True when the acting admin updated themselves"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "is_admin",
+          "self"
+        ],
+        "title": "SetAdminResponse"
+      },
       "SetOpenRegistrationRequest": {
         "properties": {
           "enabled": {
             "type": "boolean",
-            "title": "Enabled"
+            "title": "Enabled",
+            "description": "Whether open registration is enabled"
           }
         },
         "type": "object",
@@ -21747,6 +22169,46 @@
           "enabled"
         ],
         "title": "SetOpenRegistrationRequest"
+      },
+      "SetOpenRegistrationResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the setting was updated"
+          },
+          "signup_enabled": {
+            "type": "boolean",
+            "title": "Signup Enabled",
+            "description": "Current open-registration state"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "signup_enabled"
+        ],
+        "title": "SetOpenRegistrationResponse"
+      },
+      "SetupResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether setup succeeded"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "message"
+        ],
+        "title": "SetupResponse"
       },
       "ShellExecRequest": {
         "properties": {
@@ -21843,11 +22305,13 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "Username for the new account"
           },
           "password": {
             "type": "string",
-            "title": "Password"
+            "title": "Password",
+            "description": "Plain-text password"
           }
         },
         "type": "object",
@@ -21856,6 +22320,26 @@
           "password"
         ],
         "title": "SignupRequest"
+      },
+      "SignupResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether account creation succeeded"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "message"
+        ],
+        "title": "SignupResponse"
       },
       "SkillAddRequest": {
         "properties": {
@@ -22781,11 +23265,34 @@
         "type": "object",
         "title": "ToolsUpdate"
       },
+      "TotpConfirmResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether 2FA was enabled"
+          },
+          "backup_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Backup Codes",
+            "description": "Backup codes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "TotpConfirmResponse"
+      },
       "TotpDisableRequest": {
         "properties": {
           "password": {
             "type": "string",
-            "title": "Password"
+            "title": "Password",
+            "description": "Account password confirmation"
           }
         },
         "type": "object",
@@ -22794,11 +23301,66 @@
         ],
         "title": "TotpDisableRequest"
       },
+      "TotpDisableResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether 2FA was disabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "TotpDisableResponse"
+      },
+      "TotpSetupResponse": {
+        "properties": {
+          "secret": {
+            "type": "string",
+            "title": "Secret",
+            "description": "Raw TOTP secret (not yet enabled)"
+          },
+          "uri": {
+            "type": "string",
+            "title": "Uri",
+            "description": "otpauth:// provisioning URI"
+          },
+          "qr_code": {
+            "type": "string",
+            "title": "Qr Code",
+            "description": "Base64 PNG QR code data URI"
+          }
+        },
+        "type": "object",
+        "required": [
+          "secret",
+          "uri",
+          "qr_code"
+        ],
+        "title": "TotpSetupResponse"
+      },
+      "TotpStatusResponse": {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled",
+            "description": "Whether 2FA is enabled for the caller"
+          }
+        },
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "title": "TotpStatusResponse"
+      },
       "TotpVerifyRequest": {
         "properties": {
           "code": {
             "type": "string",
-            "title": "Code"
+            "title": "Code",
+            "description": "TOTP code to confirm setup"
           }
         },
         "type": "object",
@@ -22806,6 +23368,77 @@
           "code"
         ],
         "title": "TotpVerifyRequest"
+      },
+      "UserListItem": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          },
+          "is_admin": {
+            "type": "boolean",
+            "title": "Is Admin",
+            "description": "Admin flag"
+          },
+          "privileges": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Privileges",
+            "description": "Effective privilege map"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "is_admin",
+          "privileges"
+        ],
+        "title": "UserListItem"
+      },
+      "UserListResponse": {
+        "properties": {
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/UserListItem"
+            },
+            "type": "array",
+            "title": "Users",
+            "description": "All user accounts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "users"
+        ],
+        "title": "UserListResponse"
+      },
+      "UserPrivilegesUpdateResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the update succeeded"
+          },
+          "privileges": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Privileges",
+            "description": "Updated privilege map"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "UserPrivilegesUpdateResponse"
       },
       "UserTemplateRequest": {
         "properties": {
@@ -22934,15 +23567,17 @@
         ],
         "title": "VaultUnlockRequest"
       },
-      "routes__auth_routes__SetupRequest": {
+      "routes__auth_models__SetupRequest": {
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description": "Username for the first admin account"
           },
           "password": {
             "type": "string",
-            "title": "Password"
+            "title": "Password",
+            "description": "Plain-text password for the first admin"
           }
         },
         "type": "object",
