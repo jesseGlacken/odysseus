@@ -3284,11 +3284,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "type": "object",
-                  "title": "Response Chat Endpoint Api Chat Post"
+                  "$ref": "#/components/schemas/ChatResponse"
                 }
               }
             }
@@ -3389,9 +3385,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Chat Stop Api Chat Stop  Session Id  Post"
+                  "$ref": "#/components/schemas/ChatStopResponse"
                 }
               }
             }
@@ -3433,9 +3427,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Chat Stream Status Api Chat Stream Status  Session Id  Get"
+                  "$ref": "#/components/schemas/ChatStreamStatusResponse"
                 }
               }
             }
@@ -3487,11 +3479,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "title": "Response Inject Context Api Inject Context  Session Id  Post"
+                  "$ref": "#/components/schemas/InjectContextResponse"
                 }
               }
             }
@@ -20303,6 +20291,63 @@
         ],
         "title": "ChatRequest"
       },
+      "ChatResponse": {
+        "properties": {
+          "response": {
+            "type": "string",
+            "title": "Response",
+            "description": "The model's reply text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "response"
+        ],
+        "title": "ChatResponse",
+        "description": "Response from the non-streaming /api/chat endpoint."
+      },
+      "ChatStopResponse": {
+        "properties": {
+          "stopped": {
+            "type": "boolean",
+            "title": "Stopped",
+            "description": "Whether the run was stopped"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stopped"
+        ],
+        "title": "ChatStopResponse",
+        "description": "Response from /api/chat/stop/{session_id}."
+      },
+      "ChatStreamStatusResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Current stream status (e.g. 'streaming')"
+          },
+          "detached": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detached",
+            "description": "True if the run is detached from SSE"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ChatStreamStatusResponse",
+        "description": "Response from /api/chat/stream_status/{session_id}."
+      },
       "CheckInUpdate": {
         "properties": {
           "id": {
@@ -20985,6 +21030,21 @@
           "url"
         ],
         "title": "HideImageRequest"
+      },
+      "InjectContextResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Result status message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "InjectContextResponse",
+        "description": "Response from /api/inject_context/{session_id}."
       },
       "IntegrationItemResponse": {
         "properties": {
