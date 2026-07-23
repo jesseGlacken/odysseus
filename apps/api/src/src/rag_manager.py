@@ -25,17 +25,17 @@ class RAGManager:
     A manager class that wraps VectorRAG for backward compatibility.
     Most methods delegate directly to VectorRAG.
     """
-    
+
     def __init__(self, persist_directory: str = CHROMA_DIR):
         """Initialize the RAGManager with VectorRAG."""
         self.vector_rag = VectorRAG(persist_directory=persist_directory)
         logger.info("RAGManager initialized as wrapper for VectorRAG")
-    
+
     # Delegate all methods to VectorRAG
     def search(self, query: str, k: int = 5, owner: Optional[str] = None) -> List[Dict[str, Any]]:
         """Search for documents - delegates to VectorRAG."""
         return self.vector_rag.search(query, k, owner=owner)
-    
+
     def index_personal_documents(
         self,
         directory: str,
@@ -48,23 +48,23 @@ class RAGManager:
             file_extensions=file_extensions,
             owner=owner,
         )
-    
+
     def retrieve(self, query: str, k: int = 5) -> List[str]:
         """Retrieve relevant chunks - delegates to VectorRAG."""
         return self.vector_rag.retrieve(query, k)
-    
+
     def rebuild_index(self) -> bool:
         """Rebuild index - delegates to VectorRAG."""
         return self.vector_rag.rebuild_index()
-    
+
     def get_stats(self) -> Dict[str, Any]:
         """Get stats - delegates to VectorRAG."""
         return self.vector_rag.get_stats()
-    
+
     def add_document(self, text: str, metadata: Dict[str, Any]) -> bool:
         """Add single document - delegates to VectorRAG."""
         return self.vector_rag.add_document(text, metadata)
-    
+
     def add_documents_batch(self, docs: List[tuple]) -> Dict[str, Any]:
         """Add documents in batch - delegates to VectorRAG."""
         return self.vector_rag.add_documents_batch(docs)

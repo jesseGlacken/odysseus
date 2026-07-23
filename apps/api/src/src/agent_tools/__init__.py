@@ -141,7 +141,7 @@ from src.tool_execution import (  # noqa: E402, F401
 
 # Document functions
 from .document_tools import (
-    set_active_document, 
+    set_active_document,
     set_active_model
 )
 

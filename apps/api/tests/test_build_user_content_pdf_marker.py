@@ -91,4 +91,3 @@ def test_pdf_auto_document_uses_original_upload_name(monkeypatch, tmp_path):
 
     assert captured["title"] == "Quarterly Board Packet"
     assert captured["upload_id"] == pdf_path.name
-

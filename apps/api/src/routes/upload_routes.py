@@ -253,7 +253,7 @@ def setup_upload_routes(upload_handler):
             return None
         finally:
             db.close()
-    
+
     @router.post("")
     async def api_upload(
         request: Request,
@@ -265,7 +265,7 @@ def setup_upload_routes(upload_handler):
             session_id = None
         if not files:
             raise HTTPException(400, "No files uploaded")
-            
+
         client_ip = request.client.host if request.client else "unknown"
         out = []
 
@@ -284,7 +284,7 @@ def setup_upload_routes(upload_handler):
                 status_code=429,
                 detail=f"Maximum concurrent uploads ({upload_handler.max_concurrent_uploads}) exceeded"
             )
-        
+
         for u in files:
             try:
                 owner = effective_user(request)
@@ -311,12 +311,12 @@ def setup_upload_routes(upload_handler):
             except Exception as e:
                 logger.error(f"Failed to process upload {u.filename}: {str(e)}")
                 continue
-        
+
         if not out:
             raise HTTPException(500, "All file uploads failed")
-            
+
         return {"files": out}
-    
+
     @router.post("/cleanup")
     async def manual_cleanup(request: Request):
         """Manually trigger cleanup of old uploads."""
@@ -529,5 +529,5 @@ def setup_upload_routes(upload_handler):
         while True:
             await asyncio.sleep(3600)
             upload_handler.cleanup_rate_limits()
-    
+
     return router, periodic_rate_limit_cleanup

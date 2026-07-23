@@ -440,7 +440,7 @@ class CreateDocumentTool:
         finally:
             db.close()
 
-class UpdateDocumentTool:    
+class UpdateDocumentTool:
     async def execute(self, content: str, ctx: dict) -> Dict:
         """Update an existing document. Content = full new document text."""
         import uuid

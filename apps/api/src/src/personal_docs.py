@@ -46,12 +46,12 @@ class PersonalDocsConfig:
     )
     DEFAULT_K: int = 5
     STOP_WORDS: Set[str] = None
-    
+
     def __post_init__(self):
         if self.STOP_WORDS is None:
             self.STOP_WORDS = set("""
-            the a an is are was were be been being to of in for on at by with from 
-            and or if then else when while as it this that those these i you he she 
+            the a an is are was were be been being to of in for on at by with from
+            and or if then else when while as it this that those these i you he she
             we they my your our their me him her us them
             """.split())
 
@@ -94,7 +94,7 @@ def tokenize(s: str) -> Set[str]:
     return set(t for t in tokens if t not in config.STOP_WORDS and len(t) > 1)
 
 def load_personal_index(
-    personal_dir: str, 
+    personal_dir: str,
     extensions: Tuple[str, ...] = config.DEFAULT_EXTENSIONS
 ) -> List[Dict[str, Any]]:
     """Load and index personal documents."""
@@ -282,7 +282,7 @@ class PersonalDocsManager:
             self.indexed_directories.append(directory)
             self.save_directories()
             logger.info(f"Added directory to tracking: {directory}")
-            
+
             # If RAG manager is available, index the directory immediately.
             # Callers that already indexed with owner metadata can pass
             # index=False so we do not create a second ownerless copy.
@@ -292,7 +292,7 @@ class PersonalDocsManager:
                     logger.info(f"Indexed {result.get('indexed_count', 0)} chunks from {directory}")
                 except Exception as e:
                     logger.error(f"Failed to index directory {directory}: {e}")
-            
+
             # Refresh the local index to include the new directory
             self.refresh_index()
         else:
@@ -302,15 +302,15 @@ class PersonalDocsManager:
         """Remove a directory from the tracking list."""
         # Normalize the path
         directory = os.path.abspath(directory)
-        
+
         if directory in self.indexed_directories:
             self.indexed_directories.remove(directory)
             self.save_directories()
             logger.info(f"Removed directory from tracking: {directory}")
-            
+
             # Refresh the index to exclude the removed directory
             self.refresh_index()
-            
+
             # Targeted delete of just this directory's chunks. This previously
             # called rag_manager.rebuild_index(), which delete+recreates the
             # entire shared collection (every owner + the base index) and then
@@ -417,12 +417,12 @@ class PersonalDocsManager:
         total_docs = len(self.index)
         total_chunks = sum(len(doc.get('chunks', [])) for doc in self.index)
         total_size = sum(doc.get('size', 0) for doc in self.index)
-        
+
         extensions = {}
         for doc in self.index:
             ext = os.path.splitext(doc['path'])[1]
             extensions[ext] = extensions.get(ext, 0) + 1
-        
+
         return {
             'total_documents': total_docs,
             'total_chunks': total_chunks,
@@ -433,16 +433,16 @@ class PersonalDocsManager:
             'base_directory': self.personal_dir,
             'additional_directories': self.indexed_directories
         }
-        
+
     def index_all_directories(self):
         """Re-index all tracked directories in the RAG system."""
         if not self.rag_manager:
             logger.warning("No RAG manager available for indexing")
             return
-        
+
         success_count = 0
         failure_count = 0
-        
+
         # Index the base personal directory
         try:
             result = self.rag_manager.index_personal_documents(self.personal_dir)
@@ -452,14 +452,14 @@ class PersonalDocsManager:
         except Exception as e:
             failure_count += 1
             logger.error(f"Failed to index base directory {self.personal_dir}: {e}")
-        
+
         # Index additional directories
         for directory in self.indexed_directories:
             if not os.path.exists(directory):
                 logger.warning(f"Skipping non-existent directory: {directory}")
                 failure_count += 1
                 continue
-            
+
             try:
                 result = self.rag_manager.index_personal_documents(directory)
                 if result.get('success'):
@@ -471,6 +471,6 @@ class PersonalDocsManager:
             except Exception as e:
                 failure_count += 1
                 logger.error(f"Failed to index directory {directory}: {e}")
-        
+
         logger.info(f"Indexing complete: {success_count} succeeded, {failure_count} failed")
         return {"success": success_count, "failed": failure_count}
