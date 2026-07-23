@@ -1,0 +1,16 @@
+{
+  "nodes": {
+    "npm:@antithesishq/bombadil": {
+      "type": "npm",
+      "name": "npm:@antithesishq/bombadil",
+      "data": {
+        "version": "0.6.1",
+        "packageName": "@antithesishq/bombadil",
+        "hash": "sha512-d1iufG3MI7gSMSiSmMeNdcMW+qR0yQXL2zdkVynC3n3DYgFJYlYXKUQzygmqU12m4RWlR5iOdQU1hsx5UT6+IA=="
+      }
+    }
+  },
+  "keyMap": {
+    "node_modules/@antithesishq/bombadil": "npm:@antithesishq/bombadil"
+  }
+}

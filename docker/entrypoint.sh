@@ -138,7 +138,7 @@ export PATH="/app/.local/bin:$PATH"
 # Run first-time setup as the app user so data/ files get the right ownership.
 # setup.py is idempotent — skips auth.json / .env if they already exist.
 # || true so a setup failure never prevents the container from starting.
-"$GOSU_BIN" "$ODY_USER" "$PYTHON_BIN" /app/setup.py || true
+"$GOSU_BIN" "$ODY_USER" "$PYTHON_BIN" /app/apps/api/setup.py || true
 
 # Drop root and run the actual app. `gosu` is preferred over `su` /
 # `sudo` because it cleans up the process tree (no extra shell layer)
