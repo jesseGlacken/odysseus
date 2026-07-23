@@ -144,7 +144,7 @@ jobs:
         if: steps.docs-check.outputs.docs_only != 'true'
       - run: pip install pytest pytest-asyncio
         if: steps.docs-check.outputs.docs_only != 'true'
-      - run: mkdir -p data  # sqlite DB lives at ./data/app.db
+      - run: mkdir -p data
         if: steps.docs-check.outputs.docs_only != 'true'
-      - run: python -m pytest -q
+      - run: cd apps/api && PYTHONPATH=src python -m pytest -q
         if: steps.docs-check.outputs.docs_only != 'true'
