@@ -1,0 +1,13 @@
+{
+  "name": "@odysseus/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OpenAPI schema and snapshot tests for the Odysseus API",
+  "scripts": {
+    "generate": "node generate.js",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.1"
+  }
+}
