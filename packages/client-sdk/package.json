@@ -1,0 +1,22 @@
+{
+  "name": "@odysseus/client-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generated TypeScript client for the Odysseus API",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/generated/client.ts"
+  },
+  "scripts": {
+    "generate": "node generate.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.13.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0",
+    "vitest": "^3.1.1"
+  }
+}
