@@ -29,7 +29,11 @@ print(json.dumps(schema, indent=2))
 
 console.log('Generating OpenAPI schema from FastAPI app...');
 try {
-  const result = execSync(`uv run python -c '${script.replace(/'/g, "'\\''")}'`, {
+  // Write the Python script to a temp file to avoid shell-escaping issues
+  const scriptPath = path.join(__dirname, '.generate_schema.py');
+  fs.writeFileSync(scriptPath, script);
+
+  const result = execSync(`uv run python ${scriptPath}`, {
     cwd: apiDir,
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'pipe'],
@@ -44,6 +48,9 @@ try {
   const stats = fs.statSync(outputPath);
   const schema = JSON.parse(result);
   console.log(`Generated ${(stats.size / 1024).toFixed(1)} KB schema with ${Object.keys(schema.paths).length} paths`);
+
+  // Clean up temp script
+  fs.unlinkSync(scriptPath);
 } catch (err) {
   console.error('Failed to generate OpenAPI schema:', err.message);
   process.exit(1);
