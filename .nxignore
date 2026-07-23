@@ -1,0 +1,10 @@
+# Nx workspace ignore patterns
+node_modules/
+.pytest_cache/
+__pycache__/
+*.pyc
+.venv/
+dist/
+coverage/
+.nx/
+*.tsbuildinfo
