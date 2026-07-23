@@ -146,5 +146,5 @@ jobs:
         if: steps.docs-check.outputs.docs_only != 'true'
       - run: mkdir -p data
         if: steps.docs-check.outputs.docs_only != 'true'
-      - run: cd apps/api && PYTHONPATH=src python -m pytest -q
+      - run: PYTHONPATH=apps/api/src python -m pytest apps/api/tests -q
         if: steps.docs-check.outputs.docs_only != 'true'
