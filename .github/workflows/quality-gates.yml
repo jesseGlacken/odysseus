@@ -1,0 +1,62 @@
+# Quality gates — advisory CI run
+#
+# Runs pre-commit + mypy + pytest-cov + radon as a single job. All steps use
+# continue-on-error: true so the job reports findings without blocking merges.
+# These gates become blocking in Phase 2.
+#
+# See docs/adr/quality-gates.md for the full gate catalog and lifecycle.
+
+name: Quality gates (advisory)
+
+on:
+  pull_request:
+  push:
+    branches: [dev2]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-gates-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    name: Quality gates
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pre-commit mypy pytest pytest-cov radon
+
+      - name: Run pre-commit
+        continue-on-error: true
+        run: pre-commit run --all-files --show-diff-on-failure
+
+      - name: Run mypy (advisory)
+        continue-on-error: true
+        run: mypy apps/api/src/ --ignore-missing-imports
+
+      - name: Run pytest-cov (advisory)
+        continue-on-error: true
+        run: |
+          pip install -r apps/api/requirements.txt
+          cd apps/api && python -m pytest --cov=src --cov-report=term-missing -q || true
+
+      - name: Run radon CC (advisory)
+        continue-on-error: true
+        run: |
+          pip install radon
+          radon cc apps/api/src/ --min C --show-complexity || true
+
+      - name: Run radon raw (advisory)
+        continue-on-error: true
+        run: radon raw apps/api/src/ --summary || true

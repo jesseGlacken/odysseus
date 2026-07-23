@@ -1,0 +1,93 @@
+# Pre-commit hooks — advisory (report-only) during Phase 0.
+# All hooks use verbose: true so violations are visible but never block.
+# See docs/adr/quality-gates.md for the full gate catalog.
+#
+# Install:  pre-commit install
+# Run all:  pre-commit run --all-files
+
+fail_fast: false
+
+default_install_hook_types: [pre-commit, pre-push]
+
+repos:
+  # ── Built-in housekeeping ────────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        verbose: true
+      - id: end-of-file-fixer
+        verbose: true
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+        verbose: true
+      - id: check-json
+        verbose: true
+      - id: check-toml
+        verbose: true
+      - id: check-added-large-files
+        args: [--maxkb=500]
+        verbose: true
+      - id: check-merge-conflict
+        verbose: true
+      - id: detect-private-key
+        verbose: true
+
+  # ── Secret scanning ──────────────────────────────────────────────────────
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+        verbose: true
+
+  # ── Python linting (advisory) ────────────────────────────────────────────
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.10
+    hooks:
+      - id: ruff
+        args: [--select=E,F,I,UP,B]
+        files: ^apps/api/src/
+        verbose: true
+      - id: ruff-format
+        args: [--check]
+        files: ^apps/api/src/
+        verbose: true
+
+  # ── Local hooks (advisory) ───────────────────────────────────────────────
+  - repo: local
+    hooks:
+      # Ban # pragma: no cover — ADR-0004 mandates 100% coverage.
+      - id: forbid-coverage-pragmas
+        name: forbid-coverage-pragmas
+        entry: 'pragma: no cover'
+        language: pygrep
+        types: [python]
+        files: ^apps/api/src/
+        verbose: true
+
+      # Ban # type: ignore — ADR-0007 mandates strict typing.
+      - id: forbid-type-ignore
+        name: forbid-type-ignore
+        entry: 'type:\s*ignore'
+        language: pygrep
+        types: [python]
+        files: ^apps/api/src/
+        verbose: true
+
+      # Check runtime requirements don't include test deps.
+      - id: runtime-deps-guard
+        name: runtime-deps-guard
+        entry: python tools/hooks/runtime_deps_guard.py
+        language: python
+        files: ^apps/api/requirements\.txt$
+        verbose: true
+        pass_filenames: true
+
+      # Check route decorators have response_model.
+      - id: response-model-checker
+        name: response-model-checker
+        entry: python tools/hooks/response_model_checker.py
+        language: python
+        files: ^apps/api/src/routes/.*\.py$
+        verbose: true
+        pass_filenames: true
