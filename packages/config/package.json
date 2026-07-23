@@ -1,0 +1,16 @@
+{
+  "name": "@odysseus/config",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared configuration presets for the Odysseus monorepo",
+  "exports": {
+    "./eslint": "./eslint-preset/index.js",
+    "./tsconfig/base": "./tsconfig-preset/base.json",
+    "./tsconfig/react": "./tsconfig-preset/react.json",
+    "./tailwind": "./tailwind-preset/tailwind.config.js",
+    "./vitest": "./vitest-preset/setup.ts"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.5"
+  }
+}

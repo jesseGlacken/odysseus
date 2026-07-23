@@ -1,0 +1,14 @@
+{
+  "name": "config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/config",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/js:run-commands",
+      "options": {
+        "command": "echo 'config — no lint target yet'"
+      }
+    }
+  }
+}
