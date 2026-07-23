@@ -5,8 +5,6 @@ Streaming (SSE) endpoints return StreamingResponse and cannot carry a typed
 response_model; they are documented via openapi_extra in P1.3f.
 """
 
-from typing import Any
-
 from pydantic import BaseModel, Field
 
 

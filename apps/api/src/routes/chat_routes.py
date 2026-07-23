@@ -429,7 +429,7 @@ def setup_chat_routes(
     # POST /api/chat (non-streaming)
     # ------------------------------------------------------------------ #
     @router.post("/api/chat", response_model=ChatResponse)
-    async def chat_endpoint(request: Request, chat_request: ChatRequest) -> Dict[str, str]:
+    async def chat_endpoint(request: Request, chat_request: ChatRequest) -> ChatResponse:
         _set_user_time_from_request(request)
 
         message = chat_request.message
