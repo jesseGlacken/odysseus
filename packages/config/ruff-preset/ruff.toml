@@ -1,0 +1,33 @@
+# Shared Ruff configuration for the Odysseus monorepo.
+# All Python projects extend this preset.
+# See ADR-0007 (Coding Standards) for the rationale behind each rule.
+
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RUF", # ruff-specific rules
+]
+
+ignore = [
+    "RUF001", # allow ambiguous characters (controlled by string review)
+]
+
+[lint.isort]
+known-first-party = ["core", "routes", "src", "services"]
+force-sort-within-sections = true
+combine-as-imports = true
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
