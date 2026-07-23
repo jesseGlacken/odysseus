@@ -119,17 +119,17 @@ def _stream_timeout(read_timeout) -> httpx.Timeout:
 
 
 # Cache for LLM responses
-def _get_cache_key(url: str, model: str, messages: List[Dict], 
+def _get_cache_key(url: str, model: str, messages: List[Dict],
                    temperature: float, max_tokens: int) -> str:
     """Generate cache key for LLM requests."""
     hashable_messages = []
     for msg in messages:
         sorted_items = tuple(sorted(msg.items()))
         hashable_messages.append(sorted_items)
-    
+
     content = json.dumps({
         'url': url,
-        'model': model, 
+        'model': model,
         'messages': hashable_messages,
         'temp': temperature,
         'max_tokens': max_tokens
@@ -1760,7 +1760,7 @@ def normalize_model_id(
     return None
 
 def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LLMConfig.DEFAULT_TEMPERATURE,
-             max_tokens: int = LLMConfig.DEFAULT_MAX_TOKENS, headers: Optional[Dict] = None, 
+             max_tokens: int = LLMConfig.DEFAULT_MAX_TOKENS, headers: Optional[Dict] = None,
              timeout: int = LLMConfig.DEFAULT_TIMEOUT, prompt_type: Optional[str] = None) -> str:
     """Synchronous LLM call with optional prompt type enhancement."""
     h = _provider_headers(_detect_provider(url))

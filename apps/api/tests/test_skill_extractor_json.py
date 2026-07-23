@@ -55,4 +55,3 @@ def test_trailing_stray_brace_is_recovered():
     data = skill_extractor._extract_json_object(resp)
     assert isinstance(data, dict)
     assert data["title"] == "Restart the service"
-

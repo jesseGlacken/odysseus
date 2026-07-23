@@ -13,7 +13,7 @@ class APIKeyManager:
         self.data_dir = data_dir
         self.api_keys_file = os.path.join(data_dir, "api_keys.json")
         self.key_file = os.path.join(data_dir, ".key")
-        
+
     def get_or_create_key(self) -> bytes:
         """Get or create encryption key for API keys"""
         if os.path.exists(self.key_file):
@@ -32,21 +32,21 @@ class APIKeyManager:
             # on Windows (files there are ACL-restricted to the user already).
             safe_chmod(self.key_file, 0o600)
             return key
-    
+
     def encrypt_api_key(self, api_key: str) -> str:
         """Encrypt an API key"""
         if not api_key:
             return ""
         f = Fernet(self.get_or_create_key())
         return f.encrypt(api_key.encode()).decode()
-    
+
     def decrypt_api_key(self, encrypted_key: str) -> str:
         """Decrypt an API key"""
         if not encrypted_key:
             return ""
         f = Fernet(self.get_or_create_key())
         return f.decrypt(encrypted_key.encode()).decode()
-    
+
     def _load_raw(self) -> Dict[str, str]:
         """Load the raw, still-encrypted keys dict from disk.
 

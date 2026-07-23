@@ -11,7 +11,7 @@ class PresetManager:
             "name": "Code Analyze",
             "temperature": 0.2,
             "max_tokens": 8000,
-            "system_prompt": """You are a code analyzer. 
+            "system_prompt": """You are a code analyzer.
 ANALYSIS FORMAT:
 - Issues: [specific problems found]
 - Security: [vulnerabilities if any]
@@ -27,7 +27,7 @@ Start directly with findings. No preamble. If input isn't code, state: "Input is
             "max_tokens": 4096,
             "system_prompt": """You are a creative ideation assistant focused on divergent thinking.
 
-Generate diverse, unexpected ideas that span from practical to experimental. 
+Generate diverse, unexpected ideas that span from practical to experimental.
 - Mix conventional and unconventional approaches
 - Connect unrelated concepts to spark innovation
 - Consider multiple perspectives and contexts
@@ -63,17 +63,17 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
             "enabled": False,
         }
     }
-    
+
     def __init__(self, data_dir: str):
         self.presets_file = os.path.join(data_dir, "presets.json")
         self.presets = self.load()
-    
+
     def load(self) -> Dict[str, Any]:
         """Load presets from file, creating defaults if needed"""
         if not os.path.exists(self.presets_file):
             self.save(self.DEFAULT_PRESETS)
             return self.DEFAULT_PRESETS.copy()
-        
+
         try:
             with open(self.presets_file, 'r', encoding="utf-8") as f:
                 presets = json.load(f)
@@ -111,7 +111,7 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
         except Exception as e:
             logger.error(f"Error loading presets: {e}")
             return self.DEFAULT_PRESETS.copy()
-    
+
     def save(self, presets: Dict[str, Any]) -> bool:
         """Save presets to file"""
         try:
@@ -126,11 +126,11 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
         except Exception as e:
             logger.error(f"Error saving presets: {e}")
             return False
-    
+
     def get(self, preset_id: str) -> Dict[str, Any]:
         """Get a specific preset"""
         return self.presets.get(preset_id)
-    
+
     def update_custom(
         self,
         temperature: float,
@@ -153,7 +153,7 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
             "enabled": enabled,
         }
         return self.save(self.presets)
-    
+
     def get_all(self) -> Dict[str, Any]:
         """Get all presets"""
         return self.presets.copy()

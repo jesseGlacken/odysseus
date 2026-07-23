@@ -103,4 +103,3 @@ async def test_list_events_rejects_partial_loose_range():
 
     assert res2.get("exit_code", 1) == 1, res2
     assert "list_events needs explicit start/end" in res2.get("error", "")
-

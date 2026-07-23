@@ -12,12 +12,12 @@ class ChatRequest(BaseModel):
     use_research: Optional[bool] = Field(default=False, description="Enable deep research")
     time_filter: Optional[str] = Field(default=None, description="Time filter for search")
     preset_id: Optional[str] = Field(default=None, description="Preset identifier")
-    
+
     @field_validator('message')
     @classmethod
     def clean_message(cls, v):
         return v.strip()
-    
+
     @field_validator('time_filter')
     @classmethod
     def validate_time_filter(cls, v):

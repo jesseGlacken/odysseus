@@ -253,4 +253,3 @@ def apply_request_headers(headers: Dict[str, str], messages) -> Dict[str, str]:
     if vision:
         headers["Copilot-Vision-Request"] = "true"
     return headers
-

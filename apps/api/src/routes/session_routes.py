@@ -216,7 +216,7 @@ def setup_session_routes(
     SESSION_MODEL_VALIDATION_TIMEOUT = min(float(REQUEST_TIMEOUT or 20), 3.0)
     OPENAI_API_KEY = config.get("OPENAI_API_KEY")
     SESSIONS_FILE = config.get("SESSIONS_FILE")
-    
+
     @router.get("/sessions")
     def list_sessions(request: Request):
         user = effective_user(request)
@@ -322,7 +322,7 @@ def setup_session_routes(
                     and (s.name or "").strip() not in _HIDDEN_SYSTEM_SESSION_NAMES]
 
         return sessions
-    
+
     @router.post("/session", response_model=SessionResponse)
     def create_session(
         request: Request,
@@ -418,7 +418,7 @@ def setup_session_routes(
                     raise HTTPException(400,
                                         f"Model not found at server. Available: {', '.join(avail)}")
                 model_to_use = found
-        
+
         sid = str(uuid.uuid4())
         user = effective_user(request)
         session = session_manager.create_session(
@@ -453,7 +453,7 @@ def setup_session_routes(
             model=model_to_use,
             rag=str(rag).lower() == "true" if rag else False,
             archived=False
-        )    
+        )
     @router.patch("/session/{sid}")
     def rename_session(
         request: Request, sid: str,
@@ -531,7 +531,7 @@ def setup_session_routes(
             result["model"] = model
             result["endpoint_url"] = endpoint_url
         return result
-    
+
     @router.post("/session/{sid}/inject_messages")
     async def inject_messages(request: Request, sid: str):
         """Bulk-inject messages into a session's history (for group chat sync)."""
@@ -582,7 +582,7 @@ def setup_session_routes(
         for sid in ids:
             try:
                 _verify_session_owner(request, sid, session_manager)
-                
+
                 # Enforce "starred" protection consistent with single-session delete
                 db = SessionLocal()
                 try:
@@ -631,7 +631,7 @@ def setup_session_routes(
                     "message": "Failed to delete session"
                 }
             )
-    
+
     @router.delete("/sessions/all")
     def delete_all_sessions(request: Request):
         """Admin only: permanently delete ALL sessions and their messages."""
@@ -662,7 +662,7 @@ def setup_session_routes(
         try:
             # First check if session exists
             session_manager.get_session(sid)
-            
+
             # Archive the session
             db = SessionLocal()
             try:
@@ -671,16 +671,16 @@ def setup_session_routes(
                     db_session.archived = True
                     db_session.updated_at = utcnow_naive()
                     db.commit()
-                    
+
                     # Update in memory if it exists
                     if sid in session_manager.sessions:
                         session_manager.sessions[sid].archived = True
-                        
+
                     logger.info(f"Archived session {sid}")
                     return {"status": "archived"}
                 else:
                     raise HTTPException(404, f"Session {sid} not found")
-                    
+
             except HTTPException:
                 raise
             except Exception as e:
@@ -692,7 +692,7 @@ def setup_session_routes(
 
         except KeyError:
             raise HTTPException(404, f"Session '{sid}' not found")
-    
+
     @router.post("/session/{sid}/unarchive")
     def unarchive_session(request: Request, sid: str):
         """Restore an archived session back to the active session list."""
@@ -775,7 +775,7 @@ def setup_session_routes(
         except KeyError:
             raise HTTPException(404, f"Session {sid} not found")
         return {"history": [msg.to_dict() for msg in session.history]}
-    
+
     @router.get("/session/{sid}/export")
     def export_session(request: Request, sid: str, fmt: str = "md", filename: str = ""):
         """Export conversation history as a downloadable file.
@@ -865,7 +865,7 @@ def setup_session_routes(
             media_type="text/markdown",
             headers={"Content-Disposition": f"attachment; filename={out_name}"},
         )
-    
+
     @router.post("/sessions/save")
     def sessions_save_now(request: Request):
         user = effective_user(request)
@@ -873,7 +873,7 @@ def setup_session_routes(
             raise HTTPException(401, "Not authenticated")
         session_manager.save_sessions()
         return {"ok": True, "path": SESSIONS_FILE}
-    
+
     @router.post("/session/openai")
     def create_session_openai(
         request: Request,
@@ -898,7 +898,7 @@ def setup_session_routes(
         from src.event_bus import fire_event
         fire_event("session_created", user)
         return {"id": sid, "name": "", "model": model}
-    
+
     @router.post("/session/{session_id}/important")
     async def mark_session_important(request: Request, session_id: str, important: bool = Form(True)):
         """Mark a session as important to protect it from automatic cleanup."""

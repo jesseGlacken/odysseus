@@ -163,6 +163,3 @@ def test_build_anthropic_payload_alternating_roles():
     assert len(anth_messages) == 1
     assert anth_messages[0]["role"] == "user"
     assert anth_messages[0]["content"] == "web search results\n\nuser query"
-
-
-

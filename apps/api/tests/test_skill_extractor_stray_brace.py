@@ -144,4 +144,3 @@ async def test_maybe_extract_skill_drops_on_multiple_json_objects(monkeypatch):
 
     assert entry is None
     assert not skills_manager.added
-

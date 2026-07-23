@@ -63,4 +63,3 @@ def test_toast_has_dismiss_button():
     assert "aria-label" in ui
     assert "Dismiss" in ui
     assert ui.count("toast-close-btn") >= 2
-

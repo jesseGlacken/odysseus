@@ -1008,7 +1008,28 @@ app.router.lifespan_context = _lifespan
 async def _startup_event():
     global upload_cleanup_task
     logger.info("Application starting up...")
-    webhook_manager.set_loop(asyncio.get_running_loop())
+
+    # ── OpenTelemetry (opt-in via OTEL_EXPORTER_OTLP_ENDPOINT env var) ──
+    if os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT"):
+        try:
+            from opentelemetry import trace
+            from opentelemetry.sdk.trace import TracerProvider
+            from opentelemetry.sdk.trace.export import BatchSpanProcessor
+            from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+            from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+
+            provider = TracerProvider()
+            exporter = OTLPSpanExporter()
+            provider.add_span_processor(BatchSpanProcessor(exporter))
+            trace.set_tracer_provider(provider)
+            FastAPIInstrumentor.instrument_app(app)
+            logger.info("OpenTelemetry tracing enabled (OTLP endpoint: %s)",
+                        os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT"))
+        except ImportError as e:
+            logger.warning("OTEL_EXPORTER_OTLP_ENDPOINT is set but OTel packages are not installed: %s", e)
+        except Exception as e:
+            logger.warning("Failed to initialize OpenTelemetry: %s", e)
+
     # Wipe any leftover incognito sessions from previous process — they're
     # ephemeral by design and must not survive a restart.
     try:

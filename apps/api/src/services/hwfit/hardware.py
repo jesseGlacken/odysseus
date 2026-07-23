@@ -585,22 +585,22 @@ def _detect_windows():
         $r.arch = $cpu.AddressWidth
         $r.cpu_arch = if ($env:PROCESSOR_ARCHITEW6432) { $env:PROCESSOR_ARCHITEW6432 } else { $env:PROCESSOR_ARCHITECTURE }
         # GPU detection via nvidia-smi (fastest) or WMI fallback
-        try { 
+        try {
             $nv = nvidia-smi --query-gpu=memory.total,name --format=csv,noheader,nounits 2>$null
-            if ($LASTEXITCODE -eq 0 -and $nv) { 
+            if ($LASTEXITCODE -eq 0 -and $nv) {
                 $gpus = @()
-                foreach ($line in $nv -split "`n") { 
+                foreach ($line in $nv -split "`n") {
                     $p = $line -split ','
-                    if ($p.Count -ge 2) { $gpus += [pscustomobject]@{name = $p[1].Trim(); vram_mb = [double]$p[0].Trim() } } 
+                    if ($p.Count -ge 2) { $gpus += [pscustomobject]@{name = $p[1].Trim(); vram_mb = [double]$p[0].Trim() } }
                 }
                 $r.gpu_name = $gpus[0].name
                 $r.gpu_vram_gb = [math]::Round(($gpus | Measure-Object -Property vram_mb -Sum).Sum / 1024, 1)
                 $r.gpu_count = $gpus.Count
                 $r.gpu_backend = 'cuda'
-            } 
+            }
         }
         catch {}
-        if (-not $r.gpu_name) { 
+        if (-not $r.gpu_name) {
             $wmiGpu = Get-CimInstance Win32_VideoController | Where-Object { $_.AdapterRAM -gt 0 } | Select-Object -First 1
             $GPUDriverKey = "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\0*"
             $GPUDeviceID = $wmiGpu.PNPDeviceID.Split('&')[0..1] -join '&'
@@ -608,7 +608,7 @@ def _detect_windows():
             Where-Object { $_.MatchingDeviceId -like "${GPUDeviceID}*" } |
             # Sometimes there happen to be multiple driver classes for the same gpu.
             Select-Object -ExpandProperty HardwareInformation.qwMemorySize -ErrorAction SilentlyContinue -First 1
-            if ($wmiGpu) { 
+            if ($wmiGpu) {
                 $r.gpu_name = $wmiGpu.Name
                 # Edge case: driver is broken, otherwise $wmiGpu.AdapterRAM is redundant
                 if ($VRAMfromRegistry -ge $wmiGpu.AdapterRAM) {
@@ -620,7 +620,7 @@ def _detect_windows():
                 $r.gpu_count = 1
                 # WMI doesn't tell us CUDA/ROCm
                 $r.gpu_backend = 'cpu_x86';
-            } 
+            }
         }
         $r | ConvertTo-Json -Compress
     """
