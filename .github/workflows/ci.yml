@@ -80,7 +80,7 @@ jobs:
         with:
           python-version: "3.11"
       # Byte-compile sources — catches syntax errors without installing deps.
-      - run: python -m compileall -q app.py core routes src services scripts tests
+      - run: python -m compileall -q apps/api/src/app.py apps/api/src/core apps/api/src/routes apps/api/src/src apps/api/src/services scripts apps/api/tests
 
   node-syntax:
     name: JS syntax (node --check)
@@ -140,7 +140,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - run: pip install -r requirements.txt
+      - run: pip install -r apps/api/requirements.txt
         if: steps.docs-check.outputs.docs_only != 'true'
       - run: mkdir -p data  # sqlite DB lives at ./data/app.db
         if: steps.docs-check.outputs.docs_only != 'true'

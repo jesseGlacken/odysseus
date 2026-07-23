@@ -1,0 +1,43 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv sync",
+        "cwd": "apps/api"
+      }
+    },
+    "serve": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run uvicorn app:app --host 127.0.0.1 --port 7000",
+        "cwd": "apps/api"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run pytest -q",
+        "cwd": "apps/api"
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run ruff check src/",
+        "cwd": "apps/api"
+      }
+    },
+    "typecheck": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run mypy src/",
+        "cwd": "apps/api"
+      }
+    }
+  }
+}

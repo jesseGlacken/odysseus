@@ -1,0 +1,81 @@
+{
+  "nodes": {
+    "api": {
+      "name": "api",
+      "type": "app",
+      "data": {
+        "root": "apps/api",
+        "name": "api",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/api/src",
+        "projectType": "application",
+        "targets": {
+          "build": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uv sync",
+              "cwd": "apps/api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uv run uvicorn app:app --host 127.0.0.1 --port 7000",
+              "cwd": "apps/api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uv run pytest -q",
+              "cwd": "apps/api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uv run ruff check src/",
+              "cwd": "apps/api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uv run mypy src/",
+              "cwd": "apps/api"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    }
+  },
+  "externalNodes": {
+    "npm:@antithesishq/bombadil": {
+      "type": "npm",
+      "name": "npm:@antithesishq/bombadil",
+      "data": {
+        "version": "0.6.1",
+        "packageName": "@antithesishq/bombadil",
+        "hash": "sha512-d1iufG3MI7gSMSiSmMeNdcMW+qR0yQXL2zdkVynC3n3DYgFJYlYXKUQzygmqU12m4RWlR5iOdQU1hsx5UT6+IA=="
+      }
+    }
+  },
+  "dependencies": {
+    "api": []
+  },
+  "version": "6.0",
+  "errors": [],
+  "computedAt": 1784767338074
+}

@@ -1,0 +1,5579 @@
+{
+  "version": "6.0",
+  "nxVersion": "23.1.0",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "api": [
+        {
+          "file": "apps/api/.python-version",
+          "hash": "15541955220390179963"
+        },
+        {
+          "file": "apps/api/README.md",
+          "hash": "14832959469403581848"
+        },
+        {
+          "file": "apps/api/integrations/claude/README.md",
+          "hash": "1891749427066194101"
+        },
+        {
+          "file": "apps/api/integrations/claude/skills/odysseus/SKILL.md",
+          "hash": "14278086775602009499"
+        },
+        {
+          "file": "apps/api/integrations/claude/skills/odysseus/scripts/odysseus_api.py",
+          "hash": "13951508304142951287"
+        },
+        {
+          "file": "apps/api/integrations/codex/.codex-plugin/plugin.json",
+          "hash": "15836986990065033702"
+        },
+        {
+          "file": "apps/api/integrations/codex/README.md",
+          "hash": "4442207335325869346"
+        },
+        {
+          "file": "apps/api/integrations/codex/scripts/odysseus_api.py",
+          "hash": "13951508304142951287"
+        },
+        {
+          "file": "apps/api/integrations/codex/skills/odysseus/SKILL.md",
+          "hash": "9351897864404686045"
+        },
+        {
+          "file": "apps/api/mcp_servers/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/mcp_servers/email_server.py",
+          "hash": "4743119696212128861"
+        },
+        {
+          "file": "apps/api/mcp_servers/image_gen_server.py",
+          "hash": "13161908344442976315"
+        },
+        {
+          "file": "apps/api/mcp_servers/memory_server.py",
+          "hash": "6987036526508477542"
+        },
+        {
+          "file": "apps/api/mcp_servers/rag_server.py",
+          "hash": "3442562823477525559"
+        },
+        {
+          "file": "apps/api/project.json",
+          "hash": "3064554750722667435"
+        },
+        {
+          "file": "apps/api/pyproject.toml",
+          "hash": "12894234913009672382"
+        },
+        {
+          "file": "apps/api/requirements-optional.txt",
+          "hash": "15070403256401216858"
+        },
+        {
+          "file": "apps/api/requirements.txt",
+          "hash": "4943107811208245106"
+        },
+        {
+          "file": "apps/api/setup.py",
+          "hash": "8261140974545925290"
+        },
+        {
+          "file": "apps/api/src/app.py",
+          "hash": "1035933721261979282"
+        },
+        {
+          "file": "apps/api/src/core/__init__.py",
+          "hash": "14824102756024700255"
+        },
+        {
+          "file": "apps/api/src/core/atomic_io.py",
+          "hash": "5260610114328804543"
+        },
+        {
+          "file": "apps/api/src/core/auth.py",
+          "hash": "5297012316963186815"
+        },
+        {
+          "file": "apps/api/src/core/constants.py",
+          "hash": "5549316292388866191"
+        },
+        {
+          "file": "apps/api/src/core/database.py",
+          "hash": "3128697276837745025"
+        },
+        {
+          "file": "apps/api/src/core/exceptions.py",
+          "hash": "2028350469577252927"
+        },
+        {
+          "file": "apps/api/src/core/log_safety.py",
+          "hash": "9354756518899777118"
+        },
+        {
+          "file": "apps/api/src/core/middleware.py",
+          "hash": "17827461930958983390"
+        },
+        {
+          "file": "apps/api/src/core/models.py",
+          "hash": "8452131196210760497"
+        },
+        {
+          "file": "apps/api/src/core/platform_compat.py",
+          "hash": "13261509504296042169"
+        },
+        {
+          "file": "apps/api/src/core/session_manager.py",
+          "hash": "13191766489440190157"
+        },
+        {
+          "file": "apps/api/src/routes/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/src/routes/_validators.py",
+          "hash": "14142149743119694675"
+        },
+        {
+          "file": "apps/api/src/routes/admin_wipe/__init__.py",
+          "hash": "3514032820139977874"
+        },
+        {
+          "file": "apps/api/src/routes/admin_wipe/admin_wipe_routes.py",
+          "hash": "6500673994638789494"
+        },
+        {
+          "file": "apps/api/src/routes/admin_wipe_routes.py",
+          "hash": "14992882558387117874"
+        },
+        {
+          "file": "apps/api/src/routes/api_token_routes.py",
+          "hash": "10240896960716959094"
+        },
+        {
+          "file": "apps/api/src/routes/assistant_routes.py",
+          "hash": "17947346722981024038"
+        },
+        {
+          "file": "apps/api/src/routes/auth_routes.py",
+          "hash": "17766438609480225478"
+        },
+        {
+          "file": "apps/api/src/routes/backup_routes.py",
+          "hash": "11465049663237529472"
+        },
+        {
+          "file": "apps/api/src/routes/calendar_routes.py",
+          "hash": "1464641773766253595"
+        },
+        {
+          "file": "apps/api/src/routes/chat_helpers.py",
+          "hash": "12241220929636111093"
+        },
+        {
+          "file": "apps/api/src/routes/chat_routes.py",
+          "hash": "3267737248243681403"
+        },
+        {
+          "file": "apps/api/src/routes/chatgpt_subscription_routes.py",
+          "hash": "11468804949227156178"
+        },
+        {
+          "file": "apps/api/src/routes/cleanup/__init__.py",
+          "hash": "13652997411329860145"
+        },
+        {
+          "file": "apps/api/src/routes/cleanup/cleanup_routes.py",
+          "hash": "16362590862368188507"
+        },
+        {
+          "file": "apps/api/src/routes/cleanup_routes.py",
+          "hash": "17761153571388426935"
+        },
+        {
+          "file": "apps/api/src/routes/codex_routes.py",
+          "hash": "16919494273460182318"
+        },
+        {
+          "file": "apps/api/src/routes/compare/__init__.py",
+          "hash": "14626883441631901926"
+        },
+        {
+          "file": "apps/api/src/routes/compare/compare_routes.py",
+          "hash": "6078425395796933887"
+        },
+        {
+          "file": "apps/api/src/routes/compare_routes.py",
+          "hash": "2755246322072943502"
+        },
+        {
+          "file": "apps/api/src/routes/contacts/__init__.py",
+          "hash": "4640072347572346558"
+        },
+        {
+          "file": "apps/api/src/routes/contacts/contacts_routes.py",
+          "hash": "8742842249319036284"
+        },
+        {
+          "file": "apps/api/src/routes/contacts_routes.py",
+          "hash": "14758111942439418508"
+        },
+        {
+          "file": "apps/api/src/routes/cookbook_helpers.py",
+          "hash": "14606935177918133846"
+        },
+        {
+          "file": "apps/api/src/routes/cookbook_output.py",
+          "hash": "3688957703948121155"
+        },
+        {
+          "file": "apps/api/src/routes/cookbook_routes.py",
+          "hash": "6790090117586812307"
+        },
+        {
+          "file": "apps/api/src/routes/copilot_routes.py",
+          "hash": "8390531491244354192"
+        },
+        {
+          "file": "apps/api/src/routes/device_flow.py",
+          "hash": "9582133610715654698"
+        },
+        {
+          "file": "apps/api/src/routes/diagnostics_routes.py",
+          "hash": "15969687092390906938"
+        },
+        {
+          "file": "apps/api/src/routes/document_helpers.py",
+          "hash": "14637320024830016589"
+        },
+        {
+          "file": "apps/api/src/routes/document_routes.py",
+          "hash": "17423178925908667143"
+        },
+        {
+          "file": "apps/api/src/routes/editor_draft_routes.py",
+          "hash": "16598008931788575175"
+        },
+        {
+          "file": "apps/api/src/routes/email_helpers.py",
+          "hash": "13920844811258365098"
+        },
+        {
+          "file": "apps/api/src/routes/email_pollers.py",
+          "hash": "5837632692650676506"
+        },
+        {
+          "file": "apps/api/src/routes/email_routes.py",
+          "hash": "16550310339388134801"
+        },
+        {
+          "file": "apps/api/src/routes/embedding_routes.py",
+          "hash": "2950185401074278934"
+        },
+        {
+          "file": "apps/api/src/routes/emoji_routes.py",
+          "hash": "9461682470671436705"
+        },
+        {
+          "file": "apps/api/src/routes/font_routes.py",
+          "hash": "15717336804121647376"
+        },
+        {
+          "file": "apps/api/src/routes/gallery/__init__.py",
+          "hash": "10649222712744995274"
+        },
+        {
+          "file": "apps/api/src/routes/gallery/gallery_helpers.py",
+          "hash": "4702065954189054024"
+        },
+        {
+          "file": "apps/api/src/routes/gallery/gallery_routes.py",
+          "hash": "14987203758443293339"
+        },
+        {
+          "file": "apps/api/src/routes/gallery_helpers.py",
+          "hash": "5223671945109438237"
+        },
+        {
+          "file": "apps/api/src/routes/gallery_routes.py",
+          "hash": "16941488204179024814"
+        },
+        {
+          "file": "apps/api/src/routes/history/__init__.py",
+          "hash": "8451968696407137080"
+        },
+        {
+          "file": "apps/api/src/routes/history/history_routes.py",
+          "hash": "14333468446498398048"
+        },
+        {
+          "file": "apps/api/src/routes/history_routes.py",
+          "hash": "9417820743484255570"
+        },
+        {
+          "file": "apps/api/src/routes/hwfit_routes.py",
+          "hash": "2308484425774092389"
+        },
+        {
+          "file": "apps/api/src/routes/mcp_routes.py",
+          "hash": "5711327392991001140"
+        },
+        {
+          "file": "apps/api/src/routes/memory/__init__.py",
+          "hash": "5653909698822836242"
+        },
+        {
+          "file": "apps/api/src/routes/memory/memory_routes.py",
+          "hash": "14917960851885428351"
+        },
+        {
+          "file": "apps/api/src/routes/memory_routes.py",
+          "hash": "12777920409325605345"
+        },
+        {
+          "file": "apps/api/src/routes/model_routes.py",
+          "hash": "7416603899091512292"
+        },
+        {
+          "file": "apps/api/src/routes/note/__init__.py",
+          "hash": "10819851239173590895"
+        },
+        {
+          "file": "apps/api/src/routes/note/note_routes.py",
+          "hash": "2799831720094377643"
+        },
+        {
+          "file": "apps/api/src/routes/note_routes.py",
+          "hash": "13244348068335637254"
+        },
+        {
+          "file": "apps/api/src/routes/personal_routes.py",
+          "hash": "7656097000343483495"
+        },
+        {
+          "file": "apps/api/src/routes/prefs_routes.py",
+          "hash": "8539204445072191892"
+        },
+        {
+          "file": "apps/api/src/routes/preset_routes.py",
+          "hash": "14705067130887161036"
+        },
+        {
+          "file": "apps/api/src/routes/research/__init__.py",
+          "hash": "10386508998536154949"
+        },
+        {
+          "file": "apps/api/src/routes/research/research_routes.py",
+          "hash": "13706006644148231992"
+        },
+        {
+          "file": "apps/api/src/routes/research_routes.py",
+          "hash": "6386399588480513348"
+        },
+        {
+          "file": "apps/api/src/routes/search_routes.py",
+          "hash": "4996930854471898278"
+        },
+        {
+          "file": "apps/api/src/routes/session_routes.py",
+          "hash": "16282981133202715145"
+        },
+        {
+          "file": "apps/api/src/routes/shell_routes.py",
+          "hash": "10948174899566101362"
+        },
+        {
+          "file": "apps/api/src/routes/signature_routes.py",
+          "hash": "5471182795154172080"
+        },
+        {
+          "file": "apps/api/src/routes/skills_routes.py",
+          "hash": "6164875340899548687"
+        },
+        {
+          "file": "apps/api/src/routes/stt_routes.py",
+          "hash": "8718976341106081822"
+        },
+        {
+          "file": "apps/api/src/routes/task_routes.py",
+          "hash": "702351439690827539"
+        },
+        {
+          "file": "apps/api/src/routes/tts_routes.py",
+          "hash": "9745627221533262033"
+        },
+        {
+          "file": "apps/api/src/routes/upload_routes.py",
+          "hash": "13540948790882154459"
+        },
+        {
+          "file": "apps/api/src/routes/vault_routes.py",
+          "hash": "8798917789869176195"
+        },
+        {
+          "file": "apps/api/src/routes/webhook_routes.py",
+          "hash": "18434008206041873546"
+        },
+        {
+          "file": "apps/api/src/routes/workspace_routes.py",
+          "hash": "9383385337542227211"
+        },
+        {
+          "file": "apps/api/src/services/__init__.py",
+          "hash": "12663170718282722211"
+        },
+        {
+          "file": "apps/api/src/services/docs/__init__.py",
+          "hash": "435139668072247900"
+        },
+        {
+          "file": "apps/api/src/services/docs/service.py",
+          "hash": "12065422200139574162"
+        },
+        {
+          "file": "apps/api/src/services/faces/__init__.py",
+          "hash": "8485850854343832616"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/fit.py",
+          "hash": "13685428394085693362"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/hardware.py",
+          "hash": "2153035767472724162"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/hf_discovery.py",
+          "hash": "9419175588753188770"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/image_models.py",
+          "hash": "15944912472094275273"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/models.py",
+          "hash": "13284514480791657745"
+        },
+        {
+          "file": "apps/api/src/services/hwfit/profiles.py",
+          "hash": "14787692816851603864"
+        },
+        {
+          "file": "apps/api/src/services/memory/__init__.py",
+          "hash": "14559465540976440397"
+        },
+        {
+          "file": "apps/api/src/services/memory/memory.py",
+          "hash": "11690445445663049697"
+        },
+        {
+          "file": "apps/api/src/services/memory/memory_extractor.py",
+          "hash": "5627902016103179673"
+        },
+        {
+          "file": "apps/api/src/services/memory/memory_vector.py",
+          "hash": "1770287805956930934"
+        },
+        {
+          "file": "apps/api/src/services/memory/service.py",
+          "hash": "10984318990019111478"
+        },
+        {
+          "file": "apps/api/src/services/memory/skill_extractor.py",
+          "hash": "8975060221938750796"
+        },
+        {
+          "file": "apps/api/src/services/memory/skill_format.py",
+          "hash": "15483734746087446171"
+        },
+        {
+          "file": "apps/api/src/services/memory/skill_importer.py",
+          "hash": "12792292563310714945"
+        },
+        {
+          "file": "apps/api/src/services/memory/skills.py",
+          "hash": "16409984563612924897"
+        },
+        {
+          "file": "apps/api/src/services/research/__init__.py",
+          "hash": "6271336690756050086"
+        },
+        {
+          "file": "apps/api/src/services/research/research_handler.py",
+          "hash": "4865410472151446855"
+        },
+        {
+          "file": "apps/api/src/services/research/service.py",
+          "hash": "2856982423844316668"
+        },
+        {
+          "file": "apps/api/src/services/search/__init__.py",
+          "hash": "7097201561319931964"
+        },
+        {
+          "file": "apps/api/src/services/search/analytics.py",
+          "hash": "7794809091603967887"
+        },
+        {
+          "file": "apps/api/src/services/search/cache.py",
+          "hash": "852204267378494364"
+        },
+        {
+          "file": "apps/api/src/services/search/content.py",
+          "hash": "6890492340220260144"
+        },
+        {
+          "file": "apps/api/src/services/search/core.py",
+          "hash": "8224464552840059365"
+        },
+        {
+          "file": "apps/api/src/services/search/providers.py",
+          "hash": "10548462918734624291"
+        },
+        {
+          "file": "apps/api/src/services/search/query.py",
+          "hash": "6540043902786881156"
+        },
+        {
+          "file": "apps/api/src/services/search/ranking.py",
+          "hash": "2120199731120240539"
+        },
+        {
+          "file": "apps/api/src/services/search/service.py",
+          "hash": "10021875336634700007"
+        },
+        {
+          "file": "apps/api/src/services/shell/__init__.py",
+          "hash": "6947403075836460079"
+        },
+        {
+          "file": "apps/api/src/services/shell/service.py",
+          "hash": "3823834125905948217"
+        },
+        {
+          "file": "apps/api/src/services/stt/__init__.py",
+          "hash": "13994937575402397284"
+        },
+        {
+          "file": "apps/api/src/services/stt/stt_service.py",
+          "hash": "1106894593744581687"
+        },
+        {
+          "file": "apps/api/src/services/tts/__init__.py",
+          "hash": "9061996891690147616"
+        },
+        {
+          "file": "apps/api/src/services/tts/tts_service.py",
+          "hash": "3946697819573206346"
+        },
+        {
+          "file": "apps/api/src/services/youtube/__init__.py",
+          "hash": "18171604018031143084"
+        },
+        {
+          "file": "apps/api/src/services/youtube/youtube_handler.py",
+          "hash": "14011326707551049249"
+        },
+        {
+          "file": "apps/api/src/src/__init__.py",
+          "hash": "10704003899469563273"
+        },
+        {
+          "file": "apps/api/src/src/action_intents.py",
+          "hash": "9791033549013646457"
+        },
+        {
+          "file": "apps/api/src/src/agent_loop.py",
+          "hash": "1635108426630858595"
+        },
+        {
+          "file": "apps/api/src/src/agent_runs.py",
+          "hash": "14199001913607416215"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/__init__.py",
+          "hash": "17619831444342953172"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/admin_tools.py",
+          "hash": "1509531087753663236"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/bg_job_tools.py",
+          "hash": "14056874741399893791"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/document_tools.py",
+          "hash": "15419401166255770716"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/filesystem_tools.py",
+          "hash": "14849784928381179132"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/interaction_tools.py",
+          "hash": "15857659368185756442"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/model_interaction_tools.py",
+          "hash": "2891039271015995369"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/session_tools.py",
+          "hash": "17271482523119325104"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/subprocess_tools.py",
+          "hash": "8293474181652911720"
+        },
+        {
+          "file": "apps/api/src/src/agent_tools/web_tools.py",
+          "hash": "17174663994276234945"
+        },
+        {
+          "file": "apps/api/src/src/ai_interaction.py",
+          "hash": "13355240755230251919"
+        },
+        {
+          "file": "apps/api/src/src/api_key_manager.py",
+          "hash": "12161627127317812489"
+        },
+        {
+          "file": "apps/api/src/src/app_helpers.py",
+          "hash": "8721106371864646313"
+        },
+        {
+          "file": "apps/api/src/src/app_initializer.py",
+          "hash": "16780240760125211366"
+        },
+        {
+          "file": "apps/api/src/src/assistant_log.py",
+          "hash": "14439013342059874979"
+        },
+        {
+          "file": "apps/api/src/src/attachment_refs.py",
+          "hash": "3225943541202879539"
+        },
+        {
+          "file": "apps/api/src/src/auth_helpers.py",
+          "hash": "3337738702926334306"
+        },
+        {
+          "file": "apps/api/src/src/bg_jobs.py",
+          "hash": "5159506331870082432"
+        },
+        {
+          "file": "apps/api/src/src/bg_monitor.py",
+          "hash": "4589972603975440172"
+        },
+        {
+          "file": "apps/api/src/src/builtin_actions.py",
+          "hash": "16045819688998645938"
+        },
+        {
+          "file": "apps/api/src/src/builtin_mcp.py",
+          "hash": "15868361442188766399"
+        },
+        {
+          "file": "apps/api/src/src/caldav_sync.py",
+          "hash": "6457967713349471485"
+        },
+        {
+          "file": "apps/api/src/src/caldav_writeback.py",
+          "hash": "14145672356153649205"
+        },
+        {
+          "file": "apps/api/src/src/chat_handler.py",
+          "hash": "18037237131205060522"
+        },
+        {
+          "file": "apps/api/src/src/chat_helpers.py",
+          "hash": "12360523270928292933"
+        },
+        {
+          "file": "apps/api/src/src/chat_processor.py",
+          "hash": "1199388180722051181"
+        },
+        {
+          "file": "apps/api/src/src/chatgpt_subscription.py",
+          "hash": "2004678876538195747"
+        },
+        {
+          "file": "apps/api/src/src/chroma_client.py",
+          "hash": "6303835017632974706"
+        },
+        {
+          "file": "apps/api/src/src/cleanup_service.py",
+          "hash": "17446556885881386637"
+        },
+        {
+          "file": "apps/api/src/src/config.py",
+          "hash": "3386543011413921980"
+        },
+        {
+          "file": "apps/api/src/src/constants.py",
+          "hash": "3373593165086068901"
+        },
+        {
+          "file": "apps/api/src/src/context_budget.py",
+          "hash": "3269447755788050699"
+        },
+        {
+          "file": "apps/api/src/src/context_compactor.py",
+          "hash": "432209238001620076"
+        },
+        {
+          "file": "apps/api/src/src/cookbook_serve_lifecycle.py",
+          "hash": "5126715179426655244"
+        },
+        {
+          "file": "apps/api/src/src/copilot.py",
+          "hash": "6927292384713306945"
+        },
+        {
+          "file": "apps/api/src/src/database.py",
+          "hash": "5281876167689151400"
+        },
+        {
+          "file": "apps/api/src/src/deep_research.py",
+          "hash": "172939555021625"
+        },
+        {
+          "file": "apps/api/src/src/document_actions.py",
+          "hash": "11216336807682704231"
+        },
+        {
+          "file": "apps/api/src/src/document_processor.py",
+          "hash": "15534025461585972618"
+        },
+        {
+          "file": "apps/api/src/src/email_thread_parser.py",
+          "hash": "8815101803760329822"
+        },
+        {
+          "file": "apps/api/src/src/embedding_lanes.py",
+          "hash": "4129629290783901333"
+        },
+        {
+          "file": "apps/api/src/src/embeddings.py",
+          "hash": "17982445384849782689"
+        },
+        {
+          "file": "apps/api/src/src/endpoint_resolver.py",
+          "hash": "1837980360998357078"
+        },
+        {
+          "file": "apps/api/src/src/event_bus.py",
+          "hash": "11531296024458914029"
+        },
+        {
+          "file": "apps/api/src/src/exceptions.py",
+          "hash": "7708673042899863053"
+        },
+        {
+          "file": "apps/api/src/src/generated_images.py",
+          "hash": "16248045040163636402"
+        },
+        {
+          "file": "apps/api/src/src/goal_based_extractor.py",
+          "hash": "3178835896281185481"
+        },
+        {
+          "file": "apps/api/src/src/host_docker_access.py",
+          "hash": "17586306747956545419"
+        },
+        {
+          "file": "apps/api/src/src/integrations.py",
+          "hash": "9367014565539749218"
+        },
+        {
+          "file": "apps/api/src/src/interactive_gate.py",
+          "hash": "3809763182192591795"
+        },
+        {
+          "file": "apps/api/src/src/llm_core.py",
+          "hash": "9337507713147342063"
+        },
+        {
+          "file": "apps/api/src/src/markitdown_runtime.py",
+          "hash": "3292289445650526658"
+        },
+        {
+          "file": "apps/api/src/src/mcp_manager.py",
+          "hash": "6665644313014957932"
+        },
+        {
+          "file": "apps/api/src/src/mcp_oauth.py",
+          "hash": "16304399656684364120"
+        },
+        {
+          "file": "apps/api/src/src/memory.py",
+          "hash": "2580371605670912504"
+        },
+        {
+          "file": "apps/api/src/src/memory_provider.py",
+          "hash": "9844434020507280041"
+        },
+        {
+          "file": "apps/api/src/src/memory_vector.py",
+          "hash": "4342998703563606182"
+        },
+        {
+          "file": "apps/api/src/src/model_capabilities.py",
+          "hash": "12865106584240388222"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/__init__.py",
+          "hash": "5631572571131644488"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/base.py",
+          "hash": "14603682318480774001"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/generic_openai.py",
+          "hash": "10973899919186270815"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/google.py",
+          "hash": "5144127880029169879"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/google_ai_studio_mapping.py",
+          "hash": "4782764726229852567"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/llamacpp.py",
+          "hash": "16739548571100451716"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/lmstudio.py",
+          "hash": "638299950080872795"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/ollama.py",
+          "hash": "2372078708601839757"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/openai.py",
+          "hash": "6573363418720060147"
+        },
+        {
+          "file": "apps/api/src/src/model_capability_readers/openrouter.py",
+          "hash": "5902427232749483307"
+        },
+        {
+          "file": "apps/api/src/src/model_context.py",
+          "hash": "15284574692759785332"
+        },
+        {
+          "file": "apps/api/src/src/model_discovery.py",
+          "hash": "18172369800835593853"
+        },
+        {
+          "file": "apps/api/src/src/office_doc.py",
+          "hash": "17305954144788170578"
+        },
+        {
+          "file": "apps/api/src/src/optional_deps.py",
+          "hash": "321783827658289266"
+        },
+        {
+          "file": "apps/api/src/src/pdf_form_doc.py",
+          "hash": "11873087280613718630"
+        },
+        {
+          "file": "apps/api/src/src/pdf_forms.py",
+          "hash": "13377065676958942843"
+        },
+        {
+          "file": "apps/api/src/src/pdf_runtime.py",
+          "hash": "10521803349840598194"
+        },
+        {
+          "file": "apps/api/src/src/personal_docs.py",
+          "hash": "16243042203968875690"
+        },
+        {
+          "file": "apps/api/src/src/preset_manager.py",
+          "hash": "12105621980699829702"
+        },
+        {
+          "file": "apps/api/src/src/prompt_security.py",
+          "hash": "14788422187897620320"
+        },
+        {
+          "file": "apps/api/src/src/rag_manager.py",
+          "hash": "15829625873972018012"
+        },
+        {
+          "file": "apps/api/src/src/rag_singleton.py",
+          "hash": "7510227403248197158"
+        },
+        {
+          "file": "apps/api/src/src/rag_vector.py",
+          "hash": "6710431112872141807"
+        },
+        {
+          "file": "apps/api/src/src/rate_limiter.py",
+          "hash": "1510167739672309927"
+        },
+        {
+          "file": "apps/api/src/src/readiness.py",
+          "hash": "7591754566502387454"
+        },
+        {
+          "file": "apps/api/src/src/reminder_personas.py",
+          "hash": "1380101568401482650"
+        },
+        {
+          "file": "apps/api/src/src/request_models.py",
+          "hash": "8656757348900029617"
+        },
+        {
+          "file": "apps/api/src/src/research_handler.py",
+          "hash": "10059196842306279190"
+        },
+        {
+          "file": "apps/api/src/src/research_utils.py",
+          "hash": "6553632948202399749"
+        },
+        {
+          "file": "apps/api/src/src/runtime_paths.py",
+          "hash": "7743248693292975058"
+        },
+        {
+          "file": "apps/api/src/src/search/__init__.py",
+          "hash": "12310230166577891482"
+        },
+        {
+          "file": "apps/api/src/src/search/analytics.py",
+          "hash": "692089989817696107"
+        },
+        {
+          "file": "apps/api/src/src/search/cache.py",
+          "hash": "1957820977695081421"
+        },
+        {
+          "file": "apps/api/src/src/search/content.py",
+          "hash": "11167219529246140613"
+        },
+        {
+          "file": "apps/api/src/src/search/core.py",
+          "hash": "10986003074708483779"
+        },
+        {
+          "file": "apps/api/src/src/search/providers.py",
+          "hash": "15803802960387160034"
+        },
+        {
+          "file": "apps/api/src/src/search/query.py",
+          "hash": "13140375388440162193"
+        },
+        {
+          "file": "apps/api/src/src/search/ranking.py",
+          "hash": "10283857057264706692"
+        },
+        {
+          "file": "apps/api/src/src/secret_storage.py",
+          "hash": "17242916602780986414"
+        },
+        {
+          "file": "apps/api/src/src/service_health.py",
+          "hash": "17465241265977760360"
+        },
+        {
+          "file": "apps/api/src/src/session_actions.py",
+          "hash": "16597465452214244336"
+        },
+        {
+          "file": "apps/api/src/src/session_search.py",
+          "hash": "4627193734501065430"
+        },
+        {
+          "file": "apps/api/src/src/settings.py",
+          "hash": "797133828703839974"
+        },
+        {
+          "file": "apps/api/src/src/settings_scrub.py",
+          "hash": "2295151923463475480"
+        },
+        {
+          "file": "apps/api/src/src/task_action_policy.py",
+          "hash": "15051974636274566477"
+        },
+        {
+          "file": "apps/api/src/src/task_endpoint.py",
+          "hash": "12428675170056619410"
+        },
+        {
+          "file": "apps/api/src/src/task_scheduler.py",
+          "hash": "12062642403099164333"
+        },
+        {
+          "file": "apps/api/src/src/teacher_escalation.py",
+          "hash": "17489401067011149879"
+        },
+        {
+          "file": "apps/api/src/src/text_helpers.py",
+          "hash": "3989814459052879372"
+        },
+        {
+          "file": "apps/api/src/src/tls_overrides.py",
+          "hash": "8071260675363026819"
+        },
+        {
+          "file": "apps/api/src/src/tool_execution.py",
+          "hash": "17229756584754443392"
+        },
+        {
+          "file": "apps/api/src/src/tool_implementations.py",
+          "hash": "8323707071660140489"
+        },
+        {
+          "file": "apps/api/src/src/tool_index.py",
+          "hash": "6217985090299294971"
+        },
+        {
+          "file": "apps/api/src/src/tool_parsing.py",
+          "hash": "6709092652572337055"
+        },
+        {
+          "file": "apps/api/src/src/tool_policy.py",
+          "hash": "6135552597808622995"
+        },
+        {
+          "file": "apps/api/src/src/tool_schemas.py",
+          "hash": "15493856155352085551"
+        },
+        {
+          "file": "apps/api/src/src/tool_security.py",
+          "hash": "3431993611831992372"
+        },
+        {
+          "file": "apps/api/src/src/tool_utils.py",
+          "hash": "10021782931648136475"
+        },
+        {
+          "file": "apps/api/src/src/tools/__init__.py",
+          "hash": "16469274329672061359"
+        },
+        {
+          "file": "apps/api/src/src/tools/_common.py",
+          "hash": "17126753785364652635"
+        },
+        {
+          "file": "apps/api/src/src/tools/calendar.py",
+          "hash": "10440779341405281794"
+        },
+        {
+          "file": "apps/api/src/src/tools/contacts.py",
+          "hash": "1073860588577559816"
+        },
+        {
+          "file": "apps/api/src/src/tools/cookbook.py",
+          "hash": "17715788182368846768"
+        },
+        {
+          "file": "apps/api/src/src/tools/image.py",
+          "hash": "750080383224572925"
+        },
+        {
+          "file": "apps/api/src/src/tools/notes.py",
+          "hash": "4092526755770608322"
+        },
+        {
+          "file": "apps/api/src/src/tools/research.py",
+          "hash": "784755382252212360"
+        },
+        {
+          "file": "apps/api/src/src/tools/search.py",
+          "hash": "7741912100593299503"
+        },
+        {
+          "file": "apps/api/src/src/tools/system.py",
+          "hash": "3537419465657056527"
+        },
+        {
+          "file": "apps/api/src/src/tools/vault.py",
+          "hash": "5179026435262355308"
+        },
+        {
+          "file": "apps/api/src/src/topic_analyzer.py",
+          "hash": "251295558975088665"
+        },
+        {
+          "file": "apps/api/src/src/upload_handler.py",
+          "hash": "13154360869089686348"
+        },
+        {
+          "file": "apps/api/src/src/upload_limits.py",
+          "hash": "6587706120813802899"
+        },
+        {
+          "file": "apps/api/src/src/url_safety.py",
+          "hash": "1822079301528144347"
+        },
+        {
+          "file": "apps/api/src/src/url_security.py",
+          "hash": "4049719893260731693"
+        },
+        {
+          "file": "apps/api/src/src/user_time.py",
+          "hash": "13770656071803186942"
+        },
+        {
+          "file": "apps/api/src/src/visual_report.py",
+          "hash": "18110501091509756692"
+        },
+        {
+          "file": "apps/api/src/src/webhook_manager.py",
+          "hash": "7927592859656091979"
+        },
+        {
+          "file": "apps/api/src/src/youtube_handler.py",
+          "hash": "15447735104787106118"
+        },
+        {
+          "file": "apps/api/tests/LAYOUT_INVENTORY.md",
+          "hash": "12512644661463410510"
+        },
+        {
+          "file": "apps/api/tests/OVERSIZED_TEST_SPLIT_PLAN.md",
+          "hash": "5538441291878753524"
+        },
+        {
+          "file": "apps/api/tests/README.md",
+          "hash": "15420508034822010798"
+        },
+        {
+          "file": "apps/api/tests/TESTING_STANDARD.md",
+          "hash": "3922274846194757053"
+        },
+        {
+          "file": "apps/api/tests/_taxonomy.py",
+          "hash": "10583199205164414978"
+        },
+        {
+          "file": "apps/api/tests/bombadil-spec.ts",
+          "hash": "6465010476201602059"
+        },
+        {
+          "file": "apps/api/tests/cli/test_calendar_cli_name.py",
+          "hash": "5658351431605601860"
+        },
+        {
+          "file": "apps/api/tests/cli/test_contacts_cli_rows.py",
+          "hash": "5378680365185281940"
+        },
+        {
+          "file": "apps/api/tests/cli/test_cookbook_cli_state.py",
+          "hash": "2421899557095315580"
+        },
+        {
+          "file": "apps/api/tests/cli/test_docs_cli_content_length.py",
+          "hash": "7926348415120095774"
+        },
+        {
+          "file": "apps/api/tests/cli/test_gallery_cli_album_count.py",
+          "hash": "11377475526387818148"
+        },
+        {
+          "file": "apps/api/tests/cli/test_gallery_cli_preview.py",
+          "hash": "6923107837052256434"
+        },
+        {
+          "file": "apps/api/tests/cli/test_logs_cli_resolve_nonstring.py",
+          "hash": "10629958342570331239"
+        },
+        {
+          "file": "apps/api/tests/cli/test_mail_cli_read_empty_fetch.py",
+          "hash": "15864016094428333395"
+        },
+        {
+          "file": "apps/api/tests/cli/test_mail_cli_recipients.py",
+          "hash": "360575640065426579"
+        },
+        {
+          "file": "apps/api/tests/cli/test_mcp_cli_env_serialize.py",
+          "hash": "6562795863914473848"
+        },
+        {
+          "file": "apps/api/tests/cli/test_mcp_cli_json.py",
+          "hash": "11227336111094094405"
+        },
+        {
+          "file": "apps/api/tests/cli/test_memory_cli_rows.py",
+          "hash": "12000403015408725106"
+        },
+        {
+          "file": "apps/api/tests/cli/test_notes_cli_items.py",
+          "hash": "4316149474059987354"
+        },
+        {
+          "file": "apps/api/tests/cli/test_personal_cli_rows.py",
+          "hash": "9870861967923446916"
+        },
+        {
+          "file": "apps/api/tests/cli/test_preset_cli_invalid_entries.py",
+          "hash": "10475539677891985817"
+        },
+        {
+          "file": "apps/api/tests/cli/test_preset_cli_set_corrupt_entry.py",
+          "hash": "12017913298745766142"
+        },
+        {
+          "file": "apps/api/tests/cli/test_preset_cli_store.py",
+          "hash": "5073254890001733079"
+        },
+        {
+          "file": "apps/api/tests/cli/test_research_cli_preview.py",
+          "hash": "9303358721638196203"
+        },
+        {
+          "file": "apps/api/tests/cli/test_research_cli_status.py",
+          "hash": "16341493153693700306"
+        },
+        {
+          "file": "apps/api/tests/cli/test_research_cli_status_filter.py",
+          "hash": "14469614425092644943"
+        },
+        {
+          "file": "apps/api/tests/cli/test_research_cli_store.py",
+          "hash": "16711396328814104345"
+        },
+        {
+          "file": "apps/api/tests/cli/test_sessions_cli.py",
+          "hash": "18098569947479225054"
+        },
+        {
+          "file": "apps/api/tests/cli/test_signature_cli_export.py",
+          "hash": "1325604408260449524"
+        },
+        {
+          "file": "apps/api/tests/cli/test_skills_cli_preview.py",
+          "hash": "16651991769516135389"
+        },
+        {
+          "file": "apps/api/tests/cli/test_skills_cli_rows.py",
+          "hash": "2158110459670487632"
+        },
+        {
+          "file": "apps/api/tests/cli/test_tasks_cli_preview.py",
+          "hash": "3231372931294974065"
+        },
+        {
+          "file": "apps/api/tests/cli/test_theme_cli_store.py",
+          "hash": "1883976184716571133"
+        },
+        {
+          "file": "apps/api/tests/cli/test_webhook_cli_mask.py",
+          "hash": "9368175253952017860"
+        },
+        {
+          "file": "apps/api/tests/conftest.py",
+          "hash": "17838308079098745055"
+        },
+        {
+          "file": "apps/api/tests/helpers/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/tests/helpers/calendar_routes.py",
+          "hash": "16748243084022613680"
+        },
+        {
+          "file": "apps/api/tests/helpers/cli_loader.py",
+          "hash": "9985221666452891590"
+        },
+        {
+          "file": "apps/api/tests/helpers/db_stubs.py",
+          "hash": "16966856424173245552"
+        },
+        {
+          "file": "apps/api/tests/helpers/embedding_lanes.py",
+          "hash": "2188775504046950130"
+        },
+        {
+          "file": "apps/api/tests/helpers/import_state.py",
+          "hash": "12263026452316703090"
+        },
+        {
+          "file": "apps/api/tests/helpers/sqlite_db.py",
+          "hash": "3293480813567188013"
+        },
+        {
+          "file": "apps/api/tests/markdown_codefence_placeholder_regression.mjs",
+          "hash": "13302656669505587358"
+        },
+        {
+          "file": "apps/api/tests/run_focus.py",
+          "hash": "11278204843451711284"
+        },
+        {
+          "file": "apps/api/tests/run_order_report.py",
+          "hash": "18371507121231129110"
+        },
+        {
+          "file": "apps/api/tests/streaming/corpus.mjs",
+          "hash": "4818869873416621869"
+        },
+        {
+          "file": "apps/api/tests/streaming/invariant.test.mjs",
+          "hash": "11182271991713585956"
+        },
+        {
+          "file": "apps/api/tests/streaming/markdownHarness.mjs",
+          "hash": "12950677482468995023"
+        },
+        {
+          "file": "apps/api/tests/streaming/segmenter.test.mjs",
+          "hash": "17937493952343042050"
+        },
+        {
+          "file": "apps/api/tests/test_action_intents.py",
+          "hash": "2828799989633930476"
+        },
+        {
+          "file": "apps/api/tests/test_action_intents_shell_verbs.py",
+          "hash": "2231510800914613232"
+        },
+        {
+          "file": "apps/api/tests/test_active_document_clear.py",
+          "hash": "9396407166650369145"
+        },
+        {
+          "file": "apps/api/tests/test_active_email_reply_guard.py",
+          "hash": "1488241608545799364"
+        },
+        {
+          "file": "apps/api/tests/test_admin_device_flow_static.py",
+          "hash": "10042469439424788120"
+        },
+        {
+          "file": "apps/api/tests/test_admin_tools_registry.py",
+          "hash": "7512653089251800158"
+        },
+        {
+          "file": "apps/api/tests/test_admin_wipe_gallery.py",
+          "hash": "10885441360180647299"
+        },
+        {
+          "file": "apps/api/tests/test_admin_wipe_routes_shim.py",
+          "hash": "1548816487301657607"
+        },
+        {
+          "file": "apps/api/tests/test_agent_loop.py",
+          "hash": "15021996871005300994"
+        },
+        {
+          "file": "apps/api/tests/test_agent_loop_tool_output_truncation.py",
+          "hash": "16601419835674067328"
+        },
+        {
+          "file": "apps/api/tests/test_agent_migration_manifest.py",
+          "hash": "18172516130284095225"
+        },
+        {
+          "file": "apps/api/tests/test_agent_rounds_exhausted.py",
+          "hash": "7331468692032245184"
+        },
+        {
+          "file": "apps/api/tests/test_agent_tool_budget_nonnumeric.py",
+          "hash": "14485554003629339370"
+        },
+        {
+          "file": "apps/api/tests/test_agent_tools_truncate_nonstring.py",
+          "hash": "2474669895984633983"
+        },
+        {
+          "file": "apps/api/tests/test_ai_image_url_safety.py",
+          "hash": "1934907685356741344"
+        },
+        {
+          "file": "apps/api/tests/test_ai_interaction_owner_scope.py",
+          "hash": "2635320129241237665"
+        },
+        {
+          "file": "apps/api/tests/test_amd_gpu_check_args.py",
+          "hash": "3622915279538755386"
+        },
+        {
+          "file": "apps/api/tests/test_anthropic_response_parse.py",
+          "hash": "14111173715158481344"
+        },
+        {
+          "file": "apps/api/tests/test_api_call_integration_routing.py",
+          "hash": "16634451227541576369"
+        },
+        {
+          "file": "apps/api/tests/test_api_chat_security.py",
+          "hash": "14860045448284492714"
+        },
+        {
+          "file": "apps/api/tests/test_api_key_file_permissions.py",
+          "hash": "1666028753219132631"
+        },
+        {
+          "file": "apps/api/tests/test_api_key_manager_atomic_save.py",
+          "hash": "9801901979575096087"
+        },
+        {
+          "file": "apps/api/tests/test_api_key_manager_corrupt_load.py",
+          "hash": "15187485681097706118"
+        },
+        {
+          "file": "apps/api/tests/test_api_key_manager_resilience.py",
+          "hash": "9224647728603450071"
+        },
+        {
+          "file": "apps/api/tests/test_api_token_routes.py",
+          "hash": "16013028165849862452"
+        },
+        {
+          "file": "apps/api/tests/test_api_token_user_route_gate.py",
+          "hash": "4747610389614076940"
+        },
+        {
+          "file": "apps/api/tests/test_app.py",
+          "hash": "2924792482459530640"
+        },
+        {
+          "file": "apps/api/tests/test_app_db_permissions.py",
+          "hash": "4399191835255256562"
+        },
+        {
+          "file": "apps/api/tests/test_app_initializer_memory_vector_degraded.py",
+          "hash": "2426141086018818392"
+        },
+        {
+          "file": "apps/api/tests/test_app_static_mime.py",
+          "hash": "17775794975682596184"
+        },
+        {
+          "file": "apps/api/tests/test_archived_sessions_model_filter.py",
+          "hash": "17693401402300502929"
+        },
+        {
+          "file": "apps/api/tests/test_ask_user_persistence.py",
+          "hash": "14632964394772402867"
+        },
+        {
+          "file": "apps/api/tests/test_ask_user_tool.py",
+          "hash": "1642475013180135447"
+        },
+        {
+          "file": "apps/api/tests/test_atomic_io.py",
+          "hash": "125829841974818110"
+        },
+        {
+          "file": "apps/api/tests/test_attachment_refs.py",
+          "hash": "862289990698121589"
+        },
+        {
+          "file": "apps/api/tests/test_auth_config_lock_concurrency.py",
+          "hash": "5604730361648816075"
+        },
+        {
+          "file": "apps/api/tests/test_auth_disabled_document_access.py",
+          "hash": "5711829142416284616"
+        },
+        {
+          "file": "apps/api/tests/test_auth_event_loop.py",
+          "hash": "8802048134651321211"
+        },
+        {
+          "file": "apps/api/tests/test_auth_policy.py",
+          "hash": "6660980712984107536"
+        },
+        {
+          "file": "apps/api/tests/test_auth_regressions.py",
+          "hash": "921437163334527006"
+        },
+        {
+          "file": "apps/api/tests/test_auth_require_privilege_nondict.py",
+          "hash": "13122805961731303108"
+        },
+        {
+          "file": "apps/api/tests/test_auth_session_revocation.py",
+          "hash": "14081923911162225228"
+        },
+        {
+          "file": "apps/api/tests/test_aux_llm_owner_scope.py",
+          "hash": "17229770060730220585"
+        },
+        {
+          "file": "apps/api/tests/test_backup_cli_security.py",
+          "hash": "7759689415818848631"
+        },
+        {
+          "file": "apps/api/tests/test_backup_import_cross_user_dedup.py",
+          "hash": "14598126197793003539"
+        },
+        {
+          "file": "apps/api/tests/test_backup_import_skills.py",
+          "hash": "3864665105885659067"
+        },
+        {
+          "file": "apps/api/tests/test_backup_import_skills_dedup.py",
+          "hash": "1947795186829807988"
+        },
+        {
+          "file": "apps/api/tests/test_bg_job_tools.py",
+          "hash": "7396380612060946356"
+        },
+        {
+          "file": "apps/api/tests/test_bg_jobs_store.py",
+          "hash": "10274407600536553064"
+        },
+        {
+          "file": "apps/api/tests/test_bg_monitor_stream.py",
+          "hash": "16433586456327612541"
+        },
+        {
+          "file": "apps/api/tests/test_blind_compare_redaction.py",
+          "hash": "11510169217024436909"
+        },
+        {
+          "file": "apps/api/tests/test_budget_auto_sentinel.py",
+          "hash": "780958113483345121"
+        },
+        {
+          "file": "apps/api/tests/test_build_user_content_pdf_marker.py",
+          "hash": "12048107569475504568"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_actions_cookbook_serve_state.py",
+          "hash": "6944281772246069913"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_actions_nonstring.py",
+          "hash": "13363025627072427242"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_actions_owner_scope.py",
+          "hash": "9766538103292246371"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_mcp_bg_tasks.py",
+          "hash": "2393253006980703813"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_mcp_npx_cache.py",
+          "hash": "4288915560635228278"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_mcp_pythonpath.py",
+          "hash": "12815221336031751409"
+        },
+        {
+          "file": "apps/api/tests/test_builtin_memory_consolidation.py",
+          "hash": "13924336186739602900"
+        },
+        {
+          "file": "apps/api/tests/test_cache_affinity_local_only.py",
+          "hash": "11747578269859930684"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_bidirectional_sync.py",
+          "hash": "15785773848703140725"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_client_cleanup.py",
+          "hash": "10953349222627457497"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_google_principal_url.py",
+          "hash": "12201287300763648122"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_prune_parse_failure.py",
+          "hash": "4466561627573773710"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_redirect_hardening.py",
+          "hash": "3074725694391494676"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_sync_prune_local_events.py",
+          "hash": "13890883089567317365"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_sync_uid_scope.py",
+          "hash": "16907590397508264936"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_test_connection_ssl.py",
+          "hash": "49586904992220588"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_url_hardening.py",
+          "hash": "16192675672908608877"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_url_nonstring.py",
+          "hash": "5511425352556227605"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_writeback.py",
+          "hash": "12289643393227775860"
+        },
+        {
+          "file": "apps/api/tests/test_caldav_writeback_route.py",
+          "hash": "13340181470165735613"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_batch_events.py",
+          "hash": "17003080112818841780"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_cli_overlap.py",
+          "hash": "14899230541639694622"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_css_url_escape_js.py",
+          "hash": "11868397284965031582"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_event_contrast.py",
+          "hash": "3608570190228207879"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_import_zero_duration.py",
+          "hash": "4912421386059204207"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_list_range_aliases.py",
+          "hash": "13369045402170622148"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_owner_scope.py",
+          "hash": "2370881304417222360"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_parse_dt_naive.py",
+          "hash": "5647517713438899573"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_parse_dt_time_first.py",
+          "hash": "2204988669733102983"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_parse_dt_tonight.py",
+          "hash": "6348509554050205648"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_recurrence.py",
+          "hash": "12350512497311335751"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_reminder_minutes_parsing.py",
+          "hash": "4235030368849480992"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_rrule.py",
+          "hash": "11316060477371836893"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_rrule_until_utc.py",
+          "hash": "10700638992024254408"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_update_event_tz.py",
+          "hash": "8080674879139940893"
+        },
+        {
+          "file": "apps/api/tests/test_calendar_utils_dates_js.py",
+          "hash": "3613046473481808741"
+        },
+        {
+          "file": "apps/api/tests/test_canvas_coords_empty_touches_js.py",
+          "hash": "5047227502971469619"
+        },
+        {
+          "file": "apps/api/tests/test_carddav_password_encryption.py",
+          "hash": "5390817817201950946"
+        },
+        {
+          "file": "apps/api/tests/test_censor_pref_js.py",
+          "hash": "5237663855597382486"
+        },
+        {
+          "file": "apps/api/tests/test_cerebras_cache_affinity.py",
+          "hash": "14796534469321414166"
+        },
+        {
+          "file": "apps/api/tests/test_chat_attachment_picker.py",
+          "hash": "7598859969522960423"
+        },
+        {
+          "file": "apps/api/tests/test_chat_cached_model_normalization.py",
+          "hash": "12990355608958837665"
+        },
+        {
+          "file": "apps/api/tests/test_chat_helpers.py",
+          "hash": "2383640784874769028"
+        },
+        {
+          "file": "apps/api/tests/test_chat_helpers_bg_tasks_tracked.py",
+          "hash": "16527811164854954349"
+        },
+        {
+          "file": "apps/api/tests/test_chat_image_routing.py",
+          "hash": "8889979211204068028"
+        },
+        {
+          "file": "apps/api/tests/test_chat_metrics.py",
+          "hash": "9630276766613380019"
+        },
+        {
+          "file": "apps/api/tests/test_chat_preprocess_tool_policy.py",
+          "hash": "12743827039579537321"
+        },
+        {
+          "file": "apps/api/tests/test_chat_processor_web_search.py",
+          "hash": "14989631420193565169"
+        },
+        {
+          "file": "apps/api/tests/test_chat_route_tool_policy.py",
+          "hash": "15283977482584757062"
+        },
+        {
+          "file": "apps/api/tests/test_chat_stream_scope.py",
+          "hash": "15659372284401456872"
+        },
+        {
+          "file": "apps/api/tests/test_chat_tool_screenshot_xss.py",
+          "hash": "12111196004824169558"
+        },
+        {
+          "file": "apps/api/tests/test_chat_upload_limit_config.py",
+          "hash": "9958635860919767131"
+        },
+        {
+          "file": "apps/api/tests/test_chatgpt_subscription_routes.py",
+          "hash": "11324001452411520502"
+        },
+        {
+          "file": "apps/api/tests/test_check_outbound_url_nonstring.py",
+          "hash": "7192407275019904169"
+        },
+        {
+          "file": "apps/api/tests/test_checkin_digest_owner_scope.py",
+          "hash": "2410300504239927815"
+        },
+        {
+          "file": "apps/api/tests/test_chroma_client.py",
+          "hash": "17971778318830841808"
+        },
+        {
+          "file": "apps/api/tests/test_claim_ownerless_json.py",
+          "hash": "2638809513427412092"
+        },
+        {
+          "file": "apps/api/tests/test_classify_events_memory_text.py",
+          "hash": "97719822087037528"
+        },
+        {
+          "file": "apps/api/tests/test_cleanup_owner_scope.py",
+          "hash": "7589577289043806623"
+        },
+        {
+          "file": "apps/api/tests/test_cleanup_routes_shim.py",
+          "hash": "9451515930307488599"
+        },
+        {
+          "file": "apps/api/tests/test_cleanup_service_utcnow.py",
+          "hash": "14735189098575037219"
+        },
+        {
+          "file": "apps/api/tests/test_code_nav_tools.py",
+          "hash": "5064786644797141746"
+        },
+        {
+          "file": "apps/api/tests/test_codex_cookbook_admin_gate.py",
+          "hash": "18001197267144086963"
+        },
+        {
+          "file": "apps/api/tests/test_codex_ssh_host_validation.py",
+          "hash": "9563462461814040211"
+        },
+        {
+          "file": "apps/api/tests/test_compact_truncate_tool_call_args.py",
+          "hash": "4075341660119463596"
+        },
+        {
+          "file": "apps/api/tests/test_compaction_summary_failure.py",
+          "hash": "8185815296081427768"
+        },
+        {
+          "file": "apps/api/tests/test_companion_pairing.py",
+          "hash": "5373629507609314513"
+        },
+        {
+          "file": "apps/api/tests/test_companion_readonly.py",
+          "hash": "2354562268558704896"
+        },
+        {
+          "file": "apps/api/tests/test_compare_endpoint_owner_scope.py",
+          "hash": "9525438779743215314"
+        },
+        {
+          "file": "apps/api/tests/test_compare_js.py",
+          "hash": "564261710420321769"
+        },
+        {
+          "file": "apps/api/tests/test_compare_routes_shim.py",
+          "hash": "13414301078826955116"
+        },
+        {
+          "file": "apps/api/tests/test_compare_stop_disconnect_poll.py",
+          "hash": "2762973529611351959"
+        },
+        {
+          "file": "apps/api/tests/test_composer_arrow_up_recall_js.py",
+          "hash": "9643327843038636740"
+        },
+        {
+          "file": "apps/api/tests/test_compute_next_run_monthly_clamp.py",
+          "hash": "4210182929423289078"
+        },
+        {
+          "file": "apps/api/tests/test_consolidate_memory_explicit_drops.py",
+          "hash": "12737370823065552068"
+        },
+        {
+          "file": "apps/api/tests/test_contacts_add_null_name.py",
+          "hash": "11296922568215111715"
+        },
+        {
+          "file": "apps/api/tests/test_contacts_carddav_security.py",
+          "hash": "14338354983024897104"
+        },
+        {
+          "file": "apps/api/tests/test_contacts_import_nonstring.py",
+          "hash": "58984289921951058"
+        },
+        {
+          "file": "apps/api/tests/test_contacts_routes_shim.py",
+          "hash": "4420140478338325847"
+        },
+        {
+          "file": "apps/api/tests/test_contacts_vcard_parse.py",
+          "hash": "17946764812114944387"
+        },
+        {
+          "file": "apps/api/tests/test_context_budget.py",
+          "hash": "12198465756714556357"
+        },
+        {
+          "file": "apps/api/tests/test_context_cache_per_endpoint.py",
+          "hash": "16698428734596649614"
+        },
+        {
+          "file": "apps/api/tests/test_context_compactor.py",
+          "hash": "13142155430776252750"
+        },
+        {
+          "file": "apps/api/tests/test_context_compactor_nonstring.py",
+          "hash": "124520413653920687"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_agent_tool_ssh_validation.py",
+          "hash": "3355884156949009456"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_cpu_only_serve.py",
+          "hash": "13223970401829445785"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_dead_download_status.py",
+          "hash": "11740343731591820350"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_dependency_completion_regression.py",
+          "hash": "12837044594160698727"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_deps_recipes.py",
+          "hash": "2279951753207494820"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_diagnosis.py",
+          "hash": "9746537468215522083"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_diagnosis_js.py",
+          "hash": "15171598810235129228"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_docker_access.py",
+          "hash": "6346536643825214513"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_download_toast_duration.py",
+          "hash": "16538549237241563837"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_endpoint_registration.py",
+          "hash": "4663915068125033656"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_error_feedback.py",
+          "hash": "2884703066340468305"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_error_tail_lines.py",
+          "hash": "8578726371467674052"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_gemma4_thinking_template.py",
+          "hash": "17196623644579415895"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_helpers.py",
+          "hash": "10974765388980456687"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_hf_token.py",
+          "hash": "5929517130439996"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_package_detection.py",
+          "hash": "13634519708569346074"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_port_parsing_js.py",
+          "hash": "6571391206161821533"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_progress_signal_js.py",
+          "hash": "4170735358037618253"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_remote_windows_diffusers.py",
+          "hash": "10473374855270910259"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_same_host_server_profiles_js.py",
+          "hash": "636590488132713488"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_serve_lifecycle.py",
+          "hash": "248121106063606951"
+        },
+        {
+          "file": "apps/api/tests/test_cookbook_windows_stop_tree_js.py",
+          "hash": "16036690096736270637"
+        },
+        {
+          "file": "apps/api/tests/test_copilot.py",
+          "hash": "6109158646604003454"
+        },
+        {
+          "file": "apps/api/tests/test_copilot_routes.py",
+          "hash": "11926343522558620504"
+        },
+        {
+          "file": "apps/api/tests/test_copy_message_strips_thinking_js.py",
+          "hash": "13423262818636717263"
+        },
+        {
+          "file": "apps/api/tests/test_cors_preflight.py",
+          "hash": "7651512372259564402"
+        },
+        {
+          "file": "apps/api/tests/test_database_utcnow.py",
+          "hash": "5961272190436261558"
+        },
+        {
+          "file": "apps/api/tests/test_db_stubs_helper.py",
+          "hash": "4661435287386090365"
+        },
+        {
+          "file": "apps/api/tests/test_ddg_redirect_resolution.py",
+          "hash": "13907481254465326249"
+        },
+        {
+          "file": "apps/api/tests/test_deep_research_date_context.py",
+          "hash": "18270602098873914713"
+        },
+        {
+          "file": "apps/api/tests/test_deep_research_extraction_controls.py",
+          "hash": "10975341401767612473"
+        },
+        {
+          "file": "apps/api/tests/test_deep_research_parse_json_array_echo.py",
+          "hash": "13347586768743101840"
+        },
+        {
+          "file": "apps/api/tests/test_deep_research_search_error.py",
+          "hash": "11315140668525774196"
+        },
+        {
+          "file": "apps/api/tests/test_deep_research_synthesis_resilience.py",
+          "hash": "14698808860838114630"
+        },
+        {
+          "file": "apps/api/tests/test_delete_message_no_session.py",
+          "hash": "12145757227448874555"
+        },
+        {
+          "file": "apps/api/tests/test_delete_user_invalidates_token_cache.py",
+          "hash": "3213318296816316776"
+        },
+        {
+          "file": "apps/api/tests/test_delete_user_revokes_api_tokens.py",
+          "hash": "1319696944113631344"
+        },
+        {
+          "file": "apps/api/tests/test_deleted_session_sidebar_regression.py",
+          "hash": "3954190398297515706"
+        },
+        {
+          "file": "apps/api/tests/test_derive_title_nonstring.py",
+          "hash": "17363509848284104373"
+        },
+        {
+          "file": "apps/api/tests/test_device_flow_routes.py",
+          "hash": "8891695230520237738"
+        },
+        {
+          "file": "apps/api/tests/test_diagnostics_logs.py",
+          "hash": "12640487334725736553"
+        },
+        {
+          "file": "apps/api/tests/test_diagnostics_service_route.py",
+          "hash": "15121233140766222324"
+        },
+        {
+          "file": "apps/api/tests/test_dialog_aria.py",
+          "hash": "4769799197195338499"
+        },
+        {
+          "file": "apps/api/tests/test_diffusion_server_security.py",
+          "hash": "2689470670137197142"
+        },
+        {
+          "file": "apps/api/tests/test_digest_windows.py",
+          "hash": "15233293751251274163"
+        },
+        {
+          "file": "apps/api/tests/test_direct_upload_limits.py",
+          "hash": "1536597167754818328"
+        },
+        {
+          "file": "apps/api/tests/test_doc_library_open_orphaned.py",
+          "hash": "11424984586930674450"
+        },
+        {
+          "file": "apps/api/tests/test_docker_devops_hardening.py",
+          "hash": "7368648525804919574"
+        },
+        {
+          "file": "apps/api/tests/test_docs_no_orphan_images.py",
+          "hash": "9484979100628197130"
+        },
+        {
+          "file": "apps/api/tests/test_docs_query_nondict_rows.py",
+          "hash": "13053576068413027655"
+        },
+        {
+          "file": "apps/api/tests/test_document_actions_nonstring.py",
+          "hash": "2588034626386312608"
+        },
+        {
+          "file": "apps/api/tests/test_document_ai_preview_refresh_js.py",
+          "hash": "10584369680315826281"
+        },
+        {
+          "file": "apps/api/tests/test_document_close_clears_active_route.py",
+          "hash": "9012824831902871291"
+        },
+        {
+          "file": "apps/api/tests/test_document_deeplink.py",
+          "hash": "13979656293941499621"
+        },
+        {
+          "file": "apps/api/tests/test_document_diff_discard_on_update_js.py",
+          "hash": "10783880291713027641"
+        },
+        {
+          "file": "apps/api/tests/test_document_editor_scroll.py",
+          "hash": "13425957246228574905"
+        },
+        {
+          "file": "apps/api/tests/test_document_library_delete_counters.py",
+          "hash": "8116241759322208824"
+        },
+        {
+          "file": "apps/api/tests/test_document_library_language_facet.py",
+          "hash": "8419770154854842149"
+        },
+        {
+          "file": "apps/api/tests/test_document_library_pdf_metadata.py",
+          "hash": "2758111647545722874"
+        },
+        {
+          "file": "apps/api/tests/test_document_pdf_marker.py",
+          "hash": "5263501858521747231"
+        },
+        {
+          "file": "apps/api/tests/test_document_processor_attachment_budget.py",
+          "hash": "895753519407095054"
+        },
+        {
+          "file": "apps/api/tests/test_document_processor_empty_media_subtype.py",
+          "hash": "6179419080574681883"
+        },
+        {
+          "file": "apps/api/tests/test_document_render_pdf_iframe.py",
+          "hash": "9678461637970995930"
+        },
+        {
+          "file": "apps/api/tests/test_document_session_owner_scope.py",
+          "hash": "17657836076457373501"
+        },
+        {
+          "file": "apps/api/tests/test_document_tidy_null_timestamp.py",
+          "hash": "10275902328509944301"
+        },
+        {
+          "file": "apps/api/tests/test_document_tool_owner_scope.py",
+          "hash": "13973545146381702260"
+        },
+        {
+          "file": "apps/api/tests/test_edit_file.py",
+          "hash": "7769444406876773618"
+        },
+        {
+          "file": "apps/api/tests/test_editor_draft_payload.py",
+          "hash": "15691656704609121207"
+        },
+        {
+          "file": "apps/api/tests/test_email_account_port_validation.py",
+          "hash": "5472762944544496743"
+        },
+        {
+          "file": "apps/api/tests/test_email_decode_header.py",
+          "hash": "740118103340726689"
+        },
+        {
+          "file": "apps/api/tests/test_email_envelope_recipients.py",
+          "hash": "2982569492294752653"
+        },
+        {
+          "file": "apps/api/tests/test_email_fallback_reconnect.py",
+          "hash": "11003880481737482425"
+        },
+        {
+          "file": "apps/api/tests/test_email_gmail_fetch_flags.py",
+          "hash": "11121184391814589385"
+        },
+        {
+          "file": "apps/api/tests/test_email_helpers_decode_header_spaces.py",
+          "hash": "6178197028391245556"
+        },
+        {
+          "file": "apps/api/tests/test_email_imap_timeout.py",
+          "hash": "6860831021578215868"
+        },
+        {
+          "file": "apps/api/tests/test_email_library_bulk_actions.py",
+          "hash": "6396486406126139390"
+        },
+        {
+          "file": "apps/api/tests/test_email_linkify_security_js.py",
+          "hash": "11859114763355846984"
+        },
+        {
+          "file": "apps/api/tests/test_email_oauth.py",
+          "hash": "5979026958336563637"
+        },
+        {
+          "file": "apps/api/tests/test_email_owner_scope.py",
+          "hash": "3408810232998028179"
+        },
+        {
+          "file": "apps/api/tests/test_email_ownerless_account_owner_scope.py",
+          "hash": "10249320588674626714"
+        },
+        {
+          "file": "apps/api/tests/test_email_polly_imap_leak.py",
+          "hash": "15168294394804156828"
+        },
+        {
+          "file": "apps/api/tests/test_email_registry_sync.py",
+          "hash": "16729856682198576452"
+        },
+        {
+          "file": "apps/api/tests/test_email_send_only_no_inbox.py",
+          "hash": "13458314853847266728"
+        },
+        {
+          "file": "apps/api/tests/test_email_smtp_security.py",
+          "hash": "13642752793368316425"
+        },
+        {
+          "file": "apps/api/tests/test_email_split_border_css.py",
+          "hash": "767878834500060714"
+        },
+        {
+          "file": "apps/api/tests/test_email_thread_parser_nonstring.py",
+          "hash": "9538796046249672451"
+        },
+        {
+          "file": "apps/api/tests/test_email_uid_no_seqno_fallback.py",
+          "hash": "10277977167545548135"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_cache_confinement.py",
+          "hash": "18439044293136359507"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_endpoint_config.py",
+          "hash": "3871960702713741762"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lane_ndarray_restore.py",
+          "hash": "3863236574983091140"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lanes.py",
+          "hash": "3449793774629408510"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lanes_legacy.py",
+          "hash": "2422228710271526254"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lanes_memory.py",
+          "hash": "5168149790120395384"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lanes_rag.py",
+          "hash": "1222128744555211452"
+        },
+        {
+          "file": "apps/api/tests/test_embedding_lanes_tool_index.py",
+          "hash": "14328912446381504360"
+        },
+        {
+          "file": "apps/api/tests/test_embeddings.py",
+          "hash": "7352926207340740165"
+        },
+        {
+          "file": "apps/api/tests/test_embeddings_client.py",
+          "hash": "15344543847950081644"
+        },
+        {
+          "file": "apps/api/tests/test_emoji_shortcodes_js.py",
+          "hash": "6969960018840573929"
+        },
+        {
+          "file": "apps/api/tests/test_emoji_svg_hardening.py",
+          "hash": "9937122333687180080"
+        },
+        {
+          "file": "apps/api/tests/test_endpoint_owner_scope_followup.py",
+          "hash": "271557407500915945"
+        },
+        {
+          "file": "apps/api/tests/test_endpoint_probing.py",
+          "hash": "17535254909984478505"
+        },
+        {
+          "file": "apps/api/tests/test_endpoint_resolver_headers.py",
+          "hash": "8426872752980317587"
+        },
+        {
+          "file": "apps/api/tests/test_endpoint_resolver_models.py",
+          "hash": "17467091255780097737"
+        },
+        {
+          "file": "apps/api/tests/test_endpoint_resolver_urls.py",
+          "hash": "4398784396783215155"
+        },
+        {
+          "file": "apps/api/tests/test_esc_menu_stack_js.py",
+          "hash": "2091480790250171888"
+        },
+        {
+          "file": "apps/api/tests/test_estimate_tokens_tool_calls.py",
+          "hash": "1360222025329907569"
+        },
+        {
+          "file": "apps/api/tests/test_extract_quotes.py",
+          "hash": "11295879517841336702"
+        },
+        {
+          "file": "apps/api/tests/test_extract_skill_json_nonstring.py",
+          "hash": "4684609122981378621"
+        },
+        {
+          "file": "apps/api/tests/test_extract_statistics.py",
+          "hash": "5219480945016380675"
+        },
+        {
+          "file": "apps/api/tests/test_extract_urls.py",
+          "hash": "10832877559349955743"
+        },
+        {
+          "file": "apps/api/tests/test_fastembed_cache_path.py",
+          "hash": "5841858988818686949"
+        },
+        {
+          "file": "apps/api/tests/test_fenced_example_not_executed_for_native_models.py",
+          "hash": "8735031595856993855"
+        },
+        {
+          "file": "apps/api/tests/test_fenced_inline_args.py",
+          "hash": "13716745418122605537"
+        },
+        {
+          "file": "apps/api/tests/test_fenced_invoke_no_raw_xml.py",
+          "hash": "16897141934330613654"
+        },
+        {
+          "file": "apps/api/tests/test_focused_test_guidance.py",
+          "hash": "8668912723660200300"
+        },
+        {
+          "file": "apps/api/tests/test_font_routes.py",
+          "hash": "3731030109775308445"
+        },
+        {
+          "file": "apps/api/tests/test_fork_session_metadata.py",
+          "hash": "4110747899191851656"
+        },
+        {
+          "file": "apps/api/tests/test_form_markdown_roundtrip.py",
+          "hash": "7012750402341913644"
+        },
+        {
+          "file": "apps/api/tests/test_forwarded_message_divider.py",
+          "hash": "10751150523875871909"
+        },
+        {
+          "file": "apps/api/tests/test_function_call_non_object_args.py",
+          "hash": "14310061393353814600"
+        },
+        {
+          "file": "apps/api/tests/test_function_model_tool_call.py",
+          "hash": "2628586397384429204"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_album_owner_scope.py",
+          "hash": "11539700021943677034"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_delete_file_ordering.py",
+          "hash": "1375713872476753892"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_endpoint_hardening.py",
+          "hash": "18185807139028807983"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_endpoint_matching.py",
+          "hash": "8461876862282675001"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_endpoint_ssrf.py",
+          "hash": "17018001172902067954"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_exif_orientation.py",
+          "hash": "577345687500442044"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_filename_confinement.py",
+          "hash": "8051010880964222199"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_image_endpoint_owner_scope.py",
+          "hash": "14196948737573253783"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_image_privileges.py",
+          "hash": "9235383438245218981"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_null_user_routes.py",
+          "hash": "11626493768684178995"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_owner_filter_single_user.py",
+          "hash": "6437881609197298626"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_result_image_ssrf.py",
+          "hash": "3471287421619371698"
+        },
+        {
+          "file": "apps/api/tests/test_gallery_routes_shim.py",
+          "hash": "4308942219309610172"
+        },
+        {
+          "file": "apps/api/tests/test_gemma_tool_call_parsing.py",
+          "hash": "12211184318637855136"
+        },
+        {
+          "file": "apps/api/tests/test_generated_image_confinement.py",
+          "hash": "14629272561802319990"
+        },
+        {
+          "file": "apps/api/tests/test_gmail_quote_attribution_js.py",
+          "hash": "835264089950225136"
+        },
+        {
+          "file": "apps/api/tests/test_gpu_compose_standalone.py",
+          "hash": "607684961098739141"
+        },
+        {
+          "file": "apps/api/tests/test_group_character_dropdown.py",
+          "hash": "16592108031296368831"
+        },
+        {
+          "file": "apps/api/tests/test_group_chat_storage.py",
+          "hash": "6244410133025127069"
+        },
+        {
+          "file": "apps/api/tests/test_harmonize_masks_invalid_layers_js.py",
+          "hash": "13088747216182066700"
+        },
+        {
+          "file": "apps/api/tests/test_helpers_import_state.py",
+          "hash": "12512112217940909309"
+        },
+        {
+          "file": "apps/api/tests/test_hex_to_rgb_js.py",
+          "hash": "9314000249441643951"
+        },
+        {
+          "file": "apps/api/tests/test_history_compact_tool_calls.py",
+          "hash": "14089715393503675768"
+        },
+        {
+          "file": "apps/api/tests/test_history_db_fallback_hidden.py",
+          "hash": "4807507879105065745"
+        },
+        {
+          "file": "apps/api/tests/test_history_order_by_timestamp_regression.py",
+          "hash": "14506585428343753294"
+        },
+        {
+          "file": "apps/api/tests/test_history_routes_shim.py",
+          "hash": "11704897188090321233"
+        },
+        {
+          "file": "apps/api/tests/test_history_topics_owner_scope.py",
+          "hash": "15626325500346087172"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_amd.py",
+          "hash": "12370190144463184345"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_apple_bandwidth.py",
+          "hash": "1162187980975238973"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_bandwidth_nonstring.py",
+          "hash": "9048542801853138763"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_container_visibility_warning.py",
+          "hash": "7456876596383188588"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_cpu_arch_detection.py",
+          "hash": "14508982253682249758"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_cpu_only_fallback.py",
+          "hash": "6230132100230701232"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_gemma4_12b.py",
+          "hash": "6554326161821615026"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_gpu_count_nonnumeric.py",
+          "hash": "18117201672973307181"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_macos.py",
+          "hash": "18370266921358473702"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_manual_backend.py",
+          "hash": "11823247098112080448"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_models_nonstring_fields.py",
+          "hash": "1965394731752453722"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_native_quant_labels.py",
+          "hash": "7142029514132894593"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_params_b_malformed.py",
+          "hash": "3996219169195359409"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_quant_formats.py",
+          "hash": "9835510816751495964"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_remote_validation.py",
+          "hash": "17814285789243817099"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_unified_nvidia.py",
+          "hash": "8803307354796858106"
+        },
+        {
+          "file": "apps/api/tests/test_hwfit_windows.py",
+          "hash": "17553160307805171462"
+        },
+        {
+          "file": "apps/api/tests/test_icloud_imap_full_fetch.py",
+          "hash": "14353689043351183212"
+        },
+        {
+          "file": "apps/api/tests/test_ics_escape.py",
+          "hash": "7674131146863851214"
+        },
+        {
+          "file": "apps/api/tests/test_ics_export_escaping.py",
+          "hash": "14427828567407361672"
+        },
+        {
+          "file": "apps/api/tests/test_ics_import_dedup_tz.py",
+          "hash": "2328657625420418114"
+        },
+        {
+          "file": "apps/api/tests/test_image_models_nondict_system.py",
+          "hash": "4515076495848659550"
+        },
+        {
+          "file": "apps/api/tests/test_image_models_nonstring_search.py",
+          "hash": "926775767383870780"
+        },
+        {
+          "file": "apps/api/tests/test_imap_leak_fixes.py",
+          "hash": "4575058010737234780"
+        },
+        {
+          "file": "apps/api/tests/test_imap_mailbox_quoting.py",
+          "hash": "18220386880694626613"
+        },
+        {
+          "file": "apps/api/tests/test_imap_move_uid.py",
+          "hash": "9255708279392481555"
+        },
+        {
+          "file": "apps/api/tests/test_imap_uid_commands.py",
+          "hash": "7642986697403114960"
+        },
+        {
+          "file": "apps/api/tests/test_inside_base_dir_nonstring.py",
+          "hash": "16945713664241345226"
+        },
+        {
+          "file": "apps/api/tests/test_integration_api_call_ssrf.py",
+          "hash": "14117519972060023521"
+        },
+        {
+          "file": "apps/api/tests/test_integrations_api_call_truncation.py",
+          "hash": "80623981302916389"
+        },
+        {
+          "file": "apps/api/tests/test_integrations_store_shape.py",
+          "hash": "13776485380578920942"
+        },
+        {
+          "file": "apps/api/tests/test_integrations_url_join.py",
+          "hash": "7041583441095827513"
+        },
+        {
+          "file": "apps/api/tests/test_internal_api_base.py",
+          "hash": "5186140566318773996"
+        },
+        {
+          "file": "apps/api/tests/test_is_youtube_url_nonstring.py",
+          "hash": "6854681915291887740"
+        },
+        {
+          "file": "apps/api/tests/test_is_youtube_url_nonstring_svc.py",
+          "hash": "1077999371295009222"
+        },
+        {
+          "file": "apps/api/tests/test_keybind_altgr_js.py",
+          "hash": "7945306895768964890"
+        },
+        {
+          "file": "apps/api/tests/test_kimi_code_hosts.py",
+          "hash": "18024218113601164378"
+        },
+        {
+          "file": "apps/api/tests/test_kimi_code_user_agent.py",
+          "hash": "4414876685407146828"
+        },
+        {
+          "file": "apps/api/tests/test_kv_cache_invalidation_2927.py",
+          "hash": "6562244521697070280"
+        },
+        {
+          "file": "apps/api/tests/test_lang_icon_null_opts_js.py",
+          "hash": "7163471299139199291"
+        },
+        {
+          "file": "apps/api/tests/test_launcher.py",
+          "hash": "12599687582507854209"
+        },
+        {
+          "file": "apps/api/tests/test_live_strip_email_tool_fences.py",
+          "hash": "11982949684854796559"
+        },
+        {
+          "file": "apps/api/tests/test_llama_server_models_url.py",
+          "hash": "2769728654668866323"
+        },
+        {
+          "file": "apps/api/tests/test_llamacpp_discovery.py",
+          "hash": "11044418198566501849"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_anthropic_cache.py",
+          "hash": "1271866909127770427"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_anthropic_temp_clamp.py",
+          "hash": "7769480551745996786"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_anthropic_temp_omit.py",
+          "hash": "14118389116942303517"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_concurrency.py",
+          "hash": "15266424943752610460"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_connect_timeout.py",
+          "hash": "2742475164692729091"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_fallback.py",
+          "hash": "203903485490853090"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_mistral_content.py",
+          "hash": "18285880698786032087"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_ollama.py",
+          "hash": "1659062904304562655"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_ollama_thinking.py",
+          "hash": "6766055501408158129"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_reasoning.py",
+          "hash": "13517156316553721188"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_reasoning_content_fallback.py",
+          "hash": "11179725999268805023"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_sanitize_tool_calls.py",
+          "hash": "2116730935932929708"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_sse_no_space.py",
+          "hash": "15696467287985457509"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_streaming.py",
+          "hash": "4476095666127567530"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_system_msg_missing_content.py",
+          "hash": "15419151681771854151"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_temperature_anthropic.py",
+          "hash": "8157472645488987753"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_temperature_moonshot.py",
+          "hash": "6066056042851781333"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_temperature_reasoning.py",
+          "hash": "4546267484226609643"
+        },
+        {
+          "file": "apps/api/tests/test_llm_core_usage_finish_delta.py",
+          "hash": "8687744379552132783"
+        },
+        {
+          "file": "apps/api/tests/test_lmstudio_discovery.py",
+          "hash": "10218312153478131746"
+        },
+        {
+          "file": "apps/api/tests/test_lmstudio_models_url.py",
+          "hash": "17748543166750235336"
+        },
+        {
+          "file": "apps/api/tests/test_lmstudio_vision.py",
+          "hash": "717154397946384562"
+        },
+        {
+          "file": "apps/api/tests/test_load_features_permission_error.py",
+          "hash": "13521270013219786223"
+        },
+        {
+          "file": "apps/api/tests/test_local_endpoint_api_key_js.py",
+          "hash": "16744453601230724401"
+        },
+        {
+          "file": "apps/api/tests/test_local_endpoint_js.py",
+          "hash": "5810969526922988853"
+        },
+        {
+          "file": "apps/api/tests/test_log_safety.py",
+          "hash": "16461246284778465952"
+        },
+        {
+          "file": "apps/api/tests/test_loop_breaker_runaway.py",
+          "hash": "922685445690877483"
+        },
+        {
+          "file": "apps/api/tests/test_manage_mcp_command_allowlist.py",
+          "hash": "8407348516586375653"
+        },
+        {
+          "file": "apps/api/tests/test_manage_memory_list.py",
+          "hash": "1026249335228029893"
+        },
+        {
+          "file": "apps/api/tests/test_manage_notes_owner_gate.py",
+          "hash": "8103690443935500974"
+        },
+        {
+          "file": "apps/api/tests/test_manage_settings_token_budget.py",
+          "hash": "963824680871208997"
+        },
+        {
+          "file": "apps/api/tests/test_manage_tasks_owner_scope.py",
+          "hash": "5617380095552899094"
+        },
+        {
+          "file": "apps/api/tests/test_markdown_dom_xss_helpers.py",
+          "hash": "14634733411775237379"
+        },
+        {
+          "file": "apps/api/tests/test_markdown_rendering_js.py",
+          "hash": "10096965572442418287"
+        },
+        {
+          "file": "apps/api/tests/test_markdown_table_row_js.py",
+          "hash": "10556313036365400404"
+        },
+        {
+          "file": "apps/api/tests/test_markitdown_format_nonstring.py",
+          "hash": "14450553253363612246"
+        },
+        {
+          "file": "apps/api/tests/test_markitdown_runtime.py",
+          "hash": "10583347229482696363"
+        },
+        {
+          "file": "apps/api/tests/test_match_model_key_js.py",
+          "hash": "1176569106565990834"
+        },
+        {
+          "file": "apps/api/tests/test_matchescombo_nonstring_js.py",
+          "hash": "13213381526230050945"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_cache_invalidation.py",
+          "hash": "7897691685996834642"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_common_truncate.py",
+          "hash": "5992748157484716721"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_email_decode_header_spaces.py",
+          "hash": "15951283147650555450"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_manager.py",
+          "hash": "14135247710115121994"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_memory_owner_scope.py",
+          "hash": "15636390523504389877"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_oauth.py",
+          "hash": "17756922170351713379"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_param_hint_hardening.py",
+          "hash": "13395116759897993146"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_reconnect_args.py",
+          "hash": "12825125521979515939"
+        },
+        {
+          "file": "apps/api/tests/test_mcp_tool_params_in_prompt.py",
+          "hash": "14104303819762238739"
+        },
+        {
+          "file": "apps/api/tests/test_memory_audit_timeout.py",
+          "hash": "9497328739862696634"
+        },
+        {
+          "file": "apps/api/tests/test_memory_bullet_extraction.py",
+          "hash": "15994622751089479776"
+        },
+        {
+          "file": "apps/api/tests/test_memory_cli_add_nondict.py",
+          "hash": "15820087883646368514"
+        },
+        {
+          "file": "apps/api/tests/test_memory_extract_chat_nondict.py",
+          "hash": "18175235698420176486"
+        },
+        {
+          "file": "apps/api/tests/test_memory_extraction_parse.py",
+          "hash": "18416591266505876203"
+        },
+        {
+          "file": "apps/api/tests/test_memory_extractor_rows.py",
+          "hash": "17875682246097359585"
+        },
+        {
+          "file": "apps/api/tests/test_memory_extractor_vector_cross_tenant.py",
+          "hash": "17804598923633269217"
+        },
+        {
+          "file": "apps/api/tests/test_memory_extractor_vector_degraded.py",
+          "hash": "17928830910815767"
+        },
+        {
+          "file": "apps/api/tests/test_memory_fallback_dislike.py",
+          "hash": "4884661342061951450"
+        },
+        {
+          "file": "apps/api/tests/test_memory_imports.py",
+          "hash": "6442613086385662560"
+        },
+        {
+          "file": "apps/api/tests/test_memory_owner_isolation.py",
+          "hash": "2911467747224824527"
+        },
+        {
+          "file": "apps/api/tests/test_memory_provider.py",
+          "hash": "4425540662400493131"
+        },
+        {
+          "file": "apps/api/tests/test_memory_recall_nondict_rows.py",
+          "hash": "3314863587640841529"
+        },
+        {
+          "file": "apps/api/tests/test_memory_routes_session_owner.py",
+          "hash": "15359538180304591491"
+        },
+        {
+          "file": "apps/api/tests/test_memory_routes_shim.py",
+          "hash": "6897672270633508794"
+        },
+        {
+          "file": "apps/api/tests/test_memory_validate_entries_nondict.py",
+          "hash": "15463623336944746709"
+        },
+        {
+          "file": "apps/api/tests/test_merge_last_assistant_rows.py",
+          "hash": "6251200088212541863"
+        },
+        {
+          "file": "apps/api/tests/test_migrate_faiss_to_chroma.py",
+          "hash": "18287832647126780392"
+        },
+        {
+          "file": "apps/api/tests/test_misfenced_read_file_tool_call.py",
+          "hash": "552336871923884273"
+        },
+        {
+          "file": "apps/api/tests/test_modal_dock_composer_clearance.py",
+          "hash": "2971325104264325108"
+        },
+        {
+          "file": "apps/api/tests/test_model_capabilities.py",
+          "hash": "16215500077091218492"
+        },
+        {
+          "file": "apps/api/tests/test_model_capability_readers.py",
+          "hash": "15163150396731108400"
+        },
+        {
+          "file": "apps/api/tests/test_model_context.py",
+          "hash": "10620241887116044139"
+        },
+        {
+          "file": "apps/api/tests/test_model_defaults.py",
+          "hash": "16562668105203039677"
+        },
+        {
+          "file": "apps/api/tests/test_model_discovery_status.py",
+          "hash": "11880164338963704164"
+        },
+        {
+          "file": "apps/api/tests/test_model_helper_owner_scope.py",
+          "hash": "17167801331047549682"
+        },
+        {
+          "file": "apps/api/tests/test_model_interaction_registry.py",
+          "hash": "4893398907086816450"
+        },
+        {
+          "file": "apps/api/tests/test_model_name_tooltip.py",
+          "hash": "15445605130435231541"
+        },
+        {
+          "file": "apps/api/tests/test_model_routes.py",
+          "hash": "2011070033124153738"
+        },
+        {
+          "file": "apps/api/tests/test_model_sort_js.py",
+          "hash": "12763021578979097331"
+        },
+        {
+          "file": "apps/api/tests/test_multiple_mcp_servers_timeout.py",
+          "hash": "814181066486122109"
+        },
+        {
+          "file": "apps/api/tests/test_native_tool_result_threading.py",
+          "hash": "12252907483538442115"
+        },
+        {
+          "file": "apps/api/tests/test_new_chat_clears_input.py",
+          "hash": "14783043392316847961"
+        },
+        {
+          "file": "apps/api/tests/test_new_chat_model_preference.py",
+          "hash": "9870610522281946914"
+        },
+        {
+          "file": "apps/api/tests/test_nix_upload_text.py",
+          "hash": "6456142114385357494"
+        },
+        {
+          "file": "apps/api/tests/test_note_reminder_fire_scope.py",
+          "hash": "4018901916312980891"
+        },
+        {
+          "file": "apps/api/tests/test_note_routes_shim.py",
+          "hash": "2799093940701876393"
+        },
+        {
+          "file": "apps/api/tests/test_notes_dom_xss_helpers.py",
+          "hash": "3800002353348898461"
+        },
+        {
+          "file": "apps/api/tests/test_notes_fail_closed_auth.py",
+          "hash": "11691252861693320165"
+        },
+        {
+          "file": "apps/api/tests/test_notes_search_reset_on_reopen_js.py",
+          "hash": "5326517767086940311"
+        },
+        {
+          "file": "apps/api/tests/test_notes_select_esc_listener_js.py",
+          "hash": "15187697035920785041"
+        },
+        {
+          "file": "apps/api/tests/test_notes_update_due_date.py",
+          "hash": "17472429789710423340"
+        },
+        {
+          "file": "apps/api/tests/test_notes_z_order_js.py",
+          "hash": "7996413444156545268"
+        },
+        {
+          "file": "apps/api/tests/test_null_owner_gates.py",
+          "hash": "14206992144183155004"
+        },
+        {
+          "file": "apps/api/tests/test_odysseus_dispatcher.py",
+          "hash": "15497376258146546750"
+        },
+        {
+          "file": "apps/api/tests/test_odysseus_doc_fence_normalization.py",
+          "hash": "11036409964821432553"
+        },
+        {
+          "file": "apps/api/tests/test_og_image_extraction.py",
+          "hash": "18310999129703398417"
+        },
+        {
+          "file": "apps/api/tests/test_ollama_multimodal.py",
+          "hash": "61246589921342857"
+        },
+        {
+          "file": "apps/api/tests/test_ollama_port_detection.py",
+          "hash": "334251256201331722"
+        },
+        {
+          "file": "apps/api/tests/test_ollama_runner_hint.py",
+          "hash": "18152951030261013287"
+        },
+        {
+          "file": "apps/api/tests/test_ordinal_suffix_js.py",
+          "hash": "10440015686655913618"
+        },
+        {
+          "file": "apps/api/tests/test_owned_document_query.py",
+          "hash": "4009860484167813952"
+        },
+        {
+          "file": "apps/api/tests/test_parse_due_time_first.py",
+          "hash": "9712600413401963324"
+        },
+        {
+          "file": "apps/api/tests/test_parse_msg_content_jsonlike_string.py",
+          "hash": "10767672376386848323"
+        },
+        {
+          "file": "apps/api/tests/test_pdf_ai_edit_derivative.py",
+          "hash": "2585441184010822339"
+        },
+        {
+          "file": "apps/api/tests/test_pdf_runtime.py",
+          "hash": "2396711788917001686"
+        },
+        {
+          "file": "apps/api/tests/test_personal_delete_file_confinement.py",
+          "hash": "2008348653708591658"
+        },
+        {
+          "file": "apps/api/tests/test_personal_dir_symlink_escape.py",
+          "hash": "8367682623011802918"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_exclusions.py",
+          "hash": "12222240066575277128"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_keyword_nondict.py",
+          "hash": "6765461826868806984"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_lists.py",
+          "hash": "5537913135169704541"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_office_index.py",
+          "hash": "9501517854509579834"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_pdf_index.py",
+          "hash": "113412394491420076"
+        },
+        {
+          "file": "apps/api/tests/test_personal_docs_state_store.py",
+          "hash": "9700029250118295014"
+        },
+        {
+          "file": "apps/api/tests/test_personal_remove_dir_confinement.py",
+          "hash": "8472574653289281342"
+        },
+        {
+          "file": "apps/api/tests/test_personal_upload_isolation.py",
+          "hash": "16479601241789928826"
+        },
+        {
+          "file": "apps/api/tests/test_personal_upload_privilege.py",
+          "hash": "7510208820198592655"
+        },
+        {
+          "file": "apps/api/tests/test_plain_ui_control_open_panel.py",
+          "hash": "18416253509997509821"
+        },
+        {
+          "file": "apps/api/tests/test_plan_mode.py",
+          "hash": "14495981372030614425"
+        },
+        {
+          "file": "apps/api/tests/test_platform_compat.py",
+          "hash": "9816405983131280827"
+        },
+        {
+          "file": "apps/api/tests/test_popup_opener_isolation_js.py",
+          "hash": "5939630818732167199"
+        },
+        {
+          "file": "apps/api/tests/test_portal_dropdown_z_js.py",
+          "hash": "11139048872243207517"
+        },
+        {
+          "file": "apps/api/tests/test_pr_blocker_audit.py",
+          "hash": "17922919739712083455"
+        },
+        {
+          "file": "apps/api/tests/test_prefs_atomic_write.py",
+          "hash": "1968574993901447388"
+        },
+        {
+          "file": "apps/api/tests/test_prefs_routes.py",
+          "hash": "11538637381531575608"
+        },
+        {
+          "file": "apps/api/tests/test_prefs_single_user_no_clobber.py",
+          "hash": "7905522994313782116"
+        },
+        {
+          "file": "apps/api/tests/test_preset_atomic_save.py",
+          "hash": "15140105841328597445"
+        },
+        {
+          "file": "apps/api/tests/test_preset_expand_owner_scope.py",
+          "hash": "9311763567643771162"
+        },
+        {
+          "file": "apps/api/tests/test_preset_fill_missing_defaults.py",
+          "hash": "2274787880299419296"
+        },
+        {
+          "file": "apps/api/tests/test_preset_local_storage_js.py",
+          "hash": "9725199250894362781"
+        },
+        {
+          "file": "apps/api/tests/test_preset_store_shape.py",
+          "hash": "180123173181986271"
+        },
+        {
+          "file": "apps/api/tests/test_promote_image_fields.py",
+          "hash": "13204761173853730284"
+        },
+        {
+          "file": "apps/api/tests/test_prompt_injection_audit.py",
+          "hash": "1798127688054690340"
+        },
+        {
+          "file": "apps/api/tests/test_prompt_security.py",
+          "hash": "9666358971099619317"
+        },
+        {
+          "file": "apps/api/tests/test_provider_classification.py",
+          "hash": "4655185757302068467"
+        },
+        {
+          "file": "apps/api/tests/test_provider_classification_errors.py",
+          "hash": "6080629948318570817"
+        },
+        {
+          "file": "apps/api/tests/test_provider_classification_token_params.py",
+          "hash": "9972913598009011712"
+        },
+        {
+          "file": "apps/api/tests/test_provider_detection_builders.py",
+          "hash": "14880014291144437515"
+        },
+        {
+          "file": "apps/api/tests/test_provider_detection_detect.py",
+          "hash": "449136942595150604"
+        },
+        {
+          "file": "apps/api/tests/test_provider_detection_host_match.py",
+          "hash": "5867393181799332169"
+        },
+        {
+          "file": "apps/api/tests/test_provider_device_flow_js.py",
+          "hash": "16921778032654387747"
+        },
+        {
+          "file": "apps/api/tests/test_provider_endpoints_headers.py",
+          "hash": "17082638525696896498"
+        },
+        {
+          "file": "apps/api/tests/test_provider_endpoints_models.py",
+          "hash": "5708812988459826984"
+        },
+        {
+          "file": "apps/api/tests/test_provider_endpoints_normalization.py",
+          "hash": "15107015711541975165"
+        },
+        {
+          "file": "apps/api/tests/test_provider_endpoints_tailscale.py",
+          "hash": "5323818304230818122"
+        },
+        {
+          "file": "apps/api/tests/test_provider_endpoints_url_building.py",
+          "hash": "502588635355529975"
+        },
+        {
+          "file": "apps/api/tests/test_provider_label_js.py",
+          "hash": "12047638683352415238"
+        },
+        {
+          "file": "apps/api/tests/test_providers_mixtral_logo_js.py",
+          "hash": "1508915505223381560"
+        },
+        {
+          "file": "apps/api/tests/test_public_blocked_tool_nonstring.py",
+          "hash": "15091229830127258490"
+        },
+        {
+          "file": "apps/api/tests/test_question_type_detection.py",
+          "hash": "10370792395178930850"
+        },
+        {
+          "file": "apps/api/tests/test_rag_keyword_fallback_owner.py",
+          "hash": "6748237261772841243"
+        },
+        {
+          "file": "apps/api/tests/test_rag_manager_owner_compat.py",
+          "hash": "11738943723792801830"
+        },
+        {
+          "file": "apps/api/tests/test_rag_remove_directory_scope.py",
+          "hash": "10060162774844318598"
+        },
+        {
+          "file": "apps/api/tests/test_rag_search_signature.py",
+          "hash": "12363540456167410163"
+        },
+        {
+          "file": "apps/api/tests/test_rag_server_directory_nonstring.py",
+          "hash": "3400510464695779143"
+        },
+        {
+          "file": "apps/api/tests/test_rag_vector_id_stability.py",
+          "hash": "10289079935671403612"
+        },
+        {
+          "file": "apps/api/tests/test_rag_vector_rename_owner.py",
+          "hash": "18106031577899865060"
+        },
+        {
+          "file": "apps/api/tests/test_rate_limiter.py",
+          "hash": "15016440705423138437"
+        },
+        {
+          "file": "apps/api/tests/test_readiness.py",
+          "hash": "13556364460997285557"
+        },
+        {
+          "file": "apps/api/tests/test_readme_ascii_fenced.py",
+          "hash": "1121369420429981913"
+        },
+        {
+          "file": "apps/api/tests/test_realesrgan_torchvision_compat.py",
+          "hash": "13890779053223366800"
+        },
+        {
+          "file": "apps/api/tests/test_redos_cal_extract.py",
+          "hash": "15344439971118991428"
+        },
+        {
+          "file": "apps/api/tests/test_redos_llm_parsers.py",
+          "hash": "14296013285511699790"
+        },
+        {
+          "file": "apps/api/tests/test_redos_think_blocks.py",
+          "hash": "7578598578770846343"
+        },
+        {
+          "file": "apps/api/tests/test_redos_verdict_continuation.py",
+          "hash": "125019436367119582"
+        },
+        {
+          "file": "apps/api/tests/test_redos_xml_tool_parsers.py",
+          "hash": "13707421179519432244"
+        },
+        {
+          "file": "apps/api/tests/test_reminder_ntfy_ssrf.py",
+          "hash": "7008147330164664094"
+        },
+        {
+          "file": "apps/api/tests/test_rename_user_case_insensitive.py",
+          "hash": "6445911710043266547"
+        },
+        {
+          "file": "apps/api/tests/test_rename_user_owner_sync.py",
+          "hash": "10017074887354456"
+        },
+        {
+          "file": "apps/api/tests/test_rename_user_token_cache.py",
+          "hash": "10643035597703887520"
+        },
+        {
+          "file": "apps/api/tests/test_replace_messages_multimodal.py",
+          "hash": "1065796907813144786"
+        },
+        {
+          "file": "apps/api/tests/test_replace_messages_upload_reservations.py",
+          "hash": "11786321294291875977"
+        },
+        {
+          "file": "apps/api/tests/test_reply_all_cc_nonstring_js.py",
+          "hash": "539685837591058109"
+        },
+        {
+          "file": "apps/api/tests/test_reply_recipients_js.py",
+          "hash": "14723465555289681744"
+        },
+        {
+          "file": "apps/api/tests/test_research_chat_stream_owner.py",
+          "hash": "3989794339885031194"
+        },
+        {
+          "file": "apps/api/tests/test_research_endpoint_owner_scope.py",
+          "hash": "18363681006277981651"
+        },
+        {
+          "file": "apps/api/tests/test_research_handler_analyzed_urls.py",
+          "hash": "1507856365739075958"
+        },
+        {
+          "file": "apps/api/tests/test_research_handler_path_confinement.py",
+          "hash": "15510725834829838284"
+        },
+        {
+          "file": "apps/api/tests/test_research_handler_raw_nondict.py",
+          "hash": "6355552024835002272"
+        },
+        {
+          "file": "apps/api/tests/test_research_handler_sources_nondict.py",
+          "hash": "3380067203908795285"
+        },
+        {
+          "file": "apps/api/tests/test_research_owner_scope_routes.py",
+          "hash": "12988055985251161948"
+        },
+        {
+          "file": "apps/api/tests/test_research_probe_errors.py",
+          "hash": "10572570516442050336"
+        },
+        {
+          "file": "apps/api/tests/test_research_query_fallback.py",
+          "hash": "9792466446735866992"
+        },
+        {
+          "file": "apps/api/tests/test_research_report_read.py",
+          "hash": "10179706123805926688"
+        },
+        {
+          "file": "apps/api/tests/test_research_routes_path_confinement.py",
+          "hash": "6738688712485894954"
+        },
+        {
+          "file": "apps/api/tests/test_research_routes_shim.py",
+          "hash": "9571593347562212054"
+        },
+        {
+          "file": "apps/api/tests/test_research_service.py",
+          "hash": "2729171863996098640"
+        },
+        {
+          "file": "apps/api/tests/test_research_session_id_validation.py",
+          "hash": "5551782255424049805"
+        },
+        {
+          "file": "apps/api/tests/test_research_source_link_xss.py",
+          "hash": "17884727550667072746"
+        },
+        {
+          "file": "apps/api/tests/test_research_status_avg_duration.py",
+          "hash": "12751261647941102114"
+        },
+        {
+          "file": "apps/api/tests/test_research_utils.py",
+          "hash": "8413157356053630029"
+        },
+        {
+          "file": "apps/api/tests/test_research_utils_low_quality_nonstring.py",
+          "hash": "15560772405401061628"
+        },
+        {
+          "file": "apps/api/tests/test_resend_message_nondestructive.py",
+          "hash": "366762256782914710"
+        },
+        {
+          "file": "apps/api/tests/test_reserved_username_admin_escalation.py",
+          "hash": "7400603294226092403"
+        },
+        {
+          "file": "apps/api/tests/test_resolve_endpoint_fallbacks.py",
+          "hash": "681092121749528238"
+        },
+        {
+          "file": "apps/api/tests/test_resolve_model_offloaded.py",
+          "hash": "15396018795829094305"
+        },
+        {
+          "file": "apps/api/tests/test_resolve_session_auth_chatgpt.py",
+          "hash": "6612972577381891719"
+        },
+        {
+          "file": "apps/api/tests/test_resolve_upload_path_nondict.py",
+          "hash": "9694238961595557039"
+        },
+        {
+          "file": "apps/api/tests/test_review_regressions.py",
+          "hash": "344400333602127287"
+        },
+        {
+          "file": "apps/api/tests/test_rewrite_persist_column.py",
+          "hash": "17479791076171193593"
+        },
+        {
+          "file": "apps/api/tests/test_route_validators.py",
+          "hash": "1170038508858965088"
+        },
+        {
+          "file": "apps/api/tests/test_run_focus.py",
+          "hash": "4990169779977954683"
+        },
+        {
+          "file": "apps/api/tests/test_run_order_report.py",
+          "hash": "5270334406865246405"
+        },
+        {
+          "file": "apps/api/tests/test_runtime_paths.py",
+          "hash": "10719184074717588908"
+        },
+        {
+          "file": "apps/api/tests/test_sanitize_multimodal_merge.py",
+          "hash": "2849542473551681838"
+        },
+        {
+          "file": "apps/api/tests/test_sanitize_preserves_reasoning.py",
+          "hash": "10130417577604420337"
+        },
+        {
+          "file": "apps/api/tests/test_schedule_email_offset_normalization.py",
+          "hash": "6266934522116926854"
+        },
+        {
+          "file": "apps/api/tests/test_scheduled_poll_race.py",
+          "hash": "6502219561329866994"
+        },
+        {
+          "file": "apps/api/tests/test_scheduler_prompt_cache_time.py",
+          "hash": "17567028870874702948"
+        },
+        {
+          "file": "apps/api/tests/test_scheduler_restart_doublefire.py",
+          "hash": "13756838076697727003"
+        },
+        {
+          "file": "apps/api/tests/test_scheduler_scheduled_time_validation.py",
+          "hash": "8865713847525178009"
+        },
+        {
+          "file": "apps/api/tests/test_search_analytics_defaults.py",
+          "hash": "12216607924879499306"
+        },
+        {
+          "file": "apps/api/tests/test_search_cache_invalidation.py",
+          "hash": "10982995779453205627"
+        },
+        {
+          "file": "apps/api/tests/test_search_config_no_key_leak.py",
+          "hash": "1032787266376316551"
+        },
+        {
+          "file": "apps/api/tests/test_search_config_provider_key.py",
+          "hash": "7635666054246183235"
+        },
+        {
+          "file": "apps/api/tests/test_search_content_block_source_index.py",
+          "hash": "598610450284004220"
+        },
+        {
+          "file": "apps/api/tests/test_search_content_extraction_parity.py",
+          "hash": "12772909181956342230"
+        },
+        {
+          "file": "apps/api/tests/test_search_content_url_guards.py",
+          "hash": "9532077058306634611"
+        },
+        {
+          "file": "apps/api/tests/test_search_module_consolidation.py",
+          "hash": "6570940074435391221"
+        },
+        {
+          "file": "apps/api/tests/test_search_provider_json.py",
+          "hash": "10350466037231735730"
+        },
+        {
+          "file": "apps/api/tests/test_search_query.py",
+          "hash": "3357324334712118782"
+        },
+        {
+          "file": "apps/api/tests/test_search_query_entities_nonstring.py",
+          "hash": "9512982377850119540"
+        },
+        {
+          "file": "apps/api/tests/test_search_query_nonstring.py",
+          "hash": "7199031979972663211"
+        },
+        {
+          "file": "apps/api/tests/test_search_query_unicode_names.py",
+          "hash": "567142253153054793"
+        },
+        {
+          "file": "apps/api/tests/test_search_ranking.py",
+          "hash": "1982094984498217655"
+        },
+        {
+          "file": "apps/api/tests/test_search_ranking_recency.py",
+          "hash": "2958577693431725163"
+        },
+        {
+          "file": "apps/api/tests/test_search_ranking_sports_substring.py",
+          "hash": "11245171375598145777"
+        },
+        {
+          "file": "apps/api/tests/test_search_ranking_subject_substring.py",
+          "hash": "2185585800529842980"
+        },
+        {
+          "file": "apps/api/tests/test_search_service_nondict_rows.py",
+          "hash": "18060587568864923107"
+        },
+        {
+          "file": "apps/api/tests/test_searchservice_search_call.py",
+          "hash": "1196451273026661448"
+        },
+        {
+          "file": "apps/api/tests/test_searxng_image_pinned.py",
+          "hash": "12650238243019001222"
+        },
+        {
+          "file": "apps/api/tests/test_security_headers_middleware.py",
+          "hash": "9651041562029719625"
+        },
+        {
+          "file": "apps/api/tests/test_security_headers_pdf_preview.py",
+          "hash": "9908554989389362939"
+        },
+        {
+          "file": "apps/api/tests/test_security_regressions.py",
+          "hash": "7910598019746368713"
+        },
+        {
+          "file": "apps/api/tests/test_select_dropdown_theme_css.py",
+          "hash": "14809483216565859427"
+        },
+        {
+          "file": "apps/api/tests/test_sender_signature_skip_roles.py",
+          "hash": "13729170551542720364"
+        },
+        {
+          "file": "apps/api/tests/test_serve_html_with_nonce.py",
+          "hash": "16675818886373143832"
+        },
+        {
+          "file": "apps/api/tests/test_serve_profiles.py",
+          "hash": "16397045947062258339"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_chromadb.py",
+          "hash": "3580471039851452543"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_collect.py",
+          "hash": "14148715368824636451"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_email.py",
+          "hash": "9369911116384143733"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_ntfy.py",
+          "hash": "15895934191303406405"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_providers.py",
+          "hash": "5848879834899302835"
+        },
+        {
+          "file": "apps/api/tests/test_service_health_search.py",
+          "hash": "11869222664024039860"
+        },
+        {
+          "file": "apps/api/tests/test_service_search_provider_guards.py",
+          "hash": "4486429510734486814"
+        },
+        {
+          "file": "apps/api/tests/test_services_research_low_quality_sources.py",
+          "hash": "980645913661964161"
+        },
+        {
+          "file": "apps/api/tests/test_services_search_analytics_defaults.py",
+          "hash": "13217727290526605953"
+        },
+        {
+          "file": "apps/api/tests/test_session_actions_cleanup.py",
+          "hash": "14528960420302341775"
+        },
+        {
+          "file": "apps/api/tests/test_session_concurrent.py",
+          "hash": "16658858093133499047"
+        },
+        {
+          "file": "apps/api/tests/test_session_context_excludes_slash.py",
+          "hash": "17901258154805717416"
+        },
+        {
+          "file": "apps/api/tests/test_session_endpoint_owner_scope.py",
+          "hash": "9966395172974745488"
+        },
+        {
+          "file": "apps/api/tests/test_session_export_filename.py",
+          "hash": "8519476592365588033"
+        },
+        {
+          "file": "apps/api/tests/test_session_export_nonstring_content.py",
+          "hash": "6712842338268909824"
+        },
+        {
+          "file": "apps/api/tests/test_session_ghost_delete.py",
+          "hash": "3177263447840925749"
+        },
+        {
+          "file": "apps/api/tests/test_session_list_owner_scope.py",
+          "hash": "13901095350888973711"
+        },
+        {
+          "file": "apps/api/tests/test_session_manager.py",
+          "hash": "13821948456081561356"
+        },
+        {
+          "file": "apps/api/tests/test_session_manager_cleanup.py",
+          "hash": "15998523358419271688"
+        },
+        {
+          "file": "apps/api/tests/test_session_manager_persist_guard.py",
+          "hash": "9017531358396354150"
+        },
+        {
+          "file": "apps/api/tests/test_session_mode_helpers.py",
+          "hash": "13067081550400334707"
+        },
+        {
+          "file": "apps/api/tests/test_session_owner_attribution.py",
+          "hash": "10100639073084918147"
+        },
+        {
+          "file": "apps/api/tests/test_session_routes_utcnow.py",
+          "hash": "18396751829074335327"
+        },
+        {
+          "file": "apps/api/tests/test_session_search.py",
+          "hash": "3850612024094515592"
+        },
+        {
+          "file": "apps/api/tests/test_session_search_batch_fetch.py",
+          "hash": "13535596059108500353"
+        },
+        {
+          "file": "apps/api/tests/test_session_tools_registry.py",
+          "hash": "7855510213276009627"
+        },
+        {
+          "file": "apps/api/tests/test_set_admin.py",
+          "hash": "8326259749301162632"
+        },
+        {
+          "file": "apps/api/tests/test_settings_error_paths.py",
+          "hash": "17256772685092087078"
+        },
+        {
+          "file": "apps/api/tests/test_settings_scrub.py",
+          "hash": "15224292523857214888"
+        },
+        {
+          "file": "apps/api/tests/test_settings_store_shape.py",
+          "hash": "7093910721251874252"
+        },
+        {
+          "file": "apps/api/tests/test_setup_admin_user.py",
+          "hash": "13664288617934708469"
+        },
+        {
+          "file": "apps/api/tests/test_setup_device_auth_static.py",
+          "hash": "2340413676755075437"
+        },
+        {
+          "file": "apps/api/tests/test_setup_llamacpp_hint_js.py",
+          "hash": "17325272150572047081"
+        },
+        {
+          "file": "apps/api/tests/test_shell_routes.py",
+          "hash": "14376123423625614345"
+        },
+        {
+          "file": "apps/api/tests/test_shell_service.py",
+          "hash": "17189437994503348228"
+        },
+        {
+          "file": "apps/api/tests/test_signature_fold_js.py",
+          "hash": "1185949272032752357"
+        },
+        {
+          "file": "apps/api/tests/test_signature_fold_self_closing_br_js.py",
+          "hash": "9190559062814747151"
+        },
+        {
+          "file": "apps/api/tests/test_signature_route_hardening.py",
+          "hash": "551188085614542416"
+        },
+        {
+          "file": "apps/api/tests/test_signature_settings_dom_xss.py",
+          "hash": "3670058938222402521"
+        },
+        {
+          "file": "apps/api/tests/test_skill_edit_no_collapse_on_outside_click_js.py",
+          "hash": "1666943374208985501"
+        },
+        {
+          "file": "apps/api/tests/test_skill_extractor_json.py",
+          "hash": "2370608516409778592"
+        },
+        {
+          "file": "apps/api/tests/test_skill_extractor_rows.py",
+          "hash": "2504145995235938171"
+        },
+        {
+          "file": "apps/api/tests/test_skill_extractor_stray_brace.py",
+          "hash": "5194813743639352061"
+        },
+        {
+          "file": "apps/api/tests/test_skill_importer.py",
+          "hash": "1242773549918075549"
+        },
+        {
+          "file": "apps/api/tests/test_skill_importer_ssrf_redirect.py",
+          "hash": "10916096107951644883"
+        },
+        {
+          "file": "apps/api/tests/test_skill_index_prompt_injection.py",
+          "hash": "10422850326134043597"
+        },
+        {
+          "file": "apps/api/tests/test_skill_index_toolset_gating.py",
+          "hash": "13935660631261006293"
+        },
+        {
+          "file": "apps/api/tests/test_skill_save_no_rename.py",
+          "hash": "9229052392647264847"
+        },
+        {
+          "file": "apps/api/tests/test_skills_delete_owner.py",
+          "hash": "11055548545983297142"
+        },
+        {
+          "file": "apps/api/tests/test_skills_manager_owner_isolation.py",
+          "hash": "1469968447599938095"
+        },
+        {
+          "file": "apps/api/tests/test_skills_routes_nondict.py",
+          "hash": "16242452423452395422"
+        },
+        {
+          "file": "apps/api/tests/test_skills_routes_owner_update.py",
+          "hash": "5994479773462725478"
+        },
+        {
+          "file": "apps/api/tests/test_skills_tag_token_match.py",
+          "hash": "8539511061694853896"
+        },
+        {
+          "file": "apps/api/tests/test_slash_autocomplete_static.py",
+          "hash": "9457609859113296178"
+        },
+        {
+          "file": "apps/api/tests/test_slash_setup_provider_aliases.py",
+          "hash": "10065971033419806300"
+        },
+        {
+          "file": "apps/api/tests/test_snap_other_layers_nonarray_js.py",
+          "hash": "939601354937015946"
+        },
+        {
+          "file": "apps/api/tests/test_speech_service_toggles.py",
+          "hash": "4671552654180475051"
+        },
+        {
+          "file": "apps/api/tests/test_split_chunks_no_duplicate_tail.py",
+          "hash": "1183517252954804473"
+        },
+        {
+          "file": "apps/api/tests/test_sqlite_foreign_keys.py",
+          "hash": "5391560045000410953"
+        },
+        {
+          "file": "apps/api/tests/test_src_search_query_nonstring.py",
+          "hash": "3740828973340637071"
+        },
+        {
+          "file": "apps/api/tests/test_streaming_segmenter_js.py",
+          "hash": "12416027513625661592"
+        },
+        {
+          "file": "apps/api/tests/test_strip_reasoning_prose_dataloss.py",
+          "hash": "6901219560838195902"
+        },
+        {
+          "file": "apps/api/tests/test_strip_think.py",
+          "hash": "7057206195252894941"
+        },
+        {
+          "file": "apps/api/tests/test_stt_leak.py",
+          "hash": "11821397858247695254"
+        },
+        {
+          "file": "apps/api/tests/test_svc_research_sources_nondict.py",
+          "hash": "13244707088189453593"
+        },
+        {
+          "file": "apps/api/tests/test_task_chain_owner_scope.py",
+          "hash": "2340766764852710398"
+        },
+        {
+          "file": "apps/api/tests/test_task_cookbook_admin_gate.py",
+          "hash": "1128255061134869311"
+        },
+        {
+          "file": "apps/api/tests/test_task_endpoint_normalization.py",
+          "hash": "1864236687346309752"
+        },
+        {
+          "file": "apps/api/tests/test_task_scheduler_cancel.py",
+          "hash": "4602999180422200503"
+        },
+        {
+          "file": "apps/api/tests/test_task_scheduler_session_delivery.py",
+          "hash": "5686030309639143765"
+        },
+        {
+          "file": "apps/api/tests/test_task_session_folder.py",
+          "hash": "7291731610812605206"
+        },
+        {
+          "file": "apps/api/tests/test_task_shell_tools.py",
+          "hash": "11631964059613805555"
+        },
+        {
+          "file": "apps/api/tests/test_taxonomy.py",
+          "hash": "8289172739716689269"
+        },
+        {
+          "file": "apps/api/tests/test_teacher_audit_owner_scope.py",
+          "hash": "2965367907403443122"
+        },
+        {
+          "file": "apps/api/tests/test_teacher_eval_nonstring_reply.py",
+          "hash": "8992246319368976183"
+        },
+        {
+          "file": "apps/api/tests/test_teacher_eval_tier2.py",
+          "hash": "9827485558476703850"
+        },
+        {
+          "file": "apps/api/tests/test_tile_manager_snap_zones_js.py",
+          "hash": "9595241007741174743"
+        },
+        {
+          "file": "apps/api/tests/test_tls_overrides_scope.py",
+          "hash": "2170804277080647148"
+        },
+        {
+          "file": "apps/api/tests/test_toast_dismiss_pointer_events.py",
+          "hash": "4814014517511925896"
+        },
+        {
+          "file": "apps/api/tests/test_tool_implementations_shim.py",
+          "hash": "15217486904163480020"
+        },
+        {
+          "file": "apps/api/tests/test_tool_index_keyword_boundaries.py",
+          "hash": "12128379862306990166"
+        },
+        {
+          "file": "apps/api/tests/test_tool_index_schema_parity.py",
+          "hash": "9531336503150114233"
+        },
+        {
+          "file": "apps/api/tests/test_tool_output_prompt_injection.py",
+          "hash": "7614032530973166832"
+        },
+        {
+          "file": "apps/api/tests/test_tool_parsing_nonstring.py",
+          "hash": "10830880791352973165"
+        },
+        {
+          "file": "apps/api/tests/test_tool_path_confinement.py",
+          "hash": "16885160361767740246"
+        },
+        {
+          "file": "apps/api/tests/test_tool_policy.py",
+          "hash": "1249140195361666142"
+        },
+        {
+          "file": "apps/api/tests/test_tool_rag_contacts_domain.py",
+          "hash": "6495097471416106160"
+        },
+        {
+          "file": "apps/api/tests/test_tool_rag_keyword_hints.py",
+          "hash": "4972136729577638299"
+        },
+        {
+          "file": "apps/api/tests/test_tool_support_heuristic.py",
+          "hash": "7540692546374706885"
+        },
+        {
+          "file": "apps/api/tests/test_tool_task_cancelled_on_disconnect.py",
+          "hash": "1530624520067368478"
+        },
+        {
+          "file": "apps/api/tests/test_tool_utils_import_clean.py",
+          "hash": "5167666524831829908"
+        },
+        {
+          "file": "apps/api/tests/test_topic_analyzer.py",
+          "hash": "2242218161661223613"
+        },
+        {
+          "file": "apps/api/tests/test_totp_failclosed.py",
+          "hash": "9473778408316251229"
+        },
+        {
+          "file": "apps/api/tests/test_truncate_message_count_regression.py",
+          "hash": "1643530668580442469"
+        },
+        {
+          "file": "apps/api/tests/test_tts_available_nonstring_provider.py",
+          "hash": "15696188127960929970"
+        },
+        {
+          "file": "apps/api/tests/test_tts_cache_stats.py",
+          "hash": "12303545552692381370"
+        },
+        {
+          "file": "apps/api/tests/test_tts_speed_malformed.py",
+          "hash": "9720440004915191950"
+        },
+        {
+          "file": "apps/api/tests/test_ui_control_rag_toggle.py",
+          "hash": "8006800661768266150"
+        },
+        {
+          "file": "apps/api/tests/test_unknown_tool_calls.py",
+          "hash": "4930569761532884007"
+        },
+        {
+          "file": "apps/api/tests/test_update_database_script.py",
+          "hash": "7404683081144944981"
+        },
+        {
+          "file": "apps/api/tests/test_update_plan_tool.py",
+          "hash": "4802496843729434205"
+        },
+        {
+          "file": "apps/api/tests/test_upload_content_detection_magic.py",
+          "hash": "18315295264698831398"
+        },
+        {
+          "file": "apps/api/tests/test_upload_error_surfaced.py",
+          "hash": "6824985341392150185"
+        },
+        {
+          "file": "apps/api/tests/test_upload_handler_atomicity.py",
+          "hash": "15408757823985822016"
+        },
+        {
+          "file": "apps/api/tests/test_upload_handler_cleanup.py",
+          "hash": "16185015011418609712"
+        },
+        {
+          "file": "apps/api/tests/test_upload_handler_rename_owner.py",
+          "hash": "976381477584275034"
+        },
+        {
+          "file": "apps/api/tests/test_upload_id_extension.py",
+          "hash": "11020398381710071727"
+        },
+        {
+          "file": "apps/api/tests/test_upload_id_validation.py",
+          "hash": "6067659769589000895"
+        },
+        {
+          "file": "apps/api/tests/test_upload_limits_centralized.py",
+          "hash": "13082368876912865714"
+        },
+        {
+          "file": "apps/api/tests/test_upload_multifile.py",
+          "hash": "11853578400202859925"
+        },
+        {
+          "file": "apps/api/tests/test_upload_routes_owner_scope.py",
+          "hash": "10362748997640049287"
+        },
+        {
+          "file": "apps/api/tests/test_url_safety.py",
+          "hash": "11084789003400353986"
+        },
+        {
+          "file": "apps/api/tests/test_user_time.py",
+          "hash": "14907223807120399652"
+        },
+        {
+          "file": "apps/api/tests/test_vault_password_not_in_argv.py",
+          "hash": "11107416924082444591"
+        },
+        {
+          "file": "apps/api/tests/test_vcard_unfolding.py",
+          "hash": "4633004087605178799"
+        },
+        {
+          "file": "apps/api/tests/test_venice_hosts.py",
+          "hash": "6106637519640039428"
+        },
+        {
+          "file": "apps/api/tests/test_vision_model_detection.py",
+          "hash": "16248633195879131203"
+        },
+        {
+          "file": "apps/api/tests/test_vision_owner_scope.py",
+          "hash": "7548751808614845394"
+        },
+        {
+          "file": "apps/api/tests/test_visual_report.py",
+          "hash": "18094592552802545000"
+        },
+        {
+          "file": "apps/api/tests/test_visual_report_icon_url.py",
+          "hash": "8249635278950237836"
+        },
+        {
+          "file": "apps/api/tests/test_visual_report_nonstring.py",
+          "hash": "15773149176122193321"
+        },
+        {
+          "file": "apps/api/tests/test_visual_report_slug_unique.py",
+          "hash": "17180423624865171608"
+        },
+        {
+          "file": "apps/api/tests/test_visual_report_toc_code_fence.py",
+          "hash": "18247711541751489063"
+        },
+        {
+          "file": "apps/api/tests/test_warmup_ping_urls.py",
+          "hash": "5863114615223422143"
+        },
+        {
+          "file": "apps/api/tests/test_web_fetch_plaintext.py",
+          "hash": "6606797462268339467"
+        },
+        {
+          "file": "apps/api/tests/test_web_fetch_size_caps.py",
+          "hash": "15687287686088383359"
+        },
+        {
+          "file": "apps/api/tests/test_web_search_query_sanitization.py",
+          "hash": "8780582280891377298"
+        },
+        {
+          "file": "apps/api/tests/test_web_search_raw_json_tool_call.py",
+          "hash": "1378225998485313725"
+        },
+        {
+          "file": "apps/api/tests/test_web_search_time_filter.py",
+          "hash": "10063897875168339743"
+        },
+        {
+          "file": "apps/api/tests/test_web_search_tool_icon_js.py",
+          "hash": "12524748862929998353"
+        },
+        {
+          "file": "apps/api/tests/test_web_user_agent_constant.py",
+          "hash": "15493637296806709073"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_dns_rebinding_pin.py",
+          "hash": "7250512813989425867"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_emitters_use_manager.py",
+          "hash": "16717570071359125100"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_sanitize_error_ipv6.py",
+          "hash": "8052788226375156545"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_ssrf_resilience.py",
+          "hash": "826336701875308134"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_task_refs.py",
+          "hash": "1904331841798333901"
+        },
+        {
+          "file": "apps/api/tests/test_webhook_trigger_auth_exempt.py",
+          "hash": "8213804396650660114"
+        },
+        {
+          "file": "apps/api/tests/test_windows_update_script.py",
+          "hash": "6099655890419504826"
+        },
+        {
+          "file": "apps/api/tests/test_workspace_confine.py",
+          "hash": "9237756823544873757"
+        },
+        {
+          "file": "apps/api/tests/test_youtube_comments_timeout.py",
+          "hash": "5763813412520689955"
+        },
+        {
+          "file": "apps/api/tests/test_youtube_extract_id_nonstring.py",
+          "hash": "69733557910718916"
+        },
+        {
+          "file": "apps/api/tests/test_youtube_handler_consolidation.py",
+          "hash": "694670963868493214"
+        },
+        {
+          "file": "apps/api/tests/test_youtube_svc_comments_nondict.py",
+          "hash": "14411294909004171754"
+        },
+        {
+          "file": "apps/api/tests/test_youtube_transcript_seg_nondict.py",
+          "hash": "12923870291296990104"
+        },
+        {
+          "file": "apps/api/tests/tools/build_oversized_test_split_plan.py",
+          "hash": "14757141496461249273"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".clinerules/engineering-standards.md",
+        "hash": "8314057767841739018"
+      },
+      {
+        "file": ".cursor/rules/engineering-standards.mdc",
+        "hash": "5396512538208633123"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "12226720553139194205"
+      },
+      {
+        "file": ".env.example",
+        "hash": "4732082490273842972"
+      },
+      {
+        "file": ".gitattributes",
+        "hash": "6112229773071989854"
+      },
+      {
+        "file": ".github/CODEOWNERS",
+        "hash": "10483862179934434915"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "7272683800252714572"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/config.yml",
+        "hash": "2758504420266664442"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
+        "hash": "14696707544955567635"
+      },
+      {
+        "file": ".github/copilot-instructions.md",
+        "hash": "3579825062979438427"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "10544212621977757985"
+      },
+      {
+        "file": ".github/pull_request_review_template.md",
+        "hash": "5552770234654282381"
+      },
+      {
+        "file": ".github/pull_request_template.md",
+        "hash": "3129125717405090827"
+      },
+      {
+        "file": ".github/scripts/check-pr-description.js",
+        "hash": "14451278540610101295"
+      },
+      {
+        "file": ".github/scripts/focused_test_guidance.py",
+        "hash": "3407967494658778936"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "6791062432204833029"
+      },
+      {
+        "file": ".github/workflows/codeql.yml",
+        "hash": "8657209483542786554"
+      },
+      {
+        "file": ".github/workflows/container-scan.yml",
+        "hash": "17321056240450089475"
+      },
+      {
+        "file": ".github/workflows/container-trivy.yml",
+        "hash": "4166399547673832044"
+      },
+      {
+        "file": ".github/workflows/dependency-review.yml",
+        "hash": "4898481948395631934"
+      },
+      {
+        "file": ".github/workflows/docker-publish.yml",
+        "hash": "14715556903010400382"
+      },
+      {
+        "file": ".github/workflows/pr-description-check.yml",
+        "hash": "2155543067230032181"
+      },
+      {
+        "file": ".github/workflows/secret-scan.yml",
+        "hash": "10684984250438203113"
+      },
+      {
+        "file": ".github/workflows/workflow-security.yml",
+        "hash": "2683627239302444659"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "163629652905724986"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_input.md",
+        "hash": "15922726663663151287"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_meta.json",
+        "hash": "12560383672848594919"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_output.md",
+        "hash": "4363668792650540354"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
+        "hash": "45073143638047998"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_input.md",
+        "hash": "6750114971204760358"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_meta.json",
+        "hash": "8062860063810052445"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_output.md",
+        "hash": "13245514185533123490"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_transcript.jsonl",
+        "hash": "17183481590751274337"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_input.md",
+        "hash": "2147581066688201651"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_meta.json",
+        "hash": "17418146911207758978"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
+        "hash": "5317400587860909605"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_input.md",
+        "hash": "1469246140222744616"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_meta.json",
+        "hash": "14349814105008892162"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_output.md",
+        "hash": "8458834179714512227"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_transcript.jsonl",
+        "hash": "1486622079805712160"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/397a3adf/plan.md",
+        "hash": "4122896669686278826"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/3bc9eeb4/plan.md",
+        "hash": "8767487360142921782"
+      },
+      {
+        "file": ".pi/agents/adversarial-reviewer.md",
+        "hash": "6200843585236766738"
+      },
+      {
+        "file": ".pi/agents/backend-dev.md",
+        "hash": "10468162411828257723"
+      },
+      {
+        "file": ".pi/agents/frontend-dev.md",
+        "hash": "13590079152019217997"
+      },
+      {
+        "file": ".pi/agents/qa-engineer.md",
+        "hash": "11334577634041807185"
+      },
+      {
+        "file": ".pi/agents/scout.md",
+        "hash": "144104525129089593"
+      },
+      {
+        "file": ".pi/agents/scrum-master.md",
+        "hash": "15914350063670927132"
+      },
+      {
+        "file": ".pi/models.json",
+        "hash": "7574940762439213"
+      },
+      {
+        "file": ".pi/settings.json",
+        "hash": "3538445525178439066"
+      },
+      {
+        "file": ".windsurfrules",
+        "hash": "7246202883755543190"
+      },
+      {
+        "file": "ACKNOWLEDGMENTS.md",
+        "hash": "2292727075695639784"
+      },
+      {
+        "file": "AGENTS.md",
+        "hash": "11006586417576940085"
+      },
+      {
+        "file": "CLAUDE.md",
+        "hash": "15234165324548040252"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "hash": "9069937377597750169"
+      },
+      {
+        "file": "Dockerfile",
+        "hash": "15222920323553555153"
+      },
+      {
+        "file": "GEMINI.md",
+        "hash": "17379894040683334668"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "5063357314449241554"
+      },
+      {
+        "file": "Odysseus.spec",
+        "hash": "16502740784460822810"
+      },
+      {
+        "file": "README.md",
+        "hash": "11792770467739756099"
+      },
+      {
+        "file": "ROADMAP.md",
+        "hash": "4077828797950267792"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "1128919407868343792"
+      },
+      {
+        "file": "THREAT_MODEL.md",
+        "hash": "605503327494757417"
+      },
+      {
+        "file": "build-macos-app.sh",
+        "hash": "10035212807199525434"
+      },
+      {
+        "file": "build-windows-portable.ps1",
+        "hash": "1419792700044772502"
+      },
+      {
+        "file": "companion/README.md",
+        "hash": "3811702818860308782"
+      },
+      {
+        "file": "companion/__init__.py",
+        "hash": "12606667056735072203"
+      },
+      {
+        "file": "companion/pairing.py",
+        "hash": "17783188422793933690"
+      },
+      {
+        "file": "companion/routes.py",
+        "hash": "3643720429674874054"
+      },
+      {
+        "file": "config/searxng/settings.yml",
+        "hash": "3648077801930949076"
+      },
+      {
+        "file": "docker-compose.gpu-amd.yml",
+        "hash": "6666627168598740620"
+      },
+      {
+        "file": "docker-compose.gpu-nvidia.yml",
+        "hash": "10221974490185153083"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "1099037905522644602"
+      },
+      {
+        "file": "docker/build-realesrgan-wheels.sh",
+        "hash": "3322644706337509938"
+      },
+      {
+        "file": "docker/entrypoint.sh",
+        "hash": "8570997433070531293"
+      },
+      {
+        "file": "docker/gpu.amd.yml",
+        "hash": "15687829737245872746"
+      },
+      {
+        "file": "docker/gpu.nvidia.yml",
+        "hash": "10678213419058016084"
+      },
+      {
+        "file": "docker/host-docker.yml",
+        "hash": "15131141812553061058"
+      },
+      {
+        "file": "docs/adr/0000-template.md",
+        "hash": "14650431501363272255"
+      },
+      {
+        "file": "docs/adr/0001-keep-and-harden-fastapi-contract-first.md",
+        "hash": "1633329802482946409"
+      },
+      {
+        "file": "docs/adr/0002-nx-polyglot-monorepo.md",
+        "hash": "2094451863889655002"
+      },
+      {
+        "file": "docs/adr/0003-react-spa-shadcn-react-aria.md",
+        "hash": "18305829104046069634"
+      },
+      {
+        "file": "docs/adr/0004-testing-standards-blackbox-100pct-mutation.md",
+        "hash": "2831415921414017830"
+      },
+      {
+        "file": "docs/adr/0005-accessibility-and-performance.md",
+        "hash": "11567474909383388293"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "hash": "8894515712519616760"
+      },
+      {
+        "file": "docs/adr/quality-gates.md",
+        "hash": "10376471349775587344"
+      },
+      {
+        "file": "docs/agent-migration.md",
+        "hash": "8486902629431503634"
+      },
+      {
+        "file": "docs/architecture-review.md",
+        "hash": "5850934773441248059"
+      },
+      {
+        "file": "docs/attachments.md",
+        "hash": "15323038631983388719"
+      },
+      {
+        "file": "docs/backup-restore.md",
+        "hash": "10588619875313704067"
+      },
+      {
+        "file": "docs/bg.webm",
+        "hash": "16261083182954388694"
+      },
+      {
+        "file": "docs/chat.webm",
+        "hash": "15924034325246711092"
+      },
+      {
+        "file": "docs/compare.webm",
+        "hash": "1255260485319850166"
+      },
+      {
+        "file": "docs/document.webm",
+        "hash": "399870212953308372"
+      },
+      {
+        "file": "docs/email-outlook.md",
+        "hash": "17625542642770946745"
+      },
+      {
+        "file": "docs/gallery.webm",
+        "hash": "4555129553437604961"
+      },
+      {
+        "file": "docs/index.html",
+        "hash": "15225944888773591256"
+      },
+      {
+        "file": "docs/migration-roadmap.md",
+        "hash": "11115432037425614915"
+      },
+      {
+        "file": "docs/notes.webm",
+        "hash": "10795198706176814932"
+      },
+      {
+        "file": "docs/odysseus-browser.jpg",
+        "hash": "1239002569416580602"
+      },
+      {
+        "file": "docs/odysseus-wordmark.png",
+        "hash": "10829838940447681864"
+      },
+      {
+        "file": "docs/odysseus.jpg",
+        "hash": "18337816470313109427"
+      },
+      {
+        "file": "docs/pr-blocker-audit.md",
+        "hash": "14254944061708004438"
+      },
+      {
+        "file": "docs/research.webm",
+        "hash": "13000298419842495361"
+      },
+      {
+        "file": "docs/security-ci.md",
+        "hash": "17898675351515605231"
+      },
+      {
+        "file": "docs/setup.md",
+        "hash": "12409057683753206848"
+      },
+      {
+        "file": "docs/theme.webm",
+        "hash": "10502687655691397454"
+      },
+      {
+        "file": "install-service.sh",
+        "hash": "6473587190761151857"
+      },
+      {
+        "file": "launch-windows.ps1",
+        "hash": "14961437186037910726"
+      },
+      {
+        "file": "launcher.py",
+        "hash": "7429068528814690433"
+      },
+      {
+        "file": "licenses/DeepResearch-Apache-2.0.txt",
+        "hash": "12649885980860800067"
+      },
+      {
+        "file": "licenses/OpenDyslexic-OFL.txt",
+        "hash": "16718540379210749884"
+      },
+      {
+        "file": "licenses/llmfit-MIT-LICENSE.txt",
+        "hash": "13282152439144735543"
+      },
+      {
+        "file": "licenses/opencode-MIT-LICENSE.txt",
+        "hash": "684006989153877877"
+      },
+      {
+        "file": "odysseus-ui.service",
+        "hash": "2190458845051058258"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "1384015279691198817"
+      },
+      {
+        "file": "package.json",
+        "hash": "14273295560381815182"
+      },
+      {
+        "file": "pyproject.toml",
+        "hash": "5268817540663165553"
+      },
+      {
+        "file": "scripts/_completion/odysseus.bash",
+        "hash": "1449848996353997184"
+      },
+      {
+        "file": "scripts/_completion/odysseus.zsh",
+        "hash": "4092445190456162222"
+      },
+      {
+        "file": "scripts/_lib/__init__.py",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "scripts/_lib/cli.py",
+        "hash": "11726287583976296716"
+      },
+      {
+        "file": "scripts/add_hwfit_models.py",
+        "hash": "6806912538020519374"
+      },
+      {
+        "file": "scripts/agent_migration_manifest.py",
+        "hash": "3416139349958715523"
+      },
+      {
+        "file": "scripts/backfill_model_release_dates.py",
+        "hash": "11914773000132436659"
+      },
+      {
+        "file": "scripts/check-docker-amd-gpu.sh",
+        "hash": "10698149408004528147"
+      },
+      {
+        "file": "scripts/check-docker-gpu.sh",
+        "hash": "166741936123465007"
+      },
+      {
+        "file": "scripts/claim_ownerless.py",
+        "hash": "5489634549768745165"
+      },
+      {
+        "file": "scripts/demo_email/demo_account.py",
+        "hash": "9230561175246916706"
+      },
+      {
+        "file": "scripts/demo_email/manage.sh",
+        "hash": "14915744904769667948"
+      },
+      {
+        "file": "scripts/demo_email/seed_demo_emails.py",
+        "hash": "1897739459594544054"
+      },
+      {
+        "file": "scripts/diffusion_server.py",
+        "hash": "5548973453592624642"
+      },
+      {
+        "file": "scripts/encode_previews.sh",
+        "hash": "11425872091140483835"
+      },
+      {
+        "file": "scripts/fix_paths.py",
+        "hash": "10411222688285291716"
+      },
+      {
+        "file": "scripts/hf_download.py",
+        "hash": "3558727042987699467"
+      },
+      {
+        "file": "scripts/import_from_vllm_recipes.py",
+        "hash": "2923142939916681286"
+      },
+      {
+        "file": "scripts/index_documents.py",
+        "hash": "8563074886892522750"
+      },
+      {
+        "file": "scripts/migrate_faiss_to_chroma.py",
+        "hash": "12390546103077106993"
+      },
+      {
+        "file": "scripts/odysseus",
+        "hash": "12187600000205141689"
+      },
+      {
+        "file": "scripts/odysseus-backup",
+        "hash": "14141141443241837802"
+      },
+      {
+        "file": "scripts/odysseus-calendar",
+        "hash": "9570004316254916687"
+      },
+      {
+        "file": "scripts/odysseus-contacts",
+        "hash": "654083106469894001"
+      },
+      {
+        "file": "scripts/odysseus-cookbook",
+        "hash": "16295364334805039604"
+      },
+      {
+        "file": "scripts/odysseus-docs",
+        "hash": "5821933820041789343"
+      },
+      {
+        "file": "scripts/odysseus-gallery",
+        "hash": "3784656767622248626"
+      },
+      {
+        "file": "scripts/odysseus-logs",
+        "hash": "15472518536902064142"
+      },
+      {
+        "file": "scripts/odysseus-mail",
+        "hash": "627209817596257700"
+      },
+      {
+        "file": "scripts/odysseus-mcp",
+        "hash": "10058760468797707123"
+      },
+      {
+        "file": "scripts/odysseus-memory",
+        "hash": "8458460389869839315"
+      },
+      {
+        "file": "scripts/odysseus-notes",
+        "hash": "7630151342477608666"
+      },
+      {
+        "file": "scripts/odysseus-personal",
+        "hash": "12378683218923811823"
+      },
+      {
+        "file": "scripts/odysseus-preset",
+        "hash": "5199262038704587196"
+      },
+      {
+        "file": "scripts/odysseus-research",
+        "hash": "14760746055978135210"
+      },
+      {
+        "file": "scripts/odysseus-sessions",
+        "hash": "4230027781459626872"
+      },
+      {
+        "file": "scripts/odysseus-signature",
+        "hash": "7760414272024880853"
+      },
+      {
+        "file": "scripts/odysseus-skills",
+        "hash": "13565645326281122727"
+      },
+      {
+        "file": "scripts/odysseus-tasks",
+        "hash": "8049359391557855601"
+      },
+      {
+        "file": "scripts/odysseus-theme",
+        "hash": "13108778844085664771"
+      },
+      {
+        "file": "scripts/odysseus-webhook",
+        "hash": "2763896610842093569"
+      },
+      {
+        "file": "scripts/pr_blocker_audit.py",
+        "hash": "13291180733418482012"
+      },
+      {
+        "file": "scripts/update_database.py",
+        "hash": "14920695395199591078"
+      },
+      {
+        "file": "specs/architecture-runtime-inventory.md",
+        "hash": "7821427728111692043"
+      },
+      {
+        "file": "start-macos.sh",
+        "hash": "4045700247317285276"
+      },
+      {
+        "file": "static/app.js",
+        "hash": "17285441092465263376"
+      },
+      {
+        "file": "static/fonts/FiraCode-Light.woff2",
+        "hash": "10816134289549779743"
+      },
+      {
+        "file": "static/fonts/FiraCode-Regular.woff2",
+        "hash": "2661738199960715299"
+      },
+      {
+        "file": "static/fonts/FiraCode-SemiBold.woff2",
+        "hash": "16793162283137106018"
+      },
+      {
+        "file": "static/fonts/Inter-Medium.woff2",
+        "hash": "4265220141366637183"
+      },
+      {
+        "file": "static/fonts/Inter-Regular.woff2",
+        "hash": "13293078470454433233"
+      },
+      {
+        "file": "static/fonts/Inter-SemiBold.woff2",
+        "hash": "6855525866634719917"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Bold.woff2",
+        "hash": "7871009217113397863"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Regular.woff2",
+        "hash": "17700555094670922279"
+      },
+      {
+        "file": "static/fonts/custom/GohuFont.ttf",
+        "hash": "14316767274695836581"
+      },
+      {
+        "file": "static/icon.ico",
+        "hash": "15439992681755836554"
+      },
+      {
+        "file": "static/icons/icon-192.png",
+        "hash": "2594490408059400998"
+      },
+      {
+        "file": "static/icons/icon-512.png",
+        "hash": "13669072545933388678"
+      },
+      {
+        "file": "static/icons/icon-maskable-512.png",
+        "hash": "4062403916560428880"
+      },
+      {
+        "file": "static/icons/ollama-mark-crop.png",
+        "hash": "10754862324657861559"
+      },
+      {
+        "file": "static/icons/ollama-mark.png",
+        "hash": "18196217238538679405"
+      },
+      {
+        "file": "static/icons/sglang-logo.png",
+        "hash": "16485024254275974117"
+      },
+      {
+        "file": "static/icons/sglang-mark.png",
+        "hash": "4895137777437658064"
+      },
+      {
+        "file": "static/index.html",
+        "hash": "8247864080718114259"
+      },
+      {
+        "file": "static/js/MODULE_SUMMARY.md",
+        "hash": "10509690231809342200"
+      },
+      {
+        "file": "static/js/a11y.js",
+        "hash": "3250629998379958076"
+      },
+      {
+        "file": "static/js/admin.js",
+        "hash": "9553410654459218348"
+      },
+      {
+        "file": "static/js/assistant.js",
+        "hash": "3305958915411482768"
+      },
+      {
+        "file": "static/js/calendar.js",
+        "hash": "9348096784648691800"
+      },
+      {
+        "file": "static/js/calendar/reminders.js",
+        "hash": "9175987879187519042"
+      },
+      {
+        "file": "static/js/calendar/utils.js",
+        "hash": "11555205761896986638"
+      },
+      {
+        "file": "static/js/censor.js",
+        "hash": "14903383731525164090"
+      },
+      {
+        "file": "static/js/chat.js",
+        "hash": "5996945648287546306"
+      },
+      {
+        "file": "static/js/chatRenderer.js",
+        "hash": "8275401025448002073"
+      },
+      {
+        "file": "static/js/chatStream.js",
+        "hash": "924312167309253093"
+      },
+      {
+        "file": "static/js/codeRunner.js",
+        "hash": "10690404463231988882"
+      },
+      {
+        "file": "static/js/color/hex.js",
+        "hash": "1648360776633286759"
+      },
+      {
+        "file": "static/js/colorPicker.js",
+        "hash": "13978529648027774720"
+      },
+      {
+        "file": "static/js/compare/icons.js",
+        "hash": "442349180468264931"
+      },
+      {
+        "file": "static/js/compare/index.js",
+        "hash": "12743718792590024165"
+      },
+      {
+        "file": "static/js/compare/models.js",
+        "hash": "184017458690750304"
+      },
+      {
+        "file": "static/js/compare/panes.js",
+        "hash": "13227693606291067294"
+      },
+      {
+        "file": "static/js/compare/probe.js",
+        "hash": "7593914776861593794"
+      },
+      {
+        "file": "static/js/compare/scoreboard.js",
+        "hash": "14640871453228228116"
+      },
+      {
+        "file": "static/js/compare/selector.js",
+        "hash": "9822270495163413898"
+      },
+      {
+        "file": "static/js/compare/state.js",
+        "hash": "15485582702579283492"
+      },
+      {
+        "file": "static/js/compare/stream.js",
+        "hash": "2971628962528753385"
+      },
+      {
+        "file": "static/js/compare/vote.js",
+        "hash": "14226434135540369342"
+      },
+      {
+        "file": "static/js/composerArrowUpRecall.js",
+        "hash": "3296554269082856705"
+      },
+      {
+        "file": "static/js/cookbook-deps-recipes.js",
+        "hash": "7769120692007710347"
+      },
+      {
+        "file": "static/js/cookbook-diagnosis.js",
+        "hash": "12280854941120671110"
+      },
+      {
+        "file": "static/js/cookbook-hwfit.js",
+        "hash": "3603139793916534264"
+      },
+      {
+        "file": "static/js/cookbook.js",
+        "hash": "8353811374347319400"
+      },
+      {
+        "file": "static/js/cookbookDownload.js",
+        "hash": "3000584999675580861"
+      },
+      {
+        "file": "static/js/cookbookPorts.js",
+        "hash": "839858563860515205"
+      },
+      {
+        "file": "static/js/cookbookProgressSignal.js",
+        "hash": "5350026269988283285"
+      },
+      {
+        "file": "static/js/cookbookRunning.js",
+        "hash": "16769489659445432350"
+      },
+      {
+        "file": "static/js/cookbookSchedule.js",
+        "hash": "14484738567964615640"
+      },
+      {
+        "file": "static/js/cookbookServe.js",
+        "hash": "13120757335133630276"
+      },
+      {
+        "file": "static/js/document.js",
+        "hash": "403398737471428860"
+      },
+      {
+        "file": "static/js/documentLibrary.js",
+        "hash": "15827838580957958734"
+      },
+      {
+        "file": "static/js/dragSort.js",
+        "hash": "8363793256553401004"
+      },
+      {
+        "file": "static/js/editor/ai-inpaint.js",
+        "hash": "9331573697617456321"
+      },
+      {
+        "file": "static/js/editor/ai-models.js",
+        "hash": "4120032803243431103"
+      },
+      {
+        "file": "static/js/editor/ai-rembg.js",
+        "hash": "13533336362176508722"
+      },
+      {
+        "file": "static/js/editor/ai-tool-runner.js",
+        "hash": "11968548706467216743"
+      },
+      {
+        "file": "static/js/editor/ai-tools-misc.js",
+        "hash": "13746453867301085341"
+      },
+      {
+        "file": "static/js/editor/build/controls.js",
+        "hash": "13362591142510550162"
+      },
+      {
+        "file": "static/js/editor/build/popups.js",
+        "hash": "467744696555055059"
+      },
+      {
+        "file": "static/js/editor/build/right-panel.js",
+        "hash": "1867919985673354613"
+      },
+      {
+        "file": "static/js/editor/build/toolbar.js",
+        "hash": "10495633189405431248"
+      },
+      {
+        "file": "static/js/editor/build/topbar.js",
+        "hash": "15768542224067495294"
+      },
+      {
+        "file": "static/js/editor/build/transform-popup.js",
+        "hash": "8591785806064934603"
+      },
+      {
+        "file": "static/js/editor/canvas-coords.js",
+        "hash": "13625838496664212088"
+      },
+      {
+        "file": "static/js/editor/canvas-events.js",
+        "hash": "8778635601705120796"
+      },
+      {
+        "file": "static/js/editor/canvas-transforms.js",
+        "hash": "3836424844986233716"
+      },
+      {
+        "file": "static/js/editor/checkerboard.js",
+        "hash": "17028048392630372095"
+      },
+      {
+        "file": "static/js/editor/clipboard-and-drop.js",
+        "hash": "10392562351805129455"
+      },
+      {
+        "file": "static/js/editor/composite-helpers.js",
+        "hash": "10096211117271558700"
+      },
+      {
+        "file": "static/js/editor/filters/blur.js",
+        "hash": "2567609032024838161"
+      },
+      {
+        "file": "static/js/editor/filters/edge-feather.js",
+        "hash": "10476881015372553961"
+      },
+      {
+        "file": "static/js/editor/fx/adj-popup.js",
+        "hash": "7424431586387785954"
+      },
+      {
+        "file": "static/js/editor/fx/filter-string.js",
+        "hash": "9780726717849004012"
+      },
+      {
+        "file": "static/js/editor/fx/histogram.js",
+        "hash": "17831080853986985226"
+      },
+      {
+        "file": "static/js/editor/fx/pixel-pass.js",
+        "hash": "10472153379763250041"
+      },
+      {
+        "file": "static/js/editor/harmonize-masks.js",
+        "hash": "9943283261402518133"
+      },
+      {
+        "file": "static/js/editor/history-panel.js",
+        "hash": "6404572869164810266"
+      },
+      {
+        "file": "static/js/editor/keyboard-shortcuts.js",
+        "hash": "11601721802502077056"
+      },
+      {
+        "file": "static/js/editor/layer-helpers.js",
+        "hash": "2189532046639035357"
+      },
+      {
+        "file": "static/js/editor/layer-panel.js",
+        "hash": "4374440362424469267"
+      },
+      {
+        "file": "static/js/editor/mask-utils.js",
+        "hash": "1877980179938611929"
+      },
+      {
+        "file": "static/js/editor/shortcuts-popover.js",
+        "hash": "2422893758238320787"
+      },
+      {
+        "file": "static/js/editor/slider-ux.js",
+        "hash": "2186037331636781181"
+      },
+      {
+        "file": "static/js/editor/snap.js",
+        "hash": "16879419388767793708"
+      },
+      {
+        "file": "static/js/editor/state.js",
+        "hash": "5885287867594317912"
+      },
+      {
+        "file": "static/js/editor/stroke-pipeline.js",
+        "hash": "17973876519136965431"
+      },
+      {
+        "file": "static/js/editor/stroke-tool-sliders.js",
+        "hash": "2179315491049669205"
+      },
+      {
+        "file": "static/js/editor/tools/clone.js",
+        "hash": "7755895296700562412"
+      },
+      {
+        "file": "static/js/editor/tools/crop.js",
+        "hash": "13098853898383609094"
+      },
+      {
+        "file": "static/js/editor/tools/flood-fill.js",
+        "hash": "6866628110831098217"
+      },
+      {
+        "file": "static/js/editor/tools/lasso-mask.js",
+        "hash": "2295809151503659172"
+      },
+      {
+        "file": "static/js/editor/tools/lasso.js",
+        "hash": "3647261416880351880"
+      },
+      {
+        "file": "static/js/editor/tools/move.js",
+        "hash": "1424142201638763572"
+      },
+      {
+        "file": "static/js/editor/tools/stroke.js",
+        "hash": "2352172937174100905"
+      },
+      {
+        "file": "static/js/editor/tools/transform-drag.js",
+        "hash": "9398093302056620886"
+      },
+      {
+        "file": "static/js/editor/tools/transform-handles.js",
+        "hash": "17813292550317276290"
+      },
+      {
+        "file": "static/js/editor/tools/transform-session.js",
+        "hash": "10605462564722887993"
+      },
+      {
+        "file": "static/js/editor/tools/wand.js",
+        "hash": "9653749786939834936"
+      },
+      {
+        "file": "static/js/editor/wire-import.js",
+        "hash": "8573733271657142829"
+      },
+      {
+        "file": "static/js/editor/wire-inpaint-controls.js",
+        "hash": "14287031788356865904"
+      },
+      {
+        "file": "static/js/editor/wire-merge-buttons.js",
+        "hash": "1265960974624326467"
+      },
+      {
+        "file": "static/js/editor/wire-selection-controls.js",
+        "hash": "9648181419397598871"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-menus.js",
+        "hash": "7975083751577731219"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-overflow.js",
+        "hash": "1355162196074946686"
+      },
+      {
+        "file": "static/js/editor/wire-topbar.js",
+        "hash": "12735789491229429597"
+      },
+      {
+        "file": "static/js/emailInbox.js",
+        "hash": "607947805202156658"
+      },
+      {
+        "file": "static/js/emailLibrary.js",
+        "hash": "4889034196886183444"
+      },
+      {
+        "file": "static/js/emailLibrary/replyRecipients.js",
+        "hash": "5374532668094672571"
+      },
+      {
+        "file": "static/js/emailLibrary/signatureFold.js",
+        "hash": "10150448509017090168"
+      },
+      {
+        "file": "static/js/emailLibrary/state.js",
+        "hash": "14404707567850309547"
+      },
+      {
+        "file": "static/js/emailLibrary/utils.js",
+        "hash": "13309256756025412198"
+      },
+      {
+        "file": "static/js/emailShared.js",
+        "hash": "4588733407931960102"
+      },
+      {
+        "file": "static/js/emojiPicker.js",
+        "hash": "6415556072861405023"
+      },
+      {
+        "file": "static/js/emojiShortcodes.js",
+        "hash": "9040982751866588374"
+      },
+      {
+        "file": "static/js/escMenuStack.js",
+        "hash": "18169669487280632985"
+      },
+      {
+        "file": "static/js/fileHandler.js",
+        "hash": "16492595646538018328"
+      },
+      {
+        "file": "static/js/gallery.js",
+        "hash": "3329272439500484954"
+      },
+      {
+        "file": "static/js/galleryEditor.js",
+        "hash": "334579093221619786"
+      },
+      {
+        "file": "static/js/group.js",
+        "hash": "4164279580730405672"
+      },
+      {
+        "file": "static/js/init.js",
+        "hash": "16766840838356167651"
+      },
+      {
+        "file": "static/js/keyboard-shortcuts.js",
+        "hash": "14952068966249526973"
+      },
+      {
+        "file": "static/js/langIcons.js",
+        "hash": "480948837890574196"
+      },
+      {
+        "file": "static/js/markdown.js",
+        "hash": "2769666998212386227"
+      },
+      {
+        "file": "static/js/markdown/tableRow.js",
+        "hash": "10186713072405262878"
+      },
+      {
+        "file": "static/js/memory.js",
+        "hash": "2281955282259458942"
+      },
+      {
+        "file": "static/js/modalManager.js",
+        "hash": "9876571968999585919"
+      },
+      {
+        "file": "static/js/modalSnap.js",
+        "hash": "5243281368631499063"
+      },
+      {
+        "file": "static/js/model/matchKey.js",
+        "hash": "7660309974343195825"
+      },
+      {
+        "file": "static/js/modelPicker.js",
+        "hash": "12474861834312099476"
+      },
+      {
+        "file": "static/js/modelSort.js",
+        "hash": "8208597202829379173"
+      },
+      {
+        "file": "static/js/models.js",
+        "hash": "15427968679783512162"
+      },
+      {
+        "file": "static/js/notes.js",
+        "hash": "17226774693517799023"
+      },
+      {
+        "file": "static/js/package.json",
+        "hash": "5649320037232165591"
+      },
+      {
+        "file": "static/js/platform.js",
+        "hash": "6304798046447086981"
+      },
+      {
+        "file": "static/js/presets.js",
+        "hash": "17910623099315951677"
+      },
+      {
+        "file": "static/js/providerDeviceFlow.js",
+        "hash": "866027285265541024"
+      },
+      {
+        "file": "static/js/providers.js",
+        "hash": "11332025744903329476"
+      },
+      {
+        "file": "static/js/rag.js",
+        "hash": "9324201543915797212"
+      },
+      {
+        "file": "static/js/research/jobs.js",
+        "hash": "1354364432616033197"
+      },
+      {
+        "file": "static/js/research/panel.js",
+        "hash": "15586861766915546009"
+      },
+      {
+        "file": "static/js/researchSynapse.js",
+        "hash": "8272787207129956948"
+      },
+      {
+        "file": "static/js/search-chat.js",
+        "hash": "7626216614729538431"
+      },
+      {
+        "file": "static/js/search.js",
+        "hash": "2616939108546884324"
+      },
+      {
+        "file": "static/js/section-management.js",
+        "hash": "16595251478641956894"
+      },
+      {
+        "file": "static/js/sessions.js",
+        "hash": "9432350817134691990"
+      },
+      {
+        "file": "static/js/settings.js",
+        "hash": "12724595451265584220"
+      },
+      {
+        "file": "static/js/sidebar-layout.js",
+        "hash": "11942458255720483501"
+      },
+      {
+        "file": "static/js/signature.js",
+        "hash": "4305839723156306561"
+      },
+      {
+        "file": "static/js/skills.js",
+        "hash": "7857674869619309953"
+      },
+      {
+        "file": "static/js/slashAutocomplete.js",
+        "hash": "5527553628908261001"
+      },
+      {
+        "file": "static/js/slashCommands.js",
+        "hash": "5758179243947244915"
+      },
+      {
+        "file": "static/js/spinner.js",
+        "hash": "10778241321941129020"
+      },
+      {
+        "file": "static/js/storage.js",
+        "hash": "16711740402100137410"
+      },
+      {
+        "file": "static/js/streamingRenderer.js",
+        "hash": "5595982711256261860"
+      },
+      {
+        "file": "static/js/streamingSegmenter.js",
+        "hash": "5271702315519265902"
+      },
+      {
+        "file": "static/js/tasks.js",
+        "hash": "13816178934981648692"
+      },
+      {
+        "file": "static/js/theme.js",
+        "hash": "554561425454395979"
+      },
+      {
+        "file": "static/js/tileManager.js",
+        "hash": "9469364884973022593"
+      },
+      {
+        "file": "static/js/toolWindowZOrder.js",
+        "hash": "17539854021932023207"
+      },
+      {
+        "file": "static/js/tourAutoplay.js",
+        "hash": "12150111739642762950"
+      },
+      {
+        "file": "static/js/tourHints.js",
+        "hash": "3857789642168388131"
+      },
+      {
+        "file": "static/js/tts-ai.js",
+        "hash": "10019811341040245069"
+      },
+      {
+        "file": "static/js/ui.js",
+        "hash": "6366005666654020301"
+      },
+      {
+        "file": "static/js/util/ordinal.js",
+        "hash": "2543876463537296803"
+      },
+      {
+        "file": "static/js/voiceRecorder.js",
+        "hash": "12095022163635946795"
+      },
+      {
+        "file": "static/js/windowDrag.js",
+        "hash": "9896198006773268996"
+      },
+      {
+        "file": "static/js/windowResize.js",
+        "hash": "7916484367649703823"
+      },
+      {
+        "file": "static/js/workspace.js",
+        "hash": "17827765417752975936"
+      },
+      {
+        "file": "static/lib/docx.umd.min.js",
+        "hash": "5851014784090365277"
+      },
+      {
+        "file": "static/lib/highlight.min.js",
+        "hash": "7040937117104020085"
+      },
+      {
+        "file": "static/lib/html2pdf.bundle.min.js",
+        "hash": "6723525824494856710"
+      },
+      {
+        "file": "static/lib/mammoth.browser.min.js",
+        "hash": "516830283366341468"
+      },
+      {
+        "file": "static/lib/qrcode.min.js",
+        "hash": "6474382986962927044"
+      },
+      {
+        "file": "static/lib/xlsx.full.min.js",
+        "hash": "5054577093007801819"
+      },
+      {
+        "file": "static/login.html",
+        "hash": "1086940237876538488"
+      },
+      {
+        "file": "static/manifest.json",
+        "hash": "14051329859574571040"
+      },
+      {
+        "file": "static/style.css",
+        "hash": "17646695458962114695"
+      },
+      {
+        "file": "static/sw.js",
+        "hash": "14758100960888690151"
+      },
+      {
+        "file": "update_windows.bat",
+        "hash": "14393272399248452755"
+      }
+    ]
+  },
+  "externalNodesHash": "9678526852800791997"
+}

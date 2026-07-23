@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "odysseus-api"
+version = "1.0.0"
+description = "Odysseus AI Assistant — FastAPI backend"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "python-multipart",
+  "python-dotenv",
+  "httpx",
+  "httpcore>=1.0,<2.0",
+  "pydantic>=2.13.4",
+  "pydantic-settings>=2.14.1",
+  "SQLAlchemy",
+  "pypdf",
+  "beautifulsoup4",
+  "charset-normalizer",
+  "numpy",
+  "chromadb-client",
+  "fastembed",
+  "youtube-transcript-api",
+  "markdown",
+  "nh3",
+  "icalendar",
+  "python-dateutil",
+  "caldav",
+  "cryptography",
+  "bcrypt",
+  "mcp",
+  "pyotp",
+  "qrcode[pil]",
+  "croniter",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-asyncio",
+  "httpx2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "routes", "src", "services"]
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+exclude = ["tests/", "mcp_servers/", "integrations/"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["src/tests/*", "src/mcp_servers/*"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
