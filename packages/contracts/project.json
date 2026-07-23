@@ -5,16 +5,31 @@
   "projectType": "library",
   "targets": {
     "generate": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/js:run-commands",
       "options": {
         "command": "node generate.js",
         "cwd": "packages/contracts"
       }
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/js:run-commands",
+      "dependsOn": ["generate"],
       "options": {
         "command": "npx vitest run",
+        "cwd": "packages/contracts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/js:run-commands",
+      "options": {
+        "command": "echo 'contracts — no lint target yet'"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:run-commands",
+      "dependsOn": ["generate"],
+      "options": {
+        "command": "npx tsc --noEmit",
         "cwd": "packages/contracts"
       }
     }

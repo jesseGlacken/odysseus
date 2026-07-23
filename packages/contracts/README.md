@@ -7,8 +7,8 @@ FastAPI app via `node generate.js`.
 
 | Target | Command | Description |
 |--------|---------|-------------|
-| generate | `nx generate contracts` | Generate `openapi.json` from the running app |
-| test | `nx test contracts` | Run snapshot tests against the schema |
+| generate | `nx run contracts:generate` | Generate `openapi.json` from the running app |
+| test | `nx run contracts:test` | Run snapshot tests against the schema |
 
 ## Schema
 
