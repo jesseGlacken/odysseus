@@ -115,6 +115,104 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "AssistantSettingsUpdate",
         "type": "object",
       },
+      "AuthPolicyResponse": {
+        "properties": {
+          "password_min_length": {
+            "description": "Minimum allowed password length",
+            "title": "Password Min Length",
+            "type": "integer",
+          },
+          "reserved_usernames": {
+            "description": "Usernames that cannot be registered",
+            "items": {
+              "type": "string",
+            },
+            "title": "Reserved Usernames",
+            "type": "array",
+          },
+          "session_days": {
+            "description": "Default session lifetime in days",
+            "title": "Session Days",
+            "type": "integer",
+          },
+          "signup_enabled": {
+            "description": "Whether open registration is currently enabled",
+            "title": "Signup Enabled",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "password_min_length",
+          "reserved_usernames",
+          "signup_enabled",
+          "session_days",
+        ],
+        "title": "AuthPolicyResponse",
+        "type": "object",
+      },
+      "AuthStatusResponse": {
+        "properties": {
+          "authenticated": {
+            "description": "Whether the caller is logged in",
+            "title": "Authenticated",
+            "type": "boolean",
+          },
+          "configured": {
+            "description": "Whether any account exists",
+            "title": "Configured",
+            "type": "boolean",
+          },
+          "is_admin": {
+            "default": false,
+            "description": "Whether the logged-in user is an admin",
+            "title": "Is Admin",
+            "type": "boolean",
+          },
+          "privileges": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Effective privilege map for the logged-in user",
+            "title": "Privileges",
+          },
+          "signup_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Whether open registration is currently enabled",
+            "title": "Signup Enabled",
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Logged-in username",
+            "title": "Username",
+          },
+        },
+        "required": [
+          "configured",
+          "authenticated",
+        ],
+        "title": "AuthStatusResponse",
+        "type": "object",
+      },
       "Body_add_server_api_mcp_servers_post": {
         "properties": {
           "args": {
@@ -817,10 +915,12 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
       "ChangePasswordRequest": {
         "properties": {
           "current_password": {
+            "description": "Existing password",
             "title": "Current Password",
             "type": "string",
           },
           "new_password": {
+            "description": "New password",
             "title": "New Password",
             "type": "string",
           },
@@ -830,6 +930,20 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "new_password",
         ],
         "title": "ChangePasswordRequest",
+        "type": "object",
+      },
+      "ChangePasswordResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether the password was changed",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "ChangePasswordResponse",
         "type": "object",
       },
       "ChatRequest": {
@@ -1005,14 +1119,17 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "properties": {
           "is_admin": {
             "default": false,
+            "description": "Whether the new account is an admin",
             "title": "Is Admin",
             "type": "boolean",
           },
           "password": {
+            "description": "Plain-text password",
             "title": "Password",
             "type": "string",
           },
           "username": {
+            "description": "Username for the new account",
             "title": "Username",
             "type": "string",
           },
@@ -1024,9 +1141,24 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "CreateUserRequest",
         "type": "object",
       },
+      "CreateUserResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether account creation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "CreateUserResponse",
+        "type": "object",
+      },
       "DeleteUserRequest": {
         "properties": {
           "username": {
+            "description": "Username of the account to delete",
             "title": "Username",
             "type": "string",
           },
@@ -1035,6 +1167,20 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "username",
         ],
         "title": "DeleteUserRequest",
+        "type": "object",
+      },
+      "DeleteUserResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether deletion succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "DeleteUserResponse",
         "type": "object",
       },
       "DirectoryRequest": {
@@ -1480,6 +1626,32 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "ExtractStyleRequest",
         "type": "object",
       },
+      "FeatureToggleResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether the toggle succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "signup_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Current open-registration state after toggle",
+            "title": "Signup Enabled",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "FeatureToggleResponse",
+        "type": "object",
+      },
       "GalleryPatch": {
         "properties": {
           "album_id": {
@@ -1545,6 +1717,83 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "HideImageRequest",
         "type": "object",
       },
+      "IntegrationItemResponse": {
+        "properties": {
+          "integration": {
+            "additionalProperties": true,
+            "description": "Integration definition",
+            "title": "Integration",
+            "type": "object",
+          },
+          "ok": {
+            "description": "Whether the operation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "integration",
+        ],
+        "title": "IntegrationItemResponse",
+        "type": "object",
+      },
+      "IntegrationListResponse": {
+        "properties": {
+          "integrations": {
+            "description": "Integration definitions",
+            "items": {
+              "additionalProperties": true,
+              "type": "object",
+            },
+            "title": "Integrations",
+            "type": "array",
+          },
+        },
+        "required": [
+          "integrations",
+        ],
+        "title": "IntegrationListResponse",
+        "type": "object",
+      },
+      "IntegrationPresetListResponse": {
+        "properties": {
+          "presets": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object",
+            },
+            "description": "Named integration presets",
+            "title": "Presets",
+            "type": "object",
+          },
+        },
+        "required": [
+          "presets",
+        ],
+        "title": "IntegrationPresetListResponse",
+        "type": "object",
+      },
+      "IntegrationTestResponse": {
+        "properties": {
+          "message": {
+            "description": "Human-readable result",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether the test succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "message",
+        ],
+        "title": "IntegrationTestResponse",
+        "type": "object",
+      },
       "KillPidRequest": {
         "properties": {
           "host": {
@@ -1588,11 +1837,13 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
       "LoginRequest": {
         "properties": {
           "password": {
+            "description": "Plain-text password",
             "title": "Password",
             "type": "string",
           },
           "remember": {
             "default": true,
+            "description": "Whether to issue a persistent session cookie",
             "title": "Remember",
             "type": "boolean",
           },
@@ -1605,9 +1856,11 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
                 "type": "null",
               },
             ],
+            "description": "Optional TOTP / backup code",
             "title": "Totp Code",
           },
           "username": {
+            "description": "Username to authenticate with",
             "title": "Username",
             "type": "string",
           },
@@ -1617,6 +1870,58 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "password",
         ],
         "title": "LoginRequest",
+        "type": "object",
+      },
+      "LoginResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether login succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "requires_totp": {
+            "anyOf": [
+              {
+                "type": "boolean",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "True when password was valid but a TOTP code is required",
+            "title": "Requires Totp",
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Authenticated username on success",
+            "title": "Username",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "LoginResponse",
+        "type": "object",
+      },
+      "LogoutResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether logout completed",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "LogoutResponse",
         "type": "object",
       },
       "MemoryAddRequest": {
@@ -2133,6 +2438,7 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
       "RenameUserRequest": {
         "properties": {
           "username": {
+            "description": "New username",
             "title": "Username",
             "type": "string",
           },
@@ -2141,6 +2447,44 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "username",
         ],
         "title": "RenameUserRequest",
+        "type": "object",
+      },
+      "RenameUserResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether the rename succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "renamed_self": {
+            "anyOf": [
+              {
+                "type": "boolean",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "True when the admin renamed their own account",
+            "title": "Renamed Self",
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "New username",
+            "title": "Username",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "RenameUserResponse",
         "type": "object",
       },
       "ResearchStartRequest": {
@@ -2506,6 +2850,7 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
       "SetAdminRequest": {
         "properties": {
           "is_admin": {
+            "description": "Target admin status",
             "title": "Is Admin",
             "type": "boolean",
           },
@@ -2516,9 +2861,36 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "SetAdminRequest",
         "type": "object",
       },
+      "SetAdminResponse": {
+        "properties": {
+          "is_admin": {
+            "description": "Updated admin status",
+            "title": "Is Admin",
+            "type": "boolean",
+          },
+          "ok": {
+            "description": "Whether the update succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "self": {
+            "description": "True when the acting admin updated themselves",
+            "title": "Self",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "is_admin",
+          "self",
+        ],
+        "title": "SetAdminResponse",
+        "type": "object",
+      },
       "SetOpenRegistrationRequest": {
         "properties": {
           "enabled": {
+            "description": "Whether open registration is enabled",
             "title": "Enabled",
             "type": "boolean",
           },
@@ -2527,6 +2899,46 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "enabled",
         ],
         "title": "SetOpenRegistrationRequest",
+        "type": "object",
+      },
+      "SetOpenRegistrationResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether the setting was updated",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "signup_enabled": {
+            "description": "Current open-registration state",
+            "title": "Signup Enabled",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "signup_enabled",
+        ],
+        "title": "SetOpenRegistrationResponse",
+        "type": "object",
+      },
+      "SetupResponse": {
+        "properties": {
+          "message": {
+            "description": "Human-readable result message",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether setup succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "message",
+        ],
+        "title": "SetupResponse",
         "type": "object",
       },
       "ShellExecRequest": {
@@ -2623,10 +3035,12 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
       "SignupRequest": {
         "properties": {
           "password": {
+            "description": "Plain-text password",
             "title": "Password",
             "type": "string",
           },
           "username": {
+            "description": "Username for the new account",
             "title": "Username",
             "type": "string",
           },
@@ -2636,6 +3050,26 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "password",
         ],
         "title": "SignupRequest",
+        "type": "object",
+      },
+      "SignupResponse": {
+        "properties": {
+          "message": {
+            "description": "Human-readable result message",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether account creation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+          "message",
+        ],
+        "title": "SignupResponse",
         "type": "object",
       },
       "SkillAddRequest": {
@@ -3562,9 +3996,32 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "ToolsUpdate",
         "type": "object",
       },
+      "TotpConfirmResponse": {
+        "properties": {
+          "backup_codes": {
+            "description": "Backup codes",
+            "items": {
+              "type": "string",
+            },
+            "title": "Backup Codes",
+            "type": "array",
+          },
+          "ok": {
+            "description": "Whether 2FA was enabled",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "TotpConfirmResponse",
+        "type": "object",
+      },
       "TotpDisableRequest": {
         "properties": {
           "password": {
+            "description": "Account password confirmation",
             "title": "Password",
             "type": "string",
           },
@@ -3575,9 +4032,64 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "TotpDisableRequest",
         "type": "object",
       },
+      "TotpDisableResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether 2FA was disabled",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "TotpDisableResponse",
+        "type": "object",
+      },
+      "TotpSetupResponse": {
+        "properties": {
+          "qr_code": {
+            "description": "Base64 PNG QR code data URI",
+            "title": "Qr Code",
+            "type": "string",
+          },
+          "secret": {
+            "description": "Raw TOTP secret (not yet enabled)",
+            "title": "Secret",
+            "type": "string",
+          },
+          "uri": {
+            "description": "otpauth:// provisioning URI",
+            "title": "Uri",
+            "type": "string",
+          },
+        },
+        "required": [
+          "secret",
+          "uri",
+          "qr_code",
+        ],
+        "title": "TotpSetupResponse",
+        "type": "object",
+      },
+      "TotpStatusResponse": {
+        "properties": {
+          "enabled": {
+            "description": "Whether 2FA is enabled for the caller",
+            "title": "Enabled",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "enabled",
+        ],
+        "title": "TotpStatusResponse",
+        "type": "object",
+      },
       "TotpVerifyRequest": {
         "properties": {
           "code": {
+            "description": "TOTP code to confirm setup",
             "title": "Code",
             "type": "string",
           },
@@ -3586,6 +4098,77 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "code",
         ],
         "title": "TotpVerifyRequest",
+        "type": "object",
+      },
+      "UserListItem": {
+        "properties": {
+          "is_admin": {
+            "description": "Admin flag",
+            "title": "Is Admin",
+            "type": "boolean",
+          },
+          "privileges": {
+            "additionalProperties": true,
+            "description": "Effective privilege map",
+            "title": "Privileges",
+            "type": "object",
+          },
+          "username": {
+            "description": "Username",
+            "title": "Username",
+            "type": "string",
+          },
+        },
+        "required": [
+          "username",
+          "is_admin",
+          "privileges",
+        ],
+        "title": "UserListItem",
+        "type": "object",
+      },
+      "UserListResponse": {
+        "properties": {
+          "users": {
+            "description": "All user accounts",
+            "items": {
+              "$ref": "#/components/schemas/UserListItem",
+            },
+            "title": "Users",
+            "type": "array",
+          },
+        },
+        "required": [
+          "users",
+        ],
+        "title": "UserListResponse",
+        "type": "object",
+      },
+      "UserPrivilegesUpdateResponse": {
+        "properties": {
+          "ok": {
+            "description": "Whether the update succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+          "privileges": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "Updated privilege map",
+            "title": "Privileges",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "UserPrivilegesUpdateResponse",
         "type": "object",
       },
       "UserTemplateRequest": {
@@ -3715,13 +4298,15 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "VaultUnlockRequest",
         "type": "object",
       },
-      "routes__auth_routes__SetupRequest": {
+      "routes__auth_models__SetupRequest": {
         "properties": {
           "password": {
+            "description": "Plain-text password for the first admin",
             "title": "Password",
             "type": "string",
           },
           "username": {
+            "description": "Username for the first admin account",
             "title": "Username",
             "type": "string",
           },
@@ -4033,7 +4618,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/TotpConfirmResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4073,7 +4660,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/TotpDisableResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4103,7 +4692,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/TotpSetupResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4123,7 +4714,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/TotpStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4152,7 +4745,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePasswordResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4220,7 +4815,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationListResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4238,7 +4835,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationItemResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4258,7 +4857,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationPresetListResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4289,7 +4890,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4328,7 +4931,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationItemResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4369,7 +4974,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationTestResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4408,7 +5015,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4437,7 +5046,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4467,7 +5078,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SetOpenRegistrationResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4497,7 +5110,9 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/AuthPolicyResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4557,7 +5172,7 @@ for keybinds + TTS prefs, so it stays callable without admin.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/routes__auth_routes__SetupRequest",
+                "$ref": "#/components/schemas/routes__auth_models__SetupRequest",
               },
             },
           },
@@ -4567,7 +5182,9 @@ for keybinds + TTS prefs, so it stays callable without admin.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SetupResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4607,7 +5224,9 @@ for keybinds + TTS prefs, so it stays callable without admin.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4643,7 +5262,9 @@ This endpoint is kept for backward compatibility and may be removed in future ve
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureToggleResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4662,7 +5283,9 @@ This endpoint is kept for backward compatibility and may be removed in future ve
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/AuthStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4691,7 +5314,9 @@ This endpoint is kept for backward compatibility and may be removed in future ve
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUserResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4718,7 +5343,9 @@ This endpoint is kept for backward compatibility and may be removed in future ve
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4745,7 +5372,9 @@ This endpoint is kept for backward compatibility and may be removed in future ve
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4800,7 +5429,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SetAdminResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4840,7 +5471,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/UserPrivilegesUpdateResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -4890,7 +5523,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/RenameUserResponse",
+                },
               },
             },
             "description": "Successful Response",

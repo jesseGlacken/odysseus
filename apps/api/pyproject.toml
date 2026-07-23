@@ -45,7 +45,9 @@ dependencies = [
 dev = [
   "pytest",
   "pytest-asyncio",
+  "pytest-bdd",
   "httpx2",
+  "ruff>=0.15.22",
 ]
 
 [tool.hatch.build.targets.wheel]
