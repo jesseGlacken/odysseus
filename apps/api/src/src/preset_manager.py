@@ -140,9 +140,10 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
         enabled: bool = True,
         inject_prefix: str = "",
         inject_suffix: str = "",
+        username: str | None = None,
     ) -> bool:
-        """Update the custom preset"""
-        self.presets["custom"] = {
+        """Update the custom preset for a specific user (or globally if no username)."""
+        custom_data = {
             "name": name or "Custom",
             "character_name": name,
             "temperature": temperature,
@@ -152,11 +153,36 @@ Use precise language. Show causal relationships explicitly. Quantify uncertainty
             "inject_suffix": inject_suffix,
             "enabled": enabled,
         }
+        if username:
+            # Per-user custom preset — scoped to the authenticated user
+            if "user_custom_presets" not in self.presets:
+                self.presets["user_custom_presets"] = {}
+            self.presets["user_custom_presets"][username] = custom_data
+        else:
+            self.presets["custom"] = custom_data
         return self.save(self.presets)
 
-    def get_all(self) -> Dict[str, Any]:
+    def get_all(self) -> dict[str, Any]:
         """Get all presets"""
         return self.presets.copy()
+
+    def get_all_for_user(self, username: str | None) -> dict[str, Any]:
+        """Get all presets with per-user custom overlay for the given user.
+
+        Built-in presets (code_analyze, brainstorm, reason) are shared globals.
+        The 'custom' preset is per-user: if the user has a saved custom preset,
+        it replaces the global default. User templates are also per-user.
+        """
+        presets = self.presets.copy()
+        if username:
+            user_customs = presets.get("user_custom_presets", {})
+            if username in user_customs:
+                presets["custom"] = user_customs[username]
+            # Per-user templates
+            user_templates_key = f"user_templates_{username}"
+            if user_templates_key in presets:
+                presets["user_templates"] = presets[user_templates_key]
+        return presets
 
     def get_user_templates(self) -> list:
         """Get user-saved character templates."""

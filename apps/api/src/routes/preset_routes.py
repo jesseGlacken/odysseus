@@ -27,12 +27,17 @@ def setup_preset_routes(preset_manager) -> APIRouter:
     router = APIRouter(tags=["presets"])
 
     @router.get("/api/presets")
-    async def get_presets() -> Dict[str, Any]:
-        return preset_manager.presets
+    async def get_presets(request: Request) -> dict[str, Any]:
+        """Return presets scoped to the current user."""
+        username = effective_user(request) if request else None
+        return preset_manager.get_all_for_user(username)
 
     @router.post("/api/presets/custom")
-    async def update_custom_preset(preset_update: PresetUpdateRequest, _admin: None = Depends(require_admin)) -> Dict[str, Any]:
+    async def update_custom_preset(request: Request, preset_update: PresetUpdateRequest, _admin: None = Depends(require_admin)) -> dict[str, Any]:
         try:
+            # Store per-user — the admin guard ensures only admins can set presets,
+            # but the preset is now scoped to the authenticated user.
+            username = effective_user(request)
             success = preset_manager.update_custom(
                 preset_update.temperature,
                 preset_update.max_tokens,
@@ -41,6 +46,7 @@ def setup_preset_routes(preset_manager) -> APIRouter:
                 preset_update.enabled,
                 preset_update.inject_prefix,
                 preset_update.inject_suffix,
+                username=username,
             )
             if success:
                 return {"success": True, "message": "Custom preset updated"}
