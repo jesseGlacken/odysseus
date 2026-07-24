@@ -260,14 +260,6 @@ def _detect_admin_intent(messages: List[Dict]) -> bool:
 # Notes / memory turn detection
 # ---------------------------------------------------------------------------
 
-def _looks_like_notes_list_request(text: str) -> bool:
-    """Whether the user is asking to see existing notes, not create one."""
-    t = (text or "").lower()
-    return bool(
-        re.search(r"\b(what|show|list|see|current|existing|all|my)\b.{0,60}\bnotes?\b", t)
-        or re.search(r"\bnotes?\b.{0,60}\b(what|show|list|see|current|existing|all|my)\b", t)
-    )
-
 
 def _note_list_summary_from_tool_output(raw: str, max_items: int = 20) -> str:
     """Format manage_notes list/search output for chat without an LLM pass."""
@@ -296,6 +288,15 @@ def _note_list_summary_from_tool_output(raw: str, max_items: int = 20) -> str:
     if total and total > len(titles):
         result_lines.append(f"- ...and {total - len(titles)} more")
     return "\n".join(result_lines)
+
+
+def _looks_like_notes_list_request(text: str) -> bool:
+    """Whether the user is asking to see existing notes, not create one."""
+    t = (text or "").lower()
+    return bool(
+        re.search(r"\b(what|show|list|see|current|existing|all|my)\b.{0,60}\bnotes?\b", t)
+        or re.search(r"\bnotes?\b.{0,60}\b(what|show|list|see|current|existing|all|my)\b", t)
+    )
 
 
 def _looks_like_notes_turn(text: str) -> bool:

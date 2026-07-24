@@ -13,6 +13,8 @@ import json
 import logging
 from typing import Dict, List
 
+from src.prompt_security import untrusted_context_message
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -72,9 +74,8 @@ def _resolve_tool_blocks(
                 logger.info("  -> converted: %s -> %s", tc_name, block.tool_type)
             else:
                 logger.warning(
-                    "  -> FAILED to convert native call: %s args=%s",
+                    "  -> FAILED to convert native call: %s",
                     tc_name,
-                    tc_args[:200],
                 )
         if tool_blocks:
             used_native = True
@@ -217,13 +218,19 @@ async def _run_verifier_subagent(
     from src.agent.context import _strip_think_blocks
     from src.llm_core import llm_call_async
 
+    _request_ctx = untrusted_context_message(
+        "user request", (instruction or "")[:4000]
+    )
+    _actions_ctx = untrusted_context_message(
+        "actions taken", actions_snapshot[:8000]
+    )
     prompt = (
         "You are an independent verifier. Another assistant just claimed the "
         "following task is complete. Using ONLY the request and the record of "
         "what it actually did, decide whether that claim is correct. Be strict: "
         "only say SUCCESS if the work genuinely satisfies the request.\n\n"
-        f"<user_request>\n{(instruction or '')[:4000]}\n</user_request>\n\n"
-        f"<actions_taken>\n{actions_snapshot[:8000]}\n</actions_taken>\n\n"
+        f"<user_request>\n{_request_ctx['content']}\n</user_request>\n\n"
+        f"<actions_taken>\n{_actions_ctx['content']}\n</actions_taken>\n\n"
         "<checklist>\n"
         "1. Every concrete deliverable the request asked for was actually produced\n"
         "2. Outputs/edits match what was asked — nothing missing, no extra or unrequested changes\n"
