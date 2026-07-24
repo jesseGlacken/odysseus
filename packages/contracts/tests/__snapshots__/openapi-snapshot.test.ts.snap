@@ -1334,6 +1334,132 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "DocumentPatch",
         "type": "object",
       },
+      "DocumentPdfPreviewResponse": {
+        "description": "Response for PDF preview generation.",
+        "properties": {
+          "page_count": {
+            "default": 0,
+            "description": "Number of pages in the preview",
+            "title": "Page Count",
+            "type": "integer",
+          },
+          "url": {
+            "default": "",
+            "description": "URL to the generated preview",
+            "title": "Url",
+            "type": "string",
+          },
+        },
+        "title": "DocumentPdfPreviewResponse",
+        "type": "object",
+      },
+      "DocumentResponse": {
+        "description": "Response for single-document operations (create, get, update, etc.).",
+        "properties": {
+          "archived": {
+            "default": false,
+            "description": "Whether the document is archived",
+            "title": "Archived",
+            "type": "boolean",
+          },
+          "content": {
+            "default": "",
+            "description": "Document plain-text content",
+            "title": "Content",
+            "type": "string",
+          },
+          "created_at": {
+            "default": "",
+            "description": "ISO timestamp",
+            "title": "Created At",
+            "type": "string",
+          },
+          "id": {
+            "default": "",
+            "description": "Document ID",
+            "title": "Id",
+            "type": "string",
+          },
+          "language": {
+            "default": "",
+            "description": "Document language code",
+            "title": "Language",
+            "type": "string",
+          },
+          "meta": {
+            "additionalProperties": true,
+            "description": "Additional metadata",
+            "title": "Meta",
+            "type": "object",
+          },
+          "session_id": {
+            "default": "",
+            "description": "Owning session ID",
+            "title": "Session Id",
+            "type": "string",
+          },
+          "title": {
+            "default": "",
+            "description": "Document title",
+            "title": "Title",
+            "type": "string",
+          },
+          "updated_at": {
+            "default": "",
+            "description": "ISO timestamp",
+            "title": "Updated At",
+            "type": "string",
+          },
+        },
+        "title": "DocumentResponse",
+        "type": "object",
+      },
+      "DocumentStatusResponse": {
+        "description": "Response for status-only operations (archive, delete, restore).",
+        "properties": {
+          "message": {
+            "default": "",
+            "description": "Human-readable result message",
+            "title": "Message",
+            "type": "string",
+          },
+          "status": {
+            "default": "",
+            "description": "Result status (e.g. 'ok', 'archived')",
+            "title": "Status",
+            "type": "string",
+          },
+        },
+        "title": "DocumentStatusResponse",
+        "type": "object",
+      },
+      "DocumentTidyResponse": {
+        "description": "Response for document tidy/cleanup operations.",
+        "properties": {
+          "count": {
+            "default": 0,
+            "description": "Number of documents affected",
+            "title": "Count",
+            "type": "integer",
+          },
+          "message": {
+            "default": "",
+            "description": "Human-readable result",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether the operation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "DocumentTidyResponse",
+        "type": "object",
+      },
       "DocumentUpdate": {
         "properties": {
           "content": {
@@ -9570,9 +9696,7 @@ ntfy, and provider endpoints. Non-intrusive probes — safe to poll.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Create Document Api Document Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentResponse",
                 },
               },
             },
@@ -9614,11 +9738,7 @@ ntfy, and provider endpoints. Non-intrusive probes — safe to poll.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": {
-                    "type": "string",
-                  },
-                  "title": "Response Delete Document Api Document  Doc Id  Delete",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentStatusResponse",
                 },
               },
             },
@@ -9710,9 +9830,7 @@ ntfy, and provider endpoints. Non-intrusive probes — safe to poll.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Patch Document Api Document  Doc Id  Patch",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentResponse",
                 },
               },
             },
@@ -9762,9 +9880,7 @@ ntfy, and provider endpoints. Non-intrusive probes — safe to poll.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Update Document Api Document  Doc Id  Put",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentResponse",
                 },
               },
             },
@@ -9866,9 +9982,7 @@ annotations the frontend already renders.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Archive Document Api Document  Doc Id  Archive Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentStatusResponse",
                 },
               },
             },
@@ -9959,9 +10073,7 @@ any wrong values before triggering the actual download.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Export Pdf Preview Api Document  Doc Id  Export Pdf Preview Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentPdfPreviewResponse",
                 },
               },
             },
@@ -10391,9 +10503,7 @@ Caches verdicts so previously-reviewed docs are skipped.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Ai Tidy Documents Api Documents Ai Tidy Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentTidyResponse",
                 },
               },
             },
@@ -10596,9 +10706,7 @@ overlays.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Tidy Documents Api Documents Tidy Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/DocumentTidyResponse",
                 },
               },
             },

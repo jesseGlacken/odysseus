@@ -13,6 +13,12 @@ from core.database import Session as DbSession
 from src.auth_helpers import get_current_user, _auth_disabled
 from src.constants import MAIL_ATTACHMENTS_DIR
 from src.upload_handler import reserve_upload_references
+from routes.document_models import (
+    DocumentPdfPreviewResponse,
+    DocumentResponse,
+    DocumentStatusResponse,
+    DocumentTidyResponse,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -102,7 +108,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             raise HTTPException(503, str(exc)) from exc
 
     # ---- POST /api/document ----
-    @router.post("/api/document")
+    @router.post("/api/document", response_model=DocumentResponse)
     async def create_document(request: Request, req: DocumentCreate) -> Dict[str, Any]:
         from src.auth_helpers import require_privilege
         user = require_privilege(request, "can_use_documents")
@@ -480,7 +486,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- POST /api/document/{doc_id}/archive — soft-archive / restore ----
-    @router.post("/api/document/{doc_id}/archive")
+    @router.post("/api/document/{doc_id}/archive", response_model=DocumentStatusResponse)
     async def archive_document(request: Request, doc_id: str, archived: bool = Query(True)) -> Dict[str, Any]:
         user = get_current_user(request)
         db = SessionLocal()
@@ -620,7 +626,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
     # Once the gap exceeds this, the next save creates a new version.
     VERSION_COALESCE_SECONDS = 60
 
-    @router.put("/api/document/{doc_id}")
+    @router.put("/api/document/{doc_id}", response_model=DocumentResponse)
     async def update_document(request: Request, doc_id: str, req: DocumentUpdate) -> Dict[str, Any]:
         user = get_current_user(request)
         db = SessionLocal()
@@ -695,7 +701,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- PATCH /api/document/{doc_id} — metadata only ----
-    @router.patch("/api/document/{doc_id}")
+    @router.patch("/api/document/{doc_id}", response_model=DocumentResponse)
     async def patch_document(request: Request, doc_id: str, req: DocumentPatch) -> Dict[str, Any]:
         user = get_current_user(request)
         db = SessionLocal()
@@ -734,7 +740,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- DELETE /api/document/{doc_id} — soft delete ----
-    @router.delete("/api/document/{doc_id}")
+    @router.delete("/api/document/{doc_id}", response_model=DocumentStatusResponse)
     async def delete_document(request: Request, doc_id: str) -> Dict[str, str]:
         user = get_current_user(request)
         db = SessionLocal()
@@ -849,7 +855,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- POST /api/documents/tidy — clean up broken/empty documents ----
-    @router.post("/api/documents/tidy")
+    @router.post("/api/documents/tidy", response_model=DocumentTidyResponse)
     async def tidy_documents(request: Request) -> Dict[str, Any]:
         """Fix empty titles and remove broken/empty documents (user's docs only)."""
         user = get_current_user(request)
@@ -964,7 +970,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- POST /api/documents/ai-tidy — AI-powered cleanup of junk/test documents ----
-    @router.post("/api/documents/ai-tidy")
+    @router.post("/api/documents/ai-tidy", response_model=DocumentTidyResponse)
     async def ai_tidy_documents(request: Request) -> Dict[str, Any]:
         """Use AI to judge if documents are junk/test/accidental, then delete them.
         Caches verdicts so previously-reviewed docs are skipped."""
@@ -1061,7 +1067,7 @@ def setup_document_routes(session_manager, upload_handler=None) -> APIRouter:
             db.close()
 
     # ---- POST /api/document/{doc_id}/export-pdf/preview ----
-    @router.post("/api/document/{doc_id}/export-pdf/preview")
+    @router.post("/api/document/{doc_id}/export-pdf/preview", response_model=DocumentPdfPreviewResponse)
     async def export_pdf_preview(doc_id: str, request: Request) -> Dict[str, Any]:
         """Return the field-value mapping that would be written to the PDF.
 
