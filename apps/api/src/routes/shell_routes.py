@@ -40,6 +40,8 @@ else:
 
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import StreamingResponse
+
+from routes.sse_schemas import SHELL_SSE_EXTRA
 from pydantic import BaseModel
 
 from core.platform_compat import (
@@ -876,7 +878,7 @@ def setup_shell_routes() -> APIRouter:
         )
         return result
 
-    @router.post("/api/shell/stream")
+    @router.post("/api/shell/stream", openapi_extra=SHELL_SSE_EXTRA)
     async def shell_stream(request: Request, req: ShellExecRequest):
         """Execute a shell command and stream output line-by-line via SSE. Admin only."""
         _require_admin(request)
