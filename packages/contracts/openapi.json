@@ -6585,9 +6585,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "type": "object",
-                  "title": "Response Create Document Api Document Post"
+                  "$ref": "#/components/schemas/DocumentResponse"
                 }
               }
             }
@@ -6882,9 +6880,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Update Document Api Document  Doc Id  Put"
+                  "$ref": "#/components/schemas/DocumentResponse"
                 }
               }
             }
@@ -6934,9 +6930,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Patch Document Api Document  Doc Id  Patch"
+                  "$ref": "#/components/schemas/DocumentResponse"
                 }
               }
             }
@@ -6976,11 +6970,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "title": "Response Delete Document Api Document  Doc Id  Delete"
+                  "$ref": "#/components/schemas/DocumentStatusResponse"
                 }
               }
             }
@@ -7032,9 +7022,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Archive Document Api Document  Doc Id  Archive Post"
+                  "$ref": "#/components/schemas/DocumentStatusResponse"
                 }
               }
             }
@@ -7284,9 +7272,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "type": "object",
-                  "title": "Response Tidy Documents Api Documents Tidy Post"
+                  "$ref": "#/components/schemas/DocumentTidyResponse"
                 }
               }
             }
@@ -7308,9 +7294,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "type": "object",
-                  "title": "Response Ai Tidy Documents Api Documents Ai Tidy Post"
+                  "$ref": "#/components/schemas/DocumentTidyResponse"
                 }
               }
             }
@@ -7343,9 +7327,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Export Pdf Preview Api Document  Doc Id  Export Pdf Preview Post"
+                  "$ref": "#/components/schemas/DocumentPdfPreviewResponse"
                 }
               }
             }
@@ -20590,6 +20572,132 @@
         },
         "type": "object",
         "title": "DocumentPatch"
+      },
+      "DocumentPdfPreviewResponse": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "URL to the generated preview",
+            "default": ""
+          },
+          "page_count": {
+            "type": "integer",
+            "title": "Page Count",
+            "description": "Number of pages in the preview",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "DocumentPdfPreviewResponse",
+        "description": "Response for PDF preview generation."
+      },
+      "DocumentResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Document ID",
+            "default": ""
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Document title",
+            "default": ""
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Document plain-text content",
+            "default": ""
+          },
+          "language": {
+            "type": "string",
+            "title": "Language",
+            "description": "Document language code",
+            "default": ""
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id",
+            "description": "Owning session ID",
+            "default": ""
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At",
+            "description": "ISO timestamp",
+            "default": ""
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "Updated At",
+            "description": "ISO timestamp",
+            "default": ""
+          },
+          "archived": {
+            "type": "boolean",
+            "title": "Archived",
+            "description": "Whether the document is archived",
+            "default": false
+          },
+          "meta": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Meta",
+            "description": "Additional metadata"
+          }
+        },
+        "type": "object",
+        "title": "DocumentResponse",
+        "description": "Response for single-document operations (create, get, update, etc.)."
+      },
+      "DocumentStatusResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Result status (e.g. 'ok', 'archived')",
+            "default": ""
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result message",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "DocumentStatusResponse",
+        "description": "Response for status-only operations (archive, delete, restore)."
+      },
+      "DocumentTidyResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the operation succeeded"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "Number of documents affected",
+            "default": 0
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "DocumentTidyResponse",
+        "description": "Response for document tidy/cleanup operations."
       },
       "DocumentUpdate": {
         "properties": {
