@@ -16,7 +16,7 @@ import re
 from typing import Any, Dict, List, Optional
 
 from fastapi import HTTPException
-from routes._validators import validate_remote_host, validate_ssh_port
+from src.validators import validate_remote_host, validate_ssh_port
 
 from src.tools._common import _parse_tool_args
 
@@ -146,7 +146,7 @@ async def _cookbook_env_for_host(host: str) -> Dict[str, Any]:
         else:
             env_prefix = f'eval "$(conda shell.bash hook)" && conda activate {env_path}'
 
-    from routes.cookbook_helpers import load_stored_hf_token
+    from src.cookbook_helpers import load_stored_hf_token
     return {
         "env_prefix": env_prefix,
         "env_type": env_kind,

@@ -176,7 +176,7 @@ async def do_manage_notes(content: str, owner: Optional[str] = None) -> Dict:
             due_iso = None
             if due_raw:
                 try:
-                    from routes.calendar_routes import parse_due_for_user as _pdt_user
+                    from src.calendar_helpers import parse_due_for_user as _pdt_user
                     due_iso = _pdt_user(due_raw)
                 except Exception:
                     due_iso = due_raw  # fall through; trust the model
@@ -274,7 +274,7 @@ async def do_manage_notes(content: str, owner: Optional[str] = None) -> Dict:
             if args.get("due_date") is not None:
                 due_raw = args["due_date"]
                 try:
-                    from routes.calendar_routes import parse_due_for_user as _pdt_user
+                    from src.calendar_helpers import parse_due_for_user as _pdt_user
                     note.due_date = _pdt_user(due_raw)
                 except Exception:
                     note.due_date = due_raw  # fall through; trust the model
