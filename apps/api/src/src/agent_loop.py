@@ -1,9 +1,19 @@
 """
-agent_loop.py
+agent_loop.py — Streaming agent loop (legacy entry-point / re-export shim).
 
-Streaming agent loop for odysseus-ui.
-Wraps stream_llm() with multi-round tool execution.
-The LLM decides when to use tools by writing fenced code blocks.
+The implementation has been decomposed into the ``src.agent`` package (ODY-18).
+This module keeps all original names importable for backward compatibility.
+
+Submodule responsibilities:
+  src.agent.loop       — ``stream_agent_loop`` orchestrator
+  src.agent.classifier — intent classification and request analysis
+  src.agent.context    — context utilities and final metrics
+  src.agent.runaway    — runaway-loop detection
+  src.agent.verifier   — tool-block resolution and completion verification
+
+Large prompt constants (TOOL_SECTIONS, _AGENT_PREAMBLE, etc.) and
+``_build_system_prompt`` / ``_build_base_prompt`` remain here temporarily;
+they will move to ``src.agent.prompt`` in a future PR (P2.2).
 """
 
 import asyncio
@@ -41,6 +51,20 @@ from src.agent_tools import (
 )
 
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# ODY-18 — The agent-loop is being decomposed into src.agent sub-packages.
+# Implementation now lives in:
+#   src.agent.loop       — stream_agent_loop (also re-exported below)
+#   src.agent.classifier — intent classification
+#   src.agent.context    — context utilities and metrics
+#   src.agent.runaway    — runaway detection
+#   src.agent.verifier   — tool resolution and verification
+#
+# This file retains all original definitions (strangler pattern) while the
+# new package is built in parallel.  Callers can begin importing from
+# src.agent.* directly; the originals here will be removed in P2.2.
+# ---------------------------------------------------------------------------
 
 
 def _looks_like_notes_list_request(text: str) -> bool:
