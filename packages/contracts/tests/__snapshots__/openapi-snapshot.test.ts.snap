@@ -6620,6 +6620,7 @@ when nothing is provided.",
     },
     "/api/chat/resume/{session_id}": {
       "get": {
+        "description": "Resume a detached streaming chat session. Same event types as chat_stream.",
         "operationId": "chat_resume_api_chat_resume__session_id__get",
         "parameters": [
           {
@@ -6638,8 +6639,24 @@ when nothing is provided.",
               "application/json": {
                 "schema": {},
               },
+              "text/event-stream": {
+                "schema": {
+                  "description": "SSE event stream. Each event has an event: type and data: payload.",
+                  "properties": {
+                    "data": {
+                      "description": "JSON-encoded event payload",
+                      "type": "string",
+                    },
+                    "event": {
+                      "description": "Event type (e.g. token, tool_start, tool_output, done, error)",
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
             },
-            "description": "Successful Response",
+            "description": "Server-Sent Events stream",
           },
           "422": {
             "content": {
@@ -6744,6 +6761,7 @@ when nothing is provided.",
     },
     "/api/chat_stream": {
       "post": {
+        "description": "Streaming chat completion via SSE. Events: token (text delta), tool_start/tool_progress/tool_output (tool execution), model_info (model metadata), done (completion), error (failure).",
         "operationId": "chat_stream_api_chat_stream_post",
         "responses": {
           "200": {
@@ -6751,8 +6769,24 @@ when nothing is provided.",
               "application/json": {
                 "schema": {},
               },
+              "text/event-stream": {
+                "schema": {
+                  "description": "SSE event stream. Each event has an event: type and data: payload.",
+                  "properties": {
+                    "data": {
+                      "description": "JSON-encoded event payload",
+                      "type": "string",
+                    },
+                    "event": {
+                      "description": "Event type (e.g. token, tool_start, tool_output, done, error)",
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
             },
-            "description": "Successful Response",
+            "description": "Server-Sent Events stream",
           },
         },
         "summary": "Chat Stream",
@@ -20001,10 +20035,7 @@ Persisted to the research JSON so subsequent /report renders skip it.",
     },
     "/api/rewrite": {
       "post": {
-        "description": "Rewrite the last AI message with an instruction (shorter/simpler/etc).
-
-Unlike the full chat pipeline, this does NOT run the agent loop or tools.
-It just asks the LLM to rewrite the given text.",
+        "description": "Rewrite the last AI message without running the agent loop. Events: token (rewritten text), done, error.",
         "operationId": "rewrite_message_api_rewrite_post",
         "responses": {
           "200": {
@@ -20012,8 +20043,24 @@ It just asks the LLM to rewrite the given text.",
               "application/json": {
                 "schema": {},
               },
+              "text/event-stream": {
+                "schema": {
+                  "description": "SSE event stream. Each event has an event: type and data: payload.",
+                  "properties": {
+                    "data": {
+                      "description": "JSON-encoded event payload",
+                      "type": "string",
+                    },
+                    "event": {
+                      "description": "Event type (e.g. token, tool_start, tool_output, done, error)",
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
             },
-            "description": "Successful Response",
+            "description": "Server-Sent Events stream",
           },
         },
         "summary": "Rewrite Message",
@@ -21299,7 +21346,7 @@ users can clean junk without spending tokens.",
     },
     "/api/shell/stream": {
       "post": {
-        "description": "Execute a shell command and stream output line-by-line via SSE. Admin only.",
+        "description": "Stream shell command output. Events: stdout (output line), stderr (error line), exit (exit code), error (failure).",
         "operationId": "shell_stream_api_shell_stream_post",
         "requestBody": {
           "content": {
@@ -21317,8 +21364,24 @@ users can clean junk without spending tokens.",
               "application/json": {
                 "schema": {},
               },
+              "text/event-stream": {
+                "schema": {
+                  "description": "SSE event stream. Each event has an event: type and data: payload.",
+                  "properties": {
+                    "data": {
+                      "description": "JSON-encoded event payload",
+                      "type": "string",
+                    },
+                    "event": {
+                      "description": "Event type (e.g. token, tool_start, tool_output, done, error)",
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
             },
-            "description": "Successful Response",
+            "description": "Server-Sent Events stream",
           },
           "422": {
             "content": {

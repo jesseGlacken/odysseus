@@ -20,6 +20,7 @@ from routes.chat_models import (
     ChatStreamStatusResponse,
     InjectContextResponse,
 )
+from routes.sse_schemas import CHAT_SSE_EXTRA, CHAT_RESUME_SSE_EXTRA, REWRITE_SSE_EXTRA
 from src.request_models import ChatRequest
 from src.llm_core import llm_call_async, stream_llm, stream_llm_with_fallback
 from src.agent_loop import stream_agent_loop
@@ -538,7 +539,7 @@ def setup_chat_routes(
     # ------------------------------------------------------------------ #
     # POST /api/chat_stream
     # ------------------------------------------------------------------ #
-    @router.post("/api/chat_stream")
+    @router.post("/api/chat_stream", openapi_extra=CHAT_SSE_EXTRA)
     async def chat_stream(request: Request) -> StreamingResponse:
         body = None
         try:
@@ -1593,7 +1594,7 @@ def setup_chat_routes(
     # GET /api/chat/resume — reconnect to a detached run that's still going
     # (e.g. after reopening a session whose agent kept running in the background)
     # ------------------------------------------------------------------ #
-    @router.get("/api/chat/resume/{session_id}")
+    @router.get("/api/chat/resume/{session_id}", openapi_extra=CHAT_RESUME_SSE_EXTRA)
     async def chat_resume(request: Request, session_id: str) -> StreamingResponse:
         _verify_session_owner(request, session_id)
         if not agent_runs.is_active(session_id):
@@ -1670,7 +1671,7 @@ def setup_chat_routes(
     # ------------------------------------------------------------------ #
     # POST /api/rewrite — lightweight rewrite of last AI message (no tools)
     # ------------------------------------------------------------------ #
-    @router.post("/api/rewrite")
+    @router.post("/api/rewrite", openapi_extra=REWRITE_SSE_EXTRA)
     async def rewrite_message(request: Request) -> StreamingResponse:
         """Rewrite the last AI message with an instruction (shorter/simpler/etc).
 
