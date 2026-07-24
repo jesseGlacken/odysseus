@@ -912,6 +912,82 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "Body_vote_comparison_api_compare__comp_id__vote_post",
         "type": "object",
       },
+      "CalendarEventResponse": {
+        "properties": {
+          "all_day": {
+            "default": false,
+            "title": "All Day",
+            "type": "boolean",
+          },
+          "calendar_name": {
+            "default": "",
+            "title": "Calendar Name",
+            "type": "string",
+          },
+          "color": {
+            "default": "",
+            "title": "Color",
+            "type": "string",
+          },
+          "description": {
+            "default": "",
+            "description": "Event description",
+            "title": "Description",
+            "type": "string",
+          },
+          "end": {
+            "default": "",
+            "description": "End time ISO",
+            "title": "End",
+            "type": "string",
+          },
+          "id": {
+            "default": "",
+            "description": "Event ID",
+            "title": "Id",
+            "type": "string",
+          },
+          "location": {
+            "default": "",
+            "description": "Event location",
+            "title": "Location",
+            "type": "string",
+          },
+          "start": {
+            "default": "",
+            "description": "Start time ISO",
+            "title": "Start",
+            "type": "string",
+          },
+          "title": {
+            "default": "",
+            "description": "Event title",
+            "title": "Title",
+            "type": "string",
+          },
+        },
+        "title": "CalendarEventResponse",
+        "type": "object",
+      },
+      "CalendarStatusResponse": {
+        "properties": {
+          "message": {
+            "default": "",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether the operation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "CalendarStatusResponse",
+        "type": "object",
+      },
       "ChangePasswordRequest": {
         "properties": {
           "current_password": {
@@ -5961,7 +6037,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6065,7 +6143,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6103,7 +6183,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6134,7 +6216,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6173,7 +6257,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6269,7 +6355,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarEventResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6319,7 +6407,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6367,7 +6457,9 @@ reload the acting user into the normal-user view.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6532,7 +6624,9 @@ on calendar open and by the periodic scheduler loop.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -6565,7 +6659,9 @@ when nothing is provided.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -18976,6 +19072,7 @@ Returns:
     },
     "/api/presets": {
       "get": {
+        "description": "Return presets scoped to the current user.",
         "operationId": "get_presets_api_presets_get",
         "responses": {
           "200": {
@@ -20797,7 +20894,9 @@ Used by Compare mode to pre-search once and share results across panes.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -20844,7 +20943,9 @@ Used by Compare mode to pre-search once and share results across panes.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -20885,7 +20986,9 @@ Used by Compare mode to pre-search once and share results across panes.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -21071,7 +21174,9 @@ Supported formats: md (markdown), txt (plain text), json, html",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse",
+                },
               },
             },
             "description": "Successful Response",

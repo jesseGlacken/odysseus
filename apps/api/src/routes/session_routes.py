@@ -454,7 +454,7 @@ def setup_session_routes(
             rag=str(rag).lower() == "true" if rag else False,
             archived=False
         )
-    @router.patch("/session/{sid}")
+    @router.patch("/session/{sid}", response_model=SessionResponse)
     def rename_session(
         request: Request, sid: str,
         name: str = Form(None), folder: str = Form(None),
@@ -598,7 +598,7 @@ def setup_session_routes(
                 pass
         return {"deleted": deleted_count}
 
-    @router.delete("/session/{sid}")
+    @router.delete("/session/{sid}", response_model=SessionResponse)
     def delete_session(request: Request, sid: str):
         """Permanently delete a session and all its messages."""
         _verify_session_owner(request, sid, session_manager)
@@ -655,7 +655,7 @@ def setup_session_routes(
         finally:
             db.close()
 
-    @router.post("/session/{sid}/archive")
+    @router.post("/session/{sid}/archive", response_model=SessionResponse)
     def archive_session(request: Request, sid: str):
         """Archive a session, keeping its data but removing it from active sessions."""
         _verify_session_owner(request, sid)
@@ -693,7 +693,7 @@ def setup_session_routes(
         except KeyError:
             raise HTTPException(404, f"Session '{sid}' not found")
 
-    @router.post("/session/{sid}/unarchive")
+    @router.post("/session/{sid}/unarchive", response_model=SessionResponse)
     def unarchive_session(request: Request, sid: str):
         """Restore an archived session back to the active session list."""
         _verify_session_owner(request, sid)

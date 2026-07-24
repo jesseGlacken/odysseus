@@ -1348,7 +1348,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
               }
             }
           },
@@ -1387,7 +1389,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
               }
             }
           },
@@ -1550,7 +1554,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
               }
             }
           },
@@ -1591,7 +1597,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
               }
             }
           },
@@ -4795,6 +4803,7 @@
           "presets"
         ],
         "summary": "Get Presets",
+        "description": "Return presets scoped to the current user.",
         "operationId": "get_presets_api_presets_get",
         "responses": {
           "200": {
@@ -10133,7 +10142,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           }
@@ -10171,7 +10182,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           }
@@ -10202,7 +10215,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -10241,7 +10256,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -10271,7 +10288,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           }
@@ -10303,7 +10322,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -10343,7 +10364,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -10563,7 +10586,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarEventResponse"
+                }
               }
             }
           },
@@ -10613,7 +10638,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -10661,7 +10688,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarStatusResponse"
+                }
               }
             }
           },
@@ -20254,6 +20283,82 @@
           "winner"
         ],
         "title": "Body_vote_comparison_api_compare__comp_id__vote_post"
+      },
+      "CalendarEventResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Event ID",
+            "default": ""
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Event title",
+            "default": ""
+          },
+          "start": {
+            "type": "string",
+            "title": "Start",
+            "description": "Start time ISO",
+            "default": ""
+          },
+          "end": {
+            "type": "string",
+            "title": "End",
+            "description": "End time ISO",
+            "default": ""
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Event description",
+            "default": ""
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "description": "Event location",
+            "default": ""
+          },
+          "all_day": {
+            "type": "boolean",
+            "title": "All Day",
+            "default": false
+          },
+          "calendar_name": {
+            "type": "string",
+            "title": "Calendar Name",
+            "default": ""
+          },
+          "color": {
+            "type": "string",
+            "title": "Color",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "CalendarEventResponse"
+      },
+      "CalendarStatusResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the operation succeeded"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "CalendarStatusResponse"
       },
       "ChangePasswordRequest": {
         "properties": {
