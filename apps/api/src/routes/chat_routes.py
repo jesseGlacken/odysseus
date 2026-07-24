@@ -23,7 +23,7 @@ from routes.chat_models import (
 from routes.sse_schemas import CHAT_SSE_EXTRA, CHAT_RESUME_SSE_EXTRA, REWRITE_SSE_EXTRA
 from src.request_models import ChatRequest
 from src.llm_core import llm_call_async, stream_llm, stream_llm_with_fallback
-from src.agent_loop import stream_agent_loop
+from src.agent import stream_agent_loop
 from src import agent_runs
 from src.model_context import estimate_tokens
 from src.chat_helpers import coerce_message_and_session

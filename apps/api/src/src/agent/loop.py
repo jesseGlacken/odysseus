@@ -1,19 +1,17 @@
 """
-agent/loop.py — Streaming agent loop orchestrator (ODY-18).
+agent/loop.py — Streaming agent loop orchestrator (ODY-18 / ODY-70).
 
-This module is the result of extracting ``stream_agent_loop`` from the
-monolithic ``src/agent_loop.py`` into the ``src.agent`` sub-package.
+This module owns ``stream_agent_loop`` and the small helpers that are tightly
+coupled to it.  Larger cross-cutting concerns live in sibling modules:
 
-Helper responsibilities are now in dedicated modules:
   - src.agent.classifier  — intent classification and request analysis
-  - src.agent.context     — context utilities and metrics
+  - src.agent.context     — context utilities and final metrics
   - src.agent.runaway     — runaway-loop detection
   - src.agent.verifier    — tool-block resolution and completion verification
+  - src.agent.prompt      — system-prompt assembly
 
-``_build_system_prompt`` and the large TOOL_SECTIONS prompt constants remain in
-``src.agent_loop`` temporarily (P2.2 will move them to ``src.agent.prompt``).
-They are imported lazily inside ``stream_agent_loop`` to break the circular
-dependency:  agent_loop → agent.loop → agent_loop.
+The orchestrator below has been deliberately split into focused helpers so
+that ``stream_agent_loop`` stays under the cyclomatic-complexity budget.
 """
 from __future__ import annotations
 
@@ -23,11 +21,11 @@ import json
 import logging
 import re
 import time
-from typing import AsyncGenerator, Dict, List, Optional, Set
+from typing import Any, AsyncGenerator, Dict, List, Optional, Set
 from urllib.parse import urlparse
 
 # ---------------------------------------------------------------------------
-# Sub-package helpers (no circular dependency with agent_loop.py)
+# Sub-package helpers
 # ---------------------------------------------------------------------------
 from src.agent.classifier import (
     _classify_agent_request,
@@ -50,6 +48,7 @@ from src.agent.context import (
     _empty_response_fallback,
     _strip_think_blocks,
 )
+from src.agent.prompt import _build_system_prompt
 from src.agent.runaway import _detect_runaway_call
 from src.agent.verifier import (
     _VERIFIER_EFFECTFUL_TOOLS,
@@ -62,6 +61,7 @@ from src.agent.verifier import (
 # ---------------------------------------------------------------------------
 # External dependencies
 # ---------------------------------------------------------------------------
+from src.agent_loop import _MCP_KEYWORDS
 from src.agent_tools import (
     MAX_AGENT_ROUNDS,
     TOOL_TAGS,
@@ -83,10 +83,9 @@ from src.tool_utils import _truncate, get_mcp_manager
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Module-level constants (non-prompt, used within the loop)
+# Module-level constants
 # ---------------------------------------------------------------------------
 
-#: Hosts whose endpoints natively support OpenAI-style function calling.
 _API_HOSTS: frozenset[str] = frozenset([
     "api.openai.com", "api.anthropic.com",
     "openrouter.ai", "api.groq.com",
@@ -98,13 +97,6 @@ _API_HOSTS: frozenset[str] = frozenset([
     "api.githubcopilot.com",
 ])
 
-#: Keywords that signal an MCP tool might be relevant.
-_MCP_KEYWORDS: frozenset[str] = frozenset([
-    "mcp", "browse", "browser", "website", "calendar", "event", "email",
-    "gmail", "screenshot", "navigate", "click", "miniflux", "rss", "feed",
-])
-
-#: Function-schema names that are admin-only (not shown by default).
 _ADMIN_SCHEMA_NAMES: frozenset[str] = frozenset([
     "manage_session", "manage_skills", "manage_tasks",
     "manage_endpoints", "manage_mcp", "manage_webhooks", "manage_tokens",
@@ -112,10 +104,6 @@ _ADMIN_SCHEMA_NAMES: frozenset[str] = frozenset([
     "ask_teacher", "list_models", "search_chats",
 ])
 
-#: Soft timeout for the tool-selection RAG query.
-_TOOL_SELECTION_TIMEOUT_SECONDS: float = 1.5
-
-#: Admin tools included when admin intent is detected.
 _ADMIN_TOOLS: set[str] = {
     "manage_session", "manage_skills", "manage_tasks",
     "manage_endpoints", "manage_mcp", "manage_webhooks", "manage_tokens",
@@ -123,8 +111,8 @@ _ADMIN_TOOLS: set[str] = {
     "send_to_session", "pipeline", "ask_teacher", "list_models",
 }
 
-# Intent-nudge detector — catches "Let me tail the output" with no subsequent
-# tool call and prompts the model to actually call the tool.
+_TOOL_SELECTION_TIMEOUT_SECONDS: float = 1.5
+
 _INTENT_RE = re.compile(
     r"(?:^|\n)\s*(?:let me|i'?ll|i will|i need to|we need to|need to|"
     r"i should|we should|i must|we must|going to|let's)\s+"
@@ -137,7 +125,6 @@ _INTENT_RE = re.compile(
 )
 _MAX_INTENT_NUDGES: int = 2
 
-# Domain-tool mapping (copied from agent_loop to avoid import cycle with prompt-building).
 _DOMAIN_TOOL_MAP: dict[str, set[str]] = {
     "web": set(WEB_TOOL_NAMES),
     "documents": {"create_document", "edit_document", "update_document", "suggest_document", "manage_documents"},
@@ -168,6 +155,27 @@ _DOMAIN_TOOL_MAP: dict[str, set[str]] = {
     },
     "contacts": {"resolve_contact", "manage_contact"},
     "integrations": {"api_call"},
+}
+
+_DOC_MODEL_ARTIFACT_RE = re.compile(
+    r"(?:\|end\|)+\|?assistan(?:t)?\|?"
+    r"|\|assistan(?:t)?\|"
+    r"|<\|im_start\|>\s*assistant"
+    r"|<\|im_end\|>",
+    re.IGNORECASE,
+)
+
+_DOC_TOOL_TRUNCATED_FENCE_RE = re.compile(
+    r"```(create|update|edit|edi|suggest)_documen(?!t)(?=\s|\n|```)",
+    re.IGNORECASE,
+)
+
+_DOC_TOOL_COMPACT_MARKERS: dict[str, str] = {
+    "<<FIND>": "<<<FIND>>>",
+    "<<REPLACE>": "<<<REPLACE>>>",
+    "<<SUGGEST>": "<<<SUGGEST>>>",
+    "<<REASON>": "<<<REASON>>>",
+    "<<END>": "<<<END>>>",
 }
 
 
@@ -260,31 +268,9 @@ def _endpoint_lookup_keys(endpoint_url: str) -> List[str]:
 # Document LoRA / Odysseus fine-tune utilities
 # ---------------------------------------------------------------------------
 
-_DOC_MODEL_ARTIFACT_RE = re.compile(
-    r"(?:\|end\|)+\|?assistan(?:t)?\|?"
-    r"|\|assistan(?:t)?\|"
-    r"|<\|im_start\|>\s*assistant"
-    r"|<\|im_end\|>",
-    re.IGNORECASE,
-)
-
-
 def _strip_doc_model_artifacts(text: str) -> str:
     """Remove chat-template role tokens that leak into document LoRA output."""
     return _DOC_MODEL_ARTIFACT_RE.sub("", text or "")
-
-
-_DOC_TOOL_TRUNCATED_FENCE_RE = re.compile(
-    r"```(create|update|edit|edi|suggest)_documen(?!t)(?=\s|\n|```)",
-    re.IGNORECASE,
-)
-_DOC_TOOL_COMPACT_MARKERS: dict[str, str] = {
-    "<<FIND>": "<<<FIND>>>",
-    "<<REPLACE>": "<<<REPLACE>>>",
-    "<<SUGGEST>": "<<<SUGGEST>>>",
-    "<<REASON>": "<<<REASON>>>",
-    "<<END>": "<<<END>>>",
-}
 
 
 def _normalize_truncated_document_tool_fences(text: str) -> str:
@@ -387,7 +373,7 @@ def _minimal_odysseus_doc_messages(
             "<<<FIND>>>\n"
             "text to improve\n"
             "<<<SUGGEST>>>\n"
-            "suggested replacement\n"
+            "suggested replacement text\n"
             "<<<REASON>>>\n"
             "why this improves it\n"
             "<<<END>>>\n"
@@ -496,11 +482,7 @@ PLAN_MODE_DIRECTIVE: str = (
 
 
 def build_active_plan_note(approved_plan: str) -> str:
-    """System note that pins an approved plan during execution.
-
-    Sent back by the frontend each turn so a long plan survives history
-    truncation. Returns ``""`` for empty input.
-    """
+    """System note that pins an approved plan during execution."""
     if not approved_plan or not approved_plan.strip():
         return ""
     return (
@@ -520,53 +502,176 @@ def build_active_plan_note(approved_plan: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# stream_agent_loop — main entry point
+# Direct low-signal reply stream
 # ---------------------------------------------------------------------------
 
-async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by delegation)
+async def _direct_low_signal_stream(
+    *,
     endpoint_url: str,
     model: str,
+    headers: Optional[Dict],
+    fallbacks: Optional[List[tuple]],
     messages: List[Dict],
-    headers: Optional[Dict] = None,
-    temperature: float = 0.3,
-    max_tokens: int = 4096,
-    prompt_type: Optional[str] = None,
-    max_rounds: int = MAX_AGENT_ROUNDS,
-    max_tool_calls: int = 0,
-    context_length: int = 0,
-    active_document: object = None,
-    active_email: Optional[Dict[str, str]] = None,
-    session_id: Optional[str] = None,
-    disabled_tools: Optional[Set[str]] = None,
-    owner: Optional[str] = None,
-    relevant_tools: Optional[Set[str]] = None,
-    fallbacks: Optional[List[tuple]] = None,
-    plan_mode: bool = False,
-    approved_plan: Optional[str] = None,
-    tool_policy: Optional[ToolPolicy] = None,
-    workspace: Optional[str] = None,
-    forced_tools: Optional[Set[str]] = None,
-    uploaded_files: Optional[List[Dict]] = None,
-    workload: str = "foreground",
-    _is_teacher_run: bool = False,
+    _last_user: str,
+    _ody_qwen_finetune_model: bool,
+    temperature: float,
+    max_tokens: int,
+    session_id: Optional[str],
+    workload: str,
 ) -> AsyncGenerator[str, None]:
-    """Streaming agent loop generator.
+    """Short-circuit stream for casual / low-signal turns."""
+    direct_messages = (
+        _minimal_odysseus_general_messages(messages, include_memory=True)
+        if _ody_qwen_finetune_model
+        else [{"role": "user", "content": _last_user}]
+    )
+    direct_response = ""
+    direct_start = time.time()
+    direct_actual_model = model
+    real_input_tokens = 0
+    real_output_tokens = 0
+    try:
+        async for chunk in stream_llm_with_fallback(
+            [(endpoint_url, model, headers)] + list(fallbacks or []),
+            direct_messages,
+            temperature=temperature,
+            max_tokens=min(max_tokens or 128, 128),
+            prompt_type=None,
+            tools=None,
+            timeout=int(get_setting("agent_stream_timeout_seconds", 300) or 300),
+            session_id=session_id,
+            workload=workload,
+        ):
+            if chunk.startswith("data: ") and not chunk.startswith("data: [DONE]"):
+                try:
+                    data = json.loads(chunk[6:])
+                except json.JSONDecodeError:
+                    yield chunk
+                    continue
+                if data.get("type") == "usage":
+                    usage = data.get("data", {}) or {}
+                    direct_actual_model = usage.get("model") or direct_actual_model
+                    real_input_tokens += usage.get("input_tokens", 0) or 0
+                    real_output_tokens += usage.get("output_tokens", 0) or 0
+                    continue
+                if data.get("type") == "model_actual":
+                    direct_actual_model = data.get("model") or direct_actual_model
+                    data["requested_model"] = model
+                    yield f"data: {json.dumps(data)}\n\n"
+                    continue
+                if data.get("type") == "fallback":
+                    direct_actual_model = data.get("answered_by") or direct_actual_model
+                    yield chunk
+                    continue
+                if "delta" in data:
+                    if not data.get("thinking"):
+                        direct_response += data.get("delta", "")
+                    yield chunk
+                    continue
+                yield chunk
+            elif chunk.startswith("event: "):
+                yield chunk
+    except Exception as _direct_err:
+        logger.warning("[agent] direct low-signal path failed: %s", _direct_err)
+        fallback = "Hey."
+        direct_response += fallback
+        yield f"data: {json.dumps({'delta': fallback})}\n\n"
 
-    Yields SSE events:
-      - data: {"delta": "text"}
-      - data: {"type": "tool_start", ...}
-      - data: {"type": "tool_output", ...}
-      - data: {"type": "agent_step", "round": N}
-      - data: {"type": "metrics", "data": {...}}
-      - data: [DONE]
+    if not direct_response.strip():
+        fallback = "Hey."
+        direct_response = fallback
+        yield f"data: {json.dumps({'delta': fallback})}\n\n"
 
-    ``_build_system_prompt`` is imported lazily (inside this function) to
-    break the import cycle:  src.agent_loop → src.agent.loop → src.agent_loop.
-    By the time this generator is invoked, src.agent_loop is fully loaded.
-    """
-    # Lazy import to avoid circular dependency with src.agent_loop
-    from src.agent_loop import _build_system_prompt  # type: ignore[attr-defined]
+    duration = time.time() - direct_start
+    metrics = {
+        "model": direct_actual_model,
+        "requested_model": model,
+        "input_tokens": real_input_tokens or estimate_tokens(direct_messages),
+        "output_tokens": real_output_tokens or max(len(direct_response) // 4, 1),
+        "total_time": round(duration, 2),
+        "response_time": round(duration, 2),
+        "agent_rounds": 0,
+        "tool_calls": 0,
+        "direct_low_signal": True,
+    }
+    yield f"data: {json.dumps({'type': 'metrics', 'data': metrics})}\n\n"
+    yield "data: [DONE]\n\n"
 
+
+# ---------------------------------------------------------------------------
+# Round schema selection
+# ---------------------------------------------------------------------------
+
+def _build_round_schemas(
+    *,
+    force_answer: bool,
+    is_api_model: bool,
+    relevant_tools: Optional[Set[str]],
+    needs_admin: bool,
+    ody_qwen_finetune_model: bool,
+    disabled_tools: Set[str],
+    mcp_schemas: list,
+    last_user: str,
+) -> list:
+    """Select OpenAI function schemas for the current round."""
+    if force_answer:
+        return []
+    if is_api_model:
+        from src.agent_tools import FUNCTION_TOOL_SCHEMAS as _FTS
+        if relevant_tools:
+            _schema_names = set(relevant_tools)
+            if needs_admin:
+                _schema_names |= _ADMIN_TOOLS
+            base_schemas = [
+                s for s in _FTS
+                if s.get("function", {}).get("name") in _schema_names
+            ]
+            _mcp_filtered = [
+                s for s in mcp_schemas
+                if s.get("function", {}).get("name") in relevant_tools
+            ]
+            all_schemas = base_schemas + _mcp_filtered
+        else:
+            base_schemas = _FTS if needs_admin else [
+                s for s in _FTS
+                if s.get("function", {}).get("name") not in _ADMIN_SCHEMA_NAMES
+            ]
+            all_schemas = base_schemas + mcp_schemas
+        if ody_qwen_finetune_model:
+            all_schemas = []
+        if disabled_tools:
+            all_schemas = [
+                t for t in all_schemas
+                if t.get("function", {}).get("name") not in disabled_tools
+                and t.get("name") not in disabled_tools
+            ]
+        return all_schemas
+    _last_content = last_user.lower()
+    _wants_mcp = any(kw in _last_content for kw in _MCP_KEYWORDS)
+    return mcp_schemas if (_wants_mcp and mcp_schemas) else []
+
+
+# ---------------------------------------------------------------------------
+# Preparation helpers (extracted to keep stream_agent_loop lean)
+# ---------------------------------------------------------------------------
+
+def _prepare_loop_state(
+    *,
+    messages: List[Dict[str, Any]],
+    model: str,
+    tool_policy: Optional[ToolPolicy],
+    owner: Optional[str],
+    plan_mode: bool,
+    uploaded_files: Optional[List[Dict[str, Any]]],
+    active_document: Any,
+    active_email: Optional[Dict[str, str]],
+    disabled_tools: Optional[Set[str]],
+    forced_tools: Optional[Set[str]],
+    relevant_tools: Optional[Set[str]],
+    workspace: Optional[str],
+    approved_plan: Optional[str],
+) -> Dict[str, Any]:
+    """Set up tool policy, intent classification, and direct-path flags."""
     mcp_mgr = get_mcp_manager()
     prep_timings: Dict[str, float] = {}
     disabled_tools = set(disabled_tools or [])
@@ -583,7 +688,7 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
     if plan_mode:
         disabled_tools.update(plan_mode_disabled_tools())
 
-    uploaded_files = uploaded_files or []
+    uploaded_files = list(uploaded_files or [])
     _upload_msg = _uploaded_files_context_message(uploaded_files)
     if _upload_msg:
         messages = _insert_before_latest_user(messages, _upload_msg)
@@ -634,88 +739,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             _last_user[:80],
         )
     _mcp_disabled_map = _load_mcp_disabled_map() if mcp_mgr else {}
-
-    # ── Direct low-signal reply path ──────────────────────────────────────
-    if _direct_low_signal:
-        logger.info("[agent] direct low-signal reply path for latest=%r", _last_user[:80])
-        direct_messages = (
-            _minimal_odysseus_general_messages(messages, include_memory=True)
-            if _ody_qwen_finetune_model
-            else [{"role": "user", "content": _last_user}]
-        )
-        direct_response = ""
-        direct_start = time.time()
-        direct_actual_model = model
-        real_input_tokens = 0
-        real_output_tokens = 0
-        try:
-            async for chunk in stream_llm_with_fallback(
-                [(endpoint_url, model, headers)] + list(fallbacks or []),
-                direct_messages,
-                temperature=temperature,
-                max_tokens=min(max_tokens or 128, 128),
-                prompt_type=None,
-                tools=None,
-                timeout=int(get_setting("agent_stream_timeout_seconds", 300) or 300),
-                session_id=session_id,
-                workload=workload,
-            ):
-                if chunk.startswith("data: ") and not chunk.startswith("data: [DONE]"):
-                    try:
-                        data = json.loads(chunk[6:])
-                    except json.JSONDecodeError:
-                        yield chunk
-                        continue
-                    if data.get("type") == "usage":
-                        usage = data.get("data", {}) or {}
-                        direct_actual_model = usage.get("model") or direct_actual_model
-                        real_input_tokens += usage.get("input_tokens", 0) or 0
-                        real_output_tokens += usage.get("output_tokens", 0) or 0
-                        continue
-                    if data.get("type") == "model_actual":
-                        direct_actual_model = data.get("model") or direct_actual_model
-                        data["requested_model"] = model
-                        yield f"data: {json.dumps(data)}\n\n"
-                        continue
-                    if data.get("type") == "fallback":
-                        direct_actual_model = data.get("answered_by") or direct_actual_model
-                        yield chunk
-                        continue
-                    if "delta" in data:
-                        if not data.get("thinking"):
-                            direct_response += data.get("delta", "")
-                        yield chunk
-                        continue
-                    yield chunk
-                elif chunk.startswith("event: "):
-                    yield chunk
-        except Exception as _direct_err:
-            logger.warning("[agent] direct low-signal path failed: %s", _direct_err)
-            fallback = "Hey."
-            direct_response += fallback
-            yield f"data: {json.dumps({'delta': fallback})}\n\n"
-
-        if not direct_response.strip():
-            fallback = "Hey."
-            direct_response = fallback
-            yield f"data: {json.dumps({'delta': fallback})}\n\n"
-
-        duration = time.time() - direct_start
-        metrics = {
-            "model": direct_actual_model,
-            "requested_model": model,
-            "input_tokens": real_input_tokens or estimate_tokens(direct_messages),
-            "output_tokens": real_output_tokens or max(len(direct_response) // 4, 1),
-            "total_time": round(duration, 2),
-            "response_time": round(duration, 2),
-            "agent_rounds": 0,
-            "tool_calls": 0,
-            "direct_low_signal": True,
-        }
-        yield f"data: {json.dumps({'type': 'metrics', 'data': metrics})}\n\n"
-        yield "data: [DONE]\n\n"
-        return
-
     if plan_mode and mcp_mgr:
         _mcp_block_map, _mcp_block_q = mcp_mgr.plan_mode_blocked_mcp()
         for _sid, _names in _mcp_block_map.items():
@@ -723,12 +746,62 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
         disabled_tools.update(_mcp_block_q)
     prep_timings["request_setup"] = time.time() - _t0
 
-    # ── RAG-based tool selection ───────────────────────────────────────────
+    return {
+        "mcp_mgr": mcp_mgr,
+        "disabled_tools": disabled_tools,
+        "guide_only": guide_only,
+        "messages": messages,
+        "uploaded_files": uploaded_files,
+        "needs_admin": _needs_admin,
+        "last_user": _last_user,
+        "ody_qwen_finetune_model": _ody_qwen_finetune_model,
+        "ody_memory_identity_turn": _ody_memory_identity_turn,
+        "intent": _intent,
+        "low_signal_turn": _low_signal_turn,
+        "casual_low_signal_turn": _casual_low_signal_turn,
+        "existing_conversation": _existing_conversation,
+        "active_document_relevant": _active_document_relevant,
+        "active_email_draft_relevant": _active_email_draft_relevant,
+        "prompt_active_document": _prompt_active_document,
+        "direct_low_signal": _direct_low_signal,
+        "retrieval_query": _retrieval_query,
+        "mcp_disabled_map": _mcp_disabled_map,
+        "prep_timings": prep_timings,
+    }
+
+
+async def _select_relevant_tools(
+    *,
+    intent: Dict[str, Any],
+    retrieval_query: str,
+    low_signal_turn: bool,
+    workspace: Optional[str],
+    guide_only: bool,
+    relevant_tools: Optional[Set[str]],
+    mcp_mgr: Any,
+    mcp_disabled_map: Dict[str, set],
+    uploaded_files: List[Dict[str, Any]],
+    forced_tools: Optional[Set[str]],
+    owner: Optional[str],
+    disabled_tools: Set[str],
+    active_document_relevant: bool,
+    active_email_draft_relevant: bool,
+    prompt_active_document: Any,
+    ody_qwen_finetune_model: bool,
+    ody_doc_finetune_mode: bool,
+    ody_notes_finetune_mode: bool,
+    intent_domains: set,
+    last_user: str,
+) -> Optional[Set[str]]:
+    """RAG / keyword / domain tool selection for the current turn."""
+    if guide_only:
+        return relevant_tools
+
     _relevant_tools = relevant_tools
     _t1 = time.time()
     if _relevant_tools:
         logger.info("[tool-rag] Using caller-provided relevant_tools (%d tools)", len(_relevant_tools))
-    if not guide_only and not _relevant_tools and _low_signal_turn:
+    if not _relevant_tools and low_signal_turn:
         from src.tool_index import ALWAYS_AVAILABLE
         if workspace:
             _relevant_tools = set(ALWAYS_AVAILABLE)
@@ -737,7 +810,7 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             logger.info("[tool-rag] Low-signal but workspace active; including read-only file tools")
         else:
             logger.info("[tool-rag] Low-signal query; will run RAG retrieval")
-    if not guide_only and not _relevant_tools:
+    if not _relevant_tools:
         try:
             from src.tool_index import get_tool_index, ALWAYS_AVAILABLE
             try:
@@ -756,15 +829,15 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                 if mcp_mgr:
                     try:
                         await asyncio.wait_for(
-                            asyncio.to_thread(tool_idx.index_mcp_tools, mcp_mgr, _mcp_disabled_map),
+                            asyncio.to_thread(tool_idx.index_mcp_tools, mcp_mgr, mcp_disabled_map),
                             timeout=_TOOL_SELECTION_TIMEOUT_SECONDS,
                         )
                     except asyncio.TimeoutError:
                         logger.warning("[tool-rag] MCP tool indexing exceeded %.1fs", _TOOL_SELECTION_TIMEOUT_SECONDS)
-                if _retrieval_query:
+                if retrieval_query:
                     try:
                         _relevant_tools = await asyncio.wait_for(
-                            asyncio.to_thread(tool_idx.get_tools_for_query, _retrieval_query, 8),
+                            asyncio.to_thread(tool_idx.get_tools_for_query, retrieval_query, 8),
                             timeout=_TOOL_SELECTION_TIMEOUT_SECONDS,
                         )
                         logger.info("[tool-rag] Retrieved tools: %s", sorted(_relevant_tools - ALWAYS_AVAILABLE))
@@ -775,34 +848,33 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             logger.warning("[tool-rag] Retrieval failed, using keyword fallback: %s", e)
             _relevant_tools = None
 
-    if not guide_only and not _relevant_tools and _retrieval_query:
+    if not _relevant_tools and retrieval_query:
         from src.tool_index import ALWAYS_AVAILABLE, ToolIndex
         _relevant_tools = set(ALWAYS_AVAILABLE)
-        ql = _retrieval_query.lower()
+        ql = retrieval_query.lower()
         for keywords, tools in ToolIndex._KEYWORD_HINTS.items():
             if any(kw in ql for kw in keywords):
                 _relevant_tools.update(tools)
         logger.info("[tool-rag] Keyword fallback selected: %s", sorted(_relevant_tools - ALWAYS_AVAILABLE))
 
-    # Seed deterministic domain tools into the selected set.
-    if not guide_only and _relevant_tools is not None:
-        for _domain in (_intent.get("domains") or set()):
+    if _relevant_tools is not None:
+        for _domain in intent_domains:
             _relevant_tools.update(_DOMAIN_TOOL_MAP.get(str(_domain), set()))
-        if "cookbook" in (_intent.get("domains") or set()):
+        if "cookbook" in intent_domains:
             _relevant_tools.update({
                 "list_served_models", "list_downloads",
                 "list_cached_models", "list_cookbook_servers", "list_serve_presets",
             })
-        if "email" in (_intent.get("domains") or set()):
+        if "email" in intent_domains:
             _relevant_tools.add("ui_control")
-        if "web" in (_intent.get("domains") or set()):
+        if "web" in intent_domains:
             _relevant_tools.update(WEB_TOOL_NAMES)
-        if "ui" in (_intent.get("domains") or set()):
+        if "ui" in intent_domains:
             _relevant_tools.add("ui_control")
 
-    if _relevant_tools is not None and _active_document_relevant:
+    if _relevant_tools is not None and active_document_relevant:
         _relevant_tools.update({"edit_document", "update_document", "suggest_document"})
-        if _active_email_draft_relevant:
+        if active_email_draft_relevant:
             _email_fetch_tools = {
                 "list_email_accounts", "list_emails", "read_email",
                 "mcp__email__list_emails", "mcp__email__read_email",
@@ -812,20 +884,20 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                 _relevant_tools.difference_update(_email_fetch_tools)
                 logger.info("[agent-intent] active email draft pruned fetch tools=%s", removed)
 
-    if not guide_only and uploaded_files:
+    if uploaded_files:
         if _relevant_tools is None:
             from src.tool_index import ALWAYS_AVAILABLE
             _relevant_tools = set(ALWAYS_AVAILABLE)
         _relevant_tools.update({"read_file", "grep", "ls", "manage_documents"})
 
-    if not guide_only and forced_tools:
+    if forced_tools:
         forced_set = {t for t in forced_tools if t not in disabled_tools}
         if _relevant_tools is None:
             from src.tool_index import ALWAYS_AVAILABLE
             _relevant_tools = set(ALWAYS_AVAILABLE)
         _relevant_tools.update(forced_set)
 
-    if not guide_only and _relevant_tools is not None and not _low_signal_turn:
+    if _relevant_tools is not None and not low_signal_turn:
         try:
             from services.memory.skills import SkillsManager
             from src.constants import DATA_DIR
@@ -839,11 +911,11 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             _owner_skills = _sm.load(owner=owner) if _skills_on else []
             if _owner_skills:
                 _relevant_tools.add("manage_skills")
-                if _retrieval_query:
+                if retrieval_query:
                     from src.tool_policy import known_tool_names
                     _known = known_tool_names()
                     for _sk in _sm.get_relevant_skills(
-                        _retrieval_query, skills=_owner_skills,
+                        retrieval_query, skills=_owner_skills,
                         threshold=0.25, max_items=3,
                     ):
                         _relevant_tools.update(
@@ -852,36 +924,20 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
         except Exception as _e:
             logger.debug("[tool-rag] skill-aware tool include skipped: %s", _e)
 
-    _intent_domains = set(_intent.get("domains") or set())
-    _ody_doc_finetune_mode = (
-        _ody_qwen_finetune_model
-        and ("documents" in _intent_domains or _active_document_relevant or _prompt_active_document is not None)
-        and "files" not in _intent_domains
-        and not guide_only
-    )
-    _ody_notes_finetune_mode = (
-        _ody_qwen_finetune_model
-        and not _ody_doc_finetune_mode
-        and ("notes_calendar_tasks" in _intent_domains or _looks_like_notes_turn(_last_user))
-        and _looks_like_notes_turn(_last_user)
-        and "files" not in _intent_domains
-        and not guide_only
-    )
-    _ody_doc_stream_create_mode = _ody_doc_finetune_mode and _prompt_active_document is None
-    if _ody_doc_finetune_mode and _relevant_tools is not None:
-        if _prompt_active_document is not None:
+    if ody_doc_finetune_mode and _relevant_tools is not None:
+        if prompt_active_document is not None:
             _relevant_tools = {"edit_document", "update_document", "suggest_document", "ask_user", "update_plan"}
         else:
             _relevant_tools = {"create_document", "ask_user", "update_plan"}
         logger.info("[agent-intent] odysseus doc finetune tool clamp=%s", sorted(_relevant_tools))
-    elif _ody_notes_finetune_mode and _relevant_tools is not None:
+    elif ody_notes_finetune_mode and _relevant_tools is not None:
         _relevant_tools = {"manage_notes", "ask_user", "update_plan"}
         logger.info("[agent-intent] odysseus notes finetune tool clamp=%s", sorted(_relevant_tools))
 
     if (
         _relevant_tools is not None
-        and _active_document_relevant
-        and "files" not in _intent_domains
+        and active_document_relevant
+        and "files" not in intent_domains
         and not uploaded_files
         and not workspace
     ):
@@ -897,10 +953,15 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
     if _relevant_tools is not None:
         logger.info("[agent-intent] selected_tools=%s", sorted(_relevant_tools)[:50])
 
-    prep_timings["tool_selection"] = time.time() - _t1
+    return _relevant_tools
 
-    # ── Determine if this endpoint supports native function calling ────────
-    _t2 = time.time()
+
+def _detect_endpoint_capabilities(
+    endpoint_url: str,
+    model: str,
+    context_length: int,
+) -> tuple[bool, bool]:
+    """Return ``(is_api_model, compact_agent_prompt)`` for the endpoint/model."""
     _model_lc = (model or "").lower()
     _endpoint_supports: Optional[bool] = None
     try:
@@ -940,38 +1001,63 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
     else:
         _is_api_model = any(h in endpoint_url for h in _API_HOSTS) or _model_supports_tools
     _compact_agent_prompt = _is_api_model or _is_ollama_native or _ollama_openai_compat
+    return _is_api_model, _compact_agent_prompt
 
-    # Build system prompt (lazy-imported to break circular dep with agent_loop.py)
+
+def _build_agent_messages(
+    *,
+    messages: List[Dict[str, Any]],
+    model: str,
+    prompt_active_document: Any,
+    mcp_mgr: Any,
+    disabled_tools: Set[str],
+    needs_admin: bool,
+    relevant_tools: Optional[Set[str]],
+    mcp_disabled_map: Dict[str, set],
+    compact_agent_prompt: bool,
+    owner: Optional[str],
+    guide_only: bool,
+    low_signal_turn: bool,
+    active_email: Optional[Dict[str, str]],
+    ody_doc_finetune_mode: bool,
+    ody_doc_stream_create_mode: bool,
+    ody_notes_finetune_mode: bool,
+    ody_qwen_finetune_model: bool,
+    ody_memory_identity_turn: bool,
+    plan_mode: bool,
+    approved_plan: Optional[str],
+) -> tuple[List[Dict[str, Any]], list[Any]]:
+    """Build system prompt and apply finetune / plan / approved-plan modifiers."""
     messages, mcp_schemas = _build_system_prompt(
-        messages, model, _prompt_active_document, mcp_mgr, disabled_tools,
-        needs_admin=_needs_admin, relevant_tools=_relevant_tools,
-        mcp_disabled_map=_mcp_disabled_map,
-        compact=_compact_agent_prompt,
+        messages, model, prompt_active_document, mcp_mgr, disabled_tools,
+        needs_admin=needs_admin, relevant_tools=relevant_tools,
+        mcp_disabled_map=mcp_disabled_map,
+        compact=compact_agent_prompt,
         owner=owner,
         suppress_local_context=guide_only,
-        suppress_skills=_low_signal_turn,
+        suppress_skills=low_signal_turn,
         active_email=active_email,
     )
-    if _ody_doc_finetune_mode and not plan_mode and not approved_plan and not guide_only:
+    if ody_doc_finetune_mode and not plan_mode and not approved_plan and not guide_only:
         messages = _minimal_odysseus_doc_messages(
-            messages, _prompt_active_document,
-            stream_create=_ody_doc_stream_create_mode,
+            messages, prompt_active_document,
+            stream_create=ody_doc_stream_create_mode,
         )
         mcp_schemas = []
         logger.info(
             "[agent-intent] odysseus doc minimal prompt active active_doc=%s stream_create=%s messages=%s",
-            bool(_prompt_active_document), _ody_doc_stream_create_mode, len(messages),
+            bool(prompt_active_document), ody_doc_stream_create_mode, len(messages),
         )
-    elif _ody_notes_finetune_mode and not plan_mode and not approved_plan and not guide_only:
+    elif ody_notes_finetune_mode and not plan_mode and not approved_plan and not guide_only:
         messages = _minimal_odysseus_notes_messages(messages)
         mcp_schemas = []
         logger.info("[agent-intent] odysseus notes minimal prompt active messages=%s", len(messages))
-    elif _ody_qwen_finetune_model and not plan_mode and not approved_plan and not guide_only:
+    elif ody_qwen_finetune_model and not plan_mode and not approved_plan and not guide_only:
         messages = _minimal_odysseus_general_messages(messages, include_memory=True)
         mcp_schemas = []
         logger.info(
             "[agent-intent] odysseus general minimal prompt active include_memory=%s messages=%s",
-            _ody_memory_identity_turn, len(messages),
+            ody_memory_identity_turn, len(messages),
         )
     if plan_mode and not guide_only:
         if messages and messages[0].get("role") == "system":
@@ -990,9 +1076,19 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             messages[0]["content"] = GUIDE_ONLY_DIRECTIVE + "\n\n" + (messages[0].get("content") or "")
         else:
             messages.insert(0, {"role": "system", "content": GUIDE_ONLY_DIRECTIVE})
-    prep_timings["prompt_build"] = time.time() - _t2
+    return messages, mcp_schemas
 
-    # ── Context trimming ──────────────────────────────────────────────────
+
+def _trim_agent_context(
+    *,
+    messages: List[Dict[str, Any]],
+    endpoint_url: str,
+    model: str,
+    max_tokens: int,
+    context_length: int,
+    prep_timings: Dict[str, float],
+) -> tuple[List[Dict[str, Any]], Dict[str, float]]:
+    """Soft-trim messages to the configured input-token budget."""
     _t3 = time.time()
     try:
         from src.context_compactor import trim_for_context
@@ -1034,6 +1130,182 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
     prep_timings["context_trim"] = time.time() - _t3
 
     messages = [{k: v for k, v in msg.items() if k != "_protected"} for msg in messages]
+    return messages, prep_timings
+
+
+# ---------------------------------------------------------------------------
+# Main orchestrator
+# ---------------------------------------------------------------------------
+
+async def stream_agent_loop(
+    endpoint_url: str,
+    model: str,
+    messages: List[Dict],
+    headers: Optional[Dict] = None,
+    temperature: float = 0.3,
+    max_tokens: int = 4096,
+    prompt_type: Optional[str] = None,
+    max_rounds: int = MAX_AGENT_ROUNDS,
+    max_tool_calls: int = 0,
+    context_length: int = 0,
+    active_document: object = None,
+    active_email: Optional[Dict[str, str]] = None,
+    session_id: Optional[str] = None,
+    disabled_tools: Optional[Set[str]] = None,
+    owner: Optional[str] = None,
+    relevant_tools: Optional[Set[str]] = None,
+    fallbacks: Optional[List[tuple]] = None,
+    plan_mode: bool = False,
+    approved_plan: Optional[str] = None,
+    tool_policy: Optional[ToolPolicy] = None,
+    workspace: Optional[str] = None,
+    forced_tools: Optional[Set[str]] = None,
+    uploaded_files: Optional[List[Dict]] = None,
+    workload: str = "foreground",
+    _is_teacher_run: bool = False,
+) -> AsyncGenerator[str, None]:
+    """Streaming agent loop generator.
+
+    Yields SSE events:
+      - data: {"delta": "text"}
+      - data: {"type": "tool_start", ...}
+      - data: {"type": "tool_output", ...}
+      - data: {"type": "agent_step", "round": N}
+      - data: {"type": "metrics", "data": {...}}
+      - data: [DONE]
+    """
+    setup = _prepare_loop_state(
+        messages=messages,
+        model=model,
+        tool_policy=tool_policy,
+        owner=owner,
+        plan_mode=plan_mode,
+        uploaded_files=uploaded_files,
+        active_document=active_document,
+        active_email=active_email,
+        disabled_tools=disabled_tools,
+        forced_tools=forced_tools,
+        relevant_tools=relevant_tools,
+        workspace=workspace,
+        approved_plan=approved_plan,
+    )
+    mcp_mgr = setup["mcp_mgr"]
+    disabled_tools = setup["disabled_tools"]
+    guide_only = setup["guide_only"]
+    messages = setup["messages"]
+    uploaded_files = setup["uploaded_files"]
+    _needs_admin = setup["needs_admin"]
+    _last_user = setup["last_user"]
+    _ody_qwen_finetune_model = setup["ody_qwen_finetune_model"]
+    _ody_memory_identity_turn = setup["ody_memory_identity_turn"]
+    _intent = setup["intent"]
+    _low_signal_turn = setup["low_signal_turn"]
+    _casual_low_signal_turn = setup["casual_low_signal_turn"]
+    _existing_conversation = setup["existing_conversation"]
+    _active_document_relevant = setup["active_document_relevant"]
+    _active_email_draft_relevant = setup["active_email_draft_relevant"]
+    _prompt_active_document = setup["prompt_active_document"]
+    _direct_low_signal = setup["direct_low_signal"]
+    _retrieval_query = setup["retrieval_query"]
+    _mcp_disabled_map = setup["mcp_disabled_map"]
+    prep_timings = setup["prep_timings"]
+
+    if _direct_low_signal:
+        logger.info("[agent] direct low-signal reply path for latest=%r", _last_user[:80])
+        async for chunk in _direct_low_signal_stream(
+            endpoint_url=endpoint_url,
+            model=model,
+            headers=headers,
+            fallbacks=fallbacks,
+            messages=messages,
+            _last_user=_last_user,
+            _ody_qwen_finetune_model=_ody_qwen_finetune_model,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            session_id=session_id,
+            workload=workload,
+        ):
+            yield chunk
+        return
+
+    _intent_domains = set(_intent.get("domains") or set())
+    _ody_doc_finetune_mode = (
+        _ody_qwen_finetune_model
+        and ("documents" in _intent_domains or _active_document_relevant or _prompt_active_document is not None)
+        and "files" not in _intent_domains
+        and not guide_only
+    )
+    _ody_notes_finetune_mode = (
+        _ody_qwen_finetune_model
+        and not _ody_doc_finetune_mode
+        and ("notes_calendar_tasks" in _intent_domains or _looks_like_notes_turn(_last_user))
+        and _looks_like_notes_turn(_last_user)
+        and "files" not in _intent_domains
+        and not guide_only
+    )
+    _ody_doc_stream_create_mode = _ody_doc_finetune_mode and _prompt_active_document is None
+
+    _t_tool_start = time.time()
+    _relevant_tools = await _select_relevant_tools(
+        intent=_intent,
+        retrieval_query=_retrieval_query,
+        low_signal_turn=_low_signal_turn,
+        workspace=workspace,
+        guide_only=guide_only,
+        relevant_tools=relevant_tools,
+        mcp_mgr=mcp_mgr,
+        mcp_disabled_map=_mcp_disabled_map,
+        uploaded_files=uploaded_files,
+        forced_tools=forced_tools,
+        owner=owner,
+        disabled_tools=disabled_tools,
+        active_document_relevant=_active_document_relevant,
+        active_email_draft_relevant=_active_email_draft_relevant,
+        prompt_active_document=_prompt_active_document,
+        ody_qwen_finetune_model=_ody_qwen_finetune_model,
+        ody_doc_finetune_mode=_ody_doc_finetune_mode,
+        ody_notes_finetune_mode=_ody_notes_finetune_mode,
+        intent_domains=_intent_domains,
+        last_user=_last_user,
+    )
+    prep_timings["tool_selection"] = time.time() - _t_tool_start
+
+    _t2 = time.time()
+    _is_api_model, _compact_agent_prompt = _detect_endpoint_capabilities(
+        endpoint_url, model, context_length,
+    )
+    messages, mcp_schemas = _build_agent_messages(
+        messages=messages,
+        model=model,
+        prompt_active_document=_prompt_active_document,
+        mcp_mgr=mcp_mgr,
+        disabled_tools=disabled_tools,
+        needs_admin=_needs_admin,
+        relevant_tools=_relevant_tools,
+        mcp_disabled_map=_mcp_disabled_map,
+        compact_agent_prompt=_compact_agent_prompt,
+        owner=owner,
+        guide_only=guide_only,
+        low_signal_turn=_low_signal_turn,
+        active_email=active_email,
+        ody_doc_finetune_mode=_ody_doc_finetune_mode,
+        ody_doc_stream_create_mode=_ody_doc_stream_create_mode,
+        ody_notes_finetune_mode=_ody_notes_finetune_mode,
+        ody_qwen_finetune_model=_ody_qwen_finetune_model,
+        ody_memory_identity_turn=_ody_memory_identity_turn,
+        plan_mode=plan_mode,
+        approved_plan=approved_plan,
+    )
+    prep_timings["prompt_build"] = time.time() - _t2
+
+    messages, prep_timings = _trim_agent_context(
+        messages=messages,
+        endpoint_url=endpoint_url,
+        model=model,
+        max_tokens=max_tokens,
+        context_length=context_length,
+        prep_timings=prep_timings,
+    )
 
     agent_prompt_tokens = estimate_tokens(messages)
     logger.info(
@@ -1070,79 +1342,42 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
     _force_answer = False
     _intent_nudge_count = 0
     _awaiting_user = False
+    round_response = ""
+    round_reasoning = ""
+    native_tool_calls: list = []
     _doc_acc = ""
     _doc_opened = False
     _doc_last_len = 0
+    _doc_fence_offset = 0
+    _doc_scan_from = 0
     _doc_stream_create_completed = False
     _ody_doc_tool_completed = False
     _exhausted_rounds = False
+    _round_first_event_logged = False
+    _round_first_token_logged = False
+    _round_start = 0.0
+    _round_deadline = 0.0
+    _round_action = ""
+    _round_done = False
+    _candidates: list = []
+    tool_results: list = []
+    tool_result_texts: list = []
+    budget_hit = False
 
-    # ── Main agent loop ───────────────────────────────────────────────────
-    for round_num in range(1, max_rounds + 1):
-        round_response = ""
-        round_reasoning = ""
-        native_tool_calls: list = []
-        _doc_acc = ""
-        _doc_opened = False
-        _doc_last_len = 0
-        _doc_fence_offset = 0
-        _doc_scan_from = 0
-
-        # Build schema list for this round
-        if _force_answer:
-            all_tool_schemas: list = []
-        elif _is_api_model:
-            from src.agent_tools import FUNCTION_TOOL_SCHEMAS as _FTS  # avoid lazy agent_loop import
-            if _relevant_tools:
-                _schema_names = set(_relevant_tools)
-                if _needs_admin:
-                    _schema_names |= _ADMIN_TOOLS
-                base_schemas = [
-                    s for s in _FTS
-                    if s.get("function", {}).get("name") in _schema_names
-                ]
-                _mcp_filtered = [
-                    s for s in mcp_schemas
-                    if s.get("function", {}).get("name") in _relevant_tools
-                ]
-                all_tool_schemas = base_schemas + _mcp_filtered
-            else:
-                base_schemas = _FTS if _needs_admin else [
-                    s for s in _FTS
-                    if s.get("function", {}).get("name") not in _ADMIN_SCHEMA_NAMES
-                ]
-                all_tool_schemas = base_schemas + mcp_schemas
-            if _ody_qwen_finetune_model:
-                all_tool_schemas = []
-            if disabled_tools:
-                all_tool_schemas = [
-                    t for t in all_tool_schemas
-                    if t.get("function", {}).get("name") not in disabled_tools
-                    and t.get("name") not in disabled_tools
-                ]
-        else:
-            _last_content = _last_user.lower()
-            _wants_mcp = any(kw in _last_content for kw in _MCP_KEYWORDS)
-            all_tool_schemas = mcp_schemas if (_wants_mcp and mcp_schemas) else []
-
-        agent_stream_timeout = int(get_setting("agent_stream_timeout_seconds", 300) or 300)
-        _tool_names_sent = [
-            t.get("function", {}).get("name") for t in (all_tool_schemas or []) if t.get("function")
-        ]
-        logger.info(
-            "[agent-debug] round=%d model=%s _is_api_model=%s tools_sent=%d relevant_tools=%s",
-            round_num, model, _is_api_model, len(_tool_names_sent),
-            sorted(_relevant_tools)[:15] if _relevant_tools else "ALL",
-        )
-        _candidates = [(endpoint_url, model, headers)] + list(fallbacks or [])
-        _round_deadline = time.time() + max(agent_stream_timeout * 4, 1200)
-        _round_start = time.time()
-        _round_first_event_logged = False
-        _round_first_token_logged = False
-        logger.info(
-            "[agent-timing] round_start round=%d model=%s prompt_tokens=%d tools=%d timeout=%d",
-            round_num, model, estimate_tokens(messages), len(_tool_names_sent), agent_stream_timeout,
-        )
+    # ---------------------------------------------------------------------------
+    # Single-round SSE streaming
+    # ---------------------------------------------------------------------------
+    async def _stream_one_round(
+        round_num: int,
+        all_tool_schemas: list,
+        agent_stream_timeout: int,
+    ) -> AsyncGenerator[str, None]:
+        nonlocal _round_first_event_logged, _round_first_token_logged, _doc_acc
+        nonlocal _doc_opened, _doc_last_len, _doc_scan_from, _doc_fence_offset
+        nonlocal round_response, round_reasoning, native_tool_calls, actual_model
+        nonlocal real_input_tokens, real_output_tokens, last_round_input_tokens
+        nonlocal has_real_usage, backend_gen_tps, backend_prefill_tps
+        nonlocal time_to_first_token, first_token_received, full_response
 
         async for chunk in stream_llm_with_fallback(
             _candidates, messages,
@@ -1258,7 +1493,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                             data["delta"] = _delta_text
                         if not _ody_qwen_finetune_model or data.get("thinking"):
                             yield f"data: {json.dumps(data)}\n\n"
-                        # Text-fence document streaming
                         if (
                             (round_num > 1 or _ody_doc_stream_create_mode)
                             and not _doc_acc
@@ -1312,306 +1546,20 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             elif chunk.startswith("event: "):
                 yield chunk
 
-        logger.info(
-            "[agent-timing] round_stream_done round=%d elapsed=%.3fs text_chars=%d tool_calls=%d",
-            round_num, time.time() - _round_start, len(round_response), len(native_tool_calls),
-        )
-        _normalized_doc_round = (
-            _normalize_stream_document_fences(
-                round_response,
-                "create_document" if _ody_doc_stream_create_mode else "update_document",
-            )
-            if _ody_doc_finetune_mode
-            else round_response
-        )
-        tool_blocks, used_native, converted_calls = _resolve_tool_blocks(
-            _normalized_doc_round, native_tool_calls, round_num,
-            is_api_model=(_is_api_model and not guide_only),
-            allow_fenced_for_api=_ody_doc_finetune_mode,
-        )
+    # ---------------------------------------------------------------------------
+    # Tool-execution round
+    # ---------------------------------------------------------------------------
+    async def _execute_tool_round(
+        round_num: int,
+        tool_blocks: list,
+        converted_calls: list,
+        used_native: bool,
+    ) -> AsyncGenerator[str, None]:
+        nonlocal _doc_opened, _relevant_tools, full_response, _awaiting_user
+        nonlocal _ody_notes_tool_completed, total_tool_calls, tool_results
+        nonlocal tool_result_texts, budget_hit, _round_done, _effectful_used
+        nonlocal tool_events, _doc_stream_create_completed, _ody_doc_tool_completed
 
-        # Odysseus doc stream-create: keep only the first create_document block.
-        if _ody_doc_stream_create_mode and tool_blocks:
-            create_idx = next(
-                (idx for idx, block in enumerate(tool_blocks) if block.tool_type == "create_document"),
-                None,
-            )
-            if create_idx is None:
-                tool_blocks = []
-                converted_calls = []
-            else:
-                tool_blocks = [tool_blocks[create_idx]]
-                converted_calls = (
-                    [converted_calls[create_idx]] if create_idx < len(converted_calls)
-                    else converted_calls[:1]
-                )
-
-        # Odysseus Qwen finetune: filter manage_memory lookups
-        if _ody_qwen_finetune_model and tool_blocks:
-            _allowed_memory_write_actions = {"add", "edit", "update", "delete", "delete_all"}
-            _explicit_memory_browse = bool(re.search(
-                r"\b(search|list|show|open|view)\b.{0,40}\b(memories|memory|brain)\b",
-                _last_user.lower(),
-            ))
-            _filtered_tool_blocks: list = []
-            _filtered_converted_calls: list = []
-            _dropped_memory_lookup = False
-            for _idx, _block in enumerate(tool_blocks):
-                if _block.tool_type != "manage_memory":
-                    _filtered_tool_blocks.append(_block)
-                    if _idx < len(converted_calls):
-                        _filtered_converted_calls.append(converted_calls[_idx])
-                    continue
-                _action = ""
-                try:
-                    _args = json.loads(_block.content or "{}")
-                    if isinstance(_args, dict):
-                        _action = str(_args.get("action") or "").lower()
-                except Exception:
-                    _action = ""
-                if _action in {"list", "search", "view", "get", "read"} and not _explicit_memory_browse:
-                    _dropped_memory_lookup = True
-                elif _action in _allowed_memory_write_actions and re.search(
-                    r"\b(remember|forget|preference|prefer|save this about me|update memory|delete memory)\b",
-                    _last_user.lower(),
-                ):
-                    _filtered_tool_blocks.append(_block)
-                    if _idx < len(converted_calls):
-                        _filtered_converted_calls.append(converted_calls[_idx])
-                else:
-                    _dropped_memory_lookup = True
-            if _dropped_memory_lookup:
-                logger.info("[agent-intent] odysseus qwen dropped manage_memory lookup")
-                tool_blocks = _filtered_tool_blocks
-                converted_calls = _filtered_converted_calls
-                if used_native:
-                    native_tool_calls = _filtered_converted_calls
-                if not tool_blocks:
-                    _force_answer = True
-                    messages.append({
-                        "role": "system",
-                        "content": (
-                            "Answer the user's identity/personal-memory question from the compact "
-                            "saved memory facts already provided. Do not call manage_memory or any tool."
-                        ),
-                    })
-                    yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                    continue
-
-        # Force-answer round: discard any tool calls and synthesize answer.
-        if _force_answer:
-            if tool_blocks:
-                logger.info("[agent] force-answer round %d: discarding %d tool call(s)", round_num, len(tool_blocks))
-            tool_blocks = []
-            if not _strip_think_blocks(strip_tool_blocks(round_response)).strip():
-                _synth = ""
-                try:
-                    from src.llm_core import llm_call_async
-                    _synth_messages = list(messages) + [{
-                        "role": "user",
-                        "content": (
-                            "Using ONLY the information already gathered above, write "
-                            "the final answer for the user now. Do NOT call any tools, "
-                            "do NOT explain your reasoning — output the finished response "
-                            "directly. If some data couldn't be fetched, just work with "
-                            "what you have and note what's missing in one short line."
-                        ),
-                    }]
-                    _raw = await llm_call_async(
-                        url=endpoint_url, model=model, messages=_synth_messages,
-                        headers=headers, temperature=0.3, max_tokens=max_tokens, timeout=60,
-                    )
-                    _synth = _strip_think_blocks(strip_tool_blocks(_raw or "")).strip()
-                except Exception as _e:
-                    logger.warning("[agent] grace synthesis failed: %s", _e)
-                if _synth:
-                    yield f'data: {json.dumps({"delta": _synth})}\n\n'
-                    full_response += _synth
-                else:
-                    _fb = (
-                        "I gathered some search results but couldn't pull a clean "
-                        "answer together. Want me to try a more specific question, "
-                        "or summarize what I did find?"
-                    )
-                    yield f'data: {json.dumps({"delta": _fb})}\n\n'
-                    full_response += _fb
-
-        # Auto-create document from large code blocks
-        has_doc_tool = any(
-            b.tool_type in ("create_document", "update_document") for b in tool_blocks
-        ) or any(
-            tc.get("name") in ("create_document", "update_document")
-            for tc in native_tool_calls
-        )
-        if not has_doc_tool and session_id and "create_document" not in (disabled_tools or set()):
-            _code_block_re = re.compile(r'```(\w*)\n([\s\S]*?)```')
-            for m in _code_block_re.finditer(round_response):
-                lang_tag = m.group(1).lower()
-                code_body = m.group(2).strip()
-                if code_body.count('\n') < 30:
-                    continue
-                if lang_tag in TOOL_TAGS:
-                    continue
-                lang_map = {"py": "python", "js": "javascript", "ts": "typescript", "": "text"}
-                doc_lang = lang_map.get(lang_tag, lang_tag or "text")
-                doc_title = f"Code ({doc_lang})"
-                tb = ToolBlock("create_document", f"{doc_title}\n{doc_lang}\n{code_body}")
-                tool_blocks.append(tb)
-                yield f'data: {json.dumps({"type": "doc_stream_open", "title": doc_title, "language": doc_lang})}\n\n'
-                yield f'data: {json.dumps({"type": "doc_stream_delta", "content": code_body})}\n\n'
-                logger.info("Auto-created document from %s code block", lang_tag)
-                break
-
-        cleaned_round = strip_tool_blocks(
-            round_response, skip_fenced=(_is_api_model and not used_native and not guide_only)
-        ).strip()
-        round_texts.append(cleaned_round)
-        if _ody_qwen_finetune_model and not tool_blocks and cleaned_round:
-            yield f'data: {json.dumps({"delta": cleaned_round})}\n\n'
-
-        if not tool_blocks:
-            # Completion verifier
-            _claimed_done = bool(_strip_think_blocks(cleaned_round).strip())
-            if (
-                _effectful_used and not _force_answer
-                and _claimed_done
-                and _verifier_rounds < _VERIFIER_MAX_ROUNDS
-                and get_setting("agent_verifier_subagent", False)
-            ):
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num})}\n\n'
-                _vfail = await _run_verifier_subagent(
-                    _verifier_instruction,
-                    _build_actions_snapshot(tool_events),
-                    endpoint_url=endpoint_url, model=model, headers=headers,
-                )
-                if _vfail:
-                    _verifier_rounds += 1
-                    logger.info("[agent] verifier flagged %d issue(s): %s", len(_vfail), _vfail)
-                    _note = "\n\n_Double-checked the work and found something to fix._\n\n"
-                    yield f'data: {json.dumps({"delta": _note})}\n\n'
-                    full_response += _note
-                    messages.append({
-                        "role": "system",
-                        "content": (
-                            "An independent verifier reviewed your work against the "
-                            "original request and found issues that must be fixed before "
-                            "this is actually done:\n- " + "\n- ".join(_vfail) +
-                            "\n\nFix these now using tools, then finish."
-                        ),
-                    })
-                    _effectful_used = False
-                    continue
-
-            # Intent-without-action supervisor
-            _intent_text = _strip_think_blocks(cleaned_round).strip()
-            _intent_match = _INTENT_RE.search(_intent_text) if _intent_text else None
-            _looks_like_promise = (
-                not guide_only
-                and _intent_match is not None
-                and len(_intent_text) < 400
-                and "```" not in _intent_text
-            )
-            if _looks_like_promise and _intent_nudge_count < _MAX_INTENT_NUDGES:
-                _intent_nudge_count += 1
-                _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
-                logger.info("[agent] intent-without-action nudge #%d: %r", _intent_nudge_count, _matched_phrase)
-                _lower_phrase = _matched_phrase.lower()
-                _cookbook_log_hint = ""
-                if any(_word in _lower_phrase for _word in ("log", "logs", "output", "tail", "status")):
-                    _cookbook_log_hint = (
-                        " If this is about a Cookbook/model serve, the concrete calls are: "
-                        "`list_served_models` first, then `tail_serve_output` with the "
-                        "session_id from the serve/list result."
-                    )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        f"You just wrote: \"{_matched_phrase}\" — but ended the "
-                        "turn without making the actual tool call. The user can "
-                        "see you announced the action but didn't run it. "
-                        f"DO IT NOW: emit the actual function call this turn.{_cookbook_log_hint} "
-                        "If you decided not to do it after all, say so plainly in "
-                        "one sentence instead of restating the plan."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
-            if _looks_like_promise:
-                _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
-                logger.warning(
-                    "[agent] intent-without-action guard exhausted on round %d after %d nudges: %r",
-                    round_num, _intent_nudge_count, _matched_phrase,
-                )
-                yield (
-                    "data: "
-                    + json.dumps({
-                        "type": "intent_nudge_exhausted",
-                        "reason": "intent_without_action_nudge_cap",
-                        "message": "The agent stopped because it repeatedly announced a tool action without making the tool call.",
-                        "round": round_num,
-                        "nudges": _intent_nudge_count,
-                        "matched": _matched_phrase,
-                    })
-                    + "\n\n"
-                )
-                break
-            break  # no tools — done
-
-        # ── Loop-breaker ──────────────────────────────────────────────────
-        _sig = "|".join(sorted(f"{b.tool_type}:{(b.content or '').strip()[:120]}" for b in tool_blocks))
-        _is_repeat = _sig in _recent_call_sigs
-        _recent_call_sigs.append(_sig)
-        for _b in tool_blocks:
-            _call_freq[f"{_b.tool_type}:{(_b.content or '').strip()[:120]}"] += 1
-        _real_text = _strip_think_blocks(cleaned_round).strip()
-        if _is_repeat and not _real_text:
-            _stuck_rounds += 1
-        else:
-            _stuck_rounds = 0
-        _runaway = _detect_runaway_call(_call_freq)
-        if _stuck_rounds >= 4 or _runaway:
-            reason = (
-                f"calling {_runaway} with identical arguments over and over"
-                if _runaway
-                else "repeating the same tool calls without new progress"
-            )
-            logger.warning("[agent] loop-breaker tripped on round %d (%s)", round_num, reason)
-            yield (
-                "data: "
-                + json.dumps({
-                    "type": "loop_breaker_triggered",
-                    "reason": "loop_breaker_stall",
-                    "message": (
-                        "The loop-breaker detected repeated tool calls without "
-                        "new progress, so the agent is being forced to stop "
-                        "using tools and give its best final answer."
-                    ),
-                    "round": round_num,
-                    "detail": reason,
-                })
-                + "\n\n"
-            )
-            _off = [t for t in ("web_search", "bash") if disabled_tools and t in disabled_tools]
-            _off_note = (
-                f" ({', '.join(_off)} is currently disabled — say so if you needed it.)"
-                if _off else ""
-            )
-            _force_answer = True
-            messages.append({
-                "role": "system",
-                "content": (
-                    "You're repeating tool calls without converging. STOP calling "
-                    "tools and end the turn one of two ways: (a) write your best "
-                    "final answer NOW from the information already gathered, or "
-                    "(b) if you're genuinely blocked, say plainly what's blocking "
-                    "you in a sentence or two." + _off_note
-                ),
-            })
-            full_response += "\n\n"
-            yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-            continue
-
-        # Pre-stream document content for fenced blocks
         if not _doc_opened and round_num == 1:
             for block in tool_blocks:
                 if tool_policy and tool_policy.blocks(block.tool_type):
@@ -1641,11 +1589,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                     yield f'data: {json.dumps({"type": "doc_stream_open", "title": "", "language": ""})}\n\n'
                     yield f'data: {json.dumps({"type": "doc_stream_delta", "content": content})}\n\n'
                     break
-
-        # ── Execute tool blocks ───────────────────────────────────────────
-        tool_results: list = []
-        tool_result_texts: list = []
-        budget_hit = False
 
         for i, block in enumerate(tool_blocks):
             if max_tool_calls > 0 and total_tool_calls >= max_tool_calls:
@@ -1705,7 +1648,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                         except (asyncio.CancelledError, Exception):
                             pass
 
-            # Unlock skill-prescribed tools after manage_skills view
             if (
                 block.tool_type == "manage_skills"
                 and _relevant_tools is not None
@@ -1738,7 +1680,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                     except Exception as _e:
                         logger.debug("skill requires_toolsets unlock skipped: %s", _e)
 
-            # Extract web_search sources
             _src_text = result.get("output") or result.get("results") or result.get("stdout") or ""
             if block.tool_type == "web_search" and _src_text:
                 _src_marker = "<!-- SOURCES:"
@@ -1756,7 +1697,7 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                                 result["results"] = _clean
                             elif "stdout" in result:
                                 result["stdout"] = _clean
-                        except (json.JSONDecodeError, Exception):
+                        except Exception:
                             pass
 
             if is_doc_tool and "action" in result:
@@ -1782,7 +1723,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             if "plan_update" in result:
                 yield f'data: {json.dumps({"type": "plan_update", "data": result["plan_update"]})}\n\n'
 
-            # Build output for frontend tool bubble
             output_text = ""
             if is_doc_tool and "action" in result:
                 action = result["action"]
@@ -1852,7 +1792,6 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                 tool_output_data["diff"] = result["diff"]
             yield f'data: {json.dumps(tool_output_data)}\n\n'
 
-            # Manage notes: deterministic summary
             if block.tool_type == "manage_notes":
                 _notes_action = ""
                 try:
@@ -1950,24 +1889,411 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
                 _ody_doc_tool_completed = True
 
         if budget_hit:
-            break
+            _round_done = True
+            return
         if _awaiting_user:
-            break
+            _round_done = True
+            return
         if _doc_stream_create_completed:
             if not full_response.strip():
                 full_response = "Done."
                 yield 'data: ' + json.dumps({"delta": "Done."}) + '\n\n'
             logger.info("[agent] odysseus doc stream-create completed")
-            break
+            _round_done = True
+            return
         if _ody_doc_tool_completed:
             if not full_response.strip() or full_response.strip().startswith("```"):
                 full_response = "Done."
                 yield 'data: ' + json.dumps({"delta": "Done."}) + '\n\n'
             logger.info("[agent] odysseus doc tool completed")
-            break
+            _round_done = True
+            return
         if _ody_notes_finetune_mode and _ody_notes_tool_completed:
             logger.info("[agent] odysseus notes completed from deterministic tool output")
-            break
+            _round_done = True
+            return
+
+    # ---------------------------------------------------------------------------
+    # No-tool completion check
+    # ---------------------------------------------------------------------------
+    async def _maybe_verify_or_nudge(
+        round_num: int,
+        cleaned_round: str,
+    ) -> AsyncGenerator[str, None]:
+        nonlocal _effectful_used, _force_answer, _verifier_rounds, _verifier_instruction
+        nonlocal messages, full_response, _intent_nudge_count, _round_action
+
+        _claimed_done = bool(_strip_think_blocks(cleaned_round).strip())
+        if (
+            _effectful_used and not _force_answer
+            and _claimed_done
+            and _verifier_rounds < _VERIFIER_MAX_ROUNDS
+            and get_setting("agent_verifier_subagent", False)
+        ):
+            yield f'data: {json.dumps({"type": "agent_step", "round": round_num})}\n\n'
+            _vfail = await _run_verifier_subagent(
+                _verifier_instruction,
+                _build_actions_snapshot(tool_events),
+                endpoint_url=endpoint_url, model=model, headers=headers,
+            )
+            if _vfail:
+                _verifier_rounds += 1
+                logger.info("[agent] verifier flagged %d issue(s): %s", len(_vfail), _vfail)
+                _note = "\n\n_Double-checked the work and found something to fix._\n\n"
+                yield f'data: {json.dumps({"delta": _note})}\n\n'
+                full_response += _note
+                messages.append({
+                    "role": "system",
+                    "content": (
+                        "An independent verifier reviewed your work against the "
+                        "original request and found issues that must be fixed before "
+                        "this is actually done:\n- " + "\n- ".join(_vfail) +
+                        "\n\nFix these now using tools, then finish."
+                    ),
+                })
+                _effectful_used = False
+                _round_action = "continue"
+                return
+
+        _intent_text = _strip_think_blocks(cleaned_round).strip()
+        _intent_match = _INTENT_RE.search(_intent_text) if _intent_text else None
+        _looks_like_promise = (
+            not guide_only
+            and _intent_match is not None
+            and len(_intent_text) < 400
+            and "```" not in _intent_text
+        )
+        if _looks_like_promise and _intent_nudge_count < _MAX_INTENT_NUDGES:
+            _intent_nudge_count += 1
+            _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
+            logger.info("[agent] intent-without-action nudge #%d: %r", _intent_nudge_count, _matched_phrase)
+            _lower_phrase = _matched_phrase.lower()
+            _cookbook_log_hint = ""
+            if any(_word in _lower_phrase for _word in ("log", "logs", "output", "tail", "status")):
+                _cookbook_log_hint = (
+                    " If this is about a Cookbook/model serve, the concrete calls are: "
+                    "`list_served_models` first, then `tail_serve_output` with the "
+                    "session_id from the serve/list result."
+                )
+            messages.append({
+                "role": "system",
+                "content": (
+                    f"You just wrote: \"{_matched_phrase}\" — but ended the "
+                    "turn without making the actual tool call. The user can "
+                    "see you announced the action but didn't run it. "
+                    f"DO IT NOW: emit the actual function call this turn.{_cookbook_log_hint} "
+                    "If you decided not to do it after all, say so plainly in "
+                    "one sentence instead of restating the plan."
+                ),
+            })
+            yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
+            _round_action = "continue"
+            return
+        if _looks_like_promise:
+            _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
+            logger.warning(
+                "[agent] intent-without-action guard exhausted on round %d after %d nudges: %r",
+                round_num, _intent_nudge_count, _matched_phrase,
+            )
+            yield (
+                "data: "
+                + json.dumps({
+                    "type": "intent_nudge_exhausted",
+                    "reason": "intent_without_action_nudge_cap",
+                    "message": "The agent stopped because it repeatedly announced a tool action without making the tool call.",
+                    "round": round_num,
+                    "nudges": _intent_nudge_count,
+                    "matched": _matched_phrase,
+                })
+                + "\n\n"
+            )
+            _round_action = "break"
+            return
+        _round_action = "break"
+
+    # ---------------------------------------------------------------------------
+    # Single round orchestration
+    # ---------------------------------------------------------------------------
+    async def _run_one_round(round_num: int) -> AsyncGenerator[str, None]:
+        nonlocal messages, _force_answer, _relevant_tools, full_response
+        nonlocal _awaiting_user, _ody_notes_tool_completed, total_tool_calls
+        nonlocal tool_results, tool_result_texts, budget_hit, _round_done
+        nonlocal _effectful_used, tool_events, _doc_stream_create_completed
+        nonlocal _ody_doc_tool_completed, _stuck_rounds, _call_freq, round_texts
+        nonlocal _doc_acc, _doc_opened, _doc_last_len, _doc_fence_offset, _doc_scan_from
+        nonlocal round_response, round_reasoning, native_tool_calls
+        nonlocal _candidates, _round_deadline, _round_start
+        nonlocal _round_first_event_logged, _round_first_token_logged
+        nonlocal _round_action
+
+        round_response = ""
+        round_reasoning = ""
+        native_tool_calls = []
+        _doc_acc = ""
+        _doc_opened = False
+        _doc_last_len = 0
+        _doc_fence_offset = 0
+        _doc_scan_from = 0
+
+        all_tool_schemas = _build_round_schemas(
+            force_answer=_force_answer,
+            is_api_model=_is_api_model,
+            relevant_tools=_relevant_tools,
+            needs_admin=_needs_admin,
+            ody_qwen_finetune_model=_ody_qwen_finetune_model,
+            disabled_tools=disabled_tools,
+            mcp_schemas=mcp_schemas,
+            last_user=_last_user,
+        )
+
+        agent_stream_timeout = int(get_setting("agent_stream_timeout_seconds", 300) or 300)
+        _tool_names_sent = [
+            t.get("function", {}).get("name") for t in (all_tool_schemas or []) if t.get("function")
+        ]
+        logger.info(
+            "[agent-debug] round=%d model=%s _is_api_model=%s tools_sent=%d relevant_tools=%s",
+            round_num, model, _is_api_model, len(_tool_names_sent),
+            sorted(_relevant_tools)[:15] if _relevant_tools else "ALL",
+        )
+        _candidates = [(endpoint_url, model, headers)] + list(fallbacks or [])
+        _round_deadline = time.time() + max(agent_stream_timeout * 4, 1200)
+        _round_start = time.time()
+        _round_first_event_logged = False
+        _round_first_token_logged = False
+        logger.info(
+            "[agent-timing] round_start round=%d model=%s prompt_tokens=%d tools=%d timeout=%d",
+            round_num, model, estimate_tokens(messages), len(_tool_names_sent), agent_stream_timeout,
+        )
+
+        async for chunk in _stream_one_round(
+            round_num, all_tool_schemas, agent_stream_timeout,
+        ):
+            yield chunk
+
+        logger.info(
+            "[agent-timing] round_stream_done round=%d elapsed=%.3fs text_chars=%d tool_calls=%d",
+            round_num, time.time() - _round_start, len(round_response), len(native_tool_calls),
+        )
+        _normalized_doc_round = (
+            _normalize_stream_document_fences(
+                round_response,
+                "create_document" if _ody_doc_stream_create_mode else "update_document",
+            )
+            if _ody_doc_finetune_mode
+            else round_response
+        )
+        tool_blocks, used_native, converted_calls = _resolve_tool_blocks(
+            _normalized_doc_round, native_tool_calls, round_num,
+            is_api_model=(_is_api_model and not guide_only),
+            allow_fenced_for_api=_ody_doc_finetune_mode,
+        )
+
+        if _ody_doc_stream_create_mode and tool_blocks:
+            create_idx = next(
+                (idx for idx, block in enumerate(tool_blocks) if block.tool_type == "create_document"),
+                None,
+            )
+            if create_idx is None:
+                tool_blocks = []
+                converted_calls = []
+            else:
+                tool_blocks = [tool_blocks[create_idx]]
+                converted_calls = (
+                    [converted_calls[create_idx]] if create_idx < len(converted_calls)
+                    else converted_calls[:1]
+                )
+
+        if _ody_qwen_finetune_model and tool_blocks:
+            _allowed_memory_write_actions = {"add", "edit", "update", "delete", "delete_all"}
+            _explicit_memory_browse = bool(re.search(
+                r"\b(search|list|show|open|view)\b.{0,40}\b(memories|memory|brain)\b",
+                _last_user.lower(),
+            ))
+            _filtered_tool_blocks: list = []
+            _filtered_converted_calls: list = []
+            _dropped_memory_lookup = False
+            for _idx, _block in enumerate(tool_blocks):
+                if _block.tool_type != "manage_memory":
+                    _filtered_tool_blocks.append(_block)
+                    if _idx < len(converted_calls):
+                        _filtered_converted_calls.append(converted_calls[_idx])
+                    continue
+                _action = ""
+                try:
+                    _args = json.loads(_block.content or "{}")
+                    if isinstance(_args, dict):
+                        _action = str(_args.get("action") or "").lower()
+                except Exception:
+                    _action = ""
+                if _action in {"list", "search", "view", "get", "read"} and not _explicit_memory_browse:
+                    _dropped_memory_lookup = True
+                elif _action in _allowed_memory_write_actions and re.search(
+                    r"\b(remember|forget|preference|prefer|save this about me|update memory|delete memory)\b",
+                    _last_user.lower(),
+                ):
+                    _filtered_tool_blocks.append(_block)
+                    if _idx < len(converted_calls):
+                        _filtered_converted_calls.append(converted_calls[_idx])
+                else:
+                    _dropped_memory_lookup = True
+            if _dropped_memory_lookup:
+                logger.info("[agent-intent] odysseus qwen dropped manage_memory lookup")
+                tool_blocks = _filtered_tool_blocks
+                converted_calls = _filtered_converted_calls
+                if used_native:
+                    native_tool_calls = _filtered_converted_calls
+                if not tool_blocks:
+                    _force_answer = True
+                    messages.append({
+                        "role": "system",
+                        "content": (
+                            "Answer the user's identity/personal-memory question from the compact "
+                            "saved memory facts already provided. Do not call manage_memory or any tool."
+                        ),
+                    })
+                    yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
+                    return
+
+        if _force_answer:
+            if tool_blocks:
+                logger.info("[agent] force-answer round %d: discarding %d tool call(s)", round_num, len(tool_blocks))
+            tool_blocks = []
+            if not _strip_think_blocks(strip_tool_blocks(round_response)).strip():
+                _synth = ""
+                try:
+                    from src.llm_core import llm_call_async
+                    _synth_messages = list(messages) + [{
+                        "role": "user",
+                        "content": (
+                            "Using ONLY the information already gathered above, write "
+                            "the final answer for the user now. Do NOT call any tools, "
+                            "do NOT explain your reasoning — output the finished response "
+                            "directly. If some data couldn't be fetched, just work with "
+                            "what you have and note what's missing in one short line."
+                        ),
+                    }]
+                    _raw = await llm_call_async(
+                        url=endpoint_url, model=model, messages=_synth_messages,
+                        headers=headers, temperature=0.3, max_tokens=max_tokens, timeout=60,
+                    )
+                    _synth = _strip_think_blocks(strip_tool_blocks(_raw or "")).strip()
+                except Exception as _e:
+                    logger.warning("[agent] grace synthesis failed: %s", _e)
+                if _synth:
+                    yield f'data: {json.dumps({"delta": _synth})}\n\n'
+                    full_response += _synth
+                else:
+                    _fb = (
+                        "I gathered some search results but couldn't pull a clean "
+                        "answer together. Want me to try a more specific question, "
+                        "or summarize what I did find?"
+                    )
+                    yield f'data: {json.dumps({"delta": _fb})}\n\n'
+                    full_response += _fb
+
+        has_doc_tool = any(
+            b.tool_type in ("create_document", "update_document") for b in tool_blocks
+        ) or any(
+            tc.get("name") in ("create_document", "update_document")
+            for tc in native_tool_calls
+        )
+        if not has_doc_tool and session_id and "create_document" not in (disabled_tools or set()):
+            _code_block_re = re.compile(r'```(\w*)\n([\s\S]*?)```')
+            for m in _code_block_re.finditer(round_response):
+                lang_tag = m.group(1).lower()
+                code_body = m.group(2).strip()
+                if code_body.count('\n') < 30:
+                    continue
+                if lang_tag in TOOL_TAGS:
+                    continue
+                lang_map = {"py": "python", "js": "javascript", "ts": "typescript", "": "text"}
+                doc_lang = lang_map.get(lang_tag, lang_tag or "text")
+                doc_title = f"Code ({doc_lang})"
+                tb = ToolBlock("create_document", f"{doc_title}\n{doc_lang}\n{code_body}")
+                tool_blocks.append(tb)
+                yield f'data: {json.dumps({"type": "doc_stream_open", "title": doc_title, "language": doc_lang})}\n\n'
+                yield f'data: {json.dumps({"type": "doc_stream_delta", "content": code_body})}\n\n'
+                logger.info("Auto-created document from %s code block", lang_tag)
+                break
+
+        cleaned_round = strip_tool_blocks(
+            round_response, skip_fenced=(_is_api_model and not used_native and not guide_only)
+        ).strip()
+        round_texts.append(cleaned_round)
+        if _ody_qwen_finetune_model and not tool_blocks and cleaned_round:
+            yield f'data: {json.dumps({"delta": cleaned_round})}\n\n'
+
+        _round_action = ""
+        if not tool_blocks:
+            async for chunk in _maybe_verify_or_nudge(round_num, cleaned_round):
+                yield chunk
+            if _round_action == "continue":
+                return
+            if _round_action == "break":
+                _round_done = True
+                return
+
+        _sig = "|".join(sorted(f"{b.tool_type}:{(b.content or '').strip()[:120]}" for b in tool_blocks))
+        _is_repeat = _sig in _recent_call_sigs
+        _recent_call_sigs.append(_sig)
+        for _b in tool_blocks:
+            _call_freq[f"{_b.tool_type}:{(_b.content or '').strip()[:120]}"] += 1
+        _real_text = _strip_think_blocks(cleaned_round).strip()
+        if _is_repeat and not _real_text:
+            _stuck_rounds += 1
+        else:
+            _stuck_rounds = 0
+        _runaway = _detect_runaway_call(_call_freq)
+        if _stuck_rounds >= 4 or _runaway:
+            reason = (
+                f"calling {_runaway} with identical arguments over and over"
+                if _runaway
+                else "repeating the same tool calls without new progress"
+            )
+            logger.warning("[agent] loop-breaker tripped on round %d (%s)", round_num, reason)
+            yield (
+                "data: "
+                + json.dumps({
+                    "type": "loop_breaker_triggered",
+                    "reason": "loop_breaker_stall",
+                    "message": (
+                        "The loop-breaker detected repeated tool calls without "
+                        "new progress, so the agent is being forced to stop "
+                        "using tools and give its best final answer."
+                    ),
+                    "round": round_num,
+                    "detail": reason,
+                })
+                + "\n\n"
+            )
+            _off = [t for t in ("web_search", "bash") if disabled_tools and t in disabled_tools]
+            _off_note = (
+                f" ({', '.join(_off)} is currently disabled — say so if you needed it.)"
+                if _off else ""
+            )
+            _force_answer = True
+            messages.append({
+                "role": "system",
+                "content": (
+                    "You're repeating tool calls without converging. STOP calling "
+                    "tools and end the turn one of two ways: (a) write your best "
+                    "final answer NOW from the information already gathered, or "
+                    "(b) if you're genuinely blocked, say plainly what's blocking "
+                    "you in a sentence or two." + _off_note
+                ),
+            })
+            full_response += "\n\n"
+            yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
+            return
+
+        tool_results = []
+        tool_result_texts = []
+        budget_hit = False
+        _round_done = False
+        async for chunk in _execute_tool_round(round_num, tool_blocks, converted_calls, used_native):
+            yield chunk
+        if _round_done:
+            return
 
         _append_tool_results(
             messages, round_response, converted_calls,
@@ -1976,65 +2302,80 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
         )
         yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
         full_response += "\n\n"
+
+    # ---------------------------------------------------------------------------
+    # Finalization
+    # ---------------------------------------------------------------------------
+    async def _finalize_turn() -> AsyncGenerator[str, None]:
+        nonlocal full_response
+
+        if _exhausted_rounds:
+            logger.info("[agent] round cap (%d) reached mid-task — emitting rounds_exhausted", max_rounds)
+            yield f'data: {json.dumps({"type": "rounds_exhausted", "rounds": max_rounds})}\n\n'
+
+        _final_reasoning = round_reasoning
+        _full_response, _fallback_chunk = _empty_response_fallback(
+            full_response, _final_reasoning, tool_events
+        )
+        if _fallback_chunk:
+            yield _fallback_chunk
+        full_response = _full_response
+
+        full_response = strip_tool_blocks(full_response).strip()
+        if _ody_notes_finetune_mode and tool_events:
+            for _ev in reversed(tool_events):
+                if _ev.get("tool") != "manage_notes":
+                    continue
+                _notes_action_final = ""
+                try:
+                    _cmd_args = json.loads(_ev.get("command") or "{}")
+                    if isinstance(_cmd_args, dict):
+                        _notes_action_final = str(_cmd_args.get("action") or "").lower()
+                except Exception:
+                    _notes_action_final = ""
+                if _notes_action_final in {"list", "search", "find", "view", "lis"}:
+                    _notes_summary = _note_list_summary_from_tool_output(_ev.get("output") or "")
+                    if _notes_summary:
+                        full_response = _notes_summary
+                break
+
+        total_duration = time.time() - total_start
+        metrics = _compute_final_metrics(
+            messages, full_response, total_duration, time_to_first_token,
+            context_length, real_input_tokens, real_output_tokens,
+            has_real_usage, tool_events, round_texts, model=actual_model,
+            last_round_input_tokens=last_round_input_tokens,
+            prep_timings=prep_timings,
+            backend_gen_tps=backend_gen_tps,
+            backend_prefill_tps=backend_prefill_tps,
+        )
+        metrics["requested_model"] = requested_model
+        yield f"data: {json.dumps({'type': 'metrics', 'data': metrics})}\n\n"
+
+        if not _is_teacher_run and not guide_only:
+            try:
+                from src.teacher_escalation import run_teacher_inline
+                async for evt in run_teacher_inline(
+                    student_endpoint_url=endpoint_url,
+                    student_messages=messages,
+                    student_tool_events=tool_events,
+                    student_reply=full_response,
+                    owner=owner,
+                ):
+                    yield evt
+            except Exception as _esc_err:
+                logger.warning("teacher escalation hook failed: %s", _esc_err, exc_info=True)
+
+        yield "data: [DONE]\n\n"
+
+    # ── Main loop driver ──────────────────────────────────────────────────
+    for round_num in range(1, max_rounds + 1):
+        async for chunk in _run_one_round(round_num):
+            yield chunk
+        if _round_done or _awaiting_user:
+            break
     else:
         _exhausted_rounds = True
 
-    if _exhausted_rounds:
-        logger.info("[agent] round cap (%d) reached mid-task — emitting rounds_exhausted", max_rounds)
-        yield f'data: {json.dumps({"type": "rounds_exhausted", "rounds": max_rounds})}\n\n'
-
-    # round_reasoning is defined inside the for-loop; guard for the
-    # (extremely rare) case where max_rounds=0 and the loop never ran.
-    _final_reasoning = locals().get("round_reasoning", "")
-    full_response, _fallback_chunk = _empty_response_fallback(
-        full_response, _final_reasoning, tool_events
-    )
-    if _fallback_chunk:
-        yield _fallback_chunk
-
-    full_response = strip_tool_blocks(full_response).strip()
-    if _ody_notes_finetune_mode and tool_events:
-        for _ev in reversed(tool_events):
-            if _ev.get("tool") != "manage_notes":
-                continue
-            _notes_action_final = ""
-            try:
-                _cmd_args = json.loads(_ev.get("command") or "{}")
-                if isinstance(_cmd_args, dict):
-                    _notes_action_final = str(_cmd_args.get("action") or "").lower()
-            except Exception:
-                _notes_action_final = ""
-            if _notes_action_final in {"list", "search", "find", "view", "lis"}:
-                _notes_summary = _note_list_summary_from_tool_output(_ev.get("output") or "")
-                if _notes_summary:
-                    full_response = _notes_summary
-            break
-
-    total_duration = time.time() - total_start
-    metrics = _compute_final_metrics(
-        messages, full_response, total_duration, time_to_first_token,
-        context_length, real_input_tokens, real_output_tokens,
-        has_real_usage, tool_events, round_texts, model=actual_model,
-        last_round_input_tokens=last_round_input_tokens,
-        prep_timings=prep_timings,
-        backend_gen_tps=backend_gen_tps,
-        backend_prefill_tps=backend_prefill_tps,
-    )
-    metrics["requested_model"] = requested_model
-    yield f"data: {json.dumps({'type': 'metrics', 'data': metrics})}\n\n"
-
-    if not _is_teacher_run and not guide_only:
-        try:
-            from src.teacher_escalation import run_teacher_inline
-            async for evt in run_teacher_inline(
-                student_endpoint_url=endpoint_url,
-                student_messages=messages,
-                student_tool_events=tool_events,
-                student_reply=full_response,
-                owner=owner,
-            ):
-                yield evt
-        except Exception as _esc_err:
-            logger.warning("teacher escalation hook failed: %s", _esc_err, exc_info=True)
-
-    yield "data: [DONE]\n\n"
+    async for chunk in _finalize_turn():
+        yield chunk
