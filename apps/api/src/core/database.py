@@ -16,24 +16,7 @@ from core.platform_compat import safe_chmod, IS_WINDOWS
 
 logger = logging.getLogger(__name__)
 
-# Create base class for declarative models
-Base = declarative_base()
-
-
-def utcnow_naive() -> datetime:
-    """Return naive UTC for existing DateTime columns."""
-    return datetime.now(timezone.utc).replace(tzinfo=None)
-
-
-class TimestampMixin:
-    """Mixin that adds timestamp fields to models"""
-    @declared_attr
-    def created_at(cls):
-        return Column(DateTime, default=utcnow_naive, nullable=False)
-
-    @declared_attr
-    def updated_at(cls):
-        return Column(DateTime, default=utcnow_naive, onupdate=utcnow_naive, nullable=False)
+from core.base import Base, EncryptedText, TimestampMixin, utcnow_naive
 
 # Ensure the writable data directory exists before SQLite connects.
 from src.constants import DATA_DIR, AUTH_FILE, MEMORY_FILE, USER_PREFS_FILE, SETTINGS_FILE
@@ -147,187 +130,6 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
         cursor.close()
 
 
-class EncryptedText(TypeDecorator):
-    """Text column transparently encrypted at rest via src.secret_storage.
-
-    Writes are Fernet-encrypted (`enc:` prefix); reads decrypt back to
-    plaintext, so all consumers use the column normally. Legacy plaintext
-    rows pass through unchanged until their next write (a startup migration
-    encrypts them). Protects the SQLite file at rest (stolen backup / leaked
-    image), not a live process that can read the key.
-    """
-    impl = Text
-    cache_ok = True
-
-    def process_bind_param(self, value, dialect):
-        if value is None:
-            return None
-        from src.secret_storage import encrypt
-        return encrypt(value)
-
-    def process_result_value(self, value, dialect):
-        if value is None:
-            return None
-        from src.secret_storage import decrypt
-        return decrypt(value)
-
-
-class Session(TimestampMixin, Base):
-    """
-    SQLAlchemy model for Session table.
-    Represents a chat session with its configuration and metadata.
-    """
-    __tablename__ = "sessions"
-
-    # Primary key
-    id = Column(String, primary_key=True, index=True)
-
-    # Session metadata
-    name = Column(String, nullable=False)
-    endpoint_url = Column(String, nullable=False)
-    model = Column(String, nullable=False)
-    owner = Column(String, nullable=True, index=True)  # username; null = legacy/shared
-
-    # Configuration flags
-    rag = Column(Boolean, default=False)
-    archived = Column(Boolean, default=False)
-
-    # Organization
-    folder = Column(String, nullable=True, default=None)
-
-    # Headers stored as JSON
-    headers = Column(JSON, default=dict)
-
-    # Timestamps are provided by TimestampMixin
-    last_accessed = Column(DateTime, default=func.now(), onupdate=func.now())
-    # Timestamp of the last actual MESSAGE in this session. Set explicitly
-    # only when a message is persisted (NOT onupdate) — so it's a clean
-    # "last conversation" signal, immune to renames / model swaps / merely
-    # opening the chat (all of which bump updated_at and last_accessed).
-    # The "Last active" sort uses this.
-    last_message_at = Column(DateTime, nullable=True, default=None)
-
-
-    # Indexes - optimized composites
-    __table_args__ = (
-        Index('ix_sessions_active', 'archived', 'last_accessed'),
-        Index('ix_sessions_search', 'name', 'archived'),
-    )
-
-    # Properties
-    is_important = Column(Boolean, default=False)
-    message_count = Column(Integer, default=0)
-    total_input_tokens = Column(Integer, default=0)
-    total_output_tokens = Column(Integer, default=0)
-    mode = Column(String, nullable=True)  # 'agent', 'chat', or 'research'
-    crew_member_id = Column(String, nullable=True)  # links to crew_members.id
-
-    # Relationship to chat messages
-    messages = relationship("ChatMessage", back_populates="session", cascade="all, delete-orphan")
-
-    @property
-    def is_active(self):
-        """Check if session is active (not archived)"""
-        return not self.archived
-
-    def to_dict(self):
-        """Convert session to dictionary for JSON serialization"""
-        return {
-            'id': self.id,
-            'name': self.name,
-            'model': self.model,
-            'endpoint_url': self.endpoint_url,
-            'rag': self.rag,
-            'archived': self.archived,
-            'created_at': self.created_at.isoformat() if self.created_at else None,
-            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
-            'last_accessed': self.last_accessed.isoformat() if self.last_accessed else None,
-            'last_message_at': self.last_message_at.isoformat() if self.last_message_at else None,
-            'message_count': self.message_count,
-            'is_important': self.is_important,
-            'folder': self.folder,
-            'total_input_tokens': self.total_input_tokens or 0,
-            'total_output_tokens': self.total_output_tokens or 0,
-            'crew_member_id': self.crew_member_id,
-        }
-
-class ChatMessage(Base):
-    """
-    SQLAlchemy model for ChatMessage table.
-    Represents individual chat messages within a session.
-    """
-    __tablename__ = "chat_messages"
-
-    # Primary key - using String to support UUIDs
-    id = Column(String, primary_key=True, index=True)
-
-    # Foreign key to Session
-    session_id = Column(String, ForeignKey("sessions.id", ondelete="CASCADE"), nullable=False, index=True)
-
-    # Message content
-    role = Column(String, nullable=False)
-    content = Column(Text, nullable=False)
-    meta_data = Column("metadata", Text, nullable=True)  # JSON string for metrics etc.
-
-    # Timestamp
-    timestamp = Column(DateTime, default=utcnow_naive)
-
-    # Relationship to Session
-    session = relationship("Session", back_populates="messages")
-
-    # Indexes - optimized composite
-    __table_args__ = (
-        Index('ix_messages_session_time', 'session_id', 'timestamp'),  # Composite for efficient message retrieval
-    )
-
-class Document(TimestampMixin, Base):
-    """Living document that the AI can create and edit in-place."""
-    __tablename__ = "documents"
-
-    id              = Column(String, primary_key=True, index=True)
-    session_id      = Column(String, ForeignKey("sessions.id", ondelete="SET NULL"), nullable=True, index=True)
-    title           = Column(String, nullable=False, default="Untitled")
-    language        = Column(String, nullable=True)          # "python", "markdown", "text", etc.
-    current_content = Column(Text, nullable=False, default="")
-    version_count   = Column(Integer, default=1)
-    is_active       = Column(Boolean, default=True)
-    # Soft-archive: hidden from the Library's Documents list/search/Tidy until
-    # restored. Distinct from is_active (which tracks "open in a session").
-    archived        = Column(Boolean, default=False)
-    # Owner of this document. Documents used to derive ownership from their
-    # linked chat session, but a session can be deleted (session_id → NULL via
-    # SET NULL), orphaning the doc and making it vanish from the owner's
-    # Library + search. Owning the row directly is robust against that.
-    owner           = Column(String, nullable=True, index=True)
-    tidy_verdict    = Column(String, nullable=True)        # "keep", "junk", or None (not yet reviewed)
-    # Provenance: if this document was created by opening an email attachment,
-    # these point back to the source email so the "Sign and reply" flow can
-    # thread a response on the original conversation.
-    source_email_uid         = Column(String, nullable=True)
-    source_email_folder      = Column(String, nullable=True)
-    source_email_account_id  = Column(String, nullable=True)
-    source_email_message_id  = Column(String, nullable=True, index=True)
-
-    session  = relationship("Session", backref=backref("documents", cascade="save-update, merge"))
-    versions = relationship("DocumentVersion", back_populates="document",
-                           cascade="all, delete-orphan", order_by="DocumentVersion.version_number")
-
-
-class DocumentVersion(Base):
-    """Immutable snapshot of a document at a point in time."""
-    __tablename__ = "document_versions"
-
-    id             = Column(String, primary_key=True, index=True)
-    document_id    = Column(String, ForeignKey("documents.id", ondelete="CASCADE"), nullable=False, index=True)
-    version_number = Column(Integer, nullable=False)
-    content        = Column(Text, nullable=False)
-    summary        = Column(String, nullable=True)     # Edit description
-    source         = Column(String, default="ai")      # "ai" or "user"
-    created_at     = Column(DateTime, default=utcnow_naive)
-
-    document = relationship("Document", back_populates="versions")
-
-
 class GalleryAlbum(TimestampMixin, Base):
     """A photo album/folder."""
     __tablename__ = "gallery_albums"
@@ -380,53 +182,6 @@ class GalleryImage(TimestampMixin, Base):
         Index('ix_gallery_images_tags', 'tags'),
         Index('ix_gallery_images_model', 'model'),
         Index('ix_gallery_images_active', 'is_active', 'created_at'),
-    )
-
-
-class EmailAccount(TimestampMixin, Base):
-    """A configured IMAP/SMTP account. Supports multiple accounts per user —
-    exactly one row per owner has is_default=True.
-
-    Security note: imap_password / smtp_password are stored Fernet-encrypted
-    via src/secret_storage.py. The key lives at data/.app_key (mode 0o600,
-    gitignored). Anyone with read access to that file can decrypt every
-    row, so the threat model is "stolen SQLite backup" rather than
-    "process compromise". On first start any legacy plaintext rows are
-    migrated automatically (see _migrate_encrypt_email_passwords).
-    """
-    __tablename__ = "email_accounts"
-
-    id             = Column(String, primary_key=True, index=True)
-    owner          = Column(String, nullable=True, index=True)
-    name           = Column(String, nullable=False)  # Display name: "Work", "Personal", etc.
-    is_default     = Column(Boolean, default=False, nullable=False)
-    enabled        = Column(Boolean, default=True, nullable=False)
-
-    # IMAP (receiving)
-    imap_host      = Column(String, default="")
-    imap_port      = Column(Integer, default=993)
-    imap_user      = Column(String, default="")
-    imap_password  = Column(String, default="")
-    imap_starttls  = Column(Boolean, default=True)
-
-    # SMTP (sending)
-    smtp_host      = Column(String, default="")
-    smtp_port      = Column(Integer, default=465)
-    smtp_security  = Column(String, default="ssl")  # ssl | starttls | none
-    smtp_user      = Column(String, default="")
-    smtp_password  = Column(String, default="")
-
-    from_address   = Column(String, default="")
-    display_name   = Column(String, nullable=True)   # "Hriday Ranka" — used in From: header
-
-    # OAuth2 (Google / Google Workspace). Tokens stored encrypted via secret_storage.
-    oauth_provider      = Column(String, nullable=True)   # "google" or None
-    oauth_access_token  = Column(String, nullable=True)   # encrypted
-    oauth_refresh_token = Column(String, nullable=True)   # encrypted
-    oauth_token_expiry  = Column(String, nullable=True)   # unix timestamp string
-
-    __table_args__ = (
-        Index('ix_email_accounts_owner_default', 'owner', 'is_default'),
     )
 
 
@@ -2556,7 +2311,11 @@ def archive_session(session_id: str):
             return True
     return False
 
-# Initialize the database by creating all tables
-
+# ---------------------------------------------------------------------------
+# ODY-21 / P2.5 — model extraction shims (at end to avoid circular imports)
+# ---------------------------------------------------------------------------
+from core.models.session_models import Session, ChatMessage  # noqa: E402
+from core.models.document_models import Document, DocumentVersion  # noqa: E402
+from core.models.email_models import EmailAccount  # noqa: E402
 
 init_db()
