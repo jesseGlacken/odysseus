@@ -2648,7 +2648,7 @@ async def action_cookbook_serve(
                 _settings["utility_model"] = selected_model
             _save_settings(_settings)
             if owner:
-                from routes.prefs_routes import _load_for_user, _save_for_user
+                from src.prefs_helpers import _load_for_user, _save_for_user
                 _prefs = _load_for_user(owner)
                 _prefs["default_endpoint_id"] = endpoint_id
                 _prefs["default_model"] = selected_model

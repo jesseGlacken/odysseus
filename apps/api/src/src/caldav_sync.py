@@ -275,7 +275,7 @@ def _sync_blocking(owner: str, url: str, username: str, password: str, account_i
     # the integrations form still works, sync just no-ops with an error.
     from caldav.lib.error import AuthorizationError, NotFoundError
     from core.database import CalendarCal, CalendarEvent, SessionLocal
-    from routes.calendar_routes import _ensure_positive_duration
+    from src.calendar_helpers import _ensure_positive_duration
 
     result = {"calendars": 0, "events": 0, "deleted": 0, "errors": []}
 
@@ -588,7 +588,7 @@ def _load_caldav_accounts(owner: str) -> list:
     next real call will just re-run the cheap migration again.
     """
     import uuid as _uuid
-    from routes.prefs_routes import _load_for_user
+    from src.prefs_helpers import _load_for_user
 
     prefs = _load_for_user(owner) or {}
     if "caldav_accounts" in prefs:
@@ -606,7 +606,7 @@ def _load_caldav_accounts(owner: str) -> list:
         prefs["caldav_accounts"] = accounts
         prefs.pop("caldav", None)
         try:
-            from routes.prefs_routes import _save_for_user
+            from src.prefs_helpers import _save_for_user
             _save_for_user(owner, prefs)
         except (ImportError, AttributeError):
             pass  # best-effort; next call re-migrates from the still-present legacy key

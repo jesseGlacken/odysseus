@@ -108,7 +108,7 @@ async def do_manage_skills(content: str, owner: Optional[str] = None) -> Dict:
         _status_arg = args.get("status")
         if not _status_arg:
             try:
-                from routes.prefs_routes import _load_for_user as _load_prefs
+                from src.prefs_helpers import _load_for_user as _load_prefs
                 _prefs = _load_prefs(owner) or {}
                 _status_arg = "published" if _prefs.get("auto_approve_skills", True) else "draft"
             except Exception:

@@ -831,7 +831,7 @@ async def stream_agent_loop(  # noqa: C901  (complexity reduced vs. original by 
             from src.constants import DATA_DIR
             _skills_on = True
             try:
-                from routes.prefs_routes import _load_for_user as _load_prefs
+                from src.prefs_helpers import _load_for_user as _load_prefs
                 _skills_on = (_load_prefs(owner) or {}).get("skills_enabled", True)
             except Exception:
                 pass

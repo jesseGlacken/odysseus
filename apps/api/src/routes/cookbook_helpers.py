@@ -92,22 +92,9 @@ def _validate_token(v: str | None) -> str | None:
     return v
 
 
-def load_stored_hf_token(*, state_path: Path | str | None = None) -> str:
-    """Return the decrypted HF token from cookbook_state.json, else env fallback."""
-    path = Path(state_path) if state_path else Path(os.environ.get("DATA_DIR", "data")) / "cookbook_state.json"
-    token = ""
-    if path.exists():
-        try:
-            state = json.loads(path.read_text(encoding="utf-8"))
-            env = state.get("env") if isinstance(state, dict) else {}
-            if isinstance(env, dict) and env.get("hfToken"):
-                from src.secret_storage import decrypt
-                token = decrypt(env.get("hfToken") or "")
-        except Exception:
-            token = ""
-    if not token:
-        token = (os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN") or "").strip()
-    return token
+# Re-export from src.cookbook_helpers so callers using the old import path keep
+# working (ODY-22 / P2.4).
+from src.cookbook_helpers import load_stored_hf_token  # noqa: F401
 
 
 def _validate_local_dir(v: str | None) -> str | None:
