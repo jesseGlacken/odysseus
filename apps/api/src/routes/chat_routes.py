@@ -7,13 +7,19 @@ import re
 import time
 import logging
 from datetime import datetime
-from typing import Dict, Any, AsyncGenerator, List, Optional
+from typing import Any, AsyncGenerator, Dict, List, Optional
 
-from fastapi import APIRouter, Request, HTTPException, Form, Query
+from fastapi import APIRouter, Form, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
 from pydantic import ValidationError
 
 from core.models import ChatMessage
+from routes.chat_models import (
+    ChatResponse,
+    ChatStopResponse,
+    ChatStreamStatusResponse,
+    InjectContextResponse,
+)
 from src.request_models import ChatRequest
 from src.llm_core import llm_call_async, stream_llm, stream_llm_with_fallback
 from src.agent_loop import stream_agent_loop
@@ -422,8 +428,8 @@ def setup_chat_routes(
     # ------------------------------------------------------------------ #
     # POST /api/chat (non-streaming)
     # ------------------------------------------------------------------ #
-    @router.post("/api/chat", response_model=Dict[str, str])
-    async def chat_endpoint(request: Request, chat_request: ChatRequest) -> Dict[str, str]:
+    @router.post("/api/chat", response_model=ChatResponse)
+    async def chat_endpoint(request: Request, chat_request: ChatRequest) -> ChatResponse:
         _set_user_time_from_request(request)
 
         message = chat_request.message
@@ -1598,7 +1604,7 @@ def setup_chat_routes(
     # POST /api/chat/stop — cancel a detached run (Stop button). Closing the SSE
     # no longer stops it (it's detached), so the Stop button must call this.
     # ------------------------------------------------------------------ #
-    @router.post("/api/chat/stop/{session_id}")
+    @router.post("/api/chat/stop/{session_id}", response_model=ChatStopResponse)
     async def chat_stop(request: Request, session_id: str) -> Dict[str, Any]:
         _verify_session_owner(request, session_id)
         stopped = agent_runs.stop(session_id)
@@ -1607,7 +1613,7 @@ def setup_chat_routes(
     # ------------------------------------------------------------------ #
     # GET /api/chat/stream_status — check if a stream is active for a session
     # ------------------------------------------------------------------ #
-    @router.get("/api/chat/stream_status/{session_id}")
+    @router.get("/api/chat/stream_status/{session_id}", response_model=ChatStreamStatusResponse)
     async def chat_stream_status(request: Request, session_id: str) -> Dict[str, Any]:
         _verify_session_owner(request, session_id)
         # A detached run can still be going even if _active_streams was popped;
@@ -1625,7 +1631,7 @@ def setup_chat_routes(
     # ------------------------------------------------------------------ #
     # POST /api/inject_context
     # ------------------------------------------------------------------ #
-    @router.post("/api/inject_context/{session_id}")
+    @router.post("/api/inject_context/{session_id}", response_model=InjectContextResponse)
     async def inject_context(request: Request, session_id: str, context: str = Form(...)) -> Dict[str, str]:
         _verify_session_owner(request, session_id)
         try:

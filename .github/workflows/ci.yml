@@ -142,7 +142,9 @@ jobs:
           cache: pip
       - run: pip install -r apps/api/requirements.txt
         if: steps.docs-check.outputs.docs_only != 'true'
-      - run: mkdir -p data  # sqlite DB lives at ./data/app.db
+      - run: pip install pytest pytest-asyncio
         if: steps.docs-check.outputs.docs_only != 'true'
-      - run: python -m pytest -q
+      - run: mkdir -p data
+        if: steps.docs-check.outputs.docs_only != 'true'
+      - run: PYTHONPATH=apps/api/src python -m pytest apps/api/tests -q
         if: steps.docs-check.outputs.docs_only != 'true'

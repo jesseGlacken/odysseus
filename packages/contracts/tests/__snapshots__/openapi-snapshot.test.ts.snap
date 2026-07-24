@@ -1034,6 +1034,63 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "ChatRequest",
         "type": "object",
       },
+      "ChatResponse": {
+        "description": "Response from the non-streaming /api/chat endpoint.",
+        "properties": {
+          "response": {
+            "description": "The model's reply text",
+            "title": "Response",
+            "type": "string",
+          },
+        },
+        "required": [
+          "response",
+        ],
+        "title": "ChatResponse",
+        "type": "object",
+      },
+      "ChatStopResponse": {
+        "description": "Response from /api/chat/stop/{session_id}.",
+        "properties": {
+          "stopped": {
+            "description": "Whether the run was stopped",
+            "title": "Stopped",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "stopped",
+        ],
+        "title": "ChatStopResponse",
+        "type": "object",
+      },
+      "ChatStreamStatusResponse": {
+        "description": "Response from /api/chat/stream_status/{session_id}.",
+        "properties": {
+          "detached": {
+            "anyOf": [
+              {
+                "type": "boolean",
+              },
+              {
+                "type": "null",
+              },
+            ],
+            "description": "True if the run is detached from SSE",
+            "title": "Detached",
+          },
+          "status": {
+            "description": "Current stream status (e.g. 'streaming')",
+            "title": "Status",
+            "type": "string",
+          },
+        },
+        "required": [
+          "status",
+        ],
+        "title": "ChatStreamStatusResponse",
+        "type": "object",
+      },
       "CheckInUpdate": {
         "properties": {
           "enabled": {
@@ -1715,6 +1772,21 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
           "url",
         ],
         "title": "HideImageRequest",
+        "type": "object",
+      },
+      "InjectContextResponse": {
+        "description": "Response from /api/inject_context/{session_id}.",
+        "properties": {
+          "status": {
+            "description": "Result status message",
+            "title": "Status",
+            "type": "string",
+          },
+        },
+        "required": [
+          "status",
+        ],
+        "title": "InjectContextResponse",
         "type": "object",
       },
       "IntegrationItemResponse": {
@@ -6267,11 +6339,7 @@ when nothing is provided.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": {
-                    "type": "string",
-                  },
-                  "title": "Response Chat Endpoint Api Chat Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/ChatResponse",
                 },
               },
             },
@@ -6353,9 +6421,7 @@ when nothing is provided.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Chat Stop Api Chat Stop  Session Id  Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/ChatStopResponse",
                 },
               },
             },
@@ -6397,9 +6463,7 @@ when nothing is provided.",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Chat Stream Status Api Chat Stream Status  Session Id  Get",
-                  "type": "object",
+                  "$ref": "#/components/schemas/ChatStreamStatusResponse",
                 },
               },
             },
@@ -16294,11 +16358,7 @@ image), we constrain the output:
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": {
-                    "type": "string",
-                  },
-                  "title": "Response Inject Context Api Inject Context  Session Id  Post",
-                  "type": "object",
+                  "$ref": "#/components/schemas/InjectContextResponse",
                 },
               },
             },
