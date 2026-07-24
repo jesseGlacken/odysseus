@@ -19,7 +19,7 @@ import pytest
 # Load core/atomic_io.py directly by file path so this stays a pure unit test:
 # importing the ``core`` package would pull in core/__init__.py and the
 # database/session modules, making the test depend on data/app.db existing.
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1] / "src"
 ATOMIC_IO_PATH = ROOT / "core" / "atomic_io.py"
 _spec = importlib.util.spec_from_file_location("_atomic_io_under_test", ATOMIC_IO_PATH)
 atomic_io = importlib.util.module_from_spec(_spec)

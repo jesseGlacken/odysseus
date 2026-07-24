@@ -1,11 +1,13 @@
-"""Shared test configuration - ensure project root is on sys.path and stub heavy deps."""
+"""Shared test configuration — ensure apps/api/src is on sys.path."""
 import sys
 import os
 import types
 import importlib.util
 from unittest.mock import MagicMock
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Ensure apps/api/src is the Python path root (where core/, routes/, src/ live)
+_API_SRC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src")
+sys.path.insert(0, _API_SRC)
 
 # Importing core.database below runs init_db() at import time, and its default
 # (sqlite:///./data/app.db) can't be opened in a clean worktree because SQLite
