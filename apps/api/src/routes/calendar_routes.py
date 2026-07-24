@@ -17,7 +17,7 @@ from src.auth_helpers import effective_user, require_user
 from src.upload_limits import read_upload_limited, ICS_MAX_BYTES
 from src.upload_handler import reserve_upload_references
 
-logger = logging.getLogger(__name__)
+from routes.domain_models import CalendarEventResponse, CalendarStatusResponse
 
 
 def _ics_naive_dtstart(dt):
@@ -749,7 +749,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
             "local": not bool(first.get("url")),
         }
 
-    @router.post("/config")
+    @router.post("/config", response_model=CalendarStatusResponse)
     async def save_config(request: Request):
         """Legacy single-account endpoint — upserts the first account."""
         owner = _require_user(request)
@@ -806,7 +806,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
             })
         return {"accounts": safe}
 
-    @router.post("/config/accounts")
+    @router.post("/config/accounts", response_model=CalendarStatusResponse)
     async def add_caldav_account(request: Request):
         """Add a new CalDAV account."""
         import uuid as _uuid
@@ -835,7 +835,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         _save_caldav_accounts(owner, accounts)
         return {"ok": True, "id": new_acc["id"]}
 
-    @router.put("/config/accounts/{account_id}")
+    @router.put("/config/accounts/{account_id}", response_model=CalendarStatusResponse)
     async def update_caldav_account(account_id: str, request: Request):
         """Update an existing CalDAV account by id."""
         owner = _require_user(request)
@@ -865,7 +865,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         _save_caldav_accounts(owner, accounts)
         return {"ok": True}
 
-    @router.delete("/config/accounts/{account_id}")
+    @router.delete("/config/accounts/{account_id}", response_model=CalendarStatusResponse)
     async def delete_caldav_account(account_id: str, request: Request):
         """Remove a CalDAV account by id."""
         owner = _require_user(request)
@@ -876,7 +876,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         _save_caldav_accounts(owner, new_accounts)
         return {"ok": True}
 
-    @router.post("/test")
+    @router.post("/test", response_model=CalendarStatusResponse)
     async def test_connection(request: Request):
         """Probe a CalDAV server with a PROPFIND. Accepts an optional body:
         {url, username, password} to test before saving, or {account_id} to
@@ -979,7 +979,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         except Exception as e:
             return {"ok": False, "error": str(e)[:200]}
 
-    @router.post("/sync")
+    @router.post("/sync", response_model=CalendarStatusResponse)
     async def sync_caldav_endpoint(request: Request, direction: str = "pull"):
         """Sync events with the configured CalDAV server.
         Returns counts + any per-calendar errors. Called by the frontend
@@ -989,7 +989,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         return await sync_caldav_direction(owner, direction)
 
 
-    @router.delete("/calendars/{cal_id}")
+    @router.delete("/calendars/{cal_id}", response_model=CalendarStatusResponse)
     async def delete_calendar(request: Request, cal_id: str):
         owner = _require_user(request)
         db = SessionLocal()
@@ -1094,7 +1094,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         finally:
             db.close()
 
-    @router.post("/events")
+    @router.post("/events", response_model=CalendarEventResponse)
     async def create_event(request: Request, data: EventCreate):
         owner = _require_user(request)
         _reserve_calendar_uploads(request, data.color, data.description, data.location)
@@ -1156,7 +1156,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         finally:
             db.close()
 
-    @router.put("/events/{uid}")
+    @router.put("/events/{uid}", response_model=CalendarStatusResponse)
     async def update_event(request: Request, uid: str, data: EventUpdate):
         owner = _require_user(request)
         _reserve_calendar_uploads(request, data.color, data.description, data.location)
@@ -1208,7 +1208,7 @@ def setup_calendar_routes(upload_handler=None) -> APIRouter:
         finally:
             db.close()
 
-    @router.delete("/events/{uid}")
+    @router.delete("/events/{uid}", response_model=CalendarStatusResponse)
     async def delete_event(request: Request, uid: str, scope: str = "series"):
         owner = _require_user(request)
         try:
