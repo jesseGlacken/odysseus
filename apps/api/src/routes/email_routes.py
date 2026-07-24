@@ -59,6 +59,17 @@ from routes.email_helpers import (
     ATTACHMENTS_DIR, COMPOSE_UPLOADS_DIR, SCHEDULED_DB,
     attachment_extract_dir, _email_cache_owner_clause, email_translation_body_hash,
 )
+from routes.email_models import (
+    EmailComposeUploadResponse,
+    EmailContactListResponse,
+    EmailExtractStyleResponse,
+    EmailFoldersResponse,
+    EmailScheduledCountResponse,
+    EmailStatusResponse,
+    EmailSummarizeResponse,
+    EmailTranslateResponse,
+    EmailUnreadStateResponse,
+)
 from routes.email_pollers import _start_poller
 
 logger = logging.getLogger(__name__)
@@ -1976,7 +1987,7 @@ def setup_email_routes():
             )
         return result
 
-    @router.get("/unread-state")
+    @router.get("/unread-state", response_model=EmailUnreadStateResponse)
     async def unread_state(
         folder: str = Query("INBOX"),
         account_id: str | None = Query(None),
@@ -2050,7 +2061,7 @@ def setup_email_routes():
             "sync": {"source": "imap_fallback"},
         }
 
-    @router.post("/{uid}/unflag-spam")
+    @router.post("/{uid}/unflag-spam", response_model=EmailStatusResponse)
     async def unflag_spam(uid: str, owner: str = Depends(require_owner)):
         """User override — mark email as not spam."""
         try:
@@ -2067,7 +2078,7 @@ def setup_email_routes():
             logger.error(f"unflag-spam failed: {e}")
             return {"ok": False, "error": "Mail operation failed"}
 
-    @router.get("/contacts")
+    @router.get("/contacts", response_model=EmailContactListResponse)
     async def list_contacts(
         q: str = Query(""),
         limit: int = Query(20),
@@ -3016,7 +3027,7 @@ def setup_email_routes():
             logger.error(f"Failed to get attachment path {uid}/{index}: {e}")
             return {"error": "Mail operation failed"}
 
-    @router.post("/mark-unread/{uid}")
+    @router.post("/mark-unread/{uid}", response_model=EmailStatusResponse)
     async def mark_unread(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """Mark an email as unread (clear \\Seen flag)."""
         try:
@@ -3031,7 +3042,7 @@ def setup_email_routes():
             logger.error(f"Failed to mark unread {uid}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/flag/{uid}")
+    @router.post("/flag/{uid}", response_model=EmailStatusResponse)
     async def flag_email(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None),
                          on: bool = Query(True), owner: str = Depends(require_owner)):
         """Toggle the \\Flagged flag (a.k.a. favorite / star) on an email.
@@ -3048,7 +3059,7 @@ def setup_email_routes():
             logger.error(f"Failed to flag {uid}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/mark-read/{uid}")
+    @router.post("/mark-read/{uid}", response_model=EmailStatusResponse)
     async def mark_read(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """Mark an email as read (set \\Seen flag)."""
         try:
@@ -3063,7 +3074,7 @@ def setup_email_routes():
             logger.error(f"Failed to mark read {uid}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/archive/{uid}")
+    @router.post("/archive/{uid}", response_model=EmailStatusResponse)
     # Sync def: blocking IMAP I/O with no awaits — see search_emails above. Runs in a
     # threadpool instead of blocking the event loop.
     def archive_email(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
@@ -3080,7 +3091,7 @@ def setup_email_routes():
             logger.error(f"Failed to archive email {uid}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.delete("/delete/{uid}")
+    @router.delete("/delete/{uid}", response_model=EmailStatusResponse)
     async def delete_email(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """Move email to Trash."""
         try:
@@ -3186,7 +3197,7 @@ def setup_email_routes():
             logger.error(f"delete_odysseus_reminder_emails failed: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/move/{uid}")
+    @router.post("/move/{uid}", response_model=EmailStatusResponse)
     async def move_email(uid: str, folder: str = Query("INBOX"), dest: str = Query(...), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """Move an email to another folder."""
         try:
@@ -3201,7 +3212,7 @@ def setup_email_routes():
             logger.error(f"Failed to move email {uid} to {dest}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.get("/folders")
+    @router.get("/folders", response_model=EmailFoldersResponse)
     async def list_folders(account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """List IMAP folders."""
         if _fixture_email_enabled():
@@ -3230,7 +3241,7 @@ def setup_email_routes():
             logger.error(f"list_folders failed: {e}")
             return {"folders": [], "error": "Mail operation failed"}
 
-    @router.post("/mark-answered/{uid}")
+    @router.post("/mark-answered/{uid}", response_model=EmailStatusResponse)
     async def mark_answered(uid: str, folder: str = Query("INBOX"), account_id: str | None = Query(None), owner: str = Depends(require_owner)):
         """Mark an email as answered (set \\Answered flag)."""
         try:
@@ -3261,7 +3272,7 @@ def setup_email_routes():
             logger.error(f"Failed to clear answered {uid}: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/compose-upload")
+    @router.post("/compose-upload", response_model=EmailComposeUploadResponse)
     async def compose_upload(file: UploadFile = File(...), owner: str = Depends(require_owner)):
         """Upload a file for attaching to a compose email. Returns a token."""
         try:
@@ -3601,7 +3612,7 @@ def setup_email_routes():
             logger.error(f"Failed to schedule email: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.get("/scheduled")
+    @router.get("/scheduled", response_model=EmailScheduledCountResponse)
     async def list_scheduled(owner: str = Depends(require_owner)):
         """List all scheduled (pending) emails."""
         import sqlite3
@@ -3648,7 +3659,7 @@ def setup_email_routes():
     # let the chat UI surface them for the user and either approve (flip
     # to status='pending' with send_at=now so the poller delivers it) or
     # cancel (status='cancelled').
-    @router.get("/pending")
+    @router.get("/pending", response_model=EmailScheduledCountResponse)
     async def list_pending_agent_drafts(owner: str = Depends(require_owner)):
         import sqlite3
         try:
@@ -3760,7 +3771,7 @@ def setup_email_routes():
             logger.error(f"resolve_contact {name!r} failed: {e}")
             return {"contacts": [], "error": "Mail operation failed"}
 
-    @router.post("/send")
+    @router.post("/send", response_model=EmailStatusResponse)
     async def send_email(req: SendEmailRequest, background_tasks: BackgroundTasks, owner: str = Depends(require_owner)):
         """Queue an email for SMTP delivery. Returns immediately; send runs in background.
 
@@ -3964,7 +3975,7 @@ def setup_email_routes():
             "message": f"Email queued for {req.to}",
         }
 
-    @router.post("/draft")
+    @router.post("/draft", response_model=EmailStatusResponse)
     async def save_draft(req: SendEmailRequest, owner: str = Depends(require_owner)):
         """Save email as draft in IMAP Drafts folder.
 
@@ -4016,7 +4027,7 @@ def setup_email_routes():
         logger.info(f"Draft saved: {req.subject}")
         return {"success": True, "message": "Draft saved"}
 
-    @router.post("/extract-style")
+    @router.post("/extract-style", response_model=EmailExtractStyleResponse)
     async def extract_writing_style(req: ExtractStyleRequest, owner: str = Depends(require_owner)):
         """Extract writing style from sent emails using LLM.
 
@@ -4119,7 +4130,7 @@ def setup_email_routes():
             logger.error(f"Failed to extract writing style: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/summarize")
+    @router.post("/summarize", response_model=EmailSummarizeResponse)
     async def summarize_email(data: dict, owner: str = Depends(require_owner)):
         """Generate a quick AI summary of an email body."""
         try:
@@ -4237,7 +4248,7 @@ def setup_email_routes():
             logger.error(f"Failed to summarize: {e}")
             return {"success": False, "error": "Mail operation failed"}
 
-    @router.post("/translate")
+    @router.post("/translate", response_model=EmailTranslateResponse)
     async def translate_email(data: dict, owner: str = Depends(require_owner)):
         """Translate an email body into a target language."""
         try:

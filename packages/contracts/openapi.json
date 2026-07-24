@@ -14077,7 +14077,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailUnreadStateResponse"
+                }
               }
             }
           },
@@ -14134,7 +14136,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -14202,7 +14206,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailContactListResponse"
+                }
               }
             }
           },
@@ -14892,7 +14898,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -14969,7 +14977,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15036,7 +15046,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15103,7 +15115,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15170,7 +15184,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15371,7 +15387,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15419,7 +15437,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailFoldersResponse"
+                }
               }
             }
           },
@@ -15486,7 +15506,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -15611,7 +15633,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailComposeUploadResponse"
+                }
               }
             }
           },
@@ -15972,7 +15996,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailScheduledCountResponse"
+                }
               }
             }
           },
@@ -16076,7 +16102,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailScheduledCountResponse"
+                }
               }
             }
           },
@@ -16307,7 +16335,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -16365,7 +16395,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse"
+                }
               }
             }
           },
@@ -16423,7 +16455,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailExtractStyleResponse"
+                }
               }
             }
           },
@@ -16483,7 +16517,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailSummarizeResponse"
+                }
               }
             }
           },
@@ -16543,7 +16579,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTranslateResponse"
+                }
               }
             }
           },
@@ -20858,6 +20896,136 @@
         },
         "type": "object",
         "title": "DraftUpdate"
+      },
+      "EmailComposeUploadResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token",
+            "description": "Upload token for the attachment",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "EmailComposeUploadResponse",
+        "description": "Response for compose attachment upload."
+      },
+      "EmailContactListResponse": {
+        "properties": {
+          "contacts": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Contacts",
+            "description": "Contact entries"
+          }
+        },
+        "type": "object",
+        "title": "EmailContactListResponse",
+        "description": "Response for contacts list endpoint."
+      },
+      "EmailExtractStyleResponse": {
+        "properties": {
+          "style": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Style",
+            "description": "Extracted style properties"
+          }
+        },
+        "type": "object",
+        "title": "EmailExtractStyleResponse",
+        "description": "Response for signature/style extraction."
+      },
+      "EmailFoldersResponse": {
+        "properties": {
+          "folders": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Folders",
+            "description": "IMAP folder names"
+          }
+        },
+        "type": "object",
+        "title": "EmailFoldersResponse",
+        "description": "Response for folder/mailbox listing."
+      },
+      "EmailScheduledCountResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "Number of items",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "EmailScheduledCountResponse",
+        "description": "Response for scheduled/pending email counts."
+      },
+      "EmailStatusResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "Whether the operation succeeded"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable result",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "EmailStatusResponse",
+        "description": "Generic status response for email operations (flag, mark, move, delete)."
+      },
+      "EmailSummarizeResponse": {
+        "properties": {
+          "summary": {
+            "type": "string",
+            "title": "Summary",
+            "description": "Summarized email content",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "EmailSummarizeResponse",
+        "description": "Response for email summarization."
+      },
+      "EmailTranslateResponse": {
+        "properties": {
+          "translation": {
+            "type": "string",
+            "title": "Translation",
+            "description": "Translated email content",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "EmailTranslateResponse",
+        "description": "Response for email translation."
+      },
+      "EmailUnreadStateResponse": {
+        "properties": {
+          "unread": {
+            "type": "integer",
+            "title": "Unread",
+            "description": "Count of unread messages",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "EmailUnreadStateResponse",
+        "description": "Response for unread state endpoint."
       },
       "EventCreate": {
         "properties": {

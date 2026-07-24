@@ -1620,6 +1620,136 @@ exports[`OpenAPI schema snapshot > matches committed snapshot 1`] = `
         "title": "DraftUpdate",
         "type": "object",
       },
+      "EmailComposeUploadResponse": {
+        "description": "Response for compose attachment upload.",
+        "properties": {
+          "token": {
+            "default": "",
+            "description": "Upload token for the attachment",
+            "title": "Token",
+            "type": "string",
+          },
+        },
+        "title": "EmailComposeUploadResponse",
+        "type": "object",
+      },
+      "EmailContactListResponse": {
+        "description": "Response for contacts list endpoint.",
+        "properties": {
+          "contacts": {
+            "description": "Contact entries",
+            "items": {
+              "additionalProperties": true,
+              "type": "object",
+            },
+            "title": "Contacts",
+            "type": "array",
+          },
+        },
+        "title": "EmailContactListResponse",
+        "type": "object",
+      },
+      "EmailExtractStyleResponse": {
+        "description": "Response for signature/style extraction.",
+        "properties": {
+          "style": {
+            "additionalProperties": true,
+            "description": "Extracted style properties",
+            "title": "Style",
+            "type": "object",
+          },
+        },
+        "title": "EmailExtractStyleResponse",
+        "type": "object",
+      },
+      "EmailFoldersResponse": {
+        "description": "Response for folder/mailbox listing.",
+        "properties": {
+          "folders": {
+            "description": "IMAP folder names",
+            "items": {
+              "type": "string",
+            },
+            "title": "Folders",
+            "type": "array",
+          },
+        },
+        "title": "EmailFoldersResponse",
+        "type": "object",
+      },
+      "EmailScheduledCountResponse": {
+        "description": "Response for scheduled/pending email counts.",
+        "properties": {
+          "count": {
+            "default": 0,
+            "description": "Number of items",
+            "title": "Count",
+            "type": "integer",
+          },
+        },
+        "title": "EmailScheduledCountResponse",
+        "type": "object",
+      },
+      "EmailStatusResponse": {
+        "description": "Generic status response for email operations (flag, mark, move, delete).",
+        "properties": {
+          "message": {
+            "default": "",
+            "description": "Human-readable result",
+            "title": "Message",
+            "type": "string",
+          },
+          "ok": {
+            "description": "Whether the operation succeeded",
+            "title": "Ok",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "ok",
+        ],
+        "title": "EmailStatusResponse",
+        "type": "object",
+      },
+      "EmailSummarizeResponse": {
+        "description": "Response for email summarization.",
+        "properties": {
+          "summary": {
+            "default": "",
+            "description": "Summarized email content",
+            "title": "Summary",
+            "type": "string",
+          },
+        },
+        "title": "EmailSummarizeResponse",
+        "type": "object",
+      },
+      "EmailTranslateResponse": {
+        "description": "Response for email translation.",
+        "properties": {
+          "translation": {
+            "default": "",
+            "description": "Translated email content",
+            "title": "Translation",
+            "type": "string",
+          },
+        },
+        "title": "EmailTranslateResponse",
+        "type": "object",
+      },
+      "EmailUnreadStateResponse": {
+        "description": "Response for unread state endpoint.",
+        "properties": {
+          "unread": {
+            "default": 0,
+            "description": "Count of unread messages",
+            "title": "Unread",
+            "type": "integer",
+          },
+        },
+        "title": "EmailUnreadStateResponse",
+        "type": "object",
+      },
       "EventCreate": {
         "properties": {
           "all_day": {
@@ -11318,7 +11448,9 @@ no live values.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12012,7 +12144,9 @@ not just shown as source-email chips.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailComposeUploadResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12224,7 +12358,9 @@ won't appear yet.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailContactListResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12358,7 +12494,9 @@ won't appear yet.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12419,7 +12557,9 @@ stays responsive on slow remote IMAP servers.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12481,7 +12621,9 @@ on the IMAP step alone with a remote server.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailExtractStyleResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12559,7 +12701,9 @@ Pass \`on=true\` to favorite, \`on=false\` to unfavorite.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12607,7 +12751,9 @@ Pass \`on=true\` to favorite, \`on=false\` to unfavorite.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailFoldersResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12881,7 +13027,9 @@ calls to a worker thread so the event loop never stalls.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -12948,7 +13096,9 @@ calls to a worker thread so the event loop never stalls.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -13015,7 +13165,9 @@ calls to a worker thread so the event loop never stalls.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -13091,7 +13243,9 @@ calls to a worker thread so the event loop never stalls.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -13294,7 +13448,9 @@ calls to a worker thread so the event loop never stalls.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailScheduledCountResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -13664,7 +13820,9 @@ immediately.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailScheduledCountResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -13884,7 +14042,9 @@ Uses req.account_id to pick the sending account (falls back to default).",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -14004,7 +14164,9 @@ Uses req.account_id to pick the sending account (falls back to default).",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailSummarizeResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -14064,7 +14226,9 @@ Uses req.account_id to pick the sending account (falls back to default).",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTranslateResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -14127,7 +14291,9 @@ through the list path.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailUnreadStateResponse",
+                },
               },
             },
             "description": "Successful Response",
@@ -14203,7 +14369,9 @@ through the list path.",
           "200": {
             "content": {
               "application/json": {
-                "schema": {},
+                "schema": {
+                  "$ref": "#/components/schemas/EmailStatusResponse",
+                },
               },
             },
             "description": "Successful Response",
