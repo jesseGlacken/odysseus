@@ -20,7 +20,7 @@ async def do_manage_calendar(content: str, owner: Optional[str] = None) -> Dict:
     """Handle manage_calendar tool calls: list/create/update/delete calendar events (local SQLite)."""
     from datetime import datetime, timedelta
     from core.database import SessionLocal, CalendarCal, CalendarEvent, Note
-    from routes.calendar_routes import (
+    from src.calendar_extracted import (
         _ensure_default_calendar,
         _parse_dt,
         _parse_dt_pair,
