@@ -1,0 +1,5 @@
+{
+  "clean": [],
+  "in_progress": ["auth", "chat", "documents", "email"],
+  "pending": ["calendar", "gallery", "cookbook", "notes", "research", "session", "prefs", "admin", "history", "memory", "shell", "codex", "model"]
+}
