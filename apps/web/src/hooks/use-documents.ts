@@ -95,7 +95,7 @@ export function useUploadDocument() {
       apiClient
         .POST('/api/upload', {
           body: formData,
-          bodySerializer: (b: unknown) => b as BodyInit,
+          bodySerializer: (b: FormData) => b,
         } as never)
         .then((res) => {
           if (res.error) throw res.error;
@@ -147,6 +147,7 @@ export function useUpdateDocument() {
         params: { path: { doc_id: docId } },
         body: {
           content: body.content ?? '',
+          summary: body.title ?? null,
           force_version: false,
         },
       }).then((res) => {

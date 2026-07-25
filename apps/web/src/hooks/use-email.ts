@@ -6,7 +6,7 @@ import { apiClient } from '@odysseus/client-sdk';
  * Maps to GET /api/email/list.
  */
 export function useEmails(params?: {
-  account?: string;
+  account_id?: string;
   folder?: string;
   offset?: number;
   limit?: number;
@@ -17,13 +17,13 @@ export function useEmails(params?: {
       apiClient.GET('/api/email/list', {
         params: {
           query: {
-            account: params?.account,
+            account_id: params?.account_id,
             folder: params?.folder,
             offset: params?.offset,
             limit: params?.limit,
           },
         },
-      } as never).then((res) => {
+      }).then((res) => {
         if (!res.response.ok) throw new Error(`Email list fetch failed: ${res.response.status}`);
         return res.data;
       }),
@@ -51,9 +51,8 @@ export function useEmailContacts() {
  */
 export function useSearchEmails(params?: {
   q?: string;
-  account?: string;
+  account_id?: string;
   folder?: string;
-  offset?: number;
   limit?: number;
 }) {
   return useQuery({
@@ -63,13 +62,12 @@ export function useSearchEmails(params?: {
         params: {
           query: {
             q: params?.q,
-            account: params?.account,
+            account_id: params?.account_id,
             folder: params?.folder,
-            offset: params?.offset,
             limit: params?.limit,
           },
         },
-      } as never).then((res) => {
+      }).then((res) => {
         if (!res.response.ok) throw new Error(`Email search failed: ${res.response.status}`);
         return res.data;
       }),

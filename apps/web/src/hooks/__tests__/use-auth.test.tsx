@@ -250,7 +250,7 @@ describe('useCreateSession', () => {
     });
 
     expect(mockPOST).toHaveBeenCalled();
-    const callArgs = mockPOST.mock.calls[0];
+    const callArgs = mockPOST.mock.calls[0]!;
     expect(callArgs[0]).toBe('/api/session');
   });
 });
@@ -381,7 +381,7 @@ describe('useCreateDocument', () => {
     });
 
     expect(mockPOST).toHaveBeenCalled();
-    const callArgs = mockPOST.mock.calls[0];
+    const callArgs = mockPOST.mock.calls[0]!;
     expect(callArgs[0]).toBe('/api/document');
   });
 });
@@ -401,7 +401,7 @@ describe('useUploadDocument', () => {
     });
 
     expect(mockPOST).toHaveBeenCalled();
-    const callArgs = mockPOST.mock.calls[0];
+    const callArgs = mockPOST.mock.calls[0]!;
     expect(callArgs[0]).toBe('/api/upload');
   });
 });
@@ -437,7 +437,7 @@ describe('useEmails', () => {
     });
 
     expect(mockGET).toHaveBeenCalled();
-    const callArgs = mockGET.mock.calls[0];
+    const callArgs = mockGET.mock.calls[0]!;
     expect(callArgs[0]).toBe('/api/email/list');
   });
 });
@@ -596,183 +596,163 @@ describe('useStreamingChat', () => {
   });
 
   it('sets isStreaming true when start() is called', async () => {
-    // Use a stream that never completes so isStreaming stays true
-    const mockFetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
-      ok: true,
-      body: {
-        getReader: () => ({
-          read: () =>
-            new Promise<{ done: boolean; value?: Uint8Array }>(() => {
-              // Never resolves — keeps the stream open
-            }),
-        }),
+    mockPOST.mockResolvedValue({
+      response: {
+        ok: true,
+        body: {
+          getReader: () => ({
+            read: () =>
+              new Promise<{ done: boolean; value?: Uint8Array }>(() => {}),
+          }),
+        },
       },
-    } as Response);
+    });
 
     const { result } = renderHook(() => useStreamingChat(), { wrapper: createWrapper() });
 
     result.current.start({ message: 'Hello', session: 's1' });
 
-    // State is set synchronously before fetch returns
     await waitFor(() => {
       expect(result.current.isStreaming).toBe(true);
     });
 
-    // Cleanup: stop the stream to avoid hanging promise
     result.current.stop();
-    mockFetch.mockRestore();
   });
 
   it('calls onDone with accumulated text when stream finishes', async () => {
     const onDone = vi.fn();
 
-    // Mock fetch with a simple SSE stream that sends a chunk then [DONE]
-    const mockFetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
-      ok: true,
-      body: {
-        getReader: () => {
-          let doneCalled = false;
-          return {
-            read: () => {
-              if (doneCalled) {
-                return Promise.resolve({ done: true, value: undefined });
-              }
-              doneCalled = true;
-              const chunk = new TextEncoder().encode(
-                'data: {"content":"Hello"}\n\ndata: [DONE]\n\n',
-              );
-              return Promise.resolve({ done: false, value: chunk });
-            },
-          };
+    mockPOST.mockResolvedValue({
+      response: {
+        ok: true,
+        body: {
+          getReader: () => {
+            let doneCalled = false;
+            return {
+              read: () => {
+                if (doneCalled) {
+                  return Promise.resolve({ done: true, value: undefined });
+                }
+                doneCalled = true;
+                const chunk = new TextEncoder().encode(
+                  'event: token\ndata: {"content":"Hello"}\n\nevent: done\ndata: \n\n',
+                );
+                return Promise.resolve({ done: false, value: chunk });
+              },
+            };
+          },
         },
       },
-    } as Response);
+    });
 
     const { result } = renderHook(() => useStreamingChat({ onDone }), {
       wrapper: createWrapper(),
     });
 
-    result.current.start({ message: 'Hi' });
+    act(() => {
+      result.current.start({ message: 'Hi' });
+    });
 
     await waitFor(() => {
       expect(onDone).toHaveBeenCalledWith('Hello');
     });
-
-    mockFetch.mockRestore();
   });
 
   it('calls onChunk for each delta', async () => {
     const onChunk = vi.fn();
 
-    const mockFetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
-      ok: true,
-      body: {
-        getReader: () => {
-          let calls = 0;
-          return {
-            read: () => {
-              calls += 1;
-              if (calls === 1) {
-                const chunk = new TextEncoder().encode('data: {"delta":"Hello"}\n\n');
-                return Promise.resolve({ done: false, value: chunk });
-              }
-              const done = new TextEncoder().encode('data: [DONE]\n\n');
-              return Promise.resolve({ done: false, value: done });
-            },
-          };
+    mockPOST.mockResolvedValue({
+      response: {
+        ok: true,
+        body: {
+          getReader: () => {
+            let calls = 0;
+            return {
+              read: () => {
+                calls += 1;
+                if (calls === 1) {
+                  const chunk = new TextEncoder().encode('event: token\ndata: {"delta":"Hello"}\n\n');
+                  return Promise.resolve({ done: false, value: chunk });
+                }
+                const done = new TextEncoder().encode('event: done\ndata: \n\n');
+                return Promise.resolve({ done: false, value: done });
+              },
+            };
+          },
         },
       },
-    } as Response);
+    });
 
     const { result } = renderHook(() => useStreamingChat({ onChunk }), {
       wrapper: createWrapper(),
     });
 
-    result.current.start({ message: 'Hi' });
+    act(() => {
+      result.current.start({ message: 'Hi' });
+    });
 
     await waitFor(() => {
       expect(onChunk).toHaveBeenCalledWith('Hello');
     });
-
-    mockFetch.mockRestore();
   });
 
   it('calls onError when stream fails', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true });
-
     const onError = vi.fn();
 
-    const mockFetch = vi.spyOn(globalThis, 'fetch').mockRejectedValue(
-      new Error('Network error'),
-    );
+    // Use a 400-status error — non-retryable per isRetryableError(), avoids fake-timer loops
+    mockPOST.mockRejectedValue(new Error('Chat stream failed with status 400'));
 
     const { result } = renderHook(() => useStreamingChat({ onError }), {
       wrapper: createWrapper(),
     });
 
-    result.current.start({ message: 'Hi' });
+    act(() => {
+      result.current.start({ message: 'Hi' });
+    });
 
-    // Run all pending timers for retries (5 rounds of exponential backoff)
-    await vi.runAllTimersAsync();
-    // Let any microtasks settle
-    await Promise.resolve();
-    await Promise.resolve();
-
-    // After all retries exhausted, onError should be called
     await waitFor(() => {
       expect(onError).toHaveBeenCalled();
-    }, { timeout: 5000 });
-
-    vi.useRealTimers();
-    mockFetch.mockRestore();
+    });
   });
 
   it('aborts fetch on stop()', async () => {
-    // Test that stop() sets isStreaming to false and cleans up
     const { result } = renderHook(() => useStreamingChat(), {
       wrapper: createWrapper(),
     });
 
-    // Call start, then immediately stop
     result.current.start({ message: 'Hi' });
     result.current.stop();
 
-    // After stopping, isStreaming should be false
     expect(result.current.isStreaming).toBe(false);
   });
 
   it('cleans up abort controller on unmount', async () => {
     const abortSpy = vi.spyOn(AbortController.prototype, 'abort');
 
-    // Start the stream first so an AbortController is created
-    const mockFetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
-      ok: true,
-      body: {
-        getReader: () => ({
-          read: () =>
-            new Promise<{ done: boolean; value?: Uint8Array }>(() => {
-              // Never resolves
-            }),
-        }),
+    mockPOST.mockResolvedValue({
+      response: {
+        ok: true,
+        body: {
+          getReader: () => ({
+            read: () =>
+              new Promise<{ done: boolean; value?: Uint8Array }>(() => {}),
+          }),
+        },
       },
-    } as Response);
+    });
 
     const { result, unmount } = renderHook(() => useStreamingChat(), {
       wrapper: createWrapper(),
     });
 
-    // Call start so the AbortController is created
     act(() => {
       result.current.start({ message: 'Hi' });
     });
 
-    // Unmount while the stream is active
     unmount();
 
-    // The useEffect cleanup calls abortRef.current?.abort()
     expect(abortSpy).toHaveBeenCalled();
 
     abortSpy.mockRestore();
-    mockFetch.mockRestore();
   });
 });

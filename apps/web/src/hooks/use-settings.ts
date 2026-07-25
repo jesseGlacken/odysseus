@@ -28,8 +28,9 @@ export function useUpdateSettings() {
     mutationFn: (body: Record<string, unknown>) =>
       apiClient
         .POST('/api/auth/settings', {
+          // @ts-expect-error: settings body is an open schema ({} in contract)
           body,
-        } as never)
+        })
         .then((res) => {
           if (!res.response.ok) throw new Error(`Settings update failed: ${res.response.status}`);
           return res.data;

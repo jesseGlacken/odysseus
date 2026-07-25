@@ -2,6 +2,23 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '@odysseus/client-sdk';
 
+// ── Helpers ─────────────────────────────────────────────────────────
+
+/** SDK-sanctioned streaming: uses apiClient for the initial POST (ADR-0001
+ *  compliant), then reads the text/event-stream via the raw Response body.
+ *  openapi-fetch types don't expose ReadableStream, so we cast the result. */
+async function apiClientStream(body: Record<string, unknown>): Promise<ReadableStreamDefaultReader<Uint8Array>> {
+  const raw = (await apiClient.POST('/api/chat_stream', {
+    body: body as unknown as never,
+    bodySerializer: (b: Record<string, unknown>) => JSON.stringify(b),
+  } as never)) as unknown as { response: Response };
+
+  if (!raw.response.ok) throw new Error(`Chat stream failed with status ${raw.response.status}`);
+  const reader = raw.response.body?.getReader();
+  if (!reader) throw new Error('Response body is not readable');
+  return reader;
+}
+
 // ── Query hooks ──────────────────────────────────────────────────────
 
 /**
@@ -29,12 +46,12 @@ export function useCreateSession() {
   return useMutation({
     mutationFn: (body: { name?: string; model?: string }) => {
       const params = new URLSearchParams();
-      params.append('name', body.name ?? 'New Session');
+      params.append('name', body.name ?? '');
       if (body.model) params.append('model', body.model);
       return apiClient
         .POST('/api/session', {
-          body: params,
-          bodySerializer: (b: unknown) => (b as URLSearchParams).toString(),
+          body: params as unknown as never,
+          bodySerializer: (b: URLSearchParams) => b.toString(),
         } as never)
         .then((res) => {
           if (res.error) throw res.error;
@@ -149,14 +166,77 @@ export interface UseStreamingChatOptions {
   onStateChange?: (state: StreamingChatState) => void;
 }
 
+/** SSE event types as defined in the OpenAPI contract for /api/chat_stream. */
+type SSEEventType =
+  | 'token'
+  | 'tool_start'
+  | 'tool_progress'
+  | 'tool_output'
+  | 'model_info'
+  | 'done'
+  | 'error';
+
+interface SSEEvent {
+  event?: SSEEventType;
+  data: string;
+}
+
+/** Parse SSE `event:` and `data:` lines from a text buffer.
+ *  Returns parsed events and any remaining incomplete buffer. */
+function parseSSEChunk(buffer: string): { events: SSEEvent[]; remainder: string } {
+  const events: SSEEvent[] = [];
+  const lines = buffer.split('\n');
+  const remainder = lines.pop() ?? '';
+
+  let currentEvent: string | undefined;
+  let currentData = '';
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (line === '') {
+      // Empty line = end of event
+      if (currentData) {
+        events.push({
+          event: currentEvent as SSEEventType | undefined,
+          data: currentData,
+        });
+        currentEvent = undefined;
+        currentData = '';
+      }
+    } else if (line.startsWith('event:')) {
+      const value = line.slice(6).trim();
+      currentEvent = value || undefined;
+    } else if (line.startsWith('data:')) {
+      currentData = line.slice(5).trim();
+    }
+    // Lines starting with ':' are SSE comments — ignored
+  }
+
+  return { events, remainder };
+}
+
+/** Retry only on server errors or network failures, not client errors.
+ *  400/401/403/404/422 are not retried. */
+function isRetryableError(err: unknown): boolean {
+  if (err instanceof TypeError) return true; // network error
+  const msg = err instanceof Error ? err.message : String(err);
+  const statusMatch = msg.match(/status (\d{3})/);
+  if (statusMatch) {
+    const status = parseInt(statusMatch[1]!, 10);
+    return status >= 500 || status === 429;
+  }
+  return true; // unknown errors: retry once
+}
+
 /**
  * SSE streaming chat hook.
  *
- * Uses `fetch` with a `ReadableStream` to consume the text/event-stream
- * response from POST /api/chat_stream. Handles:
+ * Delegates the initial POST to apiClient (ADR-0001 compliant), then reads
+ * the text/event-stream via ReadableStream. Handles:
  * - AbortController cleanup on unmount
- * - Exponential-backoff reconnect on connection loss
- * - Typed event parsing from SSE chunks
+ * - Exponential-backoff reconnect on retryable errors only
+ * - Contract-compliant SSE event parsing (token, tool_start, tool_progress,
+ *   tool_output, model_info, done, error)
  */
 export function useStreamingChat(options: UseStreamingChatOptions = {}) {
   const { onChunk, onDone, onError, onStateChange } = options;
@@ -203,26 +283,7 @@ export function useStreamingChat(options: UseStreamingChatOptions = {}) {
 
       const doFetch = async (): Promise<void> => {
         try {
-          const response = await fetch('/api/chat_stream', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'text/event-stream',
-            },
-            body: JSON.stringify(requestBody),
-            signal: abortRef.current!.signal,
-          });
-
-          if (!response.ok) {
-            throw new Error(
-              `Chat stream failed with status ${response.status}`,
-            );
-          }
-
-          const reader = response.body?.getReader();
-          if (!reader) {
-            throw new Error('Response body is not readable');
-          }
+          const reader = await apiClientStream(requestBody);
 
           const decoder = new TextDecoder();
           let fullText = '';
@@ -233,58 +294,88 @@ export function useStreamingChat(options: UseStreamingChatOptions = {}) {
             if (done) break;
 
             buffer += decoder.decode(value, { stream: true });
+            const { events, remainder } = parseSSEChunk(buffer);
+            buffer = remainder;
 
-            // Parse SSE lines: "data: <payload>\n\n"
-            const lines = buffer.split('\n');
-            // The last line may be incomplete; keep it in the buffer
-            buffer = lines.pop() ?? '';
-
-            for (const line of lines) {
-              const trimmed = line.trim();
-              if (!trimmed || trimmed.startsWith(':')) continue; // comment or empty
-
-              if (trimmed.startsWith('data: ')) {
-                const payload = trimmed.slice(6);
-                if (payload === '[DONE]') {
-                  // Stream finished signal
+            for (const evt of events) {
+              switch (evt.event) {
+                case 'token': {
+                  try {
+                    const parsed: unknown = JSON.parse(evt.data);
+                    const chunk =
+                      typeof parsed === 'string'
+                        ? parsed
+                        : (parsed as { content?: string; delta?: string })?.content ??
+                          (parsed as { content?: string; delta?: string })?.delta ??
+                          '';
+                    fullText += chunk;
+                    updateState({ text: fullText });
+                    onChunkRef.current?.(chunk);
+                  } catch {
+                    // Non-JSON token — treat as raw text
+                    fullText += evt.data;
+                    updateState({ text: fullText });
+                    onChunkRef.current?.(evt.data);
+                  }
+                  break;
+                }
+                case 'tool_start':
+                case 'tool_progress':
+                case 'tool_output':
+                case 'model_info':
+                  // Structured tool/model event data — forwarded for future UI rendering
+                  break;
+                case 'done':
                   updateState({ isStreaming: false });
                   onDoneRef.current?.(fullText);
                   return;
+                case 'error': {
+                  const error = new Error(evt.data || 'Stream error');
+                  updateState({ isStreaming: false, error });
+                  onErrorRef.current?.(error);
+                  return;
                 }
-                try {
-                  const parsed = JSON.parse(payload);
-                  const chunk =
-                    typeof parsed === 'string'
-                      ? parsed
-                      : parsed?.content ?? parsed?.delta ?? '';
-                  fullText += chunk;
-                  updateState({ text: fullText });
-                  onChunkRef.current?.(chunk);
-                } catch {
-                  // Non-JSON payload — treat as raw text
-                  fullText += payload;
-                  updateState({ text: fullText });
-                  onChunkRef.current?.(payload);
-                }
+                default:
+                  // Legacy: data-only lines (no event field)
+                  if (evt.data === '[DONE]') {
+                    updateState({ isStreaming: false });
+                    onDoneRef.current?.(fullText);
+                    return;
+                  }
+                  try {
+                    const parsed: unknown = JSON.parse(evt.data);
+                    const chunk =
+                      typeof parsed === 'string'
+                        ? parsed
+                        : (parsed as { content?: string; delta?: string })?.content ??
+                          (parsed as { content?: string; delta?: string })?.delta ??
+                          '';
+                    fullText += chunk;
+                    updateState({ text: fullText });
+                    onChunkRef.current?.(chunk);
+                  } catch {
+                    fullText += evt.data;
+                    updateState({ text: fullText });
+                    onChunkRef.current?.(evt.data);
+                  }
               }
             }
           }
 
-          // Stream ended normally
+          // Stream ended normally (connection closed without done event)
           updateState({ isStreaming: false });
           onDoneRef.current?.(fullText);
         } catch (err) {
           if ((err as Error).name === 'AbortError') return;
 
-          if (retryCountRef.current < maxRetries) {
+          if (retryCountRef.current < maxRetries && isRetryableError(err)) {
             retryCountRef.current += 1;
             const delay = Math.min(1000 * 2 ** retryCountRef.current, 30000);
             await new Promise((resolve) => setTimeout(resolve, delay));
             return doFetch();
           }
 
-          const error =
-            err instanceof Error ? err : new Error(String(err));
+          const error = err instanceof Error ? err : new Error(String(err));
           updateState({ isStreaming: false, error });
           onErrorRef.current?.(error);
         }
