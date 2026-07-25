@@ -18,6 +18,12 @@ the ADRs. Both may exist at once. **All new and modified code follows the v2 sta
 Do not add new work to the legacy vanilla-JS front end (`static/js/*`) except minimal fixes;
 new UI belongs in `apps/web` on `packages/ui`.
 
+### Branch policy
+- The default branch on GitHub is `dev`. **All pull requests must target `dev2`**, not `dev` or `main`.
+- Feature branches should be named `jesserglacken/<ticket>-<short-description>`.
+- Convention: `git checkout dev2 && git pull origin dev2 && git checkout -b <branch>` before starting work.
+- Phase 2 refactoring is complete. Phase 3 (frontend) and beyond target `dev2`.
+
 ---
 
 ## The non-negotiables

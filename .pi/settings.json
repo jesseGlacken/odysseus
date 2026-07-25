@@ -5,5 +5,10 @@
         "model": "clinepass/cline-pass/qwen3.7-max"
       }
     }
+  },
+  "project": {
+    "baseBranch": "dev2",
+    "featureBranchPrefix": "jesserglacken/",
+    "description": "Odysseus v2 monorepo — Nx + FastAPI + React SPA. PRs target dev2, not dev or main."
   }
 }
