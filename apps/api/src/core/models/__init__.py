@@ -1,34 +1,39 @@
 """core.models — domain-specific SQLAlchemy model modules (ODY-21 / P2.5).
 
-Seed extraction (this PR): Session, ChatMessage, Document, DocumentVersion,
-EmailAccount have been moved to their own SQLAlchemy model files.
-All 26 models remain accessible via ``from core.database import <Model>``
-(backward-compat shims kept in database.py).
-
-Remaining 21 models are still defined in core/database.py and will be
-extracted in follow-up tickets (ODY-21b).
+All 26 models are now available both via ``from core.database import <Model>``
+(backward-compat) and ``from core.models import <Model>`` (new path).
+The original class definitions remain in database.py during the transition.
 
 Usage::
 
-    # Dataclass models (public API — session_manager depends on these)
+    # SQLAlchemy models
+    from core.models import GalleryAlbum, ModelEndpoint, ScheduledTask
+    from core.models import Memory, Note, CalendarCal, Integration
+
+    # Dataclass models (public API)
     from core.models import Session, ChatMessage
-
-    # SQLAlchemy models (via submodule or Db-prefixed alias)
-    from core.models.session_models import Session  # SQLAlchemy
-    from core.models import DbSession, DbChatMessage  # SQLAlchemy aliases
-
-    # Domain models
-    from core.models import Document, DocumentVersion
-    from core.models import EmailAccount
 """
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional
 
-# SQLAlchemy models — import with Db prefix to avoid conflict with dataclasses
+# SQLAlchemy models — previously extracted (ODY-21)
 from core.models.session_models import Session as DbSession, ChatMessage as DbChatMessage
 from core.models.document_models import Document, DocumentVersion
 from core.models.email_models import EmailAccount
+
+# SQLAlchemy models — extracted in ODY-73 (P2.5b)
+from core.models.calendar_models import CalendarCal, CalendarDeletedEvent, CalendarEvent
+from core.models.comparison_models import Comparison, Signature
+from core.models.crew_models import CrewMember
+from core.models.gallery_models import GalleryAlbum, GalleryImage
+from core.models.integration_models import Integration
+from core.models.memory_models import Memory
+from core.models.model_models import McpServer, ModelEndpoint, ProviderAuthSession
+from core.models.note_models import Note
+from core.models.task_models import EditorDraft, ScheduledTask, TaskRun
+from core.models.token_models import ApiToken, Webhook
+from core.models.tool_models import UserTool, UserToolData
 
 # Dataclass Session/ChatMessage from the original core/models.py (now _legacy.py).
 # These are the public API of core.models — session_manager depends on them.
@@ -64,12 +69,34 @@ get_session_manager = get_session_manager_instance
 
 
 __all__ = [
-    # SQLAlchemy models (accessible via submodule or Db-prefixed alias)
+    # SQLAlchemy models (ODY-21)
     "DbSession",
     "DbChatMessage",
     "Document",
     "DocumentVersion",
     "EmailAccount",
+    # SQLAlchemy models (ODY-73)
+    "ApiToken",
+    "CalendarCal",
+    "CalendarDeletedEvent",
+    "CalendarEvent",
+    "Comparison",
+    "CrewMember",
+    "EditorDraft",
+    "GalleryAlbum",
+    "GalleryImage",
+    "Integration",
+    "McpServer",
+    "Memory",
+    "ModelEndpoint",
+    "Note",
+    "ProviderAuthSession",
+    "ScheduledTask",
+    "Signature",
+    "TaskRun",
+    "UserTool",
+    "UserToolData",
+    "Webhook",
     # Dataclass models (public API — session_manager depends on these)
     "Session",
     "ChatMessage",
