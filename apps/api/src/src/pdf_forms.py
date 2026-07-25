@@ -15,7 +15,7 @@ from typing import Any
 # See requirements-optional.txt.
 try:
     import fitz  # PyMuPDF — optional, AGPL-3.0
-except ImportError:  # pragma: no cover
+except ImportError:
     fitz = None
 
 logger = logging.getLogger(__name__)

@@ -1506,7 +1506,7 @@ def setup_shell_routes() -> APIRouter:
                         pass
                 else:
                     try:
-                        import llama_cpp as _lcp  # type: ignore
+                        import llama_cpp as _lcp  # type: ignore[import-untyped]  -- optional dep, not always installed
                         _gpu_capable = bool(_lcp.llama_supports_gpu_offload())
                     except Exception:
                         _gpu_capable = False

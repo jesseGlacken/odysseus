@@ -74,8 +74,8 @@ def check_outbound_url(
         return False, "URL is required"
     try:
         parsed = urlparse(url.strip())
-    except Exception as e:  # pragma: no cover - urlparse is very tolerant
-        return False, f"unparseable URL: {e}"
+    except ValueError:
+        return False, "unparseable URL"
 
     if parsed.scheme.lower() not in ALLOWED_SCHEMES:
         return False, f"scheme must be http or https, got '{parsed.scheme or '(none)'}'"

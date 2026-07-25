@@ -62,7 +62,7 @@ async def _local_model_slot(target_url: str, model: str, workload: Optional[str]
         try:
             from src.interactive_gate import has_foreground_activity
         except Exception:
-            has_foreground_activity = lambda: False  # type: ignore
+            has_foreground_activity = lambda: False  # type: ignore[import-untyped]  -- optional dep, not always installed
         while _LOCAL_MODEL_WAITING_FOREGROUND > 0 or has_foreground_activity():
             await asyncio.sleep(0.25)
 
