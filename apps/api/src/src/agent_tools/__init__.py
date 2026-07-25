@@ -15,7 +15,7 @@ import logging
 from collections import namedtuple
 
 from src.tool_security import BUILTIN_EMAIL_TOOLS
-from src.tool_utils import _truncate, get_mcp_manager, set_mcp_manager
+from src.tool_utils import _truncate as _truncate, get_mcp_manager as get_mcp_manager, set_mcp_manager as set_mcp_manager
 
 logger = logging.getLogger(__name__)
 
@@ -29,8 +29,11 @@ from .bg_job_tools import ManageBgJobsTool
 from .session_tools import CreateSessionTool, ListSessionsTool, SendToSessionTool, ManageSessionTool
 from .admin_tools import (
     ADMIN_TOOL_HANDLERS,
-    do_manage_endpoints, do_manage_mcp, do_manage_webhooks,
-    do_manage_tokens, do_manage_settings,
+    do_manage_endpoints as do_manage_endpoints,
+    do_manage_mcp as do_manage_mcp,
+    do_manage_webhooks as do_manage_webhooks,
+    do_manage_tokens as do_manage_tokens,
+    do_manage_settings as do_manage_settings,
 )
 
 TOOL_HANDLERS = {
@@ -141,8 +144,8 @@ from src.tool_execution import (  # noqa: E402, F401
 
 # Document functions
 from .document_tools import (
-    set_active_document,
-    set_active_model
+    set_active_document as set_active_document,
+    set_active_model as set_active_model,
 )
 
 # Implementations

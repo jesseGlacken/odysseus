@@ -61,3 +61,8 @@ jobs:
       - name: Run radon raw (advisory)
         continue-on-error: true
         run: radon raw apps/api/src/ --summary || true
+
+      - name: Ruff F401 — unused imports (BLOCKING)
+        run: |
+          pip install ruff
+          ruff check apps/api/src/ apps/api/core/ apps/api/routes/ apps/api/services/ --select F401

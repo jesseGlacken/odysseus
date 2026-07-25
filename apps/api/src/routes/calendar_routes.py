@@ -1,6 +1,5 @@
 """Calendar routes — local SQLite-backed calendar CRUD."""
 
-import logging
 import json
 import re
 import uuid
@@ -247,8 +246,6 @@ from src.user_time import (
     get_user_tz_name,
     get_user_tz_offset,
     now_user_local,
-    set_user_tz_name,
-    set_user_tz_offset,
     user_timezone,
 )
 

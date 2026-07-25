@@ -8,8 +8,6 @@ The admin manage_* tools (endpoints, mcp, webhooks, tokens, settings) live in
 """
 import json
 import logging
-import os
-import re
 from typing import Any, Dict, List, Optional
 
 from src.tools._common import _parse_tool_args

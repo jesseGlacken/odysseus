@@ -11,7 +11,6 @@ Contains:
 from __future__ import annotations
 
 import logging
-import re
 from typing import Dict, List, Optional
 
 logger = logging.getLogger(__name__)
@@ -119,7 +118,6 @@ def _compute_final_metrics(
     the tokens/wall-clock fallback, which reads low because it includes prefill
     and agent overhead.
     """
-    from src.model_context import estimate_tokens
 
     if has_real_usage:
         input_tokens = real_input_tokens

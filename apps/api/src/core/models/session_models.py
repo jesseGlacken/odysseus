@@ -24,7 +24,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 
-from core.base import Base, EncryptedText, TimestampMixin, utcnow_naive
+from core.base import Base, TimestampMixin, utcnow_naive
 
 
 class Session(TimestampMixin, Base):

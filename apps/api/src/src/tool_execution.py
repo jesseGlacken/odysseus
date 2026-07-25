@@ -7,16 +7,11 @@ Routes tool blocks to MCP servers or native implementations.
 Extracted from agent_tools.py.
 """
 
-import asyncio
-import collections
 import contextvars
 import json
 import logging
 import os
-import pathlib
 import re
-import sys
-import time
 from typing import Any, Awaitable, Callable, Dict, Optional, Tuple
 
 
@@ -27,9 +22,8 @@ from src.tool_security import (
     is_public_blocked_tool,
     owner_is_admin_or_single_user,
 )
-from src.tool_policy import ToolPolicy
-from src.constants import MAX_OUTPUT_CHARS, MAX_READ_CHARS, MAX_DIFF_LINES, DATA_DIR
-from src.tool_utils import _truncate, get_mcp_manager
+from src.constants import DATA_DIR
+from src.tool_utils import get_mcp_manager
 
 # Persistent working directory for agent subprocesses.
 # Resolves to <repo_root>/data, which is the bind-mounted volume in Docker

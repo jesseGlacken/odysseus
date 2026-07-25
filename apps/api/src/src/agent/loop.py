@@ -68,13 +68,10 @@ from src.agent_tools import (
     ToolBlock,
     execute_tool_block,
     format_tool_result,
-    set_active_document,
-    set_active_model,
     strip_tool_blocks,
 )
 from src.llm_core import _is_ollama_native_url, stream_llm_with_fallback
 from src.model_context import estimate_tokens
-from src.prompt_security import untrusted_context_message
 from src.settings import get_setting
 from src.tool_policy import GUIDE_ONLY_DIRECTIVE, WEB_TOOL_NAMES, ToolPolicy
 from src.tool_security import blocked_tools_for_owner, plan_mode_disabled_tools
