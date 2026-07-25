@@ -304,7 +304,7 @@ def _normalize_stream_document_fences(
         _strip_doc_model_artifacts(text or "")
     )
 
-    def repl(match: re.Match) -> str:  # type: ignore[type-arg]
+    def repl(match: re.Match) -> str:  # type: ignore[type-arg] — re.Match generic not inferrable from re.sub callback
         body = match.group(1) or ""
         if target_tool == "update_document":
             lines = body.splitlines()
@@ -1965,7 +1965,7 @@ async def stream_agent_loop(
         )
         if _looks_like_promise and _intent_nudge_count < _MAX_INTENT_NUDGES:
             _intent_nudge_count += 1
-            _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
+            _matched_phrase = _intent_match.group(0).strip()
             logger.info("[agent] intent-without-action nudge #%d: %r", _intent_nudge_count, _matched_phrase)
             _lower_phrase = _matched_phrase.lower()
             _cookbook_log_hint = ""
@@ -1990,7 +1990,7 @@ async def stream_agent_loop(
             _round_action = "continue"
             return
         if _looks_like_promise:
-            _matched_phrase = _intent_match.group(0).strip()  # type: ignore[union-attr]
+            _matched_phrase = _intent_match.group(0).strip()
             logger.warning(
                 "[agent] intent-without-action guard exhausted on round %d after %d nudges: %r",
                 round_num, _intent_nudge_count, _matched_phrase,

@@ -363,7 +363,7 @@ def _get_public_url(url: str, headers: dict, timeout: int, max_redirects: int = 
 try:
     from pdfminer.high_level import extract_text as pdf_extract_text
 except ImportError:
-    pdf_extract_text = None  # type: ignore
+    pdf_extract_text = None  # type: ignore[import-untyped]  -- optional dep, not always installed
 
 
 # ----------------------------------------------------------------------
