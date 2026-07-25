@@ -14,11 +14,10 @@ from sqlalchemy import (
     DateTime,
     Integer,
     ForeignKey,
-    Index,
 )
 from sqlalchemy.orm import relationship, backref
 
-from core.base import Base, EncryptedText, TimestampMixin, utcnow_naive
+from core.base import Base, TimestampMixin, utcnow_naive
 
 
 class Document(TimestampMixin, Base):

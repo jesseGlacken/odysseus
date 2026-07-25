@@ -1,19 +1,11 @@
 """Background scheduler for ScheduledTask execution."""
 
 import asyncio
-import json
 import logging
-import re
 import time
-import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any, Awaitable, Callable, Dict, Tuple
 
-from core.auth import RESERVED_USERNAMES
-from src.task_action_policy import (
-    is_admin_only_task_action,
-    owner_has_admin_task_privileges,
-)
 
 logger = logging.getLogger(__name__)
 

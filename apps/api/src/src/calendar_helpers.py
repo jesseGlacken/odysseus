@@ -199,7 +199,7 @@ def parse_due_for_user(s: str) -> str:
       ``"in 2 hours"``) → evaluated against the user's local "now" instead of
       the server's, then ISO-with-offset.
     """
-    from datetime import timezone as _tz, timedelta as _td
+    from datetime import timedelta as _td
     from src.user_time import (
         get_user_tz_name,
         get_user_tz_offset,

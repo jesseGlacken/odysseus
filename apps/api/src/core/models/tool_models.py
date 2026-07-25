@@ -8,7 +8,6 @@ from sqlalchemy import (
     Boolean,
     Column,
     DateTime,
-    Float,
     ForeignKey,
     Integer,
     String,
@@ -18,7 +17,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import backref, relationship
 
 from core.base import Base, TimestampMixin
-from core.base import EncryptedText, utcnow_naive
+from core.base import utcnow_naive
 
 
 class UserTool(TimestampMixin, Base):

@@ -635,7 +635,7 @@ def _compact_email_draft_context(
 # above while this module is still being initialised.
 # ---------------------------------------------------------------------------
 
-from src.agent.classifier import (  # noqa: E402
+from src.agent.classifier import (  # noqa: E402, F401 — backward-compat re-exports
     _EXPLICIT_CONTINUATION_RE,
     _classify_agent_request,
     _detect_admin_intent,
@@ -655,16 +655,16 @@ from src.agent.classifier import (  # noqa: E402
     _user_turn_count,
 )
 
-from src.agent.context import (  # noqa: E402
+from src.agent.context import (  # noqa: E402, F401 — backward-compat re-exports
     _build_actions_snapshot,
     _compute_final_metrics,
     _empty_response_fallback,
     _strip_think_blocks,
 )
 
-from src.agent.runaway import _detect_runaway_call  # noqa: E402
+from src.agent.runaway import _detect_runaway_call  # noqa: E402, F401 — backward-compat re-export
 
-from src.agent.verifier import (  # noqa: E402
+from src.agent.verifier import (  # noqa: E402, F401 — backward-compat re-exports
     _append_tool_results,
     _resolve_tool_blocks,
 )

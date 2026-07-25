@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from sqlalchemy import Column, ForeignKey, Index, Integer, String, Text
-from sqlalchemy.orm import backref, relationship
+from sqlalchemy.orm import relationship
 
 from core.base import Base
 from core.base import utcnow_naive

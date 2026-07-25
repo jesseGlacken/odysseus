@@ -20,7 +20,6 @@ from src.attachment_refs import persistable_message_content
 from src.upload_handler import reserve_message_upload_references
 
 # Re-export singleton accessors from models for convenience
-from .models import set_session_manager_instance, get_session_manager_instance
 
 logger = logging.getLogger(__name__)
 

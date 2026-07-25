@@ -1,22 +1,19 @@
 import os
 import logging
 import sqlite3
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 from urllib.parse import unquote, urlparse
-from sqlalchemy import event, create_engine, Column, String, Text, Boolean, DateTime, Integer, ForeignKey, JSON, Index, func, text
+from sqlalchemy import event, create_engine, text
 from sqlalchemy.engine import Engine, make_url
-from sqlalchemy.types import TypeDecorator
-from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy.orm import relationship, sessionmaker, backref
+from sqlalchemy.orm import sessionmaker
 
 from src.runtime_paths import get_app_root
 from core.platform_compat import safe_chmod, IS_WINDOWS
 
 logger = logging.getLogger(__name__)
 
-from core.base import Base, EncryptedText, TimestampMixin, utcnow_naive
+from core.base import Base, utcnow_naive
 
 # Ensure the writable data directory exists before SQLite connects.
 from src.constants import DATA_DIR, AUTH_FILE, MEMORY_FILE, USER_PREFS_FILE, SETTINGS_FILE
@@ -1803,9 +1800,8 @@ def archive_session(session_id: str):
 # ---------------------------------------------------------------------------
 # ODY-21 / P2.5 — model extraction shims (at end to avoid circular imports)
 # ---------------------------------------------------------------------------
+from core.models.document_models import Document, DocumentVersion  # noqa: E402, F401
 from core.models.session_models import Session, ChatMessage  # noqa: E402
-from core.models.document_models import Document, DocumentVersion  # noqa: E402
-from core.models.email_models import EmailAccount  # noqa: E402
 
 init_db()
 

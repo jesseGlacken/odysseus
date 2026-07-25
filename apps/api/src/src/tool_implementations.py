@@ -8,7 +8,6 @@ These handle the actual execution logic for each tool type.
 import logging
 from typing import Dict, Optional
 
-from src.tool_utils import get_mcp_manager  # re-exported: tests patch src.tool_implementations.get_mcp_manager
 
 # System-domain tools were extracted to src/tools/system.py (slice 1,
 # #4082/#4071); the admin manage_* tools live in src/agent_tools/admin_tools

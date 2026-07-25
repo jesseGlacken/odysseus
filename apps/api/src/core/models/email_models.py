@@ -14,7 +14,7 @@ from sqlalchemy import (
     Index,
 )
 
-from core.base import Base, EncryptedText, TimestampMixin
+from core.base import Base, TimestampMixin
 
 
 class EmailAccount(TimestampMixin, Base):

@@ -8,17 +8,13 @@ from sqlalchemy import (
     Boolean,
     Column,
     DateTime,
-    Float,
     ForeignKey,
-    Integer,
     String,
     Text,
-    Index,
 )
 from sqlalchemy.orm import relationship
 
 from core.base import Base, TimestampMixin
-from core.base import EncryptedText, utcnow_naive
 
 
 class CalendarCal(TimestampMixin, Base):

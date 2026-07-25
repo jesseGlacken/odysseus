@@ -4,10 +4,9 @@ import os
 import re
 import difflib
 import fnmatch
-import shutil
-from typing import Optional, Dict, Any, Tuple
+from typing import Optional, Dict, Any
 
-from src.constants import MAX_READ_CHARS, MAX_DIFF_LINES, MAX_OUTPUT_CHARS
+from src.constants import MAX_READ_CHARS, MAX_DIFF_LINES
 
 _CODENAV_SKIP_DIRS = frozenset({
     ".git", ".hg", ".svn", "node_modules", "venv", ".venv", "__pycache__",
@@ -72,7 +71,7 @@ def _unified_diff(old: str, new: str, path: str) -> Optional[Dict[str, Any]]:
 
 class EditFileTool:
     async def execute(self, content: str, ctx: dict) -> dict:
-        from src.tool_execution import _resolve_tool_path, _resolve_search_root, _truncate
+        from src.tool_execution import _resolve_tool_path
         try:
             args = json.loads(content) if content.strip().startswith("{") else {}
         except (json.JSONDecodeError, TypeError):
@@ -132,7 +131,7 @@ class EditFileTool:
 
 class ReadFileTool:
     async def execute(self, content: str, ctx: dict) -> dict:
-        from src.tool_execution import _resolve_tool_path, _resolve_search_root, _truncate
+        from src.tool_execution import _resolve_tool_path
         raw_path, offset, limit = content.split("\n", 1)[0].strip(), 0, 0
         _stripped = content.strip()
         if _stripped.startswith("{"):
@@ -182,7 +181,7 @@ class ReadFileTool:
 
 class WriteFileTool:
     async def execute(self, content: str, ctx: dict) -> dict:
-        from src.tool_execution import _resolve_tool_path, _resolve_search_root, _truncate
+        from src.tool_execution import _resolve_tool_path
         lines = content.split("\n", 1)
         raw_path = lines[0].strip()
         body = lines[1] if len(lines) > 1 else ""
@@ -232,7 +231,7 @@ class WriteFileTool:
 
 class LsTool:
     async def execute(self, content: str, ctx: dict) -> dict:
-        from src.tool_execution import _resolve_tool_path, _resolve_search_root, _truncate
+        from src.tool_execution import _resolve_search_root, _truncate
         raw_path = ""
         _s = (content or "").strip()
         if _s.startswith("{"):
@@ -284,7 +283,6 @@ class GlobTool:
         from src.tool_execution import (
             _SENSITIVE_BASENAMES,
             _is_sensitive_path,
-            _resolve_tool_path,
             _resolve_search_root,
             _truncate,
         )
@@ -385,7 +383,6 @@ class GrepTool:
         from src.tool_execution import (
             _SENSITIVE_FILE_PATTERNS,
             _is_sensitive_path,
-            _resolve_tool_path,
             _resolve_search_root,
             _truncate,
         )
