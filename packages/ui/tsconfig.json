@@ -1,0 +1,12 @@
+{
+  "extends": "@odysseus/config/tsconfig/react",
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "baseUrl": "."
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", ".storybook"]
+}

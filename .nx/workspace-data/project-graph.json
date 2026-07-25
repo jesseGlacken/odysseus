@@ -214,6 +214,124 @@
         "implicitDependencies": []
       }
     },
+    "ui": {
+      "name": "ui",
+      "type": "lib",
+      "data": {
+        "root": "packages/ui",
+        "targets": {
+          "build": {
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx tsc --noEmit",
+              "cwd": "packages/ui"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "dependsOn": [
+              "build"
+            ],
+            "inputs": [
+              "default",
+              "^production"
+            ],
+            "cache": true,
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx vitest run",
+              "cwd": "packages/ui"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "inputs": [
+              "default"
+            ],
+            "cache": true,
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "echo 'ui — no lint target yet'"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "cache": true,
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx tsc --noEmit",
+              "cwd": "packages/ui"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build-storybook": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "storybook build",
+              "runCommand": "npm run build-storybook"
+            },
+            "options": {
+              "script": "build-storybook"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "storybook": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx storybook dev -p 6006 --no-open",
+              "cwd": "packages/ui"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "name": "ui",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "packages/ui/src",
+        "projectType": "library",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build-storybook"
+            ]
+          },
+          "description": "Accessible component library — Radix primitives + React Aria + shadcn/ui patterns",
+          "js": {
+            "packageName": "@odysseus/ui",
+            "packageVersion": "0.0.0",
+            "packageExports": {
+              ".": "./src/index.ts",
+              "./styles": "./src/styles/globals.css"
+            },
+            "isInPackageManagerWorkspaces": false
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "api": {
       "name": "api",
       "type": "app",
@@ -4654,6 +4772,28 @@
       {
         "source": "config",
         "target": "npm:typescript",
+        "type": "static"
+      }
+    ],
+    "ui": [
+      {
+        "source": "ui",
+        "target": "config",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:typescript",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:vitest",
         "type": "static"
       }
     ],
@@ -10017,5 +10157,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1784950848748
+  "computedAt": 1784951582402
 }
