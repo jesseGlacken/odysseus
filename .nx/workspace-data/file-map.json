@@ -2,9 +2,1869 @@
   "version": "6.0",
   "nxVersion": "23.1.0",
   "pathMappings": {},
-  "nxJsonPlugins": [],
+  "nxJsonPlugins": [
+    {
+      "name": "@nxlv/python",
+      "version": "^22.2.2",
+      "options": {
+        "packageManager": "uv"
+      }
+    }
+  ],
   "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": "static/sw.js",
+        "hash": "14758100960888690151"
+      },
+      {
+        "file": "static/js/editor/layer-helpers.js",
+        "hash": "2189532046639035357"
+      },
+      {
+        "file": "static/js/windowDrag.js",
+        "hash": "9896198006773268996"
+      },
+      {
+        "file": "static/js/compare/selector.js",
+        "hash": "9822270495163413898"
+      },
+      {
+        "file": "static/js/compare/icons.js",
+        "hash": "442349180468264931"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "hash": "9069937377597750169"
+      },
+      {
+        "file": "GEMINI.md",
+        "hash": "17379894040683334668"
+      },
+      {
+        "file": "package.json",
+        "hash": "7556551556270199572"
+      },
+      {
+        "file": "static/js/slashCommands.js",
+        "hash": "5758179243947244915"
+      },
+      {
+        "file": "docs/gallery.webm",
+        "hash": "4555129553437604961"
+      },
+      {
+        "file": "scripts/odysseus-calendar",
+        "hash": "9570004316254916687"
+      },
+      {
+        "file": "Odysseus.spec",
+        "hash": "16502740784460822810"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_output.md",
+        "hash": "8899293937092355534"
+      },
+      {
+        "file": "static/js/editor/keyboard-shortcuts.js",
+        "hash": "11601721802502077056"
+      },
+      {
+        "file": "static/js/compare/index.js",
+        "hash": "12743718792590024165"
+      },
+      {
+        "file": "scripts/odysseus-docs",
+        "hash": "5821933820041789343"
+      },
+      {
+        "file": "docs/compatibility-audit.md",
+        "hash": "3792983359801313725"
+      },
+      {
+        "file": "scripts/import_from_vllm_recipes.py",
+        "hash": "2923142939916681286"
+      },
+      {
+        "file": "scripts/pr_blocker_audit.py",
+        "hash": "13291180733418482012"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_input.md",
+        "hash": "3404612627585666701"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "9917675988313622969"
+      },
+      {
+        "file": "static/js/emailLibrary/state.js",
+        "hash": "14404707567850309547"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_input.md",
+        "hash": "14485684476534161453"
+      },
+      {
+        "file": "static/icons/sglang-logo.png",
+        "hash": "16485024254275974117"
+      },
+      {
+        "file": ".github/scripts/focused_test_guidance.py",
+        "hash": "3407967494658778936"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_output.md",
+        "hash": "752424096932083221"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_meta.json",
+        "hash": "13462675896454408541"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_transcript.jsonl",
+        "hash": "12498354396837874605"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_input.md",
+        "hash": "8087522472151985319"
+      },
+      {
+        "file": "docs/pr-blocker-audit.md",
+        "hash": "14254944061708004438"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_input.md",
+        "hash": "317542810586674198"
+      },
+      {
+        "file": "static/lib/highlight.min.js",
+        "hash": "7040937117104020085"
+      },
+      {
+        "file": "docs/odysseus.jpg",
+        "hash": "18337816470313109427"
+      },
+      {
+        "file": "docs/bg.webm",
+        "hash": "16261083182954388694"
+      },
+      {
+        "file": "static/js/editor/wire-inpaint-controls.js",
+        "hash": "14287031788356865904"
+      },
+      {
+        "file": "scripts/odysseus-contacts",
+        "hash": "654083106469894001"
+      },
+      {
+        "file": "static/fonts/FiraCode-Regular.woff2",
+        "hash": "2661738199960715299"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Regular.woff2",
+        "hash": "17700555094670922279"
+      },
+      {
+        "file": "static/js/cookbookProgressSignal.js",
+        "hash": "5350026269988283285"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "3041178405286150784"
+      },
+      {
+        "file": "static/js/emailLibrary/utils.js",
+        "hash": "13309256756025412198"
+      },
+      {
+        "file": ".github/workflows/container-trivy.yml",
+        "hash": "4166399547673832044"
+      },
+      {
+        "file": "static/js/sidebar-layout.js",
+        "hash": "11942458255720483501"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_meta.json",
+        "hash": "4700020586166829312"
+      },
+      {
+        "file": "static/js/cookbookRunning.js",
+        "hash": "16769489659445432350"
+      },
+      {
+        "file": "static/js/editor/wire-topbar.js",
+        "hash": "12735789491229429597"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "16066152550904758528"
+      },
+      {
+        "file": "uv.lock",
+        "hash": "10581421300886199667"
+      },
+      {
+        "file": "docs/index.html",
+        "hash": "15225944888773591256"
+      },
+      {
+        "file": "static/js/editor/build/transform-popup.js",
+        "hash": "8591785806064934603"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_output.md",
+        "hash": "6824707267922109311"
+      },
+      {
+        "file": "static/lib/mammoth.browser.min.js",
+        "hash": "516830283366341468"
+      },
+      {
+        "file": "CLAUDE.md",
+        "hash": "15234165324548040252"
+      },
+      {
+        "file": "ACKNOWLEDGMENTS.md",
+        "hash": "2292727075695639784"
+      },
+      {
+        "file": "static/js/section-management.js",
+        "hash": "16595251478641956894"
+      },
+      {
+        "file": "docs/adr/0010-structured-concurrency-and-async-patterns.md",
+        "hash": "4695091037844956232"
+      },
+      {
+        "file": "install-service.sh",
+        "hash": "6473587190761151857"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_meta.json",
+        "hash": "8595364617901282714"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Bold.woff2",
+        "hash": "7871009217113397863"
+      },
+      {
+        "file": ".github/workflows/secret-scan.yml",
+        "hash": "10684984250438203113"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_input.md",
+        "hash": "17102000713415116337"
+      },
+      {
+        "file": "static/lib/qrcode.min.js",
+        "hash": "6474382986962927044"
+      },
+      {
+        "file": "static/login.html",
+        "hash": "1086940237876538488"
+      },
+      {
+        "file": "scripts/odysseus-personal",
+        "hash": "12378683218923811823"
+      },
+      {
+        "file": "static/js/presets.js",
+        "hash": "17910623099315951677"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_transcript.jsonl",
+        "hash": "17183481590751274337"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
+        "hash": "45073143638047998"
+      },
+      {
+        "file": "static/style.css",
+        "hash": "17646695458962114695"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_input.md",
+        "hash": "9400577408091608861"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "scripts/odysseus-signature",
+        "hash": "7760414272024880853"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_input.md",
+        "hash": "10725182180865973618"
+      },
+      {
+        "file": "static/js/editor/filters/blur.js",
+        "hash": "2567609032024838161"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_output.md",
+        "hash": "14937186089343966191"
+      },
+      {
+        "file": "docs/migration-roadmap.md",
+        "hash": "11115432037425614915"
+      },
+      {
+        "file": "tools/hooks/response_model_checker.py",
+        "hash": "12821735442094741032"
+      },
+      {
+        "file": "build-macos-app.sh",
+        "hash": "10035212807199525434"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "5063357314449241554"
+      },
+      {
+        "file": "static/js/editor/stroke-pipeline.js",
+        "hash": "17973876519136965431"
+      },
+      {
+        "file": "licenses/DeepResearch-Apache-2.0.txt",
+        "hash": "12649885980860800067"
+      },
+      {
+        "file": "scripts/odysseus-webhook",
+        "hash": "2763896610842093569"
+      },
+      {
+        "file": "static/js/editor/ai-tool-runner.js",
+        "hash": "11968548706467216743"
+      },
+      {
+        "file": "static/js/emailInbox.js",
+        "hash": "607947805202156658"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/397a3adf/plan.md",
+        "hash": "4122896669686278826"
+      },
+      {
+        "file": "docs/adr/0002-nx-polyglot-monorepo.md",
+        "hash": "2094451863889655002"
+      },
+      {
+        "file": "docs/odysseus-browser.jpg",
+        "hash": "1239002569416580602"
+      },
+      {
+        "file": ".pi/models.json",
+        "hash": "7574940762439213"
+      },
+      {
+        "file": "static/js/chat.js",
+        "hash": "5996945648287546306"
+      },
+      {
+        "file": ".nxignore",
+        "hash": "13946507155878602329"
+      },
+      {
+        "file": "static/js/tasks.js",
+        "hash": "13816178934981648692"
+      },
+      {
+        "file": ".github/workflows/container-scan.yml",
+        "hash": "17321056240450089475"
+      },
+      {
+        "file": "static/js/emojiPicker.js",
+        "hash": "6415556072861405023"
+      },
+      {
+        "file": "scripts/odysseus-sessions",
+        "hash": "4230027781459626872"
+      },
+      {
+        "file": "static/js/platform.js",
+        "hash": "6304798046447086981"
+      },
+      {
+        "file": "static/js/modelPicker.js",
+        "hash": "12474861834312099476"
+      },
+      {
+        "file": "static/js/chatRenderer.js",
+        "hash": "8275401025448002073"
+      },
+      {
+        "file": "static/js/compare/probe.js",
+        "hash": "7593914776861593794"
+      },
+      {
+        "file": "ROADMAP.md",
+        "hash": "4077828797950267792"
+      },
+      {
+        "file": "features/agent_loop_decomposition.feature",
+        "hash": "10711962076620523761"
+      },
+      {
+        "file": "static/js/editor/tools/wand.js",
+        "hash": "9653749786939834936"
+      },
+      {
+        "file": "docs/attachments.md",
+        "hash": "15323038631983388719"
+      },
+      {
+        "file": "static/js/editor/wire-import.js",
+        "hash": "8573733271657142829"
+      },
+      {
+        "file": "docker/host-docker.yml",
+        "hash": "15131141812553061058"
+      },
+      {
+        "file": "docker/gpu.amd.yml",
+        "hash": "15687829737245872746"
+      },
+      {
+        "file": "docs/chat.webm",
+        "hash": "15924034325246711092"
+      },
+      {
+        "file": "static/js/editor/build/right-panel.js",
+        "hash": "1867919985673354613"
+      },
+      {
+        "file": "features/email.feature",
+        "hash": "12023483775996326607"
+      },
+      {
+        "file": "static/lib/html2pdf.bundle.min.js",
+        "hash": "6723525824494856710"
+      },
+      {
+        "file": "static/js/keyboard-shortcuts.js",
+        "hash": "14952068966249526973"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "1128919407868343792"
+      },
+      {
+        "file": "static/js/editor/build/controls.js",
+        "hash": "13362591142510550162"
+      },
+      {
+        "file": "static/js/providerDeviceFlow.js",
+        "hash": "866027285265541024"
+      },
+      {
+        "file": "docker-compose.gpu-amd.yml",
+        "hash": "6666627168598740620"
+      },
+      {
+        "file": "static/js/streamingRenderer.js",
+        "hash": "5595982711256261860"
+      },
+      {
+        "file": "docs/adr/0003-react-spa-shadcn-react-aria.md",
+        "hash": "18305829104046069634"
+      },
+      {
+        "file": "static/js/editor/build/topbar.js",
+        "hash": "15768542224067495294"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_input.md",
+        "hash": "15922726663663151287"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_output.md",
+        "hash": "12483514980122134019"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_output.md",
+        "hash": "2007953738489962126"
+      },
+      {
+        "file": "docs/document.webm",
+        "hash": "399870212953308372"
+      },
+      {
+        "file": ".pi/agents/adversarial-reviewer.md",
+        "hash": "6200843585236766738"
+      },
+      {
+        "file": "static/js/tileManager.js",
+        "hash": "9469364884973022593"
+      },
+      {
+        "file": "Dockerfile",
+        "hash": "10385567756323953666"
+      },
+      {
+        "file": "scripts/encode_previews.sh",
+        "hash": "11425872091140483835"
+      },
+      {
+        "file": ".pi/agents/qa-engineer.md",
+        "hash": "11334577634041807185"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_output.md",
+        "hash": "13052083424990491101"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_meta.json",
+        "hash": "14621387391733633476"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "14969706874883542764"
+      },
+      {
+        "file": "static/js/editor/ai-tools-misc.js",
+        "hash": "13746453867301085341"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-overflow.js",
+        "hash": "1355162196074946686"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "7272683800252714572"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_input.md",
+        "hash": "12116697020672410012"
+      },
+      {
+        "file": "scripts/odysseus-notes",
+        "hash": "7630151342477608666"
+      },
+      {
+        "file": "static/icons/icon-192.png",
+        "hash": "2594490408059400998"
+      },
+      {
+        "file": "specs/architecture-runtime-inventory.md",
+        "hash": "7821427728111692043"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "18078252000797110180"
+      },
+      {
+        "file": "static/js/modalManager.js",
+        "hash": "9876571968999585919"
+      },
+      {
+        "file": "static/icon.ico",
+        "hash": "15439992681755836554"
+      },
+      {
+        "file": "static/js/editor/shortcuts-popover.js",
+        "hash": "2422893758238320787"
+      },
+      {
+        "file": "static/js/researchSynapse.js",
+        "hash": "8272787207129956948"
+      },
+      {
+        "file": ".pi/agents/frontend-dev.md",
+        "hash": "13590079152019217997"
+      },
+      {
+        "file": ".github/workflows/quality-gates.yml",
+        "hash": "6441522662506412341"
+      },
+      {
+        "file": "features/chat.feature",
+        "hash": "3903861112158968736"
+      },
+      {
+        "file": "tools/hooks/domain_registry.json",
+        "hash": "12562344871295991829"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_meta.json",
+        "hash": "17445365092082253475"
+      },
+      {
+        "file": ".windsurfrules",
+        "hash": "7246202883755543190"
+      },
+      {
+        "file": "docs/adr/0001-keep-and-harden-fastapi-contract-first.md",
+        "hash": "1633329802482946409"
+      },
+      {
+        "file": "docs/adr/0004-testing-standards-blackbox-100pct-mutation.md",
+        "hash": "2831415921414017830"
+      },
+      {
+        "file": "static/js/voiceRecorder.js",
+        "hash": "12095022163635946795"
+      },
+      {
+        "file": "scripts/check-docker-amd-gpu.sh",
+        "hash": "10698149408004528147"
+      },
+      {
+        "file": "static/js/color/hex.js",
+        "hash": "1648360776633286759"
+      },
+      {
+        "file": "build-windows-portable.ps1",
+        "hash": "1419792700044772502"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-menus.js",
+        "hash": "7975083751577731219"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/eb6128e4/ody-70-implementation.md",
+        "hash": "14205987909320637201"
+      },
+      {
+        "file": "start-macos.sh",
+        "hash": "4045700247317285276"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/5a4af346/ody-25-implementation.md",
+        "hash": "13025863706737560562"
+      },
+      {
+        "file": "static/js/markdown.js",
+        "hash": "2769666998212386227"
+      },
+      {
+        "file": "static/js/compare/panes.js",
+        "hash": "13227693606291067294"
+      },
+      {
+        "file": "static/js/tourAutoplay.js",
+        "hash": "12150111739642762950"
+      },
+      {
+        "file": "static/js/editor/tools/move.js",
+        "hash": "1424142201638763572"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_input.md",
+        "hash": "9377934280642763792"
+      },
+      {
+        "file": "docker/entrypoint.sh",
+        "hash": "11619353121012272922"
+      },
+      {
+        "file": "static/js/assistant.js",
+        "hash": "3305958915411482768"
+      },
+      {
+        "file": "static/js/spinner.js",
+        "hash": "10778241321941129020"
+      },
+      {
+        "file": "static/js/skills.js",
+        "hash": "7857674869619309953"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_meta.json",
+        "hash": "8285055404088917063"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_transcript.jsonl",
+        "hash": "7832450510833629991"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_meta.json",
+        "hash": "9185443675842446778"
+      },
+      {
+        "file": "static/icons/ollama-mark-crop.png",
+        "hash": "10754862324657861559"
+      },
+      {
+        "file": "docs/c4/context.mmd",
+        "hash": "17881975618974066507"
+      },
+      {
+        "file": "static/js/slashAutocomplete.js",
+        "hash": "5527553628908261001"
+      },
+      {
+        "file": "static/lib/xlsx.full.min.js",
+        "hash": "5054577093007801819"
+      },
+      {
+        "file": "static/js/memory.js",
+        "hash": "2281955282259458942"
+      },
+      {
+        "file": "features/documents.feature",
+        "hash": "7804989561885893236"
+      },
+      {
+        "file": "static/js/langIcons.js",
+        "hash": "480948837890574196"
+      },
+      {
+        "file": "static/index.html",
+        "hash": "8247864080718114259"
+      },
+      {
+        "file": "static/js/editor/tools/clone.js",
+        "hash": "7755895296700562412"
+      },
+      {
+        "file": "scripts/odysseus-preset",
+        "hash": "5199262038704587196"
+      },
+      {
+        "file": "static/js/streamingSegmenter.js",
+        "hash": "5271702315519265902"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "163629652905724986"
+      },
+      {
+        "file": "static/fonts/Inter-SemiBold.woff2",
+        "hash": "6855525866634719917"
+      },
+      {
+        "file": "static/fonts/Inter-Medium.woff2",
+        "hash": "4265220141366637183"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_transcript.jsonl",
+        "hash": "1486622079805712160"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_meta.json",
+        "hash": "15993540777851294004"
+      },
+      {
+        "file": "static/js/editor/canvas-transforms.js",
+        "hash": "3836424844986233716"
+      },
+      {
+        "file": "scripts/odysseus-skills",
+        "hash": "13565645326281122727"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "12226720553139194205"
+      },
+      {
+        "file": "nx.json",
+        "hash": "6385522742876893801"
+      },
+      {
+        "file": ".github/workflows/codeql.yml",
+        "hash": "8657209483542786554"
+      },
+      {
+        "file": "docs/adr/0011-database-management-and-schema-evolution.md",
+        "hash": "13490091765576843831"
+      },
+      {
+        "file": "static/js/editor/filters/edge-feather.js",
+        "hash": "10476881015372553961"
+      },
+      {
+        "file": "static/js/signature.js",
+        "hash": "4305839723156306561"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
+        "hash": "14696707544955567635"
+      },
+      {
+        "file": ".pi/agents/backend-dev.md",
+        "hash": "10468162411828257723"
+      },
+      {
+        "file": "static/js/editor/wire-merge-buttons.js",
+        "hash": "1265960974624326467"
+      },
+      {
+        "file": "licenses/llmfit-MIT-LICENSE.txt",
+        "hash": "13282152439144735543"
+      },
+      {
+        "file": "scripts/odysseus-tasks",
+        "hash": "8049359391557855601"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_output.md",
+        "hash": "12721603014726239478"
+      },
+      {
+        "file": "static/js/editor/tools/flood-fill.js",
+        "hash": "6866628110831098217"
+      },
+      {
+        "file": "docker/gpu.nvidia.yml",
+        "hash": "10678213419058016084"
+      },
+      {
+        "file": "static/js/a11y.js",
+        "hash": "3250629998379958076"
+      },
+      {
+        "file": ".github/copilot-instructions.md",
+        "hash": "3579825062979438427"
+      },
+      {
+        "file": "static/js/documentLibrary.js",
+        "hash": "15827838580957958734"
+      },
+      {
+        "file": "static/js/emailLibrary/replyRecipients.js",
+        "hash": "5374532668094672571"
+      },
+      {
+        "file": "scripts/update_database.py",
+        "hash": "14920695395199591078"
+      },
+      {
+        "file": "static/js/model/matchKey.js",
+        "hash": "7660309974343195825"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_meta.json",
+        "hash": "15791312940410967932"
+      },
+      {
+        "file": "static/js/emailShared.js",
+        "hash": "4588733407931960102"
+      },
+      {
+        "file": "static/js/emailLibrary.js",
+        "hash": "4889034196886183444"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_transcript.jsonl",
+        "hash": "10410677284205992346"
+      },
+      {
+        "file": "static/js/calendar/reminders.js",
+        "hash": "9175987879187519042"
+      },
+      {
+        "file": "static/js/editor/clipboard-and-drop.js",
+        "hash": "10392562351805129455"
+      },
+      {
+        "file": "static/js/windowResize.js",
+        "hash": "7916484367649703823"
+      },
+      {
+        "file": "static/js/galleryEditor.js",
+        "hash": "334579093221619786"
+      },
+      {
+        "file": "static/js/cookbookDownload.js",
+        "hash": "3000584999675580861"
+      },
+      {
+        "file": "static/js/editor/tools/transform-drag.js",
+        "hash": "9398093302056620886"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_input.md",
+        "hash": "8925438340142474692"
+      },
+      {
+        "file": "static/js/compare/vote.js",
+        "hash": "14226434135540369342"
+      },
+      {
+        "file": "static/js/group.js",
+        "hash": "4164279580730405672"
+      },
+      {
+        "file": "static/js/tts-ai.js",
+        "hash": "10019811341040245069"
+      },
+      {
+        "file": "static/js/editor/snap.js",
+        "hash": "16879419388767793708"
+      },
+      {
+        "file": "docs/adr/0008-security-architecture.md",
+        "hash": "9643091124458063734"
+      },
+      {
+        "file": "static/fonts/FiraCode-Light.woff2",
+        "hash": "10816134289549779743"
+      },
+      {
+        "file": "scripts/migrate_faiss_to_chroma.py",
+        "hash": "12390546103077106993"
+      },
+      {
+        "file": "static/js/editor/canvas-coords.js",
+        "hash": "13625838496664212088"
+      },
+      {
+        "file": "static/app.js",
+        "hash": "17285441092465263376"
+      },
+      {
+        "file": "static/js/document.js",
+        "hash": "403398737471428860"
+      },
+      {
+        "file": "static/manifest.json",
+        "hash": "14051329859574571040"
+      },
+      {
+        "file": "features/auth.feature",
+        "hash": "12062703575821382553"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_meta.json",
+        "hash": "18181354140168248797"
+      },
+      {
+        "file": "scripts/_completion/odysseus.bash",
+        "hash": "1449848996353997184"
+      },
+      {
+        "file": "docs/c4/container.mmd",
+        "hash": "3469414628858918182"
+      },
+      {
+        "file": "static/js/editor/ai-models.js",
+        "hash": "4120032803243431103"
+      },
+      {
+        "file": "static/fonts/FiraCode-SemiBold.woff2",
+        "hash": "16793162283137106018"
+      },
+      {
+        "file": "static/js/codeRunner.js",
+        "hash": "10690404463231988882"
+      },
+      {
+        "file": "static/js/composerArrowUpRecall.js",
+        "hash": "3296554269082856705"
+      },
+      {
+        "file": "static/js/editor/fx/pixel-pass.js",
+        "hash": "10472153379763250041"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_transcript.jsonl",
+        "hash": "9067854238442020247"
+      },
+      {
+        "file": "static/js/compare/stream.js",
+        "hash": "2971628962528753385"
+      },
+      {
+        "file": "static/js/editor/ai-rembg.js",
+        "hash": "13533336362176508722"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_input.md",
+        "hash": "6200899845447774622"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_meta.json",
+        "hash": "14932692535321084243"
+      },
+      {
+        "file": "static/js/editor/stroke-tool-sliders.js",
+        "hash": "2179315491049669205"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "5330912688379151434"
+      },
+      {
+        "file": "docs/research.webm",
+        "hash": "13000298419842495361"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_input.md",
+        "hash": "3072141006736914234"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "11753983313330619413"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_transcript.jsonl",
+        "hash": "4597491989763600155"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_meta.json",
+        "hash": "93356740539221968"
+      },
+      {
+        "file": "static/js/compare/scoreboard.js",
+        "hash": "14640871453228228116"
+      },
+      {
+        "file": "static/js/editor/checkerboard.js",
+        "hash": "17028048392630372095"
+      },
+      {
+        "file": "docs/odysseus-wordmark.png",
+        "hash": "10829838940447681864"
+      },
+      {
+        "file": "static/js/models.js",
+        "hash": "15427968679783512162"
+      },
+      {
+        "file": "licenses/OpenDyslexic-OFL.txt",
+        "hash": "16718540379210749884"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_output.md",
+        "hash": "17927209678489435960"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_output.md",
+        "hash": "3626651235729992953"
+      },
+      {
+        "file": "static/js/toolWindowZOrder.js",
+        "hash": "17539854021932023207"
+      },
+      {
+        "file": "static/js/editor/layer-panel.js",
+        "hash": "4374440362424469267"
+      },
+      {
+        "file": "static/js/editor/tools/lasso-mask.js",
+        "hash": "2295809151503659172"
+      },
+      {
+        "file": "static/js/editor/tools/transform-handles.js",
+        "hash": "17813292550317276290"
+      },
+      {
+        "file": ".github/CODEOWNERS",
+        "hash": "10483862179934434915"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_input.md",
+        "hash": "462067509468679662"
+      },
+      {
+        "file": "scripts/index_documents.py",
+        "hash": "8563074886892522750"
+      },
+      {
+        "file": "docs/c4/component.mmd",
+        "hash": "4862164734832854381"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "6898973031200067160"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "1099037905522644602"
+      },
+      {
+        "file": "scripts/backfill_model_release_dates.py",
+        "hash": "11914773000132436659"
+      },
+      {
+        "file": "static/icons/ollama-mark.png",
+        "hash": "18196217238538679405"
+      },
+      {
+        "file": "static/js/calendar/utils.js",
+        "hash": "11555205761896986638"
+      },
+      {
+        "file": "static/js/providers.js",
+        "hash": "11332025744903329476"
+      },
+      {
+        "file": "static/js/editor/ai-inpaint.js",
+        "hash": "9331573697617456321"
+      },
+      {
+        "file": "static/js/settings.js",
+        "hash": "12724595451265584220"
+      },
+      {
+        "file": "docs/adr/quality-gates.md",
+        "hash": "10376471349775587344"
+      },
+      {
+        "file": "static/js/rag.js",
+        "hash": "9324201543915797212"
+      },
+      {
+        "file": "static/js/theme.js",
+        "hash": "554561425454395979"
+      },
+      {
+        "file": "docs/adr/0012-observability-and-error-handling.md",
+        "hash": "9778857810112238852"
+      },
+      {
+        "file": "static/js/sessions.js",
+        "hash": "9432350817134691990"
+      },
+      {
+        "file": "scripts/_lib/__init__.py",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_meta.json",
+        "hash": "4779823716634514152"
+      },
+      {
+        "file": ".github/scripts/check-pr-description.js",
+        "hash": "14451278540610101295"
+      },
+      {
+        "file": "scripts/demo_email/manage.sh",
+        "hash": "14915744904769667948"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_output.md",
+        "hash": "6456497235221386806"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_output.md",
+        "hash": "15209241258664667831"
+      },
+      {
+        "file": "scripts/demo_email/seed_demo_emails.py",
+        "hash": "1897739459594544054"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_meta.json",
+        "hash": "740860580988892157"
+      },
+      {
+        "file": "docs/adr/0006-code-review-and-merge-standards.md",
+        "hash": "12042833458055251148"
+      },
+      {
+        "file": "docs/gherkin-conventions.md",
+        "hash": "6811599141159892278"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_meta.json",
+        "hash": "18116954552512077584"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_transcript.jsonl",
+        "hash": "10660276158961403762"
+      },
+      {
+        "file": "docs/adr/0009-api-versioning-and-backward-compatibility.md",
+        "hash": "6522259218743026277"
+      },
+      {
+        "file": "docs/compare.webm",
+        "hash": "1255260485319850166"
+      },
+      {
+        "file": "static/js/notes.js",
+        "hash": "17226774693517799023"
+      },
+      {
+        "file": "docs/backup-restore.md",
+        "hash": "10588619875313704067"
+      },
+      {
+        "file": "static/js/escMenuStack.js",
+        "hash": "18169669487280632985"
+      },
+      {
+        "file": "static/js/cookbook.js",
+        "hash": "8353811374347319400"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
+        "hash": "5317400587860909605"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "13326274909822366198"
+      },
+      {
+        "file": ".pre-commit-config.yaml",
+        "hash": "11524898213382405151"
+      },
+      {
+        "file": "static/js/editor/build/toolbar.js",
+        "hash": "10495633189405431248"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_output.md",
+        "hash": "12283778154588441043"
+      },
+      {
+        "file": "launch-windows.ps1",
+        "hash": "14961437186037910726"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_output.md",
+        "hash": "6667494079501502009"
+      },
+      {
+        "file": "scripts/odysseus-mail",
+        "hash": "627209817596257700"
+      },
+      {
+        "file": "pyproject.toml",
+        "hash": "5268817540663165553"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_input.md",
+        "hash": "1055994213742318463"
+      },
+      {
+        "file": "odysseus-ui.service",
+        "hash": "2190458845051058258"
+      },
+      {
+        "file": "static/js/cookbook-deps-recipes.js",
+        "hash": "7769120692007710347"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_output.md",
+        "hash": "8458834179714512227"
+      },
+      {
+        "file": "static/icons/icon-512.png",
+        "hash": "13669072545933388678"
+      },
+      {
+        "file": "static/js/editor/state.js",
+        "hash": "5885287867594317912"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_output.md",
+        "hash": "10647784818352384024"
+      },
+      {
+        "file": "scripts/odysseus",
+        "hash": "12187600000205141689"
+      },
+      {
+        "file": "static/js/modelSort.js",
+        "hash": "8208597202829379173"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "10544212621977757985"
+      },
+      {
+        "file": ".github/workflows/dependency-review.yml",
+        "hash": "7084453939118732395"
+      },
+      {
+        "file": "static/js/gallery.js",
+        "hash": "3329272439500484954"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_meta.json",
+        "hash": "8705468128155478330"
+      },
+      {
+        "file": ".github/workflows/pr-description-check.yml",
+        "hash": "2155543067230032181"
+      },
+      {
+        "file": "static/js/emailLibrary/signatureFold.js",
+        "hash": "10150448509017090168"
+      },
+      {
+        "file": ".pi/agents/scrum-master.md",
+        "hash": "15472132696117379988"
+      },
+      {
+        "file": "docs/adr/0007-coding-standards-and-complexity-budget.md",
+        "hash": "4831133913396220825"
+      },
+      {
+        "file": "scripts/odysseus-logs",
+        "hash": "15472518536902064142"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_meta.json",
+        "hash": "14349814105008892162"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_output.md",
+        "hash": "13245514185533123490"
+      },
+      {
+        "file": "update_windows.bat",
+        "hash": "14393272399248452755"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_input.md",
+        "hash": "4074169511659415456"
+      },
+      {
+        "file": "scripts/diffusion_server.py",
+        "hash": "5548973453592624642"
+      },
+      {
+        "file": "static/js/search-chat.js",
+        "hash": "7626216614729538431"
+      },
+      {
+        "file": "static/js/cookbook-hwfit.js",
+        "hash": "3603139793916534264"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_meta.json",
+        "hash": "8802198563425822102"
+      },
+      {
+        "file": "static/js/compare/models.js",
+        "hash": "184017458690750304"
+      },
+      {
+        "file": "static/js/editor/slider-ux.js",
+        "hash": "2186037331636781181"
+      },
+      {
+        "file": "static/js/editor/tools/stroke.js",
+        "hash": "2352172937174100905"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "8879144021862556612"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_output.md",
+        "hash": "6789142957764979765"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "10634418416635459650"
+      },
+      {
+        "file": "static/js/cookbookSchedule.js",
+        "hash": "14484738567964615640"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_input.md",
+        "hash": "17846575821973552292"
+      },
+      {
+        "file": "static/js/dragSort.js",
+        "hash": "8363793256553401004"
+      },
+      {
+        "file": "docs/adr/0005-accessibility-and-performance.md",
+        "hash": "11567474909383388293"
+      },
+      {
+        "file": "THREAT_MODEL.md",
+        "hash": "605503327494757417"
+      },
+      {
+        "file": "scripts/demo_email/demo_account.py",
+        "hash": "9230561175246916706"
+      },
+      {
+        "file": "scripts/odysseus-mcp",
+        "hash": "10058760468797707123"
+      },
+      {
+        "file": ".cursor/rules/engineering-standards.mdc",
+        "hash": "5396512538208633123"
+      },
+      {
+        "file": "scripts/odysseus-backup",
+        "hash": "14141141443241837802"
+      },
+      {
+        "file": "static/js/editor/build/popups.js",
+        "hash": "467744696555055059"
+      },
+      {
+        "file": "docs/email-outlook.md",
+        "hash": "17625542642770946745"
+      },
+      {
+        "file": "docs/architecture-review.md",
+        "hash": "5850934773441248059"
+      },
+      {
+        "file": ".pi/settings.json",
+        "hash": "6206861250988469889"
+      },
+      {
+        "file": ".github/pull_request_template.md",
+        "hash": "3129125717405090827"
+      },
+      {
+        "file": "static/icons/sglang-mark.png",
+        "hash": "4895137777437658064"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_input.md",
+        "hash": "9689593142988527660"
+      },
+      {
+        "file": ".gitattributes",
+        "hash": "6112229773071989854"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_input.md",
+        "hash": "6750114971204760358"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_input.md",
+        "hash": "2147581066688201651"
+      },
+      {
+        "file": "static/fonts/Inter-Regular.woff2",
+        "hash": "13293078470454433233"
+      },
+      {
+        "file": "static/js/censor.js",
+        "hash": "14903383731525164090"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_transcript.jsonl",
+        "hash": "8244679380103352775"
+      },
+      {
+        "file": "static/js/init.js",
+        "hash": "16766840838356167651"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_meta.json",
+        "hash": "3877347985225805916"
+      },
+      {
+        "file": "scripts/claim_ownerless.py",
+        "hash": "5489634549768745165"
+      },
+      {
+        "file": "docs/setup.md",
+        "hash": "12409057683753206848"
+      },
+      {
+        "file": "AGENTS.md",
+        "hash": "15279645201222848349"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_output.md",
+        "hash": "7413896378010785490"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_meta.json",
+        "hash": "3747166397148629950"
+      },
+      {
+        "file": "static/js/admin.js",
+        "hash": "9553410654459218348"
+      },
+      {
+        "file": "static/js/editor/fx/histogram.js",
+        "hash": "17831080853986985226"
+      },
+      {
+        "file": "static/js/research/jobs.js",
+        "hash": "1354364432616033197"
+      },
+      {
+        "file": "static/fonts/custom/GohuFont.ttf",
+        "hash": "14316767274695836581"
+      },
+      {
+        "file": "docs/middleware.md",
+        "hash": "8585153319010742479"
+      },
+      {
+        "file": "scripts/fix_paths.py",
+        "hash": "10411222688285291716"
+      },
+      {
+        "file": "static/js/ui.js",
+        "hash": "6366005666654020301"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_meta.json",
+        "hash": "16532131981598051154"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_input.md",
+        "hash": "1469246140222744616"
+      },
+      {
+        "file": "static/js/research/panel.js",
+        "hash": "15586861766915546009"
+      },
+      {
+        "file": "scripts/odysseus-theme",
+        "hash": "13108778844085664771"
+      },
+      {
+        "file": "static/js/editor/composite-helpers.js",
+        "hash": "10096211117271558700"
+      },
+      {
+        "file": "README.md",
+        "hash": "11792770467739756099"
+      },
+      {
+        "file": "static/js/util/ordinal.js",
+        "hash": "2543876463537296803"
+      },
+      {
+        "file": "scripts/check-docker-gpu.sh",
+        "hash": "166741936123465007"
+      },
+      {
+        "file": "static/icons/icon-maskable-512.png",
+        "hash": "4062403916560428880"
+      },
+      {
+        "file": ".clinerules/engineering-standards.md",
+        "hash": "8314057767841739018"
+      },
+      {
+        "file": "licenses/opencode-MIT-LICENSE.txt",
+        "hash": "684006989153877877"
+      },
+      {
+        "file": "static/js/storage.js",
+        "hash": "16711740402100137410"
+      },
+      {
+        "file": "static/js/chatStream.js",
+        "hash": "924312167309253093"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_input.md",
+        "hash": "2242658198726227525"
+      },
+      {
+        "file": "static/js/MODULE_SUMMARY.md",
+        "hash": "10509690231809342200"
+      },
+      {
+        "file": "scripts/agent_migration_manifest.py",
+        "hash": "3416139349958715523"
+      },
+      {
+        "file": "static/js/editor/wire-selection-controls.js",
+        "hash": "9648181419397598871"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_output.md",
+        "hash": "4363668792650540354"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_input.md",
+        "hash": "3270698991635801391"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_output.md",
+        "hash": "9259412961106209273"
+      },
+      {
+        "file": "static/js/cookbookPorts.js",
+        "hash": "839858563860515205"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/3bc9eeb4/plan.md",
+        "hash": "8767487360142921782"
+      },
+      {
+        "file": "static/js/compare/state.js",
+        "hash": "15485582702579283492"
+      },
+      {
+        "file": "static/js/editor/history-panel.js",
+        "hash": "6404572869164810266"
+      },
+      {
+        "file": "scripts/_lib/cli.py",
+        "hash": "11726287583976296716"
+      },
+      {
+        "file": "docs/security-ci.md",
+        "hash": "17898675351515605231"
+      },
+      {
+        "file": "static/js/tourHints.js",
+        "hash": "3857789642168388131"
+      },
+      {
+        "file": ".github/workflows/workflow-security.yml",
+        "hash": "2683627239302444659"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/config.yml",
+        "hash": "2758504420266664442"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_meta.json",
+        "hash": "12560383672848594919"
+      },
+      {
+        "file": ".pi/agents/sprint-pipeline.md",
+        "hash": "9053218942778839471"
+      },
+      {
+        "file": "static/js/editor/tools/lasso.js",
+        "hash": "3647261416880351880"
+      },
+      {
+        "file": "static/js/cookbook-diagnosis.js",
+        "hash": "12280854941120671110"
+      },
+      {
+        "file": "docs/adr/0000-template.md",
+        "hash": "14650431501363272255"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "hash": "15234618438059398489"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_meta.json",
+        "hash": "17418146911207758978"
+      },
+      {
+        "file": "docker-compose.gpu-nvidia.yml",
+        "hash": "10221974490185153083"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "251491651831931668"
+      },
+      {
+        "file": "static/js/search.js",
+        "hash": "2616939108546884324"
+      },
+      {
+        "file": "static/js/markdown/tableRow.js",
+        "hash": "10186713072405262878"
+      },
+      {
+        "file": "docker/build-realesrgan-wheels.sh",
+        "hash": "3322644706337509938"
+      },
+      {
+        "file": "docs/agent-migration.md",
+        "hash": "8486902629431503634"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_meta.json",
+        "hash": "8062860063810052445"
+      },
+      {
+        "file": "launcher.py",
+        "hash": "7429068528814690433"
+      },
+      {
+        "file": "static/js/cookbookServe.js",
+        "hash": "13120757335133630276"
+      },
+      {
+        "file": "static/js/editor/canvas-events.js",
+        "hash": "8778635601705120796"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_input.md",
+        "hash": "17788425027238009717"
+      },
+      {
+        "file": "scripts/add_hwfit_models.py",
+        "hash": "6806912538020519374"
+      },
+      {
+        "file": "docs/notes.webm",
+        "hash": "10795198706176814932"
+      },
+      {
+        "file": "static/js/editor/fx/filter-string.js",
+        "hash": "9780726717849004012"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_transcript.jsonl",
+        "hash": "9095494789386394027"
+      },
+      {
+        "file": "static/lib/docx.umd.min.js",
+        "hash": "5851014784090365277"
+      },
+      {
+        "file": "docs/theme.webm",
+        "hash": "10502687655691397454"
+      },
+      {
+        "file": "static/js/workspace.js",
+        "hash": "17827765417752975936"
+      },
+      {
+        "file": "scripts/odysseus-gallery",
+        "hash": "3784656767622248626"
+      },
+      {
+        "file": ".pi/agents/scout.md",
+        "hash": "144104525129089593"
+      },
+      {
+        "file": "scripts/_completion/odysseus.zsh",
+        "hash": "4092445190456162222"
+      },
+      {
+        "file": "static/js/calendar.js",
+        "hash": "9348096784648691800"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_transcript.jsonl",
+        "hash": "10363950185796719920"
+      },
+      {
+        "file": "static/js/editor/harmonize-masks.js",
+        "hash": "9943283261402518133"
+      },
+      {
+        "file": "scripts/odysseus-cookbook",
+        "hash": "16295364334805039604"
+      },
+      {
+        "file": "static/js/modalSnap.js",
+        "hash": "5243281368631499063"
+      },
+      {
+        "file": "static/js/package.json",
+        "hash": "5649320037232165591"
+      },
+      {
+        "file": "scripts/hf_download.py",
+        "hash": "3558727042987699467"
+      },
+      {
+        "file": ".github/workflows/docker-publish.yml",
+        "hash": "14715556903010400382"
+      },
+      {
+        "file": "tools/hooks/runtime_deps_guard.py",
+        "hash": "7927391435764388030"
+      },
+      {
+        "file": "static/js/editor/mask-utils.js",
+        "hash": "1877980179938611929"
+      },
+      {
+        "file": "static/js/colorPicker.js",
+        "hash": "13978529648027774720"
+      },
+      {
+        "file": "static/js/editor/tools/crop.js",
+        "hash": "13098853898383609094"
+      },
+      {
+        "file": ".github/pull_request_review_template.md",
+        "hash": "5552770234654282381"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "6702274276425615078"
+      },
+      {
+        "file": "scripts/odysseus-memory",
+        "hash": "8458460389869839315"
+      },
+      {
+        "file": "static/js/editor/fx/adj-popup.js",
+        "hash": "7424431586387785954"
+      },
+      {
+        "file": "static/js/fileHandler.js",
+        "hash": "16492595646538018328"
+      },
+      {
+        "file": "static/js/editor/tools/transform-session.js",
+        "hash": "10605462564722887993"
+      },
+      {
+        "file": ".env.example",
+        "hash": "4732082490273842972"
+      },
+      {
+        "file": "scripts/odysseus-research",
+        "hash": "14760746055978135210"
+      },
+      {
+        "file": "static/js/emojiShortcodes.js",
+        "hash": "9040982751866588374"
+      }
+    ],
     "projectFileMap": {
+      "client-sdk": [
+        {
+          "file": "packages/client-sdk/.gitignore",
+          "hash": "6587066531560535966"
+        },
+        {
+          "file": "packages/client-sdk/generate.js",
+          "hash": "11161023919165855287"
+        },
+        {
+          "file": "packages/client-sdk/package.json",
+          "hash": "6607272619949571268",
+          "deps": [
+            "npm:openapi-typescript",
+            "npm:vitest",
+            "npm:openapi-fetch"
+          ]
+        },
+        {
+          "file": "packages/client-sdk/project.json",
+          "hash": "2195764566798019978"
+        },
+        {
+          "file": "packages/client-sdk/src/index.ts",
+          "hash": "2802418203527914473"
+        },
+        {
+          "file": "packages/client-sdk/tests/__snapshots__/sdk-snapshot.test.ts.snap",
+          "hash": "12085054779610294353"
+        },
+        {
+          "file": "packages/client-sdk/tests/sdk-snapshot.test.ts",
+          "hash": "15055765353908970498",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/client-sdk/tsconfig.json",
+          "hash": "4615747906102661058"
+        }
+      ],
       "api": [
         {
           "file": "apps/api/.python-version",
@@ -13,6 +1873,26 @@
         {
           "file": "apps/api/README.md",
           "hash": "14832959469403581848"
+        },
+        {
+          "file": "apps/api/companion/README.md",
+          "hash": "3811702818860308782"
+        },
+        {
+          "file": "apps/api/companion/__init__.py",
+          "hash": "12606667056735072203"
+        },
+        {
+          "file": "apps/api/companion/pairing.py",
+          "hash": "17783188422793933690"
+        },
+        {
+          "file": "apps/api/companion/routes.py",
+          "hash": "3643720429674874054"
+        },
+        {
+          "file": "apps/api/config/searxng/settings.yml",
+          "hash": "3648077801930949076"
         },
         {
           "file": "apps/api/integrations/claude/README.md",
@@ -68,7 +1948,7 @@
         },
         {
           "file": "apps/api/pyproject.toml",
-          "hash": "12894234913009672382"
+          "hash": "10084785868392451692"
         },
         {
           "file": "apps/api/requirements-optional.txt",
@@ -76,7 +1956,7 @@
         },
         {
           "file": "apps/api/requirements.txt",
-          "hash": "4943107811208245106"
+          "hash": "12586470768057198607"
         },
         {
           "file": "apps/api/setup.py",
@@ -84,7 +1964,7 @@
         },
         {
           "file": "apps/api/src/app.py",
-          "hash": "1035933721261979282"
+          "hash": "6804375674385009529"
         },
         {
           "file": "apps/api/src/core/__init__.py",
@@ -96,7 +1976,11 @@
         },
         {
           "file": "apps/api/src/core/auth.py",
-          "hash": "5297012316963186815"
+          "hash": "12517833153815204007"
+        },
+        {
+          "file": "apps/api/src/core/base.py",
+          "hash": "11131733003089744107"
         },
         {
           "file": "apps/api/src/core/constants.py",
@@ -104,7 +1988,7 @@
         },
         {
           "file": "apps/api/src/core/database.py",
-          "hash": "3128697276837745025"
+          "hash": "3737538806287923834"
         },
         {
           "file": "apps/api/src/core/exceptions.py",
@@ -123,12 +2007,76 @@
           "hash": "8452131196210760497"
         },
         {
+          "file": "apps/api/src/core/models/__init__.py",
+          "hash": "16146148538212959636"
+        },
+        {
+          "file": "apps/api/src/core/models/_legacy.py",
+          "hash": "8452131196210760497"
+        },
+        {
+          "file": "apps/api/src/core/models/calendar_models.py",
+          "hash": "1105830700039430852"
+        },
+        {
+          "file": "apps/api/src/core/models/comparison_models.py",
+          "hash": "14448255316943233232"
+        },
+        {
+          "file": "apps/api/src/core/models/crew_models.py",
+          "hash": "5913130119865368909"
+        },
+        {
+          "file": "apps/api/src/core/models/document_models.py",
+          "hash": "14741710869054784880"
+        },
+        {
+          "file": "apps/api/src/core/models/email_models.py",
+          "hash": "14419069802708920017"
+        },
+        {
+          "file": "apps/api/src/core/models/gallery_models.py",
+          "hash": "15736079261421414383"
+        },
+        {
+          "file": "apps/api/src/core/models/integration_models.py",
+          "hash": "7666586268428663505"
+        },
+        {
+          "file": "apps/api/src/core/models/memory_models.py",
+          "hash": "7226551105930289625"
+        },
+        {
+          "file": "apps/api/src/core/models/model_models.py",
+          "hash": "11852246097823398861"
+        },
+        {
+          "file": "apps/api/src/core/models/note_models.py",
+          "hash": "872076707485332572"
+        },
+        {
+          "file": "apps/api/src/core/models/session_models.py",
+          "hash": "18162375666132991476"
+        },
+        {
+          "file": "apps/api/src/core/models/task_models.py",
+          "hash": "12107410043835105668"
+        },
+        {
+          "file": "apps/api/src/core/models/token_models.py",
+          "hash": "12985159987007543238"
+        },
+        {
+          "file": "apps/api/src/core/models/tool_models.py",
+          "hash": "2187811032099982848"
+        },
+        {
           "file": "apps/api/src/core/platform_compat.py",
-          "hash": "13261509504296042169"
+          "hash": "15049704708744779068"
         },
         {
           "file": "apps/api/src/core/session_manager.py",
-          "hash": "13191766489440190157"
+          "hash": "15994103515578191921"
         },
         {
           "file": "apps/api/src/routes/__init__.py",
@@ -136,7 +2084,7 @@
         },
         {
           "file": "apps/api/src/routes/_validators.py",
-          "hash": "14142149743119694675"
+          "hash": "3541141249946528092"
         },
         {
           "file": "apps/api/src/routes/admin_wipe/__init__.py",
@@ -159,8 +2107,12 @@
           "hash": "17947346722981024038"
         },
         {
+          "file": "apps/api/src/routes/auth_models.py",
+          "hash": "16103284691809899789"
+        },
+        {
           "file": "apps/api/src/routes/auth_routes.py",
-          "hash": "17766438609480225478"
+          "hash": "5437016630143127394"
         },
         {
           "file": "apps/api/src/routes/backup_routes.py",
@@ -168,15 +2120,19 @@
         },
         {
           "file": "apps/api/src/routes/calendar_routes.py",
-          "hash": "1464641773766253595"
+          "hash": "6900451441194088484"
         },
         {
           "file": "apps/api/src/routes/chat_helpers.py",
           "hash": "12241220929636111093"
         },
         {
+          "file": "apps/api/src/routes/chat_models.py",
+          "hash": "1409977295978439106"
+        },
+        {
           "file": "apps/api/src/routes/chat_routes.py",
-          "hash": "3267737248243681403"
+          "hash": "11869230947435441567"
         },
         {
           "file": "apps/api/src/routes/chatgpt_subscription_routes.py",
@@ -224,7 +2180,7 @@
         },
         {
           "file": "apps/api/src/routes/cookbook_helpers.py",
-          "hash": "14606935177918133846"
+          "hash": "1446685108384099536"
         },
         {
           "file": "apps/api/src/routes/cookbook_output.py",
@@ -232,7 +2188,7 @@
         },
         {
           "file": "apps/api/src/routes/cookbook_routes.py",
-          "hash": "6790090117586812307"
+          "hash": "7356187466460309554"
         },
         {
           "file": "apps/api/src/routes/copilot_routes.py",
@@ -248,11 +2204,19 @@
         },
         {
           "file": "apps/api/src/routes/document_helpers.py",
-          "hash": "14637320024830016589"
+          "hash": "9553342492861913866"
+        },
+        {
+          "file": "apps/api/src/routes/document_models.py",
+          "hash": "16497054069332218185"
         },
         {
           "file": "apps/api/src/routes/document_routes.py",
-          "hash": "17423178925908667143"
+          "hash": "7075777449080021340"
+        },
+        {
+          "file": "apps/api/src/routes/domain_models.py",
+          "hash": "4028880555127221000"
         },
         {
           "file": "apps/api/src/routes/editor_draft_routes.py",
@@ -263,16 +2227,20 @@
           "hash": "13920844811258365098"
         },
         {
+          "file": "apps/api/src/routes/email_models.py",
+          "hash": "11850257587329396844"
+        },
+        {
           "file": "apps/api/src/routes/email_pollers.py",
-          "hash": "5837632692650676506"
+          "hash": "15258664213810754253"
         },
         {
           "file": "apps/api/src/routes/email_routes.py",
-          "hash": "16550310339388134801"
+          "hash": "6499164087604762810"
         },
         {
           "file": "apps/api/src/routes/embedding_routes.py",
-          "hash": "2950185401074278934"
+          "hash": "2939712988214005027"
         },
         {
           "file": "apps/api/src/routes/emoji_routes.py",
@@ -292,7 +2260,7 @@
         },
         {
           "file": "apps/api/src/routes/gallery/gallery_routes.py",
-          "hash": "14987203758443293339"
+          "hash": "11286066152418338867"
         },
         {
           "file": "apps/api/src/routes/gallery_helpers.py",
@@ -316,11 +2284,11 @@
         },
         {
           "file": "apps/api/src/routes/hwfit_routes.py",
-          "hash": "2308484425774092389"
+          "hash": "1977492684663051105"
         },
         {
           "file": "apps/api/src/routes/mcp_routes.py",
-          "hash": "5711327392991001140"
+          "hash": "6459930770229550447"
         },
         {
           "file": "apps/api/src/routes/memory/__init__.py",
@@ -328,7 +2296,7 @@
         },
         {
           "file": "apps/api/src/routes/memory/memory_routes.py",
-          "hash": "14917960851885428351"
+          "hash": "5568684473580014933"
         },
         {
           "file": "apps/api/src/routes/memory_routes.py",
@@ -352,15 +2320,15 @@
         },
         {
           "file": "apps/api/src/routes/personal_routes.py",
-          "hash": "7656097000343483495"
+          "hash": "4172309498599456785"
         },
         {
           "file": "apps/api/src/routes/prefs_routes.py",
-          "hash": "8539204445072191892"
+          "hash": "10385306067088648893"
         },
         {
           "file": "apps/api/src/routes/preset_routes.py",
-          "hash": "14705067130887161036"
+          "hash": "15269158268278071926"
         },
         {
           "file": "apps/api/src/routes/research/__init__.py",
@@ -380,11 +2348,11 @@
         },
         {
           "file": "apps/api/src/routes/session_routes.py",
-          "hash": "16282981133202715145"
+          "hash": "2387951741723342871"
         },
         {
           "file": "apps/api/src/routes/shell_routes.py",
-          "hash": "10948174899566101362"
+          "hash": "16767790877880402963"
         },
         {
           "file": "apps/api/src/routes/signature_routes.py",
@@ -392,7 +2360,11 @@
         },
         {
           "file": "apps/api/src/routes/skills_routes.py",
-          "hash": "6164875340899548687"
+          "hash": "17848103588755558766"
+        },
+        {
+          "file": "apps/api/src/routes/sse_schemas.py",
+          "hash": "17755454564741494904"
         },
         {
           "file": "apps/api/src/routes/stt_routes.py",
@@ -404,15 +2376,15 @@
         },
         {
           "file": "apps/api/src/routes/tts_routes.py",
-          "hash": "9745627221533262033"
+          "hash": "4286514234821928571"
         },
         {
           "file": "apps/api/src/routes/upload_routes.py",
-          "hash": "13540948790882154459"
+          "hash": "182940741644406382"
         },
         {
           "file": "apps/api/src/routes/vault_routes.py",
-          "hash": "8798917789869176195"
+          "hash": "6099460605095031249"
         },
         {
           "file": "apps/api/src/routes/webhook_routes.py",
@@ -448,7 +2420,7 @@
         },
         {
           "file": "apps/api/src/services/hwfit/hardware.py",
-          "hash": "2153035767472724162"
+          "hash": "5482081345056805858"
         },
         {
           "file": "apps/api/src/services/hwfit/hf_discovery.py",
@@ -496,7 +2468,7 @@
         },
         {
           "file": "apps/api/src/services/memory/skill_importer.py",
-          "hash": "12792292563310714945"
+          "hash": "8960981280916362077"
         },
         {
           "file": "apps/api/src/services/memory/skills.py",
@@ -528,7 +2500,7 @@
         },
         {
           "file": "apps/api/src/services/search/content.py",
-          "hash": "6890492340220260144"
+          "hash": "2871757198810198921"
         },
         {
           "file": "apps/api/src/services/search/core.py",
@@ -591,8 +2563,36 @@
           "hash": "9791033549013646457"
         },
         {
+          "file": "apps/api/src/src/agent/__init__.py",
+          "hash": "9105226736880237938"
+        },
+        {
+          "file": "apps/api/src/src/agent/classifier.py",
+          "hash": "6943828128186292922"
+        },
+        {
+          "file": "apps/api/src/src/agent/context.py",
+          "hash": "5380910482763504058"
+        },
+        {
+          "file": "apps/api/src/src/agent/loop.py",
+          "hash": "3190571763237675498"
+        },
+        {
+          "file": "apps/api/src/src/agent/prompt.py",
+          "hash": "1980574333181926372"
+        },
+        {
+          "file": "apps/api/src/src/agent/runaway.py",
+          "hash": "1194481617846415222"
+        },
+        {
+          "file": "apps/api/src/src/agent/verifier.py",
+          "hash": "11269970077347537179"
+        },
+        {
           "file": "apps/api/src/src/agent_loop.py",
-          "hash": "1635108426630858595"
+          "hash": "16653982399292398002"
         },
         {
           "file": "apps/api/src/src/agent_runs.py",
@@ -600,7 +2600,7 @@
         },
         {
           "file": "apps/api/src/src/agent_tools/__init__.py",
-          "hash": "17619831444342953172"
+          "hash": "2343802478235926288"
         },
         {
           "file": "apps/api/src/src/agent_tools/admin_tools.py",
@@ -612,15 +2612,15 @@
         },
         {
           "file": "apps/api/src/src/agent_tools/document_tools.py",
-          "hash": "15419401166255770716"
+          "hash": "7731454336851101643"
         },
         {
           "file": "apps/api/src/src/agent_tools/filesystem_tools.py",
-          "hash": "14849784928381179132"
+          "hash": "15295814908701452221"
         },
         {
           "file": "apps/api/src/src/agent_tools/interaction_tools.py",
-          "hash": "15857659368185756442"
+          "hash": "16406707456745568469"
         },
         {
           "file": "apps/api/src/src/agent_tools/model_interaction_tools.py",
@@ -636,15 +2636,15 @@
         },
         {
           "file": "apps/api/src/src/agent_tools/web_tools.py",
-          "hash": "17174663994276234945"
+          "hash": "16812482464196545745"
         },
         {
           "file": "apps/api/src/src/ai_interaction.py",
-          "hash": "13355240755230251919"
+          "hash": "6074527386044253171"
         },
         {
           "file": "apps/api/src/src/api_key_manager.py",
-          "hash": "12161627127317812489"
+          "hash": "6286437676412192315"
         },
         {
           "file": "apps/api/src/src/app_helpers.py",
@@ -652,11 +2652,11 @@
         },
         {
           "file": "apps/api/src/src/app_initializer.py",
-          "hash": "16780240760125211366"
+          "hash": "8731280870638079886"
         },
         {
           "file": "apps/api/src/src/assistant_log.py",
-          "hash": "14439013342059874979"
+          "hash": "16393475963964205468"
         },
         {
           "file": "apps/api/src/src/attachment_refs.py",
@@ -676,7 +2676,7 @@
         },
         {
           "file": "apps/api/src/src/builtin_actions.py",
-          "hash": "16045819688998645938"
+          "hash": "15308972542363279423"
         },
         {
           "file": "apps/api/src/src/builtin_mcp.py",
@@ -684,11 +2684,19 @@
         },
         {
           "file": "apps/api/src/src/caldav_sync.py",
-          "hash": "6457967713349471485"
+          "hash": "7008906143915338134"
         },
         {
           "file": "apps/api/src/src/caldav_writeback.py",
           "hash": "14145672356153649205"
+        },
+        {
+          "file": "apps/api/src/src/calendar_extracted.py",
+          "hash": "9578398762666017055"
+        },
+        {
+          "file": "apps/api/src/src/calendar_helpers.py",
+          "hash": "16086860903596618668"
         },
         {
           "file": "apps/api/src/src/chat_handler.py",
@@ -716,7 +2724,7 @@
         },
         {
           "file": "apps/api/src/src/config.py",
-          "hash": "3386543011413921980"
+          "hash": "6806648246007283047"
         },
         {
           "file": "apps/api/src/src/constants.py",
@@ -731,16 +2739,20 @@
           "hash": "432209238001620076"
         },
         {
+          "file": "apps/api/src/src/cookbook_helpers.py",
+          "hash": "2677731486889092327"
+        },
+        {
           "file": "apps/api/src/src/cookbook_serve_lifecycle.py",
           "hash": "5126715179426655244"
         },
         {
           "file": "apps/api/src/src/copilot.py",
-          "hash": "6927292384713306945"
+          "hash": "4547241603097174213"
         },
         {
           "file": "apps/api/src/src/database.py",
-          "hash": "5281876167689151400"
+          "hash": "8755808410141887243"
         },
         {
           "file": "apps/api/src/src/deep_research.py",
@@ -748,11 +2760,171 @@
         },
         {
           "file": "apps/api/src/src/document_actions.py",
-          "hash": "11216336807682704231"
+          "hash": "11734955975077035134"
         },
         {
           "file": "apps/api/src/src/document_processor.py",
           "hash": "15534025461585972618"
+        },
+        {
+          "file": "apps/api/src/src/domain/__init__.py",
+          "hash": "15467391875417344080"
+        },
+        {
+          "file": "apps/api/src/src/domain/auth/__init__.py",
+          "hash": "17121135889702282746"
+        },
+        {
+          "file": "apps/api/src/src/domain/auth/auth_helpers.py",
+          "hash": "1259288026685843710"
+        },
+        {
+          "file": "apps/api/src/src/domain/auth/session_actions.py",
+          "hash": "4156425908955707743"
+        },
+        {
+          "file": "apps/api/src/src/domain/auth/session_search.py",
+          "hash": "17826178639447693539"
+        },
+        {
+          "file": "apps/api/src/src/domain/auth/user_time.py",
+          "hash": "11934296237817160205"
+        },
+        {
+          "file": "apps/api/src/src/domain/calendar/__init__.py",
+          "hash": "7758259314444301427"
+        },
+        {
+          "file": "apps/api/src/src/domain/calendar/caldav_writeback.py",
+          "hash": "9731562850867305385"
+        },
+        {
+          "file": "apps/api/src/src/domain/chat/__init__.py",
+          "hash": "6644996570268218569"
+        },
+        {
+          "file": "apps/api/src/src/domain/chat/chat_handler.py",
+          "hash": "1382771908215985728"
+        },
+        {
+          "file": "apps/api/src/src/domain/chat/chat_helpers.py",
+          "hash": "1411778364608229042"
+        },
+        {
+          "file": "apps/api/src/src/domain/chat/chat_processor.py",
+          "hash": "3821836982219226237"
+        },
+        {
+          "file": "apps/api/src/src/domain/chat/chatgpt_subscription.py",
+          "hash": "3678458430994849666"
+        },
+        {
+          "file": "apps/api/src/src/domain/cookbook/__init__.py",
+          "hash": "4041967638502251940"
+        },
+        {
+          "file": "apps/api/src/src/domain/cookbook/cookbook_serve_lifecycle.py",
+          "hash": "10218359723279067343"
+        },
+        {
+          "file": "apps/api/src/src/domain/cookbook/model_context.py",
+          "hash": "804552731274974627"
+        },
+        {
+          "file": "apps/api/src/src/domain/cookbook/model_discovery.py",
+          "hash": "16348097131663153498"
+        },
+        {
+          "file": "apps/api/src/src/domain/documents/__init__.py",
+          "hash": "2535373754030699043"
+        },
+        {
+          "file": "apps/api/src/src/domain/documents/document_actions.py",
+          "hash": "3628214692740622314"
+        },
+        {
+          "file": "apps/api/src/src/domain/documents/document_processor.py",
+          "hash": "13815384523152923876"
+        },
+        {
+          "file": "apps/api/src/src/domain/documents/personal_docs.py",
+          "hash": "17937977311992037503"
+        },
+        {
+          "file": "apps/api/src/src/domain/email/__init__.py",
+          "hash": "9444715893700439248"
+        },
+        {
+          "file": "apps/api/src/src/domain/email/email_thread_parser.py",
+          "hash": "6055453153745892181"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/__init__.py",
+          "hash": "14764551925090333222"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/action_intents.py",
+          "hash": "6226898772687961271"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/attachment_refs.py",
+          "hash": "7135111550027768602"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/config.py",
+          "hash": "15106811759750869607"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/constants.py",
+          "hash": "46162849300563522"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/exceptions.py",
+          "hash": "17711602744913421119"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/generated_images.py",
+          "hash": "998563994444712218"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/rag_vector.py",
+          "hash": "4438123008805214766"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/readiness.py",
+          "hash": "3253044157443898960"
+        },
+        {
+          "file": "apps/api/src/src/domain/infra/runtime_paths.py",
+          "hash": "416167661118369901"
+        },
+        {
+          "file": "apps/api/src/src/domain/llm/__init__.py",
+          "hash": "12266347661123940809"
+        },
+        {
+          "file": "apps/api/src/src/domain/llm/endpoint_resolver.py",
+          "hash": "12414868031020413963"
+        },
+        {
+          "file": "apps/api/src/src/domain/research/__init__.py",
+          "hash": "156776586009471544"
+        },
+        {
+          "file": "apps/api/src/src/domain/research/research_utils.py",
+          "hash": "7693292576419270880"
+        },
+        {
+          "file": "apps/api/src/src/email_helpers_extracted.py",
+          "hash": "7681238741614766600"
+        },
+        {
+          "file": "apps/api/src/src/email_pollers_extracted.py",
+          "hash": "10191588851169403192"
+        },
+        {
+          "file": "apps/api/src/src/email_send_extracted.py",
+          "hash": "18096064894935763331"
         },
         {
           "file": "apps/api/src/src/email_thread_parser.py",
@@ -764,7 +2936,7 @@
         },
         {
           "file": "apps/api/src/src/embeddings.py",
-          "hash": "17982445384849782689"
+          "hash": "1432032015660807605"
         },
         {
           "file": "apps/api/src/src/endpoint_resolver.py",
@@ -772,7 +2944,7 @@
         },
         {
           "file": "apps/api/src/src/event_bus.py",
-          "hash": "11531296024458914029"
+          "hash": "7185473965429662069"
         },
         {
           "file": "apps/api/src/src/exceptions.py",
@@ -791,8 +2963,68 @@
           "hash": "17586306747956545419"
         },
         {
+          "file": "apps/api/src/src/infra/__init__.py",
+          "hash": "12262685480222840631"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/__init__.py",
+          "hash": "9167237382067647428"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/base.py",
+          "hash": "8360840829630449540"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/calendar_repository.py",
+          "hash": "10790311682793455591"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/chat_message_repository.py",
+          "hash": "7279055265183463103"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/document_repository.py",
+          "hash": "119868010796622825"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/email_repository.py",
+          "hash": "17506173521799710520"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/gallery_repository.py",
+          "hash": "16069785651718039310"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/memory_repository.py",
+          "hash": "2106328539480874176"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/model_endpoint_repository.py",
+          "hash": "3022091916300735989"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/note_repository.py",
+          "hash": "6848059981925344176"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/session_repository.py",
+          "hash": "1209734354926339529"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/settings_repository.py",
+          "hash": "9332733706981275176"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/task_repository.py",
+          "hash": "6607278973426141807"
+        },
+        {
+          "file": "apps/api/src/src/infra/repositories/user_repository.py",
+          "hash": "9591836916485030173"
+        },
+        {
           "file": "apps/api/src/src/integrations.py",
-          "hash": "9367014565539749218"
+          "hash": "5448000043585533822"
         },
         {
           "file": "apps/api/src/src/interactive_gate.py",
@@ -800,7 +3032,7 @@
         },
         {
           "file": "apps/api/src/src/llm_core.py",
-          "hash": "9337507713147342063"
+          "hash": "12008777339046784871"
         },
         {
           "file": "apps/api/src/src/markitdown_runtime.py",
@@ -808,7 +3040,7 @@
         },
         {
           "file": "apps/api/src/src/mcp_manager.py",
-          "hash": "6665644313014957932"
+          "hash": "17309143643194998272"
         },
         {
           "file": "apps/api/src/src/mcp_oauth.py",
@@ -816,7 +3048,7 @@
         },
         {
           "file": "apps/api/src/src/memory.py",
-          "hash": "2580371605670912504"
+          "hash": "17948370642796271136"
         },
         {
           "file": "apps/api/src/src/memory_provider.py",
@@ -879,6 +3111,14 @@
           "hash": "18172369800835593853"
         },
         {
+          "file": "apps/api/src/src/model_extracted.py",
+          "hash": "6096642311885811463"
+        },
+        {
+          "file": "apps/api/src/src/note_extracted.py",
+          "hash": "1598793682816406092"
+        },
+        {
           "file": "apps/api/src/src/office_doc.py",
           "hash": "17305954144788170578"
         },
@@ -892,7 +3132,7 @@
         },
         {
           "file": "apps/api/src/src/pdf_forms.py",
-          "hash": "13377065676958942843"
+          "hash": "8362716362909301360"
         },
         {
           "file": "apps/api/src/src/pdf_runtime.py",
@@ -900,11 +3140,15 @@
         },
         {
           "file": "apps/api/src/src/personal_docs.py",
-          "hash": "16243042203968875690"
+          "hash": "5097707904734403461"
+        },
+        {
+          "file": "apps/api/src/src/prefs_helpers.py",
+          "hash": "337059537192130426"
         },
         {
           "file": "apps/api/src/src/preset_manager.py",
-          "hash": "12105621980699829702"
+          "hash": "16243877143705528686"
         },
         {
           "file": "apps/api/src/src/prompt_security.py",
@@ -912,11 +3156,11 @@
         },
         {
           "file": "apps/api/src/src/rag_manager.py",
-          "hash": "15829625873972018012"
+          "hash": "7023659323825195867"
         },
         {
           "file": "apps/api/src/src/rag_singleton.py",
-          "hash": "7510227403248197158"
+          "hash": "4417443138646590945"
         },
         {
           "file": "apps/api/src/src/rag_vector.py",
@@ -936,7 +3180,7 @@
         },
         {
           "file": "apps/api/src/src/request_models.py",
-          "hash": "8656757348900029617"
+          "hash": "8243919088635858473"
         },
         {
           "file": "apps/api/src/src/research_handler.py",
@@ -948,7 +3192,15 @@
         },
         {
           "file": "apps/api/src/src/runtime_paths.py",
-          "hash": "7743248693292975058"
+          "hash": "14933900816699299768"
+        },
+        {
+          "file": "apps/api/src/src/scheduler/__init__.py",
+          "hash": "10199183417924549340"
+        },
+        {
+          "file": "apps/api/src/src/scheduler/helpers.py",
+          "hash": "9044430797861307137"
         },
         {
           "file": "apps/api/src/src/search/__init__.py",
@@ -984,11 +3236,11 @@
         },
         {
           "file": "apps/api/src/src/secret_storage.py",
-          "hash": "17242916602780986414"
+          "hash": "7292087514816881624"
         },
         {
           "file": "apps/api/src/src/service_health.py",
-          "hash": "17465241265977760360"
+          "hash": "6696754224739358908"
         },
         {
           "file": "apps/api/src/src/session_actions.py",
@@ -1000,11 +3252,15 @@
         },
         {
           "file": "apps/api/src/src/settings.py",
-          "hash": "797133828703839974"
+          "hash": "11372290347844893520"
         },
         {
           "file": "apps/api/src/src/settings_scrub.py",
           "hash": "2295151923463475480"
+        },
+        {
+          "file": "apps/api/src/src/skills_extracted.py",
+          "hash": "10981034502724835577"
         },
         {
           "file": "apps/api/src/src/task_action_policy.py",
@@ -1016,7 +3272,7 @@
         },
         {
           "file": "apps/api/src/src/task_scheduler.py",
-          "hash": "12062642403099164333"
+          "hash": "14830074640314815724"
         },
         {
           "file": "apps/api/src/src/teacher_escalation.py",
@@ -1032,15 +3288,15 @@
         },
         {
           "file": "apps/api/src/src/tool_execution.py",
-          "hash": "17229756584754443392"
+          "hash": "9069029418449329321"
         },
         {
           "file": "apps/api/src/src/tool_implementations.py",
-          "hash": "8323707071660140489"
+          "hash": "6017564031007831818"
         },
         {
           "file": "apps/api/src/src/tool_index.py",
-          "hash": "6217985090299294971"
+          "hash": "17534291208686755861"
         },
         {
           "file": "apps/api/src/src/tool_parsing.py",
@@ -1072,7 +3328,7 @@
         },
         {
           "file": "apps/api/src/src/tools/calendar.py",
-          "hash": "10440779341405281794"
+          "hash": "18079099270684517981"
         },
         {
           "file": "apps/api/src/src/tools/contacts.py",
@@ -1080,7 +3336,7 @@
         },
         {
           "file": "apps/api/src/src/tools/cookbook.py",
-          "hash": "17715788182368846768"
+          "hash": "10638233514549818767"
         },
         {
           "file": "apps/api/src/src/tools/image.py",
@@ -1088,7 +3344,7 @@
         },
         {
           "file": "apps/api/src/src/tools/notes.py",
-          "hash": "4092526755770608322"
+          "hash": "5853095226911062805"
         },
         {
           "file": "apps/api/src/src/tools/research.py",
@@ -1100,7 +3356,7 @@
         },
         {
           "file": "apps/api/src/src/tools/system.py",
-          "hash": "3537419465657056527"
+          "hash": "13489510643270631307"
         },
         {
           "file": "apps/api/src/src/tools/vault.py",
@@ -1112,7 +3368,7 @@
         },
         {
           "file": "apps/api/src/src/upload_handler.py",
-          "hash": "13154360869089686348"
+          "hash": "9625137292391178543"
         },
         {
           "file": "apps/api/src/src/upload_limits.py",
@@ -1120,7 +3376,7 @@
         },
         {
           "file": "apps/api/src/src/url_safety.py",
-          "hash": "1822079301528144347"
+          "hash": "10230353864806612989"
         },
         {
           "file": "apps/api/src/src/url_security.py",
@@ -1129,6 +3385,10 @@
         {
           "file": "apps/api/src/src/user_time.py",
           "hash": "13770656071803186942"
+        },
+        {
+          "file": "apps/api/src/src/validators.py",
+          "hash": "15320094374925573252"
         },
         {
           "file": "apps/api/src/src/visual_report.py",
@@ -1163,8 +3423,23 @@
           "hash": "10583199205164414978"
         },
         {
+          "file": "apps/api/tests/bdd/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/tests/bdd/conftest.py",
+          "hash": "13313295855735178881"
+        },
+        {
+          "file": "apps/api/tests/bdd/test_auth.py",
+          "hash": "6232835282598377860"
+        },
+        {
           "file": "apps/api/tests/bombadil-spec.ts",
-          "hash": "6465010476201602059"
+          "hash": "6465010476201602059",
+          "deps": [
+            "npm:@antithesishq/bombadil"
+          ]
         },
         {
           "file": "apps/api/tests/cli/test_calendar_cli_name.py",
@@ -1280,7 +3555,7 @@
         },
         {
           "file": "apps/api/tests/conftest.py",
-          "hash": "17838308079098745055"
+          "hash": "15396150535894234785"
         },
         {
           "file": "apps/api/tests/helpers/__init__.py",
@@ -1313,6 +3588,14 @@
         {
           "file": "apps/api/tests/markdown_codefence_placeholder_regression.mjs",
           "hash": "13302656669505587358"
+        },
+        {
+          "file": "apps/api/tests/migrations/__init__.py",
+          "hash": "3368505769549100118"
+        },
+        {
+          "file": "apps/api/tests/migrations/test_migration_patterns.py",
+          "hash": "8741796111204717055"
         },
         {
           "file": "apps/api/tests/run_focus.py",
@@ -1364,11 +3647,19 @@
         },
         {
           "file": "apps/api/tests/test_admin_wipe_gallery.py",
-          "hash": "10885441360180647299"
+          "hash": "14780986978370322261"
         },
         {
           "file": "apps/api/tests/test_admin_wipe_routes_shim.py",
           "hash": "1548816487301657607"
+        },
+        {
+          "file": "apps/api/tests/test_agent_classifier.py",
+          "hash": "13884712430418163008"
+        },
+        {
+          "file": "apps/api/tests/test_agent_context.py",
+          "hash": "5949163993373908950"
         },
         {
           "file": "apps/api/tests/test_agent_loop.py",
@@ -1387,12 +3678,20 @@
           "hash": "7331468692032245184"
         },
         {
+          "file": "apps/api/tests/test_agent_runaway.py",
+          "hash": "12084045981828628904"
+        },
+        {
           "file": "apps/api/tests/test_agent_tool_budget_nonnumeric.py",
           "hash": "14485554003629339370"
         },
         {
           "file": "apps/api/tests/test_agent_tools_truncate_nonstring.py",
           "hash": "2474669895984633983"
+        },
+        {
+          "file": "apps/api/tests/test_agent_verifier.py",
+          "hash": "5695469724412806134"
         },
         {
           "file": "apps/api/tests/test_ai_image_url_safety.py",
@@ -1432,7 +3731,7 @@
         },
         {
           "file": "apps/api/tests/test_api_key_manager_resilience.py",
-          "hash": "9224647728603450071"
+          "hash": "2035496817253378097"
         },
         {
           "file": "apps/api/tests/test_api_token_routes.py",
@@ -1472,7 +3771,7 @@
         },
         {
           "file": "apps/api/tests/test_atomic_io.py",
-          "hash": "125829841974818110"
+          "hash": "14959418660009752807"
         },
         {
           "file": "apps/api/tests/test_attachment_refs.py",
@@ -1509,6 +3808,10 @@
         {
           "file": "apps/api/tests/test_aux_llm_owner_scope.py",
           "hash": "17229770060730220585"
+        },
+        {
+          "file": "apps/api/tests/test_background_jobs.py",
+          "hash": "15693684687335899030"
         },
         {
           "file": "apps/api/tests/test_backup_cli_security.py",
@@ -1548,7 +3851,7 @@
         },
         {
           "file": "apps/api/tests/test_build_user_content_pdf_marker.py",
-          "hash": "12048107569475504568"
+          "hash": "16928282931090164163"
         },
         {
           "file": "apps/api/tests/test_builtin_actions_cookbook_serve_state.py",
@@ -1647,12 +3950,16 @@
           "hash": "3608570190228207879"
         },
         {
+          "file": "apps/api/tests/test_calendar_helpers.py",
+          "hash": "18083161039333653403"
+        },
+        {
           "file": "apps/api/tests/test_calendar_import_zero_duration.py",
           "hash": "4912421386059204207"
         },
         {
           "file": "apps/api/tests/test_calendar_list_range_aliases.py",
-          "hash": "13369045402170622148"
+          "hash": "2172066767659389663"
         },
         {
           "file": "apps/api/tests/test_calendar_owner_scope.py",
@@ -1987,6 +4294,10 @@
           "hash": "13423262818636717263"
         },
         {
+          "file": "apps/api/tests/test_core_models.py",
+          "hash": "14196411197675314209"
+        },
+        {
           "file": "apps/api/tests/test_cors_preflight.py",
           "hash": "7651512372259564402"
         },
@@ -2056,7 +4367,7 @@
         },
         {
           "file": "apps/api/tests/test_dialog_aria.py",
-          "hash": "4769799197195338499"
+          "hash": "8182815314141596366"
         },
         {
           "file": "apps/api/tests/test_diffusion_server_security.py",
@@ -2149,6 +4460,14 @@
         {
           "file": "apps/api/tests/test_document_tool_owner_scope.py",
           "hash": "13973545146381702260"
+        },
+        {
+          "file": "apps/api/tests/test_domain_auth_importable.py",
+          "hash": "1059331762799719919"
+        },
+        {
+          "file": "apps/api/tests/test_domain_infra_importable.py",
+          "hash": "5423807563394783704"
         },
         {
           "file": "apps/api/tests/test_edit_file.py",
@@ -2440,7 +4759,7 @@
         },
         {
           "file": "apps/api/tests/test_group_character_dropdown.py",
-          "hash": "16592108031296368831"
+          "hash": "6115046149160788669"
         },
         {
           "file": "apps/api/tests/test_group_chat_storage.py",
@@ -2700,7 +5019,7 @@
         },
         {
           "file": "apps/api/tests/test_llm_core_sanitize_tool_calls.py",
-          "hash": "2116730935932929708"
+          "hash": "4181119704065797549"
         },
         {
           "file": "apps/api/tests/test_llm_core_sse_no_space.py",
@@ -2915,6 +5234,10 @@
           "hash": "6251200088212541863"
         },
         {
+          "file": "apps/api/tests/test_middleware_stack.py",
+          "hash": "8249517020590863073"
+        },
+        {
           "file": "apps/api/tests/test_migrate_faiss_to_chroma.py",
           "hash": "18287832647126780392"
         },
@@ -2940,7 +5263,7 @@
         },
         {
           "file": "apps/api/tests/test_model_defaults.py",
-          "hash": "16562668105203039677"
+          "hash": "8555531438856187157"
         },
         {
           "file": "apps/api/tests/test_model_discovery_status.py",
@@ -2968,7 +5291,7 @@
         },
         {
           "file": "apps/api/tests/test_multiple_mcp_servers_timeout.py",
-          "hash": "814181066486122109"
+          "hash": "11203391184446206892"
         },
         {
           "file": "apps/api/tests/test_native_tool_result_threading.py",
@@ -3143,6 +5466,10 @@
           "hash": "1968574993901447388"
         },
         {
+          "file": "apps/api/tests/test_prefs_helpers.py",
+          "hash": "9699064873632256601"
+        },
+        {
           "file": "apps/api/tests/test_prefs_routes.py",
           "hash": "11538637381531575608"
         },
@@ -3268,7 +5595,7 @@
         },
         {
           "file": "apps/api/tests/test_rag_vector_id_stability.py",
-          "hash": "10289079935671403612"
+          "hash": "2694213292307593423"
         },
         {
           "file": "apps/api/tests/test_rag_vector_rename_owner.py",
@@ -3341,6 +5668,14 @@
         {
           "file": "apps/api/tests/test_reply_recipients_js.py",
           "hash": "14723465555289681744"
+        },
+        {
+          "file": "apps/api/tests/test_repository_session.py",
+          "hash": "1250641167281862948"
+        },
+        {
+          "file": "apps/api/tests/test_repository_user.py",
+          "hash": "14045745607902274278"
         },
         {
           "file": "apps/api/tests/test_research_chat_stream_owner.py",
@@ -3477,6 +5812,10 @@
         {
           "file": "apps/api/tests/test_scheduled_poll_race.py",
           "hash": "6502219561329866994"
+        },
+        {
+          "file": "apps/api/tests/test_scheduler_decomposition.py",
+          "hash": "12782454741541210655"
         },
         {
           "file": "apps/api/tests/test_scheduler_prompt_cache_time.py",
@@ -3688,7 +6027,7 @@
         },
         {
           "file": "apps/api/tests/test_session_routes_utcnow.py",
-          "hash": "18396751829074335327"
+          "hash": "2269171925549065071"
         },
         {
           "file": "apps/api/tests/test_session_search.py",
@@ -3760,7 +6099,7 @@
         },
         {
           "file": "apps/api/tests/test_skill_extractor_json.py",
-          "hash": "2370608516409778592"
+          "hash": "12416802947986646047"
         },
         {
           "file": "apps/api/tests/test_skill_extractor_rows.py",
@@ -3768,7 +6107,7 @@
         },
         {
           "file": "apps/api/tests/test_skill_extractor_stray_brace.py",
-          "hash": "5194813743639352061"
+          "hash": "9854752415501558567"
         },
         {
           "file": "apps/api/tests/test_skill_importer.py",
@@ -3792,7 +6131,7 @@
         },
         {
           "file": "apps/api/tests/test_skills_delete_owner.py",
-          "hash": "11055548545983297142"
+          "hash": "11890280361563161887"
         },
         {
           "file": "apps/api/tests/test_skills_manager_owner_isolation.py",
@@ -3832,7 +6171,7 @@
         },
         {
           "file": "apps/api/tests/test_sqlite_foreign_keys.py",
-          "hash": "5391560045000410953"
+          "hash": "6712738878514548777"
         },
         {
           "file": "apps/api/tests/test_src_search_query_nonstring.py",
@@ -3848,7 +6187,7 @@
         },
         {
           "file": "apps/api/tests/test_strip_think.py",
-          "hash": "7057206195252894941"
+          "hash": "14979716451611973513"
         },
         {
           "file": "apps/api/tests/test_stt_leak.py",
@@ -3964,7 +6303,7 @@
         },
         {
           "file": "apps/api/tests/test_topic_analyzer.py",
-          "hash": "2242218161661223613"
+          "hash": "12771124472364730714"
         },
         {
           "file": "apps/api/tests/test_totp_failclosed.py",
@@ -4061,6 +6400,10 @@
         {
           "file": "apps/api/tests/test_venice_hosts.py",
           "hash": "6106637519640039428"
+        },
+        {
+          "file": "apps/api/tests/test_verifier.py",
+          "hash": "2210425015631649481"
         },
         {
           "file": "apps/api/tests/test_vision_model_detection.py",
@@ -4177,1403 +6520,212 @@
         {
           "file": "apps/api/tests/tools/build_oversized_test_split_plan.py",
           "hash": "14757141496461249273"
+        },
+        {
+          "file": "apps/api/uv.lock",
+          "hash": "14747631426440683372"
+        }
+      ],
+      "contracts": [
+        {
+          "file": "packages/contracts/.gitignore",
+          "hash": "9659228171397656894"
+        },
+        {
+          "file": "packages/contracts/README.md",
+          "hash": "15611829874418421391"
+        },
+        {
+          "file": "packages/contracts/generate.js",
+          "hash": "2084531656631724403"
+        },
+        {
+          "file": "packages/contracts/openapi.json",
+          "hash": "8311389055551718481"
+        },
+        {
+          "file": "packages/contracts/package.json",
+          "hash": "15033246056646774219",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/contracts/project.json",
+          "hash": "14593997277488224909"
+        },
+        {
+          "file": "packages/contracts/tests/__snapshots__/openapi-snapshot.test.ts.snap",
+          "hash": "7362971045713569818"
+        },
+        {
+          "file": "packages/contracts/tests/openapi-snapshot.test.ts",
+          "hash": "11957701506842104256",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/contracts/tsconfig.json",
+          "hash": "7792710128501657438"
+        }
+      ],
+      "config": [
+        {
+          "file": "packages/config/eslint-preset/index.js",
+          "hash": "16914963823628714915"
+        },
+        {
+          "file": "packages/config/package.json",
+          "hash": "2550837590428388633",
+          "deps": [
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "packages/config/project.json",
+          "hash": "10991747256477246129"
+        },
+        {
+          "file": "packages/config/ruff-preset/ruff.toml",
+          "hash": "15379762903033307515"
+        },
+        {
+          "file": "packages/config/tailwind-preset/tailwind.config.js",
+          "hash": "5592749468186254247"
+        },
+        {
+          "file": "packages/config/tsconfig-preset/base.json",
+          "hash": "635932136438399281"
+        },
+        {
+          "file": "packages/config/tsconfig-preset/react.json",
+          "hash": "8671779152241990129"
+        },
+        {
+          "file": "packages/config/vitest-preset/setup.ts",
+          "hash": "14374101806784543137"
+        }
+      ],
+      "web": [
+        {
+          "file": "apps/web/.env.example",
+          "hash": "9428340087547452304"
+        },
+        {
+          "file": "apps/web/.tanstack/tmp/c83bdd4a-d362cba5eb512ccf891896c8cbffe649",
+          "hash": "10849809659457561126"
+        },
+        {
+          "file": "apps/web/eslint.config.js",
+          "hash": "5062532422577466499"
+        },
+        {
+          "file": "apps/web/index.html",
+          "hash": "13421519164972124428"
+        },
+        {
+          "file": "apps/web/package-lock.json",
+          "hash": "6542647105891558231"
+        },
+        {
+          "file": "apps/web/package.json",
+          "hash": "2888990752898408667",
+          "deps": [
+            "npm:typescript",
+            "npm:vite",
+            "npm:vitest",
+            "client-sdk",
+            "config"
+          ]
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "17138706131988948661"
+        },
+        {
+          "file": "apps/web/public/favicon.svg",
+          "hash": "10051731837734305884"
+        },
+        {
+          "file": "apps/web/src/app.smoke.test.tsx",
+          "hash": "6802374549268914889",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/error-boundary.tsx",
+          "hash": "17168527487358230829"
+        },
+        {
+          "file": "apps/web/src/lib/i18n.ts",
+          "hash": "3611895202552284145"
+        },
+        {
+          "file": "apps/web/src/main.tsx",
+          "hash": "16170733787391284064"
+        },
+        {
+          "file": "apps/web/src/routeTree.gen.ts",
+          "hash": "10849809659457561126"
+        },
+        {
+          "file": "apps/web/src/routes/__root.tsx",
+          "hash": "14783314617430293398"
+        },
+        {
+          "file": "apps/web/src/routes/chat.tsx",
+          "hash": "2521148033394471177"
+        },
+        {
+          "file": "apps/web/src/routes/documents.tsx",
+          "hash": "11237748647353332424"
+        },
+        {
+          "file": "apps/web/src/routes/index.tsx",
+          "hash": "7657756192673192764"
+        },
+        {
+          "file": "apps/web/src/routes/settings.tsx",
+          "hash": "3404313414362329451"
+        },
+        {
+          "file": "apps/web/src/styles/globals.css",
+          "hash": "9624318972641234216"
+        },
+        {
+          "file": "apps/web/src/test-setup.ts",
+          "hash": "14374101806784543137"
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "hash": "14228253180794722138"
+        },
+        {
+          "file": "apps/web/tsconfig.node.json",
+          "hash": "11844984845073572481"
+        },
+        {
+          "file": "apps/web/vite-env.d.ts",
+          "hash": "12946363841406869089"
+        },
+        {
+          "file": "apps/web/vite.config.ts",
+          "hash": "14657755738490545598",
+          "deps": [
+            "npm:vite"
+          ]
+        },
+        {
+          "file": "apps/web/vitest.config.ts",
+          "hash": "17805302226690092465",
+          "deps": [
+            "npm:vitest"
+          ]
         }
       ]
-    },
-    "nonProjectFiles": [
-      {
-        "file": ".clinerules/engineering-standards.md",
-        "hash": "8314057767841739018"
-      },
-      {
-        "file": ".cursor/rules/engineering-standards.mdc",
-        "hash": "5396512538208633123"
-      },
-      {
-        "file": ".dockerignore",
-        "hash": "12226720553139194205"
-      },
-      {
-        "file": ".env.example",
-        "hash": "4732082490273842972"
-      },
-      {
-        "file": ".gitattributes",
-        "hash": "6112229773071989854"
-      },
-      {
-        "file": ".github/CODEOWNERS",
-        "hash": "10483862179934434915"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
-        "hash": "7272683800252714572"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/config.yml",
-        "hash": "2758504420266664442"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
-        "hash": "14696707544955567635"
-      },
-      {
-        "file": ".github/copilot-instructions.md",
-        "hash": "3579825062979438427"
-      },
-      {
-        "file": ".github/dependabot.yml",
-        "hash": "10544212621977757985"
-      },
-      {
-        "file": ".github/pull_request_review_template.md",
-        "hash": "5552770234654282381"
-      },
-      {
-        "file": ".github/pull_request_template.md",
-        "hash": "3129125717405090827"
-      },
-      {
-        "file": ".github/scripts/check-pr-description.js",
-        "hash": "14451278540610101295"
-      },
-      {
-        "file": ".github/scripts/focused_test_guidance.py",
-        "hash": "3407967494658778936"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "6791062432204833029"
-      },
-      {
-        "file": ".github/workflows/codeql.yml",
-        "hash": "8657209483542786554"
-      },
-      {
-        "file": ".github/workflows/container-scan.yml",
-        "hash": "17321056240450089475"
-      },
-      {
-        "file": ".github/workflows/container-trivy.yml",
-        "hash": "4166399547673832044"
-      },
-      {
-        "file": ".github/workflows/dependency-review.yml",
-        "hash": "4898481948395631934"
-      },
-      {
-        "file": ".github/workflows/docker-publish.yml",
-        "hash": "14715556903010400382"
-      },
-      {
-        "file": ".github/workflows/pr-description-check.yml",
-        "hash": "2155543067230032181"
-      },
-      {
-        "file": ".github/workflows/secret-scan.yml",
-        "hash": "10684984250438203113"
-      },
-      {
-        "file": ".github/workflows/workflow-security.yml",
-        "hash": "2683627239302444659"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "163629652905724986"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_input.md",
-        "hash": "15922726663663151287"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_meta.json",
-        "hash": "12560383672848594919"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_output.md",
-        "hash": "4363668792650540354"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
-        "hash": "45073143638047998"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_input.md",
-        "hash": "6750114971204760358"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_meta.json",
-        "hash": "8062860063810052445"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_output.md",
-        "hash": "13245514185533123490"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_transcript.jsonl",
-        "hash": "17183481590751274337"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_input.md",
-        "hash": "2147581066688201651"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_meta.json",
-        "hash": "17418146911207758978"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_output.md",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
-        "hash": "5317400587860909605"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_input.md",
-        "hash": "1469246140222744616"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_meta.json",
-        "hash": "14349814105008892162"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_output.md",
-        "hash": "8458834179714512227"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_transcript.jsonl",
-        "hash": "1486622079805712160"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/397a3adf/plan.md",
-        "hash": "4122896669686278826"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/3bc9eeb4/plan.md",
-        "hash": "8767487360142921782"
-      },
-      {
-        "file": ".pi/agents/adversarial-reviewer.md",
-        "hash": "6200843585236766738"
-      },
-      {
-        "file": ".pi/agents/backend-dev.md",
-        "hash": "10468162411828257723"
-      },
-      {
-        "file": ".pi/agents/frontend-dev.md",
-        "hash": "13590079152019217997"
-      },
-      {
-        "file": ".pi/agents/qa-engineer.md",
-        "hash": "11334577634041807185"
-      },
-      {
-        "file": ".pi/agents/scout.md",
-        "hash": "144104525129089593"
-      },
-      {
-        "file": ".pi/agents/scrum-master.md",
-        "hash": "15914350063670927132"
-      },
-      {
-        "file": ".pi/models.json",
-        "hash": "7574940762439213"
-      },
-      {
-        "file": ".pi/settings.json",
-        "hash": "3538445525178439066"
-      },
-      {
-        "file": ".windsurfrules",
-        "hash": "7246202883755543190"
-      },
-      {
-        "file": "ACKNOWLEDGMENTS.md",
-        "hash": "2292727075695639784"
-      },
-      {
-        "file": "AGENTS.md",
-        "hash": "11006586417576940085"
-      },
-      {
-        "file": "CLAUDE.md",
-        "hash": "15234165324548040252"
-      },
-      {
-        "file": "CONTRIBUTING.md",
-        "hash": "9069937377597750169"
-      },
-      {
-        "file": "Dockerfile",
-        "hash": "15222920323553555153"
-      },
-      {
-        "file": "GEMINI.md",
-        "hash": "17379894040683334668"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "5063357314449241554"
-      },
-      {
-        "file": "Odysseus.spec",
-        "hash": "16502740784460822810"
-      },
-      {
-        "file": "README.md",
-        "hash": "11792770467739756099"
-      },
-      {
-        "file": "ROADMAP.md",
-        "hash": "4077828797950267792"
-      },
-      {
-        "file": "SECURITY.md",
-        "hash": "1128919407868343792"
-      },
-      {
-        "file": "THREAT_MODEL.md",
-        "hash": "605503327494757417"
-      },
-      {
-        "file": "build-macos-app.sh",
-        "hash": "10035212807199525434"
-      },
-      {
-        "file": "build-windows-portable.ps1",
-        "hash": "1419792700044772502"
-      },
-      {
-        "file": "companion/README.md",
-        "hash": "3811702818860308782"
-      },
-      {
-        "file": "companion/__init__.py",
-        "hash": "12606667056735072203"
-      },
-      {
-        "file": "companion/pairing.py",
-        "hash": "17783188422793933690"
-      },
-      {
-        "file": "companion/routes.py",
-        "hash": "3643720429674874054"
-      },
-      {
-        "file": "config/searxng/settings.yml",
-        "hash": "3648077801930949076"
-      },
-      {
-        "file": "docker-compose.gpu-amd.yml",
-        "hash": "6666627168598740620"
-      },
-      {
-        "file": "docker-compose.gpu-nvidia.yml",
-        "hash": "10221974490185153083"
-      },
-      {
-        "file": "docker-compose.yml",
-        "hash": "1099037905522644602"
-      },
-      {
-        "file": "docker/build-realesrgan-wheels.sh",
-        "hash": "3322644706337509938"
-      },
-      {
-        "file": "docker/entrypoint.sh",
-        "hash": "8570997433070531293"
-      },
-      {
-        "file": "docker/gpu.amd.yml",
-        "hash": "15687829737245872746"
-      },
-      {
-        "file": "docker/gpu.nvidia.yml",
-        "hash": "10678213419058016084"
-      },
-      {
-        "file": "docker/host-docker.yml",
-        "hash": "15131141812553061058"
-      },
-      {
-        "file": "docs/adr/0000-template.md",
-        "hash": "14650431501363272255"
-      },
-      {
-        "file": "docs/adr/0001-keep-and-harden-fastapi-contract-first.md",
-        "hash": "1633329802482946409"
-      },
-      {
-        "file": "docs/adr/0002-nx-polyglot-monorepo.md",
-        "hash": "2094451863889655002"
-      },
-      {
-        "file": "docs/adr/0003-react-spa-shadcn-react-aria.md",
-        "hash": "18305829104046069634"
-      },
-      {
-        "file": "docs/adr/0004-testing-standards-blackbox-100pct-mutation.md",
-        "hash": "2831415921414017830"
-      },
-      {
-        "file": "docs/adr/0005-accessibility-and-performance.md",
-        "hash": "11567474909383388293"
-      },
-      {
-        "file": "docs/adr/README.md",
-        "hash": "8894515712519616760"
-      },
-      {
-        "file": "docs/adr/quality-gates.md",
-        "hash": "10376471349775587344"
-      },
-      {
-        "file": "docs/agent-migration.md",
-        "hash": "8486902629431503634"
-      },
-      {
-        "file": "docs/architecture-review.md",
-        "hash": "5850934773441248059"
-      },
-      {
-        "file": "docs/attachments.md",
-        "hash": "15323038631983388719"
-      },
-      {
-        "file": "docs/backup-restore.md",
-        "hash": "10588619875313704067"
-      },
-      {
-        "file": "docs/bg.webm",
-        "hash": "16261083182954388694"
-      },
-      {
-        "file": "docs/chat.webm",
-        "hash": "15924034325246711092"
-      },
-      {
-        "file": "docs/compare.webm",
-        "hash": "1255260485319850166"
-      },
-      {
-        "file": "docs/document.webm",
-        "hash": "399870212953308372"
-      },
-      {
-        "file": "docs/email-outlook.md",
-        "hash": "17625542642770946745"
-      },
-      {
-        "file": "docs/gallery.webm",
-        "hash": "4555129553437604961"
-      },
-      {
-        "file": "docs/index.html",
-        "hash": "15225944888773591256"
-      },
-      {
-        "file": "docs/migration-roadmap.md",
-        "hash": "11115432037425614915"
-      },
-      {
-        "file": "docs/notes.webm",
-        "hash": "10795198706176814932"
-      },
-      {
-        "file": "docs/odysseus-browser.jpg",
-        "hash": "1239002569416580602"
-      },
-      {
-        "file": "docs/odysseus-wordmark.png",
-        "hash": "10829838940447681864"
-      },
-      {
-        "file": "docs/odysseus.jpg",
-        "hash": "18337816470313109427"
-      },
-      {
-        "file": "docs/pr-blocker-audit.md",
-        "hash": "14254944061708004438"
-      },
-      {
-        "file": "docs/research.webm",
-        "hash": "13000298419842495361"
-      },
-      {
-        "file": "docs/security-ci.md",
-        "hash": "17898675351515605231"
-      },
-      {
-        "file": "docs/setup.md",
-        "hash": "12409057683753206848"
-      },
-      {
-        "file": "docs/theme.webm",
-        "hash": "10502687655691397454"
-      },
-      {
-        "file": "install-service.sh",
-        "hash": "6473587190761151857"
-      },
-      {
-        "file": "launch-windows.ps1",
-        "hash": "14961437186037910726"
-      },
-      {
-        "file": "launcher.py",
-        "hash": "7429068528814690433"
-      },
-      {
-        "file": "licenses/DeepResearch-Apache-2.0.txt",
-        "hash": "12649885980860800067"
-      },
-      {
-        "file": "licenses/OpenDyslexic-OFL.txt",
-        "hash": "16718540379210749884"
-      },
-      {
-        "file": "licenses/llmfit-MIT-LICENSE.txt",
-        "hash": "13282152439144735543"
-      },
-      {
-        "file": "licenses/opencode-MIT-LICENSE.txt",
-        "hash": "684006989153877877"
-      },
-      {
-        "file": "odysseus-ui.service",
-        "hash": "2190458845051058258"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "1384015279691198817"
-      },
-      {
-        "file": "package.json",
-        "hash": "14273295560381815182"
-      },
-      {
-        "file": "pyproject.toml",
-        "hash": "5268817540663165553"
-      },
-      {
-        "file": "scripts/_completion/odysseus.bash",
-        "hash": "1449848996353997184"
-      },
-      {
-        "file": "scripts/_completion/odysseus.zsh",
-        "hash": "4092445190456162222"
-      },
-      {
-        "file": "scripts/_lib/__init__.py",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "scripts/_lib/cli.py",
-        "hash": "11726287583976296716"
-      },
-      {
-        "file": "scripts/add_hwfit_models.py",
-        "hash": "6806912538020519374"
-      },
-      {
-        "file": "scripts/agent_migration_manifest.py",
-        "hash": "3416139349958715523"
-      },
-      {
-        "file": "scripts/backfill_model_release_dates.py",
-        "hash": "11914773000132436659"
-      },
-      {
-        "file": "scripts/check-docker-amd-gpu.sh",
-        "hash": "10698149408004528147"
-      },
-      {
-        "file": "scripts/check-docker-gpu.sh",
-        "hash": "166741936123465007"
-      },
-      {
-        "file": "scripts/claim_ownerless.py",
-        "hash": "5489634549768745165"
-      },
-      {
-        "file": "scripts/demo_email/demo_account.py",
-        "hash": "9230561175246916706"
-      },
-      {
-        "file": "scripts/demo_email/manage.sh",
-        "hash": "14915744904769667948"
-      },
-      {
-        "file": "scripts/demo_email/seed_demo_emails.py",
-        "hash": "1897739459594544054"
-      },
-      {
-        "file": "scripts/diffusion_server.py",
-        "hash": "5548973453592624642"
-      },
-      {
-        "file": "scripts/encode_previews.sh",
-        "hash": "11425872091140483835"
-      },
-      {
-        "file": "scripts/fix_paths.py",
-        "hash": "10411222688285291716"
-      },
-      {
-        "file": "scripts/hf_download.py",
-        "hash": "3558727042987699467"
-      },
-      {
-        "file": "scripts/import_from_vllm_recipes.py",
-        "hash": "2923142939916681286"
-      },
-      {
-        "file": "scripts/index_documents.py",
-        "hash": "8563074886892522750"
-      },
-      {
-        "file": "scripts/migrate_faiss_to_chroma.py",
-        "hash": "12390546103077106993"
-      },
-      {
-        "file": "scripts/odysseus",
-        "hash": "12187600000205141689"
-      },
-      {
-        "file": "scripts/odysseus-backup",
-        "hash": "14141141443241837802"
-      },
-      {
-        "file": "scripts/odysseus-calendar",
-        "hash": "9570004316254916687"
-      },
-      {
-        "file": "scripts/odysseus-contacts",
-        "hash": "654083106469894001"
-      },
-      {
-        "file": "scripts/odysseus-cookbook",
-        "hash": "16295364334805039604"
-      },
-      {
-        "file": "scripts/odysseus-docs",
-        "hash": "5821933820041789343"
-      },
-      {
-        "file": "scripts/odysseus-gallery",
-        "hash": "3784656767622248626"
-      },
-      {
-        "file": "scripts/odysseus-logs",
-        "hash": "15472518536902064142"
-      },
-      {
-        "file": "scripts/odysseus-mail",
-        "hash": "627209817596257700"
-      },
-      {
-        "file": "scripts/odysseus-mcp",
-        "hash": "10058760468797707123"
-      },
-      {
-        "file": "scripts/odysseus-memory",
-        "hash": "8458460389869839315"
-      },
-      {
-        "file": "scripts/odysseus-notes",
-        "hash": "7630151342477608666"
-      },
-      {
-        "file": "scripts/odysseus-personal",
-        "hash": "12378683218923811823"
-      },
-      {
-        "file": "scripts/odysseus-preset",
-        "hash": "5199262038704587196"
-      },
-      {
-        "file": "scripts/odysseus-research",
-        "hash": "14760746055978135210"
-      },
-      {
-        "file": "scripts/odysseus-sessions",
-        "hash": "4230027781459626872"
-      },
-      {
-        "file": "scripts/odysseus-signature",
-        "hash": "7760414272024880853"
-      },
-      {
-        "file": "scripts/odysseus-skills",
-        "hash": "13565645326281122727"
-      },
-      {
-        "file": "scripts/odysseus-tasks",
-        "hash": "8049359391557855601"
-      },
-      {
-        "file": "scripts/odysseus-theme",
-        "hash": "13108778844085664771"
-      },
-      {
-        "file": "scripts/odysseus-webhook",
-        "hash": "2763896610842093569"
-      },
-      {
-        "file": "scripts/pr_blocker_audit.py",
-        "hash": "13291180733418482012"
-      },
-      {
-        "file": "scripts/update_database.py",
-        "hash": "14920695395199591078"
-      },
-      {
-        "file": "specs/architecture-runtime-inventory.md",
-        "hash": "7821427728111692043"
-      },
-      {
-        "file": "start-macos.sh",
-        "hash": "4045700247317285276"
-      },
-      {
-        "file": "static/app.js",
-        "hash": "17285441092465263376"
-      },
-      {
-        "file": "static/fonts/FiraCode-Light.woff2",
-        "hash": "10816134289549779743"
-      },
-      {
-        "file": "static/fonts/FiraCode-Regular.woff2",
-        "hash": "2661738199960715299"
-      },
-      {
-        "file": "static/fonts/FiraCode-SemiBold.woff2",
-        "hash": "16793162283137106018"
-      },
-      {
-        "file": "static/fonts/Inter-Medium.woff2",
-        "hash": "4265220141366637183"
-      },
-      {
-        "file": "static/fonts/Inter-Regular.woff2",
-        "hash": "13293078470454433233"
-      },
-      {
-        "file": "static/fonts/Inter-SemiBold.woff2",
-        "hash": "6855525866634719917"
-      },
-      {
-        "file": "static/fonts/OpenDyslexic-Bold.woff2",
-        "hash": "7871009217113397863"
-      },
-      {
-        "file": "static/fonts/OpenDyslexic-Regular.woff2",
-        "hash": "17700555094670922279"
-      },
-      {
-        "file": "static/fonts/custom/GohuFont.ttf",
-        "hash": "14316767274695836581"
-      },
-      {
-        "file": "static/icon.ico",
-        "hash": "15439992681755836554"
-      },
-      {
-        "file": "static/icons/icon-192.png",
-        "hash": "2594490408059400998"
-      },
-      {
-        "file": "static/icons/icon-512.png",
-        "hash": "13669072545933388678"
-      },
-      {
-        "file": "static/icons/icon-maskable-512.png",
-        "hash": "4062403916560428880"
-      },
-      {
-        "file": "static/icons/ollama-mark-crop.png",
-        "hash": "10754862324657861559"
-      },
-      {
-        "file": "static/icons/ollama-mark.png",
-        "hash": "18196217238538679405"
-      },
-      {
-        "file": "static/icons/sglang-logo.png",
-        "hash": "16485024254275974117"
-      },
-      {
-        "file": "static/icons/sglang-mark.png",
-        "hash": "4895137777437658064"
-      },
-      {
-        "file": "static/index.html",
-        "hash": "8247864080718114259"
-      },
-      {
-        "file": "static/js/MODULE_SUMMARY.md",
-        "hash": "10509690231809342200"
-      },
-      {
-        "file": "static/js/a11y.js",
-        "hash": "3250629998379958076"
-      },
-      {
-        "file": "static/js/admin.js",
-        "hash": "9553410654459218348"
-      },
-      {
-        "file": "static/js/assistant.js",
-        "hash": "3305958915411482768"
-      },
-      {
-        "file": "static/js/calendar.js",
-        "hash": "9348096784648691800"
-      },
-      {
-        "file": "static/js/calendar/reminders.js",
-        "hash": "9175987879187519042"
-      },
-      {
-        "file": "static/js/calendar/utils.js",
-        "hash": "11555205761896986638"
-      },
-      {
-        "file": "static/js/censor.js",
-        "hash": "14903383731525164090"
-      },
-      {
-        "file": "static/js/chat.js",
-        "hash": "5996945648287546306"
-      },
-      {
-        "file": "static/js/chatRenderer.js",
-        "hash": "8275401025448002073"
-      },
-      {
-        "file": "static/js/chatStream.js",
-        "hash": "924312167309253093"
-      },
-      {
-        "file": "static/js/codeRunner.js",
-        "hash": "10690404463231988882"
-      },
-      {
-        "file": "static/js/color/hex.js",
-        "hash": "1648360776633286759"
-      },
-      {
-        "file": "static/js/colorPicker.js",
-        "hash": "13978529648027774720"
-      },
-      {
-        "file": "static/js/compare/icons.js",
-        "hash": "442349180468264931"
-      },
-      {
-        "file": "static/js/compare/index.js",
-        "hash": "12743718792590024165"
-      },
-      {
-        "file": "static/js/compare/models.js",
-        "hash": "184017458690750304"
-      },
-      {
-        "file": "static/js/compare/panes.js",
-        "hash": "13227693606291067294"
-      },
-      {
-        "file": "static/js/compare/probe.js",
-        "hash": "7593914776861593794"
-      },
-      {
-        "file": "static/js/compare/scoreboard.js",
-        "hash": "14640871453228228116"
-      },
-      {
-        "file": "static/js/compare/selector.js",
-        "hash": "9822270495163413898"
-      },
-      {
-        "file": "static/js/compare/state.js",
-        "hash": "15485582702579283492"
-      },
-      {
-        "file": "static/js/compare/stream.js",
-        "hash": "2971628962528753385"
-      },
-      {
-        "file": "static/js/compare/vote.js",
-        "hash": "14226434135540369342"
-      },
-      {
-        "file": "static/js/composerArrowUpRecall.js",
-        "hash": "3296554269082856705"
-      },
-      {
-        "file": "static/js/cookbook-deps-recipes.js",
-        "hash": "7769120692007710347"
-      },
-      {
-        "file": "static/js/cookbook-diagnosis.js",
-        "hash": "12280854941120671110"
-      },
-      {
-        "file": "static/js/cookbook-hwfit.js",
-        "hash": "3603139793916534264"
-      },
-      {
-        "file": "static/js/cookbook.js",
-        "hash": "8353811374347319400"
-      },
-      {
-        "file": "static/js/cookbookDownload.js",
-        "hash": "3000584999675580861"
-      },
-      {
-        "file": "static/js/cookbookPorts.js",
-        "hash": "839858563860515205"
-      },
-      {
-        "file": "static/js/cookbookProgressSignal.js",
-        "hash": "5350026269988283285"
-      },
-      {
-        "file": "static/js/cookbookRunning.js",
-        "hash": "16769489659445432350"
-      },
-      {
-        "file": "static/js/cookbookSchedule.js",
-        "hash": "14484738567964615640"
-      },
-      {
-        "file": "static/js/cookbookServe.js",
-        "hash": "13120757335133630276"
-      },
-      {
-        "file": "static/js/document.js",
-        "hash": "403398737471428860"
-      },
-      {
-        "file": "static/js/documentLibrary.js",
-        "hash": "15827838580957958734"
-      },
-      {
-        "file": "static/js/dragSort.js",
-        "hash": "8363793256553401004"
-      },
-      {
-        "file": "static/js/editor/ai-inpaint.js",
-        "hash": "9331573697617456321"
-      },
-      {
-        "file": "static/js/editor/ai-models.js",
-        "hash": "4120032803243431103"
-      },
-      {
-        "file": "static/js/editor/ai-rembg.js",
-        "hash": "13533336362176508722"
-      },
-      {
-        "file": "static/js/editor/ai-tool-runner.js",
-        "hash": "11968548706467216743"
-      },
-      {
-        "file": "static/js/editor/ai-tools-misc.js",
-        "hash": "13746453867301085341"
-      },
-      {
-        "file": "static/js/editor/build/controls.js",
-        "hash": "13362591142510550162"
-      },
-      {
-        "file": "static/js/editor/build/popups.js",
-        "hash": "467744696555055059"
-      },
-      {
-        "file": "static/js/editor/build/right-panel.js",
-        "hash": "1867919985673354613"
-      },
-      {
-        "file": "static/js/editor/build/toolbar.js",
-        "hash": "10495633189405431248"
-      },
-      {
-        "file": "static/js/editor/build/topbar.js",
-        "hash": "15768542224067495294"
-      },
-      {
-        "file": "static/js/editor/build/transform-popup.js",
-        "hash": "8591785806064934603"
-      },
-      {
-        "file": "static/js/editor/canvas-coords.js",
-        "hash": "13625838496664212088"
-      },
-      {
-        "file": "static/js/editor/canvas-events.js",
-        "hash": "8778635601705120796"
-      },
-      {
-        "file": "static/js/editor/canvas-transforms.js",
-        "hash": "3836424844986233716"
-      },
-      {
-        "file": "static/js/editor/checkerboard.js",
-        "hash": "17028048392630372095"
-      },
-      {
-        "file": "static/js/editor/clipboard-and-drop.js",
-        "hash": "10392562351805129455"
-      },
-      {
-        "file": "static/js/editor/composite-helpers.js",
-        "hash": "10096211117271558700"
-      },
-      {
-        "file": "static/js/editor/filters/blur.js",
-        "hash": "2567609032024838161"
-      },
-      {
-        "file": "static/js/editor/filters/edge-feather.js",
-        "hash": "10476881015372553961"
-      },
-      {
-        "file": "static/js/editor/fx/adj-popup.js",
-        "hash": "7424431586387785954"
-      },
-      {
-        "file": "static/js/editor/fx/filter-string.js",
-        "hash": "9780726717849004012"
-      },
-      {
-        "file": "static/js/editor/fx/histogram.js",
-        "hash": "17831080853986985226"
-      },
-      {
-        "file": "static/js/editor/fx/pixel-pass.js",
-        "hash": "10472153379763250041"
-      },
-      {
-        "file": "static/js/editor/harmonize-masks.js",
-        "hash": "9943283261402518133"
-      },
-      {
-        "file": "static/js/editor/history-panel.js",
-        "hash": "6404572869164810266"
-      },
-      {
-        "file": "static/js/editor/keyboard-shortcuts.js",
-        "hash": "11601721802502077056"
-      },
-      {
-        "file": "static/js/editor/layer-helpers.js",
-        "hash": "2189532046639035357"
-      },
-      {
-        "file": "static/js/editor/layer-panel.js",
-        "hash": "4374440362424469267"
-      },
-      {
-        "file": "static/js/editor/mask-utils.js",
-        "hash": "1877980179938611929"
-      },
-      {
-        "file": "static/js/editor/shortcuts-popover.js",
-        "hash": "2422893758238320787"
-      },
-      {
-        "file": "static/js/editor/slider-ux.js",
-        "hash": "2186037331636781181"
-      },
-      {
-        "file": "static/js/editor/snap.js",
-        "hash": "16879419388767793708"
-      },
-      {
-        "file": "static/js/editor/state.js",
-        "hash": "5885287867594317912"
-      },
-      {
-        "file": "static/js/editor/stroke-pipeline.js",
-        "hash": "17973876519136965431"
-      },
-      {
-        "file": "static/js/editor/stroke-tool-sliders.js",
-        "hash": "2179315491049669205"
-      },
-      {
-        "file": "static/js/editor/tools/clone.js",
-        "hash": "7755895296700562412"
-      },
-      {
-        "file": "static/js/editor/tools/crop.js",
-        "hash": "13098853898383609094"
-      },
-      {
-        "file": "static/js/editor/tools/flood-fill.js",
-        "hash": "6866628110831098217"
-      },
-      {
-        "file": "static/js/editor/tools/lasso-mask.js",
-        "hash": "2295809151503659172"
-      },
-      {
-        "file": "static/js/editor/tools/lasso.js",
-        "hash": "3647261416880351880"
-      },
-      {
-        "file": "static/js/editor/tools/move.js",
-        "hash": "1424142201638763572"
-      },
-      {
-        "file": "static/js/editor/tools/stroke.js",
-        "hash": "2352172937174100905"
-      },
-      {
-        "file": "static/js/editor/tools/transform-drag.js",
-        "hash": "9398093302056620886"
-      },
-      {
-        "file": "static/js/editor/tools/transform-handles.js",
-        "hash": "17813292550317276290"
-      },
-      {
-        "file": "static/js/editor/tools/transform-session.js",
-        "hash": "10605462564722887993"
-      },
-      {
-        "file": "static/js/editor/tools/wand.js",
-        "hash": "9653749786939834936"
-      },
-      {
-        "file": "static/js/editor/wire-import.js",
-        "hash": "8573733271657142829"
-      },
-      {
-        "file": "static/js/editor/wire-inpaint-controls.js",
-        "hash": "14287031788356865904"
-      },
-      {
-        "file": "static/js/editor/wire-merge-buttons.js",
-        "hash": "1265960974624326467"
-      },
-      {
-        "file": "static/js/editor/wire-selection-controls.js",
-        "hash": "9648181419397598871"
-      },
-      {
-        "file": "static/js/editor/wire-topbar-menus.js",
-        "hash": "7975083751577731219"
-      },
-      {
-        "file": "static/js/editor/wire-topbar-overflow.js",
-        "hash": "1355162196074946686"
-      },
-      {
-        "file": "static/js/editor/wire-topbar.js",
-        "hash": "12735789491229429597"
-      },
-      {
-        "file": "static/js/emailInbox.js",
-        "hash": "607947805202156658"
-      },
-      {
-        "file": "static/js/emailLibrary.js",
-        "hash": "4889034196886183444"
-      },
-      {
-        "file": "static/js/emailLibrary/replyRecipients.js",
-        "hash": "5374532668094672571"
-      },
-      {
-        "file": "static/js/emailLibrary/signatureFold.js",
-        "hash": "10150448509017090168"
-      },
-      {
-        "file": "static/js/emailLibrary/state.js",
-        "hash": "14404707567850309547"
-      },
-      {
-        "file": "static/js/emailLibrary/utils.js",
-        "hash": "13309256756025412198"
-      },
-      {
-        "file": "static/js/emailShared.js",
-        "hash": "4588733407931960102"
-      },
-      {
-        "file": "static/js/emojiPicker.js",
-        "hash": "6415556072861405023"
-      },
-      {
-        "file": "static/js/emojiShortcodes.js",
-        "hash": "9040982751866588374"
-      },
-      {
-        "file": "static/js/escMenuStack.js",
-        "hash": "18169669487280632985"
-      },
-      {
-        "file": "static/js/fileHandler.js",
-        "hash": "16492595646538018328"
-      },
-      {
-        "file": "static/js/gallery.js",
-        "hash": "3329272439500484954"
-      },
-      {
-        "file": "static/js/galleryEditor.js",
-        "hash": "334579093221619786"
-      },
-      {
-        "file": "static/js/group.js",
-        "hash": "4164279580730405672"
-      },
-      {
-        "file": "static/js/init.js",
-        "hash": "16766840838356167651"
-      },
-      {
-        "file": "static/js/keyboard-shortcuts.js",
-        "hash": "14952068966249526973"
-      },
-      {
-        "file": "static/js/langIcons.js",
-        "hash": "480948837890574196"
-      },
-      {
-        "file": "static/js/markdown.js",
-        "hash": "2769666998212386227"
-      },
-      {
-        "file": "static/js/markdown/tableRow.js",
-        "hash": "10186713072405262878"
-      },
-      {
-        "file": "static/js/memory.js",
-        "hash": "2281955282259458942"
-      },
-      {
-        "file": "static/js/modalManager.js",
-        "hash": "9876571968999585919"
-      },
-      {
-        "file": "static/js/modalSnap.js",
-        "hash": "5243281368631499063"
-      },
-      {
-        "file": "static/js/model/matchKey.js",
-        "hash": "7660309974343195825"
-      },
-      {
-        "file": "static/js/modelPicker.js",
-        "hash": "12474861834312099476"
-      },
-      {
-        "file": "static/js/modelSort.js",
-        "hash": "8208597202829379173"
-      },
-      {
-        "file": "static/js/models.js",
-        "hash": "15427968679783512162"
-      },
-      {
-        "file": "static/js/notes.js",
-        "hash": "17226774693517799023"
-      },
-      {
-        "file": "static/js/package.json",
-        "hash": "5649320037232165591"
-      },
-      {
-        "file": "static/js/platform.js",
-        "hash": "6304798046447086981"
-      },
-      {
-        "file": "static/js/presets.js",
-        "hash": "17910623099315951677"
-      },
-      {
-        "file": "static/js/providerDeviceFlow.js",
-        "hash": "866027285265541024"
-      },
-      {
-        "file": "static/js/providers.js",
-        "hash": "11332025744903329476"
-      },
-      {
-        "file": "static/js/rag.js",
-        "hash": "9324201543915797212"
-      },
-      {
-        "file": "static/js/research/jobs.js",
-        "hash": "1354364432616033197"
-      },
-      {
-        "file": "static/js/research/panel.js",
-        "hash": "15586861766915546009"
-      },
-      {
-        "file": "static/js/researchSynapse.js",
-        "hash": "8272787207129956948"
-      },
-      {
-        "file": "static/js/search-chat.js",
-        "hash": "7626216614729538431"
-      },
-      {
-        "file": "static/js/search.js",
-        "hash": "2616939108546884324"
-      },
-      {
-        "file": "static/js/section-management.js",
-        "hash": "16595251478641956894"
-      },
-      {
-        "file": "static/js/sessions.js",
-        "hash": "9432350817134691990"
-      },
-      {
-        "file": "static/js/settings.js",
-        "hash": "12724595451265584220"
-      },
-      {
-        "file": "static/js/sidebar-layout.js",
-        "hash": "11942458255720483501"
-      },
-      {
-        "file": "static/js/signature.js",
-        "hash": "4305839723156306561"
-      },
-      {
-        "file": "static/js/skills.js",
-        "hash": "7857674869619309953"
-      },
-      {
-        "file": "static/js/slashAutocomplete.js",
-        "hash": "5527553628908261001"
-      },
-      {
-        "file": "static/js/slashCommands.js",
-        "hash": "5758179243947244915"
-      },
-      {
-        "file": "static/js/spinner.js",
-        "hash": "10778241321941129020"
-      },
-      {
-        "file": "static/js/storage.js",
-        "hash": "16711740402100137410"
-      },
-      {
-        "file": "static/js/streamingRenderer.js",
-        "hash": "5595982711256261860"
-      },
-      {
-        "file": "static/js/streamingSegmenter.js",
-        "hash": "5271702315519265902"
-      },
-      {
-        "file": "static/js/tasks.js",
-        "hash": "13816178934981648692"
-      },
-      {
-        "file": "static/js/theme.js",
-        "hash": "554561425454395979"
-      },
-      {
-        "file": "static/js/tileManager.js",
-        "hash": "9469364884973022593"
-      },
-      {
-        "file": "static/js/toolWindowZOrder.js",
-        "hash": "17539854021932023207"
-      },
-      {
-        "file": "static/js/tourAutoplay.js",
-        "hash": "12150111739642762950"
-      },
-      {
-        "file": "static/js/tourHints.js",
-        "hash": "3857789642168388131"
-      },
-      {
-        "file": "static/js/tts-ai.js",
-        "hash": "10019811341040245069"
-      },
-      {
-        "file": "static/js/ui.js",
-        "hash": "6366005666654020301"
-      },
-      {
-        "file": "static/js/util/ordinal.js",
-        "hash": "2543876463537296803"
-      },
-      {
-        "file": "static/js/voiceRecorder.js",
-        "hash": "12095022163635946795"
-      },
-      {
-        "file": "static/js/windowDrag.js",
-        "hash": "9896198006773268996"
-      },
-      {
-        "file": "static/js/windowResize.js",
-        "hash": "7916484367649703823"
-      },
-      {
-        "file": "static/js/workspace.js",
-        "hash": "17827765417752975936"
-      },
-      {
-        "file": "static/lib/docx.umd.min.js",
-        "hash": "5851014784090365277"
-      },
-      {
-        "file": "static/lib/highlight.min.js",
-        "hash": "7040937117104020085"
-      },
-      {
-        "file": "static/lib/html2pdf.bundle.min.js",
-        "hash": "6723525824494856710"
-      },
-      {
-        "file": "static/lib/mammoth.browser.min.js",
-        "hash": "516830283366341468"
-      },
-      {
-        "file": "static/lib/qrcode.min.js",
-        "hash": "6474382986962927044"
-      },
-      {
-        "file": "static/lib/xlsx.full.min.js",
-        "hash": "5054577093007801819"
-      },
-      {
-        "file": "static/login.html",
-        "hash": "1086940237876538488"
-      },
-      {
-        "file": "static/manifest.json",
-        "hash": "14051329859574571040"
-      },
-      {
-        "file": "static/style.css",
-        "hash": "17646695458962114695"
-      },
-      {
-        "file": "static/sw.js",
-        "hash": "14758100960888690151"
-      },
-      {
-        "file": "update_windows.bat",
-        "hash": "14393272399248452755"
-      }
-    ]
+    }
   },
-  "externalNodesHash": "9678526852800791997"
+  "externalNodesHash": "4348339592323594279"
 }
