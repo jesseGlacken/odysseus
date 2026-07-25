@@ -14,788 +14,1740 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "static/sw.js",
-        "hash": "14758100960888690151"
+        "file": "static/js/editor/canvas-transforms.js",
+        "hash": "3836424844986233716"
       },
       {
-        "file": "static/js/editor/layer-helpers.js",
-        "hash": "2189532046639035357"
+        "file": "static/js/ui.js",
+        "hash": "6366005666654020301"
       },
       {
-        "file": "static/js/windowDrag.js",
-        "hash": "9896198006773268996"
+        "file": "docs/notes.webm",
+        "hash": "10795198706176814932"
       },
       {
-        "file": "static/js/compare/selector.js",
-        "hash": "9822270495163413898"
-      },
-      {
-        "file": "static/js/compare/icons.js",
-        "hash": "442349180468264931"
-      },
-      {
-        "file": "CONTRIBUTING.md",
-        "hash": "9069937377597750169"
-      },
-      {
-        "file": "GEMINI.md",
-        "hash": "17379894040683334668"
-      },
-      {
-        "file": "package.json",
-        "hash": "7556551556270199572"
-      },
-      {
-        "file": "static/js/slashCommands.js",
-        "hash": "5758179243947244915"
-      },
-      {
-        "file": "docs/gallery.webm",
-        "hash": "4555129553437604961"
-      },
-      {
-        "file": "scripts/odysseus-calendar",
-        "hash": "9570004316254916687"
-      },
-      {
-        "file": "Odysseus.spec",
-        "hash": "16502740784460822810"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_output.md",
-        "hash": "8899293937092355534"
-      },
-      {
-        "file": "static/js/editor/keyboard-shortcuts.js",
-        "hash": "11601721802502077056"
-      },
-      {
-        "file": "static/js/compare/index.js",
-        "hash": "12743718792590024165"
-      },
-      {
-        "file": "scripts/odysseus-docs",
-        "hash": "5821933820041789343"
-      },
-      {
-        "file": "docs/compatibility-audit.md",
-        "hash": "3792983359801313725"
-      },
-      {
-        "file": "scripts/import_from_vllm_recipes.py",
-        "hash": "2923142939916681286"
-      },
-      {
-        "file": "scripts/pr_blocker_audit.py",
-        "hash": "13291180733418482012"
-      },
-      {
-        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_input.md",
-        "hash": "3404612627585666701"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "9917675988313622969"
-      },
-      {
-        "file": "static/js/emailLibrary/state.js",
-        "hash": "14404707567850309547"
-      },
-      {
-        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_input.md",
-        "hash": "14485684476534161453"
-      },
-      {
-        "file": "static/icons/sglang-logo.png",
-        "hash": "16485024254275974117"
-      },
-      {
-        "file": ".github/scripts/focused_test_guidance.py",
-        "hash": "3407967494658778936"
-      },
-      {
-        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_output.md",
-        "hash": "752424096932083221"
-      },
-      {
-        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_meta.json",
-        "hash": "13462675896454408541"
-      },
-      {
-        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_transcript.jsonl",
-        "hash": "12498354396837874605"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_output.md",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_input.md",
-        "hash": "8087522472151985319"
-      },
-      {
-        "file": "docs/pr-blocker-audit.md",
-        "hash": "14254944061708004438"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_input.md",
-        "hash": "317542810586674198"
-      },
-      {
-        "file": "static/lib/highlight.min.js",
-        "hash": "7040937117104020085"
-      },
-      {
-        "file": "docs/odysseus.jpg",
-        "hash": "18337816470313109427"
-      },
-      {
-        "file": "docs/bg.webm",
-        "hash": "16261083182954388694"
-      },
-      {
-        "file": "static/js/editor/wire-inpaint-controls.js",
-        "hash": "14287031788356865904"
-      },
-      {
-        "file": "scripts/odysseus-contacts",
-        "hash": "654083106469894001"
-      },
-      {
-        "file": "static/fonts/FiraCode-Regular.woff2",
-        "hash": "2661738199960715299"
-      },
-      {
-        "file": "static/fonts/OpenDyslexic-Regular.woff2",
-        "hash": "17700555094670922279"
-      },
-      {
-        "file": "static/js/cookbookProgressSignal.js",
-        "hash": "5350026269988283285"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "3041178405286150784"
-      },
-      {
-        "file": "static/js/emailLibrary/utils.js",
-        "hash": "13309256756025412198"
-      },
-      {
-        "file": ".github/workflows/container-trivy.yml",
-        "hash": "4166399547673832044"
-      },
-      {
-        "file": "static/js/sidebar-layout.js",
-        "hash": "11942458255720483501"
-      },
-      {
-        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_meta.json",
-        "hash": "4700020586166829312"
-      },
-      {
-        "file": "static/js/cookbookRunning.js",
-        "hash": "16769489659445432350"
-      },
-      {
-        "file": "static/js/editor/wire-topbar.js",
-        "hash": "12735789491229429597"
-      },
-      {
-        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "16066152550904758528"
-      },
-      {
-        "file": "uv.lock",
-        "hash": "10581421300886199667"
-      },
-      {
-        "file": "docs/index.html",
-        "hash": "15225944888773591256"
-      },
-      {
-        "file": "static/js/editor/build/transform-popup.js",
-        "hash": "8591785806064934603"
-      },
-      {
-        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_output.md",
-        "hash": "6824707267922109311"
-      },
-      {
-        "file": "static/lib/mammoth.browser.min.js",
-        "hash": "516830283366341468"
-      },
-      {
-        "file": "CLAUDE.md",
-        "hash": "15234165324548040252"
-      },
-      {
-        "file": "ACKNOWLEDGMENTS.md",
-        "hash": "2292727075695639784"
-      },
-      {
-        "file": "static/js/section-management.js",
-        "hash": "16595251478641956894"
-      },
-      {
-        "file": "docs/adr/0010-structured-concurrency-and-async-patterns.md",
-        "hash": "4695091037844956232"
-      },
-      {
-        "file": "install-service.sh",
-        "hash": "6473587190761151857"
-      },
-      {
-        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_meta.json",
-        "hash": "8595364617901282714"
-      },
-      {
-        "file": "static/fonts/OpenDyslexic-Bold.woff2",
-        "hash": "7871009217113397863"
-      },
-      {
-        "file": ".github/workflows/secret-scan.yml",
-        "hash": "10684984250438203113"
-      },
-      {
-        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_input.md",
-        "hash": "17102000713415116337"
-      },
-      {
-        "file": "static/lib/qrcode.min.js",
-        "hash": "6474382986962927044"
-      },
-      {
-        "file": "static/login.html",
-        "hash": "1086940237876538488"
-      },
-      {
-        "file": "scripts/odysseus-personal",
-        "hash": "12378683218923811823"
-      },
-      {
-        "file": "static/js/presets.js",
-        "hash": "17910623099315951677"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_transcript.jsonl",
-        "hash": "17183481590751274337"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
-        "hash": "45073143638047998"
-      },
-      {
-        "file": "static/style.css",
-        "hash": "17646695458962114695"
-      },
-      {
-        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_input.md",
-        "hash": "9400577408091608861"
-      },
-      {
-        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_output.md",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "scripts/odysseus-signature",
-        "hash": "7760414272024880853"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_output.md",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_input.md",
-        "hash": "10725182180865973618"
-      },
-      {
-        "file": "static/js/editor/filters/blur.js",
-        "hash": "2567609032024838161"
-      },
-      {
-        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_output.md",
-        "hash": "14937186089343966191"
-      },
-      {
-        "file": "docs/migration-roadmap.md",
-        "hash": "11115432037425614915"
-      },
-      {
-        "file": "tools/hooks/response_model_checker.py",
-        "hash": "12821735442094741032"
-      },
-      {
-        "file": "build-macos-app.sh",
-        "hash": "10035212807199525434"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "5063357314449241554"
-      },
-      {
-        "file": "static/js/editor/stroke-pipeline.js",
-        "hash": "17973876519136965431"
-      },
-      {
-        "file": "licenses/DeepResearch-Apache-2.0.txt",
-        "hash": "12649885980860800067"
-      },
-      {
-        "file": "scripts/odysseus-webhook",
-        "hash": "2763896610842093569"
-      },
-      {
-        "file": "static/js/editor/ai-tool-runner.js",
-        "hash": "11968548706467216743"
-      },
-      {
-        "file": "static/js/emailInbox.js",
-        "hash": "607947805202156658"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/397a3adf/plan.md",
-        "hash": "4122896669686278826"
-      },
-      {
-        "file": "docs/adr/0002-nx-polyglot-monorepo.md",
-        "hash": "2094451863889655002"
-      },
-      {
-        "file": "docs/odysseus-browser.jpg",
-        "hash": "1239002569416580602"
-      },
-      {
-        "file": ".pi/models.json",
-        "hash": "7574940762439213"
-      },
-      {
-        "file": "static/js/chat.js",
-        "hash": "5996945648287546306"
-      },
-      {
-        "file": ".nxignore",
-        "hash": "13946507155878602329"
-      },
-      {
-        "file": "static/js/tasks.js",
-        "hash": "13816178934981648692"
-      },
-      {
-        "file": ".github/workflows/container-scan.yml",
-        "hash": "17321056240450089475"
-      },
-      {
-        "file": "static/js/emojiPicker.js",
-        "hash": "6415556072861405023"
-      },
-      {
-        "file": "scripts/odysseus-sessions",
-        "hash": "4230027781459626872"
-      },
-      {
-        "file": "static/js/platform.js",
-        "hash": "6304798046447086981"
-      },
-      {
-        "file": "static/js/modelPicker.js",
-        "hash": "12474861834312099476"
-      },
-      {
-        "file": "static/js/chatRenderer.js",
-        "hash": "8275401025448002073"
-      },
-      {
-        "file": "static/js/compare/probe.js",
-        "hash": "7593914776861593794"
-      },
-      {
-        "file": "ROADMAP.md",
-        "hash": "4077828797950267792"
-      },
-      {
-        "file": "features/agent_loop_decomposition.feature",
-        "hash": "10711962076620523761"
-      },
-      {
-        "file": "static/js/editor/tools/wand.js",
-        "hash": "9653749786939834936"
-      },
-      {
-        "file": "docs/attachments.md",
-        "hash": "15323038631983388719"
-      },
-      {
-        "file": "static/js/editor/wire-import.js",
-        "hash": "8573733271657142829"
-      },
-      {
-        "file": "docker/host-docker.yml",
-        "hash": "15131141812553061058"
-      },
-      {
-        "file": "docker/gpu.amd.yml",
-        "hash": "15687829737245872746"
-      },
-      {
-        "file": "docs/chat.webm",
-        "hash": "15924034325246711092"
-      },
-      {
-        "file": "static/js/editor/build/right-panel.js",
-        "hash": "1867919985673354613"
-      },
-      {
-        "file": "features/email.feature",
-        "hash": "12023483775996326607"
-      },
-      {
-        "file": "static/lib/html2pdf.bundle.min.js",
-        "hash": "6723525824494856710"
-      },
-      {
-        "file": "static/js/keyboard-shortcuts.js",
-        "hash": "14952068966249526973"
-      },
-      {
-        "file": "SECURITY.md",
-        "hash": "1128919407868343792"
-      },
-      {
-        "file": "static/js/editor/build/controls.js",
-        "hash": "13362591142510550162"
-      },
-      {
-        "file": "static/js/providerDeviceFlow.js",
-        "hash": "866027285265541024"
-      },
-      {
-        "file": "docker-compose.gpu-amd.yml",
-        "hash": "6666627168598740620"
-      },
-      {
-        "file": "static/js/streamingRenderer.js",
-        "hash": "5595982711256261860"
-      },
-      {
-        "file": "docs/adr/0003-react-spa-shadcn-react-aria.md",
-        "hash": "18305829104046069634"
-      },
-      {
-        "file": "static/js/editor/build/topbar.js",
-        "hash": "15768542224067495294"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_input.md",
-        "hash": "15922726663663151287"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_output.md",
-        "hash": "12483514980122134019"
-      },
-      {
-        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_output.md",
-        "hash": "2007953738489962126"
-      },
-      {
-        "file": "docs/document.webm",
-        "hash": "399870212953308372"
-      },
-      {
-        "file": ".pi/agents/adversarial-reviewer.md",
-        "hash": "6200843585236766738"
-      },
-      {
-        "file": "static/js/tileManager.js",
-        "hash": "9469364884973022593"
-      },
-      {
-        "file": "Dockerfile",
-        "hash": "10385567756323953666"
-      },
-      {
-        "file": "scripts/encode_previews.sh",
-        "hash": "11425872091140483835"
-      },
-      {
-        "file": ".pi/agents/qa-engineer.md",
-        "hash": "11334577634041807185"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_output.md",
-        "hash": "13052083424990491101"
-      },
-      {
-        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_meta.json",
-        "hash": "14621387391733633476"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "14969706874883542764"
-      },
-      {
-        "file": "static/js/editor/ai-tools-misc.js",
-        "hash": "13746453867301085341"
-      },
-      {
-        "file": "static/js/editor/wire-topbar-overflow.js",
-        "hash": "1355162196074946686"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
-        "hash": "7272683800252714572"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_input.md",
-        "hash": "12116697020672410012"
-      },
-      {
-        "file": "scripts/odysseus-notes",
-        "hash": "7630151342477608666"
-      },
-      {
-        "file": "static/icons/icon-192.png",
-        "hash": "2594490408059400998"
-      },
-      {
-        "file": "specs/architecture-runtime-inventory.md",
-        "hash": "7821427728111692043"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "18078252000797110180"
-      },
-      {
-        "file": "static/js/modalManager.js",
-        "hash": "9876571968999585919"
-      },
-      {
-        "file": "static/icon.ico",
-        "hash": "15439992681755836554"
-      },
-      {
-        "file": "static/js/editor/shortcuts-popover.js",
-        "hash": "2422893758238320787"
-      },
-      {
-        "file": "static/js/researchSynapse.js",
-        "hash": "8272787207129956948"
-      },
-      {
-        "file": ".pi/agents/frontend-dev.md",
-        "hash": "13590079152019217997"
-      },
-      {
-        "file": ".github/workflows/quality-gates.yml",
-        "hash": "6441522662506412341"
-      },
-      {
-        "file": "features/chat.feature",
-        "hash": "3903861112158968736"
-      },
-      {
-        "file": "tools/hooks/domain_registry.json",
-        "hash": "12562344871295991829"
-      },
-      {
-        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_meta.json",
-        "hash": "17445365092082253475"
-      },
-      {
-        "file": ".windsurfrules",
-        "hash": "7246202883755543190"
-      },
-      {
-        "file": "docs/adr/0001-keep-and-harden-fastapi-contract-first.md",
-        "hash": "1633329802482946409"
-      },
-      {
-        "file": "docs/adr/0004-testing-standards-blackbox-100pct-mutation.md",
-        "hash": "2831415921414017830"
-      },
-      {
-        "file": "static/js/voiceRecorder.js",
-        "hash": "12095022163635946795"
-      },
-      {
-        "file": "scripts/check-docker-amd-gpu.sh",
-        "hash": "10698149408004528147"
-      },
-      {
-        "file": "static/js/color/hex.js",
-        "hash": "1648360776633286759"
-      },
-      {
-        "file": "build-windows-portable.ps1",
-        "hash": "1419792700044772502"
-      },
-      {
-        "file": "static/js/editor/wire-topbar-menus.js",
-        "hash": "7975083751577731219"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/eb6128e4/ody-70-implementation.md",
-        "hash": "14205987909320637201"
-      },
-      {
-        "file": "start-macos.sh",
-        "hash": "4045700247317285276"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/5a4af346/ody-25-implementation.md",
-        "hash": "13025863706737560562"
-      },
-      {
-        "file": "static/js/markdown.js",
-        "hash": "2769666998212386227"
-      },
-      {
-        "file": "static/js/compare/panes.js",
-        "hash": "13227693606291067294"
-      },
-      {
-        "file": "static/js/tourAutoplay.js",
-        "hash": "12150111739642762950"
-      },
-      {
-        "file": "static/js/editor/tools/move.js",
-        "hash": "1424142201638763572"
-      },
-      {
-        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_input.md",
-        "hash": "9377934280642763792"
-      },
-      {
-        "file": "docker/entrypoint.sh",
-        "hash": "11619353121012272922"
-      },
-      {
-        "file": "static/js/assistant.js",
-        "hash": "3305958915411482768"
-      },
-      {
-        "file": "static/js/spinner.js",
-        "hash": "10778241321941129020"
-      },
-      {
-        "file": "static/js/skills.js",
-        "hash": "7857674869619309953"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_meta.json",
-        "hash": "8285055404088917063"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_transcript.jsonl",
-        "hash": "7832450510833629991"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_meta.json",
-        "hash": "9185443675842446778"
-      },
-      {
-        "file": "static/icons/ollama-mark-crop.png",
-        "hash": "10754862324657861559"
-      },
-      {
-        "file": "docs/c4/context.mmd",
-        "hash": "17881975618974066507"
-      },
-      {
-        "file": "static/js/slashAutocomplete.js",
-        "hash": "5527553628908261001"
+        "file": ".gitattributes",
+        "hash": "6112229773071989854"
       },
       {
         "file": "static/lib/xlsx.full.min.js",
         "hash": "5054577093007801819"
       },
       {
-        "file": "static/js/memory.js",
-        "hash": "2281955282259458942"
+        "file": "static/js/tourAutoplay.js",
+        "hash": "12150111739642762950"
       },
       {
-        "file": "features/documents.feature",
-        "hash": "7804989561885893236"
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_meta.json",
+        "hash": "12560383672848594919"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "docs/architecture-review.md",
+        "hash": "5850934773441248059"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "10634418416635459650"
+      },
+      {
+        "file": "static/js/emojiPicker.js",
+        "hash": "6415556072861405023"
+      },
+      {
+        "file": ".github/workflows/dependency-review.yml",
+        "hash": "7084453939118732395"
+      },
+      {
+        "file": "static/style.css",
+        "hash": "17646695458962114695"
+      },
+      {
+        "file": "static/js/editor/tools/transform-handles.js",
+        "hash": "17813292550317276290"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_input.md",
+        "hash": "3404612627585666701"
+      },
+      {
+        "file": "features/agent_loop_decomposition.feature",
+        "hash": "10711962076620523761"
+      },
+      {
+        "file": "static/js/composerArrowUpRecall.js",
+        "hash": "3296554269082856705"
+      },
+      {
+        "file": "static/js/editor/shortcuts-popover.js",
+        "hash": "2422893758238320787"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_meta.json",
+        "hash": "14349814105008892162"
+      },
+      {
+        "file": "static/js/cookbookPorts.js",
+        "hash": "839858563860515205"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_output.md",
+        "hash": "12721603014726239478"
+      },
+      {
+        "file": "docs/adr/0007-coding-standards-and-complexity-budget.md",
+        "hash": "4831133913396220825"
+      },
+      {
+        "file": "static/js/editor/tools/flood-fill.js",
+        "hash": "6866628110831098217"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_output.md",
+        "hash": "8458834179714512227"
+      },
+      {
+        "file": "scripts/agent_migration_manifest.py",
+        "hash": "3416139349958715523"
+      },
+      {
+        "file": "scripts/demo_email/seed_demo_emails.py",
+        "hash": "1897739459594544054"
+      },
+      {
+        "file": "static/js/chat.js",
+        "hash": "5996945648287546306"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_input.md",
+        "hash": "462067509468679662"
+      },
+      {
+        "file": "scripts/odysseus-mcp",
+        "hash": "10058760468797707123"
+      },
+      {
+        "file": "docker/build-realesrgan-wheels.sh",
+        "hash": "3322644706337509938"
+      },
+      {
+        "file": "scripts/odysseus-backup",
+        "hash": "14141141443241837802"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_output.md",
+        "hash": "17927209678489435960"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_input.md",
+        "hash": "9400577408091608861"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "3041178405286150784"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_input.md",
+        "hash": "17846575821973552292"
+      },
+      {
+        "file": ".github/workflows/pr-description-check.yml",
+        "hash": "2155543067230032181"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_transcript.jsonl",
+        "hash": "7832450510833629991"
+      },
+      {
+        "file": "docs/adr/0010-structured-concurrency-and-async-patterns.md",
+        "hash": "4695091037844956232"
+      },
+      {
+        "file": "static/js/compare/models.js",
+        "hash": "184017458690750304"
+      },
+      {
+        "file": "static/js/a11y.js",
+        "hash": "3250629998379958076"
+      },
+      {
+        "file": "launcher.py",
+        "hash": "7429068528814690433"
+      },
+      {
+        "file": "scripts/odysseus-cookbook",
+        "hash": "16295364334805039604"
+      },
+      {
+        "file": "scripts/_lib/cli.py",
+        "hash": "11726287583976296716"
+      },
+      {
+        "file": "pyproject.toml",
+        "hash": "5268817540663165553"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_meta.json",
+        "hash": "18181354140168248797"
       },
       {
         "file": "static/js/langIcons.js",
         "hash": "480948837890574196"
       },
       {
-        "file": "static/index.html",
-        "hash": "8247864080718114259"
-      },
-      {
-        "file": "static/js/editor/tools/clone.js",
-        "hash": "7755895296700562412"
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_transcript.jsonl",
+        "hash": "10363950185796719920"
       },
       {
         "file": "scripts/odysseus-preset",
         "hash": "5199262038704587196"
       },
       {
-        "file": "static/js/streamingSegmenter.js",
-        "hash": "5271702315519265902"
+        "file": "static/js/slashCommands.js",
+        "hash": "5758179243947244915"
       },
       {
-        "file": ".gitignore",
-        "hash": "163629652905724986"
+        "file": "static/lib/qrcode.min.js",
+        "hash": "6474382986962927044"
       },
       {
-        "file": "static/fonts/Inter-SemiBold.woff2",
-        "hash": "6855525866634719917"
+        "file": "static/sw.js",
+        "hash": "14758100960888690151"
       },
       {
-        "file": "static/fonts/Inter-Medium.woff2",
-        "hash": "4265220141366637183"
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_input.md",
+        "hash": "1469246140222744616"
       },
       {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_transcript.jsonl",
-        "hash": "1486622079805712160"
+        "file": "static/js/settings.js",
+        "hash": "12724595451265584220"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "8879144021862556612"
+      },
+      {
+        "file": "static/js/package.json",
+        "hash": "5649320037232165591"
+      },
+      {
+        "file": "static/js/providers.js",
+        "hash": "11332025744903329476"
+      },
+      {
+        "file": "docs/chat.webm",
+        "hash": "15924034325246711092"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "1099037905522644602"
+      },
+      {
+        "file": "scripts/odysseus-mail",
+        "hash": "627209817596257700"
+      },
+      {
+        "file": "docs/c4/context.mmd",
+        "hash": "17881975618974066507"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "16066152550904758528"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_input.md",
+        "hash": "6200899845447774622"
+      },
+      {
+        "file": "package.json",
+        "hash": "7556551556270199572"
       },
       {
         "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_meta.json",
         "hash": "15993540777851294004"
       },
       {
-        "file": "static/js/editor/canvas-transforms.js",
-        "hash": "3836424844986233716"
+        "file": "static/js/editor/tools/stroke.js",
+        "hash": "2352172937174100905"
       },
       {
-        "file": "scripts/odysseus-skills",
-        "hash": "13565645326281122727"
+        "file": "scripts/claim_ownerless.py",
+        "hash": "5489634549768745165"
       },
       {
-        "file": ".dockerignore",
-        "hash": "12226720553139194205"
+        "file": "licenses/DeepResearch-Apache-2.0.txt",
+        "hash": "12649885980860800067"
+      },
+      {
+        "file": "static/js/emojiShortcodes.js",
+        "hash": "9040982751866588374"
+      },
+      {
+        "file": "static/fonts/FiraCode-SemiBold.woff2",
+        "hash": "16793162283137106018"
+      },
+      {
+        "file": "static/js/streamingRenderer.js",
+        "hash": "5595982711256261860"
+      },
+      {
+        "file": "scripts/pr_blocker_audit.py",
+        "hash": "13291180733418482012"
+      },
+      {
+        "file": "static/js/editor/tools/lasso.js",
+        "hash": "3647261416880351880"
+      },
+      {
+        "file": "static/js/search-chat.js",
+        "hash": "7626216614729538431"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_meta.json",
+        "hash": "3747166397148629950"
+      },
+      {
+        "file": "docs/research.webm",
+        "hash": "13000298419842495361"
+      },
+      {
+        "file": "docs/odysseus.jpg",
+        "hash": "18337816470313109427"
+      },
+      {
+        "file": "static/js/editor/layer-panel.js",
+        "hash": "4374440362424469267"
+      },
+      {
+        "file": ".github/workflows/docker-publish.yml",
+        "hash": "14715556903010400382"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/e1fbaea6/ody-26-implementation.md",
+        "hash": "3036096582730094892"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_output.md",
+        "hash": "6456497235221386806"
+      },
+      {
+        "file": "static/js/streamingSegmenter.js",
+        "hash": "5271702315519265902"
+      },
+      {
+        "file": "static/icons/icon-192.png",
+        "hash": "2594490408059400998"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_output.md",
+        "hash": "7413896378010785490"
+      },
+      {
+        "file": ".pre-commit-config.yaml",
+        "hash": "11524898213382405151"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_input.md",
+        "hash": "8925438340142474692"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_meta.json",
+        "hash": "4700020586166829312"
+      },
+      {
+        "file": "scripts/odysseus",
+        "hash": "12187600000205141689"
+      },
+      {
+        "file": "ACKNOWLEDGMENTS.md",
+        "hash": "2292727075695639784"
+      },
+      {
+        "file": "start-macos.sh",
+        "hash": "4045700247317285276"
+      },
+      {
+        "file": "docs/compatibility-audit.md",
+        "hash": "3792983359801313725"
+      },
+      {
+        "file": ".github/workflows/workflow-security.yml",
+        "hash": "2683627239302444659"
+      },
+      {
+        "file": ".nxignore",
+        "hash": "13946507155878602329"
+      },
+      {
+        "file": "scripts/add_hwfit_models.py",
+        "hash": "6806912538020519374"
+      },
+      {
+        "file": "docker/gpu.amd.yml",
+        "hash": "15687829737245872746"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
+        "hash": "5317400587860909605"
+      },
+      {
+        "file": "static/js/sidebar-layout.js",
+        "hash": "11942458255720483501"
+      },
+      {
+        "file": "static/js/editor/filters/blur.js",
+        "hash": "2567609032024838161"
+      },
+      {
+        "file": "static/js/compare/icons.js",
+        "hash": "442349180468264931"
+      },
+      {
+        "file": "static/js/workspace.js",
+        "hash": "17827765417752975936"
+      },
+      {
+        "file": "static/js/windowResize.js",
+        "hash": "7916484367649703823"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_output.md",
+        "hash": "9259412961106209273"
+      },
+      {
+        "file": "static/js/models.js",
+        "hash": "15427968679783512162"
       },
       {
         "file": "nx.json",
         "hash": "6385522742876893801"
       },
       {
-        "file": ".github/workflows/codeql.yml",
-        "hash": "8657209483542786554"
+        "file": "static/js/cookbook-deps-recipes.js",
+        "hash": "7769120692007710347"
       },
       {
-        "file": "docs/adr/0011-database-management-and-schema-evolution.md",
-        "hash": "13490091765576843831"
+        "file": "features/chat.feature",
+        "hash": "3903861112158968736"
       },
       {
-        "file": "static/js/editor/filters/edge-feather.js",
-        "hash": "10476881015372553961"
+        "file": "static/js/editor/tools/move.js",
+        "hash": "1424142201638763572"
+      },
+      {
+        "file": "features/documents.feature",
+        "hash": "7804989561885893236"
+      },
+      {
+        "file": "static/js/tasks.js",
+        "hash": "13816178934981648692"
+      },
+      {
+        "file": "scripts/odysseus-signature",
+        "hash": "7760414272024880853"
+      },
+      {
+        "file": "static/js/compare/selector.js",
+        "hash": "9822270495163413898"
+      },
+      {
+        "file": "tools/hooks/response_model_checker.py",
+        "hash": "12821735442094741032"
+      },
+      {
+        "file": "scripts/odysseus-tasks",
+        "hash": "8049359391557855601"
+      },
+      {
+        "file": "static/js/calendar/utils.js",
+        "hash": "11555205761896986638"
+      },
+      {
+        "file": "static/fonts/FiraCode-Light.woff2",
+        "hash": "10816134289549779743"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_meta.json",
+        "hash": "8062860063810052445"
+      },
+      {
+        "file": "CLAUDE.md",
+        "hash": "15234165324548040252"
+      },
+      {
+        "file": "static/js/emailLibrary/state.js",
+        "hash": "14404707567850309547"
+      },
+      {
+        "file": "build-windows-portable.ps1",
+        "hash": "1419792700044772502"
+      },
+      {
+        "file": "static/js/markdown.js",
+        "hash": "2769666998212386227"
+      },
+      {
+        "file": "static/js/voiceRecorder.js",
+        "hash": "12095022163635946795"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_meta.json",
+        "hash": "8285055404088917063"
+      },
+      {
+        "file": "docs/middleware.md",
+        "hash": "8585153319010742479"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-overflow.js",
+        "hash": "1355162196074946686"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_meta.json",
+        "hash": "8595364617901282714"
+      },
+      {
+        "file": "static/index.html",
+        "hash": "8247864080718114259"
+      },
+      {
+        "file": ".pi-subagents/artifacts/e1fbaea6_frontend-dev_0_output.md",
+        "hash": "8284183888292413974"
+      },
+      {
+        "file": "scripts/backfill_model_release_dates.py",
+        "hash": "11914773000132436659"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_meta.json",
+        "hash": "15791312940410967932"
+      },
+      {
+        "file": "static/js/escMenuStack.js",
+        "hash": "18169669487280632985"
+      },
+      {
+        "file": "static/js/editor/slider-ux.js",
+        "hash": "2186037331636781181"
+      },
+      {
+        "file": "static/js/editor/ai-tool-runner.js",
+        "hash": "11968548706467216743"
+      },
+      {
+        "file": "Odysseus.spec",
+        "hash": "16502740784460822810"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_input.md",
+        "hash": "17102000713415116337"
+      },
+      {
+        "file": "docs/adr/0002-nx-polyglot-monorepo.md",
+        "hash": "2094451863889655002"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Regular.woff2",
+        "hash": "17700555094670922279"
+      },
+      {
+        "file": "docs/security-ci.md",
+        "hash": "17898675351515605231"
+      },
+      {
+        "file": ".pi-subagents/artifacts/e1fbaea6_frontend-dev_0_meta.json",
+        "hash": "1642119675748242821"
+      },
+      {
+        "file": "static/js/platform.js",
+        "hash": "6304798046447086981"
+      },
+      {
+        "file": "docker/gpu.nvidia.yml",
+        "hash": "10678213419058016084"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_transcript.jsonl",
+        "hash": "1486622079805712160"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/config.yml",
+        "hash": "2758504420266664442"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_transcript.jsonl",
+        "hash": "10410677284205992346"
+      },
+      {
+        "file": "static/js/editor/wire-topbar.js",
+        "hash": "12735789491229429597"
+      },
+      {
+        "file": "docs/odysseus-wordmark.png",
+        "hash": "10829838940447681864"
+      },
+      {
+        "file": ".pi-subagents/artifacts/e1fbaea6_frontend-dev_0_input.md",
+        "hash": "14735046521633942436"
+      },
+      {
+        "file": "static/icon.ico",
+        "hash": "15439992681755836554"
+      },
+      {
+        "file": "static/js/emailShared.js",
+        "hash": "4588733407931960102"
+      },
+      {
+        "file": "static/js/calendar.js",
+        "hash": "9348096784648691800"
+      },
+      {
+        "file": "static/js/cookbook-hwfit.js",
+        "hash": "3603139793916534264"
+      },
+      {
+        "file": "static/js/research/jobs.js",
+        "hash": "1354364432616033197"
+      },
+      {
+        "file": "static/js/model/matchKey.js",
+        "hash": "7660309974343195825"
+      },
+      {
+        "file": "docs/adr/0003-react-spa-shadcn-react-aria.md",
+        "hash": "18305829104046069634"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "9917675988313622969"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "6702274276425615078"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_output.md",
+        "hash": "6667494079501502009"
+      },
+      {
+        "file": "static/js/modelPicker.js",
+        "hash": "12474861834312099476"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_output.md",
+        "hash": "6789142957764979765"
       },
       {
         "file": "static/js/signature.js",
         "hash": "4305839723156306561"
       },
       {
+        "file": "build-macos-app.sh",
+        "hash": "10035212807199525434"
+      },
+      {
+        "file": "docs/c4/container.mmd",
+        "hash": "3469414628858918182"
+      },
+      {
+        "file": "static/js/fileHandler.js",
+        "hash": "16492595646538018328"
+      },
+      {
+        "file": "scripts/check-docker-gpu.sh",
+        "hash": "166741936123465007"
+      },
+      {
+        "file": "scripts/odysseus-docs",
+        "hash": "5821933820041789343"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_output.md",
+        "hash": "752424096932083221"
+      },
+      {
+        "file": "static/js/color/hex.js",
+        "hash": "1648360776633286759"
+      },
+      {
+        "file": "docs/migration-roadmap.md",
+        "hash": "11115432037425614915"
+      },
+      {
+        "file": "static/js/editor/wire-inpaint-controls.js",
+        "hash": "14287031788356865904"
+      },
+      {
+        "file": "scripts/_completion/odysseus.bash",
+        "hash": "1449848996353997184"
+      },
+      {
+        "file": "docs/adr/0009-api-versioning-and-backward-compatibility.md",
+        "hash": "6522259218743026277"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_input.md",
+        "hash": "317542810586674198"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_input.md",
+        "hash": "9689593142988527660"
+      },
+      {
+        "file": "features/auth.feature",
+        "hash": "12062703575821382553"
+      },
+      {
+        "file": ".github/workflows/codeql.yml",
+        "hash": "8657209483542786554"
+      },
+      {
+        "file": ".github/copilot-instructions.md",
+        "hash": "3579825062979438427"
+      },
+      {
+        "file": "static/js/editor/stroke-tool-sliders.js",
+        "hash": "2179315491049669205"
+      },
+      {
+        "file": "static/js/editor/canvas-events.js",
+        "hash": "8778635601705120796"
+      },
+      {
+        "file": "docker-compose.gpu-nvidia.yml",
+        "hash": "10221974490185153083"
+      },
+      {
+        "file": "static/js/editor/ai-tools-misc.js",
+        "hash": "13746453867301085341"
+      },
+      {
+        "file": ".pi/agents/scout.md",
+        "hash": "144104525129089593"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_meta.json",
+        "hash": "93356740539221968"
+      },
+      {
+        "file": "static/js/editor/build/transform-popup.js",
+        "hash": "8591785806064934603"
+      },
+      {
+        "file": "static/js/providerDeviceFlow.js",
+        "hash": "866027285265541024"
+      },
+      {
+        "file": "static/js/editor/filters/edge-feather.js",
+        "hash": "10476881015372553961"
+      },
+      {
+        "file": ".github/workflows/container-trivy.yml",
+        "hash": "4166399547673832044"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_transcript.jsonl",
+        "hash": "4597491989763600155"
+      },
+      {
+        "file": "docs/adr/0004-testing-standards-blackbox-100pct-mutation.md",
+        "hash": "2831415921414017830"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_output.md",
+        "hash": "13245514185533123490"
+      },
+      {
+        "file": "static/js/editor/wire-import.js",
+        "hash": "8573733271657142829"
+      },
+      {
+        "file": "docs/adr/0000-template.md",
+        "hash": "14650431501363272255"
+      },
+      {
+        "file": "scripts/update_database.py",
+        "hash": "14920695395199591078"
+      },
+      {
+        "file": "docs/backup-restore.md",
+        "hash": "10588619875313704067"
+      },
+      {
+        "file": "static/js/cookbookDownload.js",
+        "hash": "3000584999675580861"
+      },
+      {
+        "file": "static/js/editor/layer-helpers.js",
+        "hash": "2189532046639035357"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "10544212621977757985"
+      },
+      {
+        "file": "static/js/editor/tools/transform-drag.js",
+        "hash": "9398093302056620886"
+      },
+      {
+        "file": "static/js/editor/build/topbar.js",
+        "hash": "15768542224067495294"
+      },
+      {
+        "file": "scripts/odysseus-research",
+        "hash": "14760746055978135210"
+      },
+      {
+        "file": "scripts/_lib/__init__.py",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_meta.json",
+        "hash": "9185443675842446778"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "13326274909822366198"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_meta.json",
+        "hash": "3877347985225805916"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "5330912688379151434"
+      },
+      {
+        "file": "static/js/presets.js",
+        "hash": "17910623099315951677"
+      },
+      {
+        "file": "static/js/editor/fx/filter-string.js",
+        "hash": "9780726717849004012"
+      },
+      {
+        "file": "static/js/codeRunner.js",
+        "hash": "10690404463231988882"
+      },
+      {
+        "file": "static/js/editor/snap.js",
+        "hash": "16879419388767793708"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "hash": "9069937377597750169"
+      },
+      {
+        "file": "static/js/calendar/reminders.js",
+        "hash": "9175987879187519042"
+      },
+      {
+        "file": "scripts/_completion/odysseus.zsh",
+        "hash": "4092445190456162222"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_transcript.jsonl",
+        "hash": "8244679380103352775"
+      },
+      {
+        "file": "static/js/markdown/tableRow.js",
+        "hash": "10186713072405262878"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_transcript.jsonl",
+        "hash": "17183481590751274337"
+      },
+      {
+        "file": "static/js/cookbookRunning.js",
+        "hash": "16769489659445432350"
+      },
+      {
+        "file": "docs/attachments.md",
+        "hash": "15323038631983388719"
+      },
+      {
+        "file": ".pi/models.json",
+        "hash": "7574940762439213"
+      },
+      {
+        "file": "static/js/keyboard-shortcuts.js",
+        "hash": "14952068966249526973"
+      },
+      {
+        "file": "scripts/demo_email/manage.sh",
+        "hash": "14915744904769667948"
+      },
+      {
+        "file": "static/js/memory.js",
+        "hash": "2281955282259458942"
+      },
+      {
+        "file": "docs/adr/0001-keep-and-harden-fastapi-contract-first.md",
+        "hash": "1633329802482946409"
+      },
+      {
+        "file": "scripts/fix_paths.py",
+        "hash": "10411222688285291716"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_input.md",
+        "hash": "9377934280642763792"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_meta.json",
+        "hash": "4779823716634514152"
+      },
+      {
+        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_transcript.jsonl",
+        "hash": "10660276158961403762"
+      },
+      {
+        "file": "static/icons/icon-maskable-512.png",
+        "hash": "4062403916560428880"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/5a4af346/ody-25-implementation.md",
+        "hash": "13025863706737560562"
+      },
+      {
+        "file": "scripts/import_from_vllm_recipes.py",
+        "hash": "2923142939916681286"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_input.md",
+        "hash": "15922726663663151287"
+      },
+      {
+        "file": "scripts/odysseus-theme",
+        "hash": "13108778844085664771"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_input.md",
+        "hash": "3072141006736914234"
+      },
+      {
+        "file": "static/js/editor/composite-helpers.js",
+        "hash": "10096211117271558700"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "6898973031200067160"
+      },
+      {
+        "file": "launch-windows.ps1",
+        "hash": "14961437186037910726"
+      },
+      {
+        "file": "static/js/chatRenderer.js",
+        "hash": "8275401025448002073"
+      },
+      {
+        "file": "static/js/section-management.js",
+        "hash": "16595251478641956894"
+      },
+      {
+        "file": "docker/host-docker.yml",
+        "hash": "15131141812553061058"
+      },
+      {
+        "file": ".pi/settings.json",
+        "hash": "6206861250988469889"
+      },
+      {
+        "file": "static/js/editor/tools/lasso-mask.js",
+        "hash": "2295809151503659172"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_input.md",
+        "hash": "2242658198726227525"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_transcript.jsonl",
+        "hash": "45073143638047998"
+      },
+      {
+        "file": "static/js/cookbook-diagnosis.js",
+        "hash": "12280854941120671110"
+      },
+      {
+        "file": "static/js/skills.js",
+        "hash": "7857674869619309953"
+      },
+      {
+        "file": "scripts/odysseus-memory",
+        "hash": "8458460389869839315"
+      },
+      {
+        "file": "static/js/compare/state.js",
+        "hash": "15485582702579283492"
+      },
+      {
+        "file": "static/lib/highlight.min.js",
+        "hash": "7040937117104020085"
+      },
+      {
+        "file": "docs/adr/0006-code-review-and-merge-standards.md",
+        "hash": "12042833458055251148"
+      },
+      {
+        "file": "static/js/editor/ai-rembg.js",
+        "hash": "13533336362176508722"
+      },
+      {
+        "file": "static/js/search.js",
+        "hash": "2616939108546884324"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_meta.json",
+        "hash": "8802198563425822102"
+      },
+      {
+        "file": "static/js/research/panel.js",
+        "hash": "15586861766915546009"
+      },
+      {
+        "file": "static/js/theme.js",
+        "hash": "554561425454395979"
+      },
+      {
+        "file": "static/js/editor/canvas-coords.js",
+        "hash": "13625838496664212088"
+      },
+      {
+        "file": "docs/agent-migration.md",
+        "hash": "8486902629431503634"
+      },
+      {
+        "file": "static/js/group.js",
+        "hash": "4164279580730405672"
+      },
+      {
+        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_output.md",
+        "hash": "15209241258664667831"
+      },
+      {
+        "file": "static/js/compare/probe.js",
+        "hash": "7593914776861593794"
+      },
+      {
+        "file": "static/js/storage.js",
+        "hash": "16711740402100137410"
+      },
+      {
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_meta.json",
+        "hash": "17418146911207758978"
+      },
+      {
+        "file": "static/fonts/Inter-SemiBold.woff2",
+        "hash": "6855525866634719917"
+      },
+      {
+        "file": "static/js/notes.js",
+        "hash": "17226774693517799023"
+      },
+      {
+        "file": "static/js/editor/harmonize-masks.js",
+        "hash": "9943283261402518133"
+      },
+      {
+        "file": "specs/architecture-runtime-inventory.md",
+        "hash": "7821427728111692043"
+      },
+      {
+        "file": "Dockerfile",
+        "hash": "10385567756323953666"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_input.md",
+        "hash": "3270698991635801391"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_input.md",
+        "hash": "10725182180865973618"
+      },
+      {
+        "file": "docs/odysseus-browser.jpg",
+        "hash": "1239002569416580602"
+      },
+      {
+        "file": "static/js/spinner.js",
+        "hash": "10778241321941129020"
+      },
+      {
+        "file": "docs/gherkin-conventions.md",
+        "hash": "6811599141159892278"
+      },
+      {
+        "file": ".pi-subagents/artifacts/e1fbaea6_frontend-dev_0_transcript.jsonl",
+        "hash": "18241022069244632471"
+      },
+      {
+        "file": "static/js/editor/tools/crop.js",
+        "hash": "13098853898383609094"
+      },
+      {
+        "file": "scripts/odysseus-sessions",
+        "hash": "4230027781459626872"
+      },
+      {
+        "file": "scripts/diffusion_server.py",
+        "hash": "5548973453592624642"
+      },
+      {
+        "file": "static/js/admin.js",
+        "hash": "9553410654459218348"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "7272683800252714572"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_meta.json",
+        "hash": "14932692535321084243"
+      },
+      {
+        "file": "docs/email-outlook.md",
+        "hash": "17625542642770946745"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "14969706874883542764"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_output.md",
+        "hash": "3626651235729992953"
+      },
+      {
+        "file": ".env.example",
+        "hash": "4732082490273842972"
+      },
+      {
+        "file": "static/js/editor/tools/wand.js",
+        "hash": "9653749786939834936"
+      },
+      {
+        "file": "scripts/odysseus-calendar",
+        "hash": "9570004316254916687"
+      },
+      {
+        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_transcript.jsonl",
+        "hash": "12498354396837874605"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_input.md",
+        "hash": "17788425027238009717"
+      },
+      {
+        "file": "docker-compose.gpu-amd.yml",
+        "hash": "6666627168598740620"
+      },
+      {
+        "file": "static/js/editor/fx/histogram.js",
+        "hash": "17831080853986985226"
+      },
+      {
+        "file": "docs/adr/0012-observability-and-error-handling.md",
+        "hash": "9778857810112238852"
+      },
+      {
+        "file": "licenses/OpenDyslexic-OFL.txt",
+        "hash": "16718540379210749884"
+      },
+      {
+        "file": "tools/hooks/runtime_deps_guard.py",
+        "hash": "7927391435764388030"
+      },
+      {
         "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
         "hash": "14696707544955567635"
       },
       {
-        "file": ".pi/agents/backend-dev.md",
-        "hash": "10468162411828257723"
+        "file": ".pi/agents/adversarial-reviewer.md",
+        "hash": "6200843585236766738"
+      },
+      {
+        "file": "static/js/emailLibrary.js",
+        "hash": "4889034196886183444"
+      },
+      {
+        "file": ".github/scripts/check-pr-description.js",
+        "hash": "14451278540610101295"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_output.md",
+        "hash": "13052083424990491101"
+      },
+      {
+        "file": "static/js/tileManager.js",
+        "hash": "9469364884973022593"
+      },
+      {
+        "file": "static/js/editor/build/popups.js",
+        "hash": "467744696555055059"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_output.md",
+        "hash": "12483514980122134019"
+      },
+      {
+        "file": ".clinerules/engineering-standards.md",
+        "hash": "8314057767841739018"
+      },
+      {
+        "file": "static/js/editor/tools/transform-session.js",
+        "hash": "10605462564722887993"
+      },
+      {
+        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_output.md",
+        "hash": "2007953738489962126"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_output.md",
+        "hash": "8899293937092355534"
+      },
+      {
+        "file": "docs/document.webm",
+        "hash": "399870212953308372"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_output.md",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "static/login.html",
+        "hash": "1086940237876538488"
+      },
+      {
+        "file": "docs/adr/0008-security-architecture.md",
+        "hash": "9643091124458063734"
+      },
+      {
+        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_input.md",
+        "hash": "6750114971204760358"
+      },
+      {
+        "file": "scripts/odysseus-gallery",
+        "hash": "3784656767622248626"
+      },
+      {
+        "file": "licenses/opencode-MIT-LICENSE.txt",
+        "hash": "684006989153877877"
+      },
+      {
+        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_meta.json",
+        "hash": "13462675896454408541"
+      },
+      {
+        "file": ".pi/agents/sprint-pipeline.md",
+        "hash": "9053218942778839471"
+      },
+      {
+        "file": "static/js/modalManager.js",
+        "hash": "9876571968999585919"
+      },
+      {
+        "file": "static/js/editor/history-panel.js",
+        "hash": "6404572869164810266"
+      },
+      {
+        "file": "static/js/editor/build/controls.js",
+        "hash": "13362591142510550162"
+      },
+      {
+        "file": "uv.lock",
+        "hash": "10581421300886199667"
+      },
+      {
+        "file": "static/js/editor/keyboard-shortcuts.js",
+        "hash": "11601721802502077056"
+      },
+      {
+        "file": "static/js/compare/stream.js",
+        "hash": "2971628962528753385"
+      },
+      {
+        "file": "static/js/chatStream.js",
+        "hash": "924312167309253093"
+      },
+      {
+        "file": "static/fonts/Inter-Regular.woff2",
+        "hash": "13293078470454433233"
+      },
+      {
+        "file": "static/js/editor/ai-inpaint.js",
+        "hash": "9331573697617456321"
+      },
+      {
+        "file": ".pi/agents/frontend-dev.md",
+        "hash": "13590079152019217997"
+      },
+      {
+        "file": "static/js/editor/checkerboard.js",
+        "hash": "17028048392630372095"
+      },
+      {
+        "file": "docker/entrypoint.sh",
+        "hash": "11619353121012272922"
+      },
+      {
+        "file": "static/js/emailLibrary/signatureFold.js",
+        "hash": "10150448509017090168"
+      },
+      {
+        "file": ".github/workflows/secret-scan.yml",
+        "hash": "10684984250438203113"
+      },
+      {
+        "file": "static/js/gallery.js",
+        "hash": "3329272439500484954"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "11753983313330619413"
+      },
+      {
+        "file": "scripts/odysseus-skills",
+        "hash": "13565645326281122727"
+      },
+      {
+        "file": "static/js/editor/mask-utils.js",
+        "hash": "1877980179938611929"
+      },
+      {
+        "file": "static/js/compare/index.js",
+        "hash": "12743718792590024165"
+      },
+      {
+        "file": "static/js/assistant.js",
+        "hash": "3305958915411482768"
+      },
+      {
+        "file": ".github/workflows/container-scan.yml",
+        "hash": "17321056240450089475"
+      },
+      {
+        "file": "static/js/tourHints.js",
+        "hash": "3857789642168388131"
+      },
+      {
+        "file": "features/email.feature",
+        "hash": "12023483775996326607"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "163629652905724986"
+      },
+      {
+        "file": "static/js/editor/state.js",
+        "hash": "5885287867594317912"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/eb6128e4/ody-70-implementation.md",
+        "hash": "14205987909320637201"
+      },
+      {
+        "file": ".github/pull_request_template.md",
+        "hash": "3129125717405090827"
+      },
+      {
+        "file": "static/js/cookbook.js",
+        "hash": "8353811374347319400"
+      },
+      {
+        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_input.md",
+        "hash": "1055994213742318463"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "12226720553139194205"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_transcript.jsonl",
+        "hash": "18078252000797110180"
+      },
+      {
+        "file": "static/js/researchSynapse.js",
+        "hash": "8272787207129956948"
+      },
+      {
+        "file": "ROADMAP.md",
+        "hash": "4077828797950267792"
+      },
+      {
+        "file": "static/js/editor/fx/pixel-pass.js",
+        "hash": "10472153379763250041"
+      },
+      {
+        "file": "static/lib/docx.umd.min.js",
+        "hash": "5851014784090365277"
+      },
+      {
+        "file": "static/js/compare/vote.js",
+        "hash": "14226434135540369342"
+      },
+      {
+        "file": "static/js/emailLibrary/utils.js",
+        "hash": "13309256756025412198"
+      },
+      {
+        "file": "scripts/encode_previews.sh",
+        "hash": "11425872091140483835"
+      },
+      {
+        "file": "odysseus-ui.service",
+        "hash": "2190458845051058258"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_input.md",
+        "hash": "14485684476534161453"
+      },
+      {
+        "file": ".github/scripts/focused_test_guidance.py",
+        "hash": "3407967494658778936"
+      },
+      {
+        "file": "AGENTS.md",
+        "hash": "15279645201222848349"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_input.md",
+        "hash": "4074169511659415456"
+      },
+      {
+        "file": "static/js/colorPicker.js",
+        "hash": "13978529648027774720"
+      },
+      {
+        "file": "update_windows.bat",
+        "hash": "14393272399248452755"
+      },
+      {
+        "file": "docs/bg.webm",
+        "hash": "16261083182954388694"
+      },
+      {
+        "file": ".github/workflows/quality-gates.yml",
+        "hash": "6441522662506412341"
+      },
+      {
+        "file": ".pi/agents/qa-engineer.md",
+        "hash": "11334577634041807185"
+      },
+      {
+        "file": ".windsurfrules",
+        "hash": "7246202883755543190"
+      },
+      {
+        "file": "static/js/editor/clipboard-and-drop.js",
+        "hash": "10392562351805129455"
+      },
+      {
+        "file": "static/icons/ollama-mark-crop.png",
+        "hash": "10754862324657861559"
+      },
+      {
+        "file": "static/js/dragSort.js",
+        "hash": "8363793256553401004"
+      },
+      {
+        "file": ".pi-subagents/artifacts/397a3adf_planner_0_output.md",
+        "hash": "4363668792650540354"
+      },
+      {
+        "file": "static/fonts/FiraCode-Regular.woff2",
+        "hash": "2661738199960715299"
+      },
+      {
+        "file": "static/js/cookbookSchedule.js",
+        "hash": "14484738567964615640"
+      },
+      {
+        "file": "static/lib/mammoth.browser.min.js",
+        "hash": "516830283366341468"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "1128919407868343792"
+      },
+      {
+        "file": ".github/CODEOWNERS",
+        "hash": "10483862179934434915"
+      },
+      {
+        "file": "docs/c4/component.mmd",
+        "hash": "4862164734832854381"
+      },
+      {
+        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_meta.json",
+        "hash": "14621387391733633476"
+      },
+      {
+        "file": "static/js/slashAutocomplete.js",
+        "hash": "5527553628908261001"
+      },
+      {
+        "file": "docs/adr/README.md",
+        "hash": "15234618438059398489"
+      },
+      {
+        "file": "install-service.sh",
+        "hash": "6473587190761151857"
+      },
+      {
+        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_transcript.jsonl",
+        "hash": "9067854238442020247"
+      },
+      {
+        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_meta.json",
+        "hash": "8705468128155478330"
+      },
+      {
+        "file": "static/js/rag.js",
+        "hash": "9324201543915797212"
+      },
+      {
+        "file": "THREAT_MODEL.md",
+        "hash": "605503327494757417"
+      },
+      {
+        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_input.md",
+        "hash": "8087522472151985319"
+      },
+      {
+        "file": "static/js/toolWindowZOrder.js",
+        "hash": "17539854021932023207"
+      },
+      {
+        "file": "static/fonts/OpenDyslexic-Bold.woff2",
+        "hash": "7871009217113397863"
+      },
+      {
+        "file": "docs/setup.md",
+        "hash": "12409057683753206848"
+      },
+      {
+        "file": "scripts/migrate_faiss_to_chroma.py",
+        "hash": "12390546103077106993"
+      },
+      {
+        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_output.md",
+        "hash": "14937186089343966191"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "5063357314449241554"
+      },
+      {
+        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_transcript.jsonl",
+        "hash": "9095494789386394027"
+      },
+      {
+        "file": "static/js/editor/build/toolbar.js",
+        "hash": "10495633189405431248"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_meta.json",
+        "hash": "18116954552512077584"
+      },
+      {
+        "file": "static/js/editor/build/right-panel.js",
+        "hash": "1867919985673354613"
+      },
+      {
+        "file": "static/app.js",
+        "hash": "17285441092465263376"
+      },
+      {
+        "file": "static/js/modelSort.js",
+        "hash": "8208597202829379173"
+      },
+      {
+        "file": "static/js/editor/wire-selection-controls.js",
+        "hash": "9648181419397598871"
+      },
+      {
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_meta.json",
+        "hash": "17445365092082253475"
+      },
+      {
+        "file": "scripts/odysseus-personal",
+        "hash": "12378683218923811823"
+      },
+      {
+        "file": "static/js/editor/wire-topbar-menus.js",
+        "hash": "7975083751577731219"
+      },
+      {
+        "file": "scripts/check-docker-amd-gpu.sh",
+        "hash": "10698149408004528147"
+      },
+      {
+        "file": "static/js/editor/tools/clone.js",
+        "hash": "7755895296700562412"
+      },
+      {
+        "file": "static/fonts/custom/GohuFont.ttf",
+        "hash": "14316767274695836581"
+      },
+      {
+        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_output.md",
+        "hash": "10647784818352384024"
+      },
+      {
+        "file": "scripts/odysseus-webhook",
+        "hash": "2763896610842093569"
+      },
+      {
+        "file": ".pi-subagents/artifacts/outputs/3bc9eeb4/plan.md",
+        "hash": "8767487360142921782"
+      },
+      {
+        "file": ".cursor/rules/engineering-standards.mdc",
+        "hash": "5396512538208633123"
+      },
+      {
+        "file": "static/js/emailInbox.js",
+        "hash": "607947805202156658"
+      },
+      {
+        "file": "static/icons/ollama-mark.png",
+        "hash": "18196217238538679405"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_meta.json",
+        "hash": "16532131981598051154"
+      },
+      {
+        "file": "static/icons/icon-512.png",
+        "hash": "13669072545933388678"
+      },
+      {
+        "file": "static/js/document.js",
+        "hash": "403398737471428860"
+      },
+      {
+        "file": "static/js/editor/fx/adj-popup.js",
+        "hash": "7424431586387785954"
+      },
+      {
+        "file": "static/js/cookbookServe.js",
+        "hash": "13120757335133630276"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_input.md",
+        "hash": "12116697020672410012"
+      },
+      {
+        "file": "static/js/tts-ai.js",
+        "hash": "10019811341040245069"
+      },
+      {
+        "file": "static/manifest.json",
+        "hash": "14051329859574571040"
+      },
+      {
+        "file": "docs/index.html",
+        "hash": "15225944888773591256"
+      },
+      {
+        "file": "scripts/index_documents.py",
+        "hash": "8563074886892522750"
+      },
+      {
+        "file": "docs/adr/0005-accessibility-and-performance.md",
+        "hash": "11567474909383388293"
+      },
+      {
+        "file": "static/js/MODULE_SUMMARY.md",
+        "hash": "10509690231809342200"
+      },
+      {
+        "file": "static/js/modalSnap.js",
+        "hash": "5243281368631499063"
+      },
+      {
+        "file": "static/js/documentLibrary.js",
+        "hash": "15827838580957958734"
+      },
+      {
+        "file": "scripts/odysseus-notes",
+        "hash": "7630151342477608666"
+      },
+      {
+        "file": "static/js/censor.js",
+        "hash": "14903383731525164090"
+      },
+      {
+        "file": "static/js/sessions.js",
+        "hash": "9432350817134691990"
+      },
+      {
+        "file": "docs/compare.webm",
+        "hash": "1255260485319850166"
+      },
+      {
+        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_meta.json",
+        "hash": "740860580988892157"
+      },
+      {
+        "file": "docs/gallery.webm",
+        "hash": "4555129553437604961"
+      },
+      {
+        "file": "docs/theme.webm",
+        "hash": "10502687655691397454"
+      },
+      {
+        "file": ".pi/agents/scrum-master.md",
+        "hash": "15472132696117379988"
+      },
+      {
+        "file": "scripts/odysseus-contacts",
+        "hash": "654083106469894001"
+      },
+      {
+        "file": "GEMINI.md",
+        "hash": "17379894040683334668"
+      },
+      {
+        "file": "docs/pr-blocker-audit.md",
+        "hash": "14254944061708004438"
+      },
+      {
+        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_output.md",
+        "hash": "12283778154588441043"
+      },
+      {
+        "file": ".github/pull_request_review_template.md",
+        "hash": "5552770234654282381"
+      },
+      {
+        "file": "scripts/odysseus-logs",
+        "hash": "15472518536902064142"
+      },
+      {
+        "file": "README.md",
+        "hash": "11792770467739756099"
+      },
+      {
+        "file": "docs/adr/quality-gates.md",
+        "hash": "10376471349775587344"
+      },
+      {
+        "file": "static/js/editor/ai-models.js",
+        "hash": "4120032803243431103"
+      },
+      {
+        "file": "static/js/init.js",
+        "hash": "16766840838356167651"
       },
       {
         "file": "static/js/editor/wire-merge-buttons.js",
@@ -806,1065 +1758,91 @@
         "hash": "13282152439144735543"
       },
       {
-        "file": "scripts/odysseus-tasks",
-        "hash": "8049359391557855601"
-      },
-      {
-        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_output.md",
-        "hash": "12721603014726239478"
-      },
-      {
-        "file": "static/js/editor/tools/flood-fill.js",
-        "hash": "6866628110831098217"
-      },
-      {
-        "file": "docker/gpu.nvidia.yml",
-        "hash": "10678213419058016084"
-      },
-      {
-        "file": "static/js/a11y.js",
-        "hash": "3250629998379958076"
-      },
-      {
-        "file": ".github/copilot-instructions.md",
-        "hash": "3579825062979438427"
-      },
-      {
-        "file": "static/js/documentLibrary.js",
-        "hash": "15827838580957958734"
-      },
-      {
-        "file": "static/js/emailLibrary/replyRecipients.js",
-        "hash": "5374532668094672571"
-      },
-      {
-        "file": "scripts/update_database.py",
-        "hash": "14920695395199591078"
-      },
-      {
-        "file": "static/js/model/matchKey.js",
-        "hash": "7660309974343195825"
-      },
-      {
-        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_meta.json",
-        "hash": "15791312940410967932"
-      },
-      {
-        "file": "static/js/emailShared.js",
-        "hash": "4588733407931960102"
-      },
-      {
-        "file": "static/js/emailLibrary.js",
-        "hash": "4889034196886183444"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_transcript.jsonl",
-        "hash": "10410677284205992346"
-      },
-      {
-        "file": "static/js/calendar/reminders.js",
-        "hash": "9175987879187519042"
-      },
-      {
-        "file": "static/js/editor/clipboard-and-drop.js",
-        "hash": "10392562351805129455"
-      },
-      {
-        "file": "static/js/windowResize.js",
-        "hash": "7916484367649703823"
-      },
-      {
-        "file": "static/js/galleryEditor.js",
-        "hash": "334579093221619786"
-      },
-      {
-        "file": "static/js/cookbookDownload.js",
-        "hash": "3000584999675580861"
-      },
-      {
-        "file": "static/js/editor/tools/transform-drag.js",
-        "hash": "9398093302056620886"
-      },
-      {
-        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_input.md",
-        "hash": "8925438340142474692"
-      },
-      {
-        "file": "static/js/compare/vote.js",
-        "hash": "14226434135540369342"
-      },
-      {
-        "file": "static/js/group.js",
-        "hash": "4164279580730405672"
-      },
-      {
-        "file": "static/js/tts-ai.js",
-        "hash": "10019811341040245069"
-      },
-      {
-        "file": "static/js/editor/snap.js",
-        "hash": "16879419388767793708"
-      },
-      {
-        "file": "docs/adr/0008-security-architecture.md",
-        "hash": "9643091124458063734"
-      },
-      {
-        "file": "static/fonts/FiraCode-Light.woff2",
-        "hash": "10816134289549779743"
-      },
-      {
-        "file": "scripts/migrate_faiss_to_chroma.py",
-        "hash": "12390546103077106993"
-      },
-      {
-        "file": "static/js/editor/canvas-coords.js",
-        "hash": "13625838496664212088"
-      },
-      {
-        "file": "static/app.js",
-        "hash": "17285441092465263376"
-      },
-      {
-        "file": "static/js/document.js",
-        "hash": "403398737471428860"
-      },
-      {
-        "file": "static/manifest.json",
-        "hash": "14051329859574571040"
-      },
-      {
-        "file": "features/auth.feature",
-        "hash": "12062703575821382553"
-      },
-      {
-        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_meta.json",
-        "hash": "18181354140168248797"
-      },
-      {
-        "file": "scripts/_completion/odysseus.bash",
-        "hash": "1449848996353997184"
-      },
-      {
-        "file": "docs/c4/container.mmd",
-        "hash": "3469414628858918182"
-      },
-      {
-        "file": "static/js/editor/ai-models.js",
-        "hash": "4120032803243431103"
-      },
-      {
-        "file": "static/fonts/FiraCode-SemiBold.woff2",
-        "hash": "16793162283137106018"
-      },
-      {
-        "file": "static/js/codeRunner.js",
-        "hash": "10690404463231988882"
-      },
-      {
-        "file": "static/js/composerArrowUpRecall.js",
-        "hash": "3296554269082856705"
-      },
-      {
-        "file": "static/js/editor/fx/pixel-pass.js",
-        "hash": "10472153379763250041"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_transcript.jsonl",
-        "hash": "9067854238442020247"
-      },
-      {
-        "file": "static/js/compare/stream.js",
-        "hash": "2971628962528753385"
-      },
-      {
-        "file": "static/js/editor/ai-rembg.js",
-        "hash": "13533336362176508722"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_input.md",
-        "hash": "6200899845447774622"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_meta.json",
-        "hash": "14932692535321084243"
-      },
-      {
-        "file": "static/js/editor/stroke-tool-sliders.js",
-        "hash": "2179315491049669205"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "5330912688379151434"
-      },
-      {
-        "file": "docs/research.webm",
-        "hash": "13000298419842495361"
-      },
-      {
-        "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_input.md",
-        "hash": "3072141006736914234"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "11753983313330619413"
-      },
-      {
-        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_transcript.jsonl",
-        "hash": "4597491989763600155"
-      },
-      {
-        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_meta.json",
-        "hash": "93356740539221968"
-      },
-      {
-        "file": "static/js/compare/scoreboard.js",
-        "hash": "14640871453228228116"
-      },
-      {
-        "file": "static/js/editor/checkerboard.js",
-        "hash": "17028048392630372095"
-      },
-      {
-        "file": "docs/odysseus-wordmark.png",
-        "hash": "10829838940447681864"
-      },
-      {
-        "file": "static/js/models.js",
-        "hash": "15427968679783512162"
-      },
-      {
-        "file": "licenses/OpenDyslexic-OFL.txt",
-        "hash": "16718540379210749884"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_output.md",
-        "hash": "17927209678489435960"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_output.md",
-        "hash": "3626651235729992953"
-      },
-      {
-        "file": "static/js/toolWindowZOrder.js",
-        "hash": "17539854021932023207"
-      },
-      {
-        "file": "static/js/editor/layer-panel.js",
-        "hash": "4374440362424469267"
-      },
-      {
-        "file": "static/js/editor/tools/lasso-mask.js",
-        "hash": "2295809151503659172"
-      },
-      {
-        "file": "static/js/editor/tools/transform-handles.js",
-        "hash": "17813292550317276290"
-      },
-      {
-        "file": ".github/CODEOWNERS",
-        "hash": "10483862179934434915"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_input.md",
-        "hash": "462067509468679662"
-      },
-      {
-        "file": "scripts/index_documents.py",
-        "hash": "8563074886892522750"
-      },
-      {
-        "file": "docs/c4/component.mmd",
-        "hash": "4862164734832854381"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d49994c8_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "6898973031200067160"
-      },
-      {
-        "file": "docker-compose.yml",
-        "hash": "1099037905522644602"
-      },
-      {
-        "file": "scripts/backfill_model_release_dates.py",
-        "hash": "11914773000132436659"
-      },
-      {
-        "file": "static/icons/ollama-mark.png",
-        "hash": "18196217238538679405"
-      },
-      {
-        "file": "static/js/calendar/utils.js",
-        "hash": "11555205761896986638"
-      },
-      {
-        "file": "static/js/providers.js",
-        "hash": "11332025744903329476"
-      },
-      {
-        "file": "static/js/editor/ai-inpaint.js",
-        "hash": "9331573697617456321"
-      },
-      {
-        "file": "static/js/settings.js",
-        "hash": "12724595451265584220"
-      },
-      {
-        "file": "docs/adr/quality-gates.md",
-        "hash": "10376471349775587344"
-      },
-      {
-        "file": "static/js/rag.js",
-        "hash": "9324201543915797212"
-      },
-      {
-        "file": "static/js/theme.js",
-        "hash": "554561425454395979"
-      },
-      {
-        "file": "docs/adr/0012-observability-and-error-handling.md",
-        "hash": "9778857810112238852"
-      },
-      {
-        "file": "static/js/sessions.js",
-        "hash": "9432350817134691990"
-      },
-      {
-        "file": "scripts/_lib/__init__.py",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_meta.json",
-        "hash": "4779823716634514152"
-      },
-      {
-        "file": ".github/scripts/check-pr-description.js",
-        "hash": "14451278540610101295"
-      },
-      {
-        "file": "scripts/demo_email/manage.sh",
-        "hash": "14915744904769667948"
-      },
-      {
-        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_output.md",
-        "hash": "6456497235221386806"
-      },
-      {
-        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_output.md",
-        "hash": "15209241258664667831"
-      },
-      {
-        "file": "scripts/demo_email/seed_demo_emails.py",
-        "hash": "1897739459594544054"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_meta.json",
-        "hash": "740860580988892157"
-      },
-      {
-        "file": "docs/adr/0006-code-review-and-merge-standards.md",
-        "hash": "12042833458055251148"
-      },
-      {
-        "file": "docs/gherkin-conventions.md",
-        "hash": "6811599141159892278"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0457eb39_adversarial-reviewer_0_meta.json",
-        "hash": "18116954552512077584"
-      },
-      {
-        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_transcript.jsonl",
-        "hash": "10660276158961403762"
-      },
-      {
-        "file": "docs/adr/0009-api-versioning-and-backward-compatibility.md",
-        "hash": "6522259218743026277"
-      },
-      {
-        "file": "docs/compare.webm",
-        "hash": "1255260485319850166"
-      },
-      {
-        "file": "static/js/notes.js",
-        "hash": "17226774693517799023"
-      },
-      {
-        "file": "docs/backup-restore.md",
-        "hash": "10588619875313704067"
-      },
-      {
-        "file": "static/js/escMenuStack.js",
-        "hash": "18169669487280632985"
-      },
-      {
-        "file": "static/js/cookbook.js",
-        "hash": "8353811374347319400"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_transcript.jsonl",
-        "hash": "5317400587860909605"
-      },
-      {
-        "file": ".pi-subagents/artifacts/9808765c_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "13326274909822366198"
-      },
-      {
-        "file": ".pre-commit-config.yaml",
-        "hash": "11524898213382405151"
-      },
-      {
-        "file": "static/js/editor/build/toolbar.js",
-        "hash": "10495633189405431248"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_output.md",
-        "hash": "12283778154588441043"
-      },
-      {
-        "file": "launch-windows.ps1",
-        "hash": "14961437186037910726"
-      },
-      {
-        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_output.md",
-        "hash": "6667494079501502009"
-      },
-      {
-        "file": "scripts/odysseus-mail",
-        "hash": "627209817596257700"
-      },
-      {
-        "file": "pyproject.toml",
-        "hash": "5268817540663165553"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_input.md",
-        "hash": "1055994213742318463"
-      },
-      {
-        "file": "odysseus-ui.service",
-        "hash": "2190458845051058258"
-      },
-      {
-        "file": "static/js/cookbook-deps-recipes.js",
-        "hash": "7769120692007710347"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_output.md",
-        "hash": "8458834179714512227"
-      },
-      {
-        "file": "static/icons/icon-512.png",
-        "hash": "13669072545933388678"
-      },
-      {
-        "file": "static/js/editor/state.js",
-        "hash": "5885287867594317912"
-      },
-      {
-        "file": ".pi-subagents/artifacts/73be3a76_backend-dev_0_output.md",
-        "hash": "10647784818352384024"
-      },
-      {
-        "file": "scripts/odysseus",
-        "hash": "12187600000205141689"
-      },
-      {
-        "file": "static/js/modelSort.js",
-        "hash": "8208597202829379173"
-      },
-      {
-        "file": ".github/dependabot.yml",
-        "hash": "10544212621977757985"
-      },
-      {
-        "file": ".github/workflows/dependency-review.yml",
-        "hash": "7084453939118732395"
-      },
-      {
-        "file": "static/js/gallery.js",
-        "hash": "3329272439500484954"
-      },
-      {
-        "file": ".pi-subagents/artifacts/64558a4a_adversarial-reviewer_0_meta.json",
-        "hash": "8705468128155478330"
-      },
-      {
-        "file": ".github/workflows/pr-description-check.yml",
-        "hash": "2155543067230032181"
-      },
-      {
-        "file": "static/js/emailLibrary/signatureFold.js",
-        "hash": "10150448509017090168"
-      },
-      {
-        "file": ".pi/agents/scrum-master.md",
-        "hash": "15472132696117379988"
-      },
-      {
-        "file": "docs/adr/0007-coding-standards-and-complexity-budget.md",
-        "hash": "4831133913396220825"
-      },
-      {
-        "file": "scripts/odysseus-logs",
-        "hash": "15472518536902064142"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_meta.json",
-        "hash": "14349814105008892162"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_output.md",
-        "hash": "13245514185533123490"
-      },
-      {
-        "file": "update_windows.bat",
-        "hash": "14393272399248452755"
-      },
-      {
-        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_input.md",
-        "hash": "4074169511659415456"
-      },
-      {
-        "file": "scripts/diffusion_server.py",
-        "hash": "5548973453592624642"
-      },
-      {
-        "file": "static/js/search-chat.js",
-        "hash": "7626216614729538431"
-      },
-      {
-        "file": "static/js/cookbook-hwfit.js",
-        "hash": "3603139793916534264"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ed307577_backend-dev_0_meta.json",
-        "hash": "8802198563425822102"
-      },
-      {
-        "file": "static/js/compare/models.js",
-        "hash": "184017458690750304"
-      },
-      {
-        "file": "static/js/editor/slider-ux.js",
-        "hash": "2186037331636781181"
-      },
-      {
-        "file": "static/js/editor/tools/stroke.js",
-        "hash": "2352172937174100905"
-      },
-      {
-        "file": ".pi-subagents/artifacts/bbfb0003_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "8879144021862556612"
-      },
-      {
-        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_output.md",
-        "hash": "6789142957764979765"
-      },
-      {
-        "file": ".pi-subagents/artifacts/438eb85f_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "10634418416635459650"
-      },
-      {
-        "file": "static/js/cookbookSchedule.js",
-        "hash": "14484738567964615640"
-      },
-      {
-        "file": ".pi-subagents/artifacts/f8102149_backend-dev_0_input.md",
-        "hash": "17846575821973552292"
-      },
-      {
-        "file": "static/js/dragSort.js",
-        "hash": "8363793256553401004"
-      },
-      {
-        "file": "docs/adr/0005-accessibility-and-performance.md",
-        "hash": "11567474909383388293"
-      },
-      {
-        "file": "THREAT_MODEL.md",
-        "hash": "605503327494757417"
-      },
-      {
-        "file": "scripts/demo_email/demo_account.py",
-        "hash": "9230561175246916706"
-      },
-      {
-        "file": "scripts/odysseus-mcp",
-        "hash": "10058760468797707123"
-      },
-      {
-        "file": ".cursor/rules/engineering-standards.mdc",
-        "hash": "5396512538208633123"
-      },
-      {
-        "file": "scripts/odysseus-backup",
-        "hash": "14141141443241837802"
-      },
-      {
-        "file": "static/js/editor/build/popups.js",
-        "hash": "467744696555055059"
-      },
-      {
-        "file": "docs/email-outlook.md",
-        "hash": "17625542642770946745"
-      },
-      {
-        "file": "docs/architecture-review.md",
-        "hash": "5850934773441248059"
-      },
-      {
-        "file": ".pi/settings.json",
-        "hash": "6206861250988469889"
-      },
-      {
-        "file": ".github/pull_request_template.md",
-        "hash": "3129125717405090827"
-      },
-      {
-        "file": "static/icons/sglang-mark.png",
-        "hash": "4895137777437658064"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5a4af346_frontend-dev_0_input.md",
-        "hash": "9689593142988527660"
-      },
-      {
-        "file": ".gitattributes",
-        "hash": "6112229773071989854"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_input.md",
-        "hash": "6750114971204760358"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_input.md",
-        "hash": "2147581066688201651"
-      },
-      {
-        "file": "static/fonts/Inter-Regular.woff2",
-        "hash": "13293078470454433233"
-      },
-      {
-        "file": "static/js/censor.js",
-        "hash": "14903383731525164090"
-      },
-      {
-        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_transcript.jsonl",
-        "hash": "8244679380103352775"
-      },
-      {
-        "file": "static/js/init.js",
-        "hash": "16766840838356167651"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d431ff22_adversarial-reviewer_0_meta.json",
-        "hash": "3877347985225805916"
-      },
-      {
-        "file": "scripts/claim_ownerless.py",
-        "hash": "5489634549768745165"
-      },
-      {
-        "file": "docs/setup.md",
-        "hash": "12409057683753206848"
-      },
-      {
-        "file": "AGENTS.md",
-        "hash": "15279645201222848349"
-      },
-      {
-        "file": ".pi-subagents/artifacts/5373646e_adversarial-reviewer_0_output.md",
-        "hash": "7413896378010785490"
-      },
-      {
-        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_meta.json",
-        "hash": "3747166397148629950"
-      },
-      {
-        "file": "static/js/admin.js",
-        "hash": "9553410654459218348"
-      },
-      {
-        "file": "static/js/editor/fx/histogram.js",
-        "hash": "17831080853986985226"
-      },
-      {
-        "file": "static/js/research/jobs.js",
-        "hash": "1354364432616033197"
-      },
-      {
-        "file": "static/fonts/custom/GohuFont.ttf",
-        "hash": "14316767274695836581"
-      },
-      {
-        "file": "docs/middleware.md",
-        "hash": "8585153319010742479"
-      },
-      {
-        "file": "scripts/fix_paths.py",
-        "hash": "10411222688285291716"
-      },
-      {
-        "file": "static/js/ui.js",
-        "hash": "6366005666654020301"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_meta.json",
-        "hash": "16532131981598051154"
-      },
-      {
-        "file": ".pi-subagents/artifacts/ef33fe5c_frontend-dev_0_input.md",
-        "hash": "1469246140222744616"
-      },
-      {
-        "file": "static/js/research/panel.js",
-        "hash": "15586861766915546009"
-      },
-      {
-        "file": "scripts/odysseus-theme",
-        "hash": "13108778844085664771"
-      },
-      {
-        "file": "static/js/editor/composite-helpers.js",
-        "hash": "10096211117271558700"
-      },
-      {
-        "file": "README.md",
-        "hash": "11792770467739756099"
+        "file": "static/js/cookbookProgressSignal.js",
+        "hash": "5350026269988283285"
       },
       {
         "file": "static/js/util/ordinal.js",
         "hash": "2543876463537296803"
       },
       {
-        "file": "scripts/check-docker-gpu.sh",
-        "hash": "166741936123465007"
+        "file": "static/fonts/Inter-Medium.woff2",
+        "hash": "4265220141366637183"
       },
       {
-        "file": "static/icons/icon-maskable-512.png",
-        "hash": "4062403916560428880"
-      },
-      {
-        "file": ".clinerules/engineering-standards.md",
-        "hash": "8314057767841739018"
-      },
-      {
-        "file": "licenses/opencode-MIT-LICENSE.txt",
-        "hash": "684006989153877877"
-      },
-      {
-        "file": "static/js/storage.js",
-        "hash": "16711740402100137410"
-      },
-      {
-        "file": "static/js/chatStream.js",
-        "hash": "924312167309253093"
-      },
-      {
-        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_input.md",
-        "hash": "2242658198726227525"
-      },
-      {
-        "file": "static/js/MODULE_SUMMARY.md",
-        "hash": "10509690231809342200"
-      },
-      {
-        "file": "scripts/agent_migration_manifest.py",
-        "hash": "3416139349958715523"
-      },
-      {
-        "file": "static/js/editor/wire-selection-controls.js",
-        "hash": "9648181419397598871"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_output.md",
-        "hash": "4363668792650540354"
-      },
-      {
-        "file": ".pi-subagents/artifacts/0f7bc3ae_adversarial-reviewer_0_input.md",
-        "hash": "3270698991635801391"
-      },
-      {
-        "file": ".pi-subagents/artifacts/15a7faf8_backend-dev_0_output.md",
-        "hash": "9259412961106209273"
-      },
-      {
-        "file": "static/js/cookbookPorts.js",
-        "hash": "839858563860515205"
-      },
-      {
-        "file": ".pi-subagents/artifacts/outputs/3bc9eeb4/plan.md",
-        "hash": "8767487360142921782"
-      },
-      {
-        "file": "static/js/compare/state.js",
-        "hash": "15485582702579283492"
-      },
-      {
-        "file": "static/js/editor/history-panel.js",
-        "hash": "6404572869164810266"
-      },
-      {
-        "file": "scripts/_lib/cli.py",
-        "hash": "11726287583976296716"
-      },
-      {
-        "file": "docs/security-ci.md",
-        "hash": "17898675351515605231"
-      },
-      {
-        "file": "static/js/tourHints.js",
-        "hash": "3857789642168388131"
-      },
-      {
-        "file": ".github/workflows/workflow-security.yml",
-        "hash": "2683627239302444659"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/config.yml",
-        "hash": "2758504420266664442"
-      },
-      {
-        "file": ".pi-subagents/artifacts/397a3adf_planner_0_meta.json",
-        "hash": "12560383672848594919"
-      },
-      {
-        "file": ".pi/agents/sprint-pipeline.md",
-        "hash": "9053218942778839471"
-      },
-      {
-        "file": "static/js/editor/tools/lasso.js",
-        "hash": "3647261416880351880"
-      },
-      {
-        "file": "static/js/cookbook-diagnosis.js",
-        "hash": "12280854941120671110"
-      },
-      {
-        "file": "docs/adr/0000-template.md",
-        "hash": "14650431501363272255"
-      },
-      {
-        "file": "docs/adr/README.md",
-        "hash": "15234618438059398489"
-      },
-      {
-        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_meta.json",
-        "hash": "17418146911207758978"
-      },
-      {
-        "file": "docker-compose.gpu-nvidia.yml",
-        "hash": "10221974490185153083"
+        "file": "static/icons/sglang-logo.png",
+        "hash": "16485024254275974117"
       },
       {
         "file": ".pi-subagents/artifacts/8a61472d_adversarial-reviewer_0_transcript.jsonl",
         "hash": "251491651831931668"
       },
       {
-        "file": "static/js/search.js",
-        "hash": "2616939108546884324"
+        "file": ".pi-subagents/artifacts/537fdd2c_scrum-master_0_input.md",
+        "hash": "2147581066688201651"
       },
       {
-        "file": "static/js/markdown/tableRow.js",
-        "hash": "10186713072405262878"
+        "file": "static/js/galleryEditor.js",
+        "hash": "334579093221619786"
       },
       {
-        "file": "docker/build-realesrgan-wheels.sh",
-        "hash": "3322644706337509938"
+        "file": "static/js/emailLibrary/replyRecipients.js",
+        "hash": "5374532668094672571"
       },
       {
-        "file": "docs/agent-migration.md",
-        "hash": "8486902629431503634"
-      },
-      {
-        "file": ".pi-subagents/artifacts/3bc9eeb4_planner_0_meta.json",
-        "hash": "8062860063810052445"
-      },
-      {
-        "file": "launcher.py",
-        "hash": "7429068528814690433"
-      },
-      {
-        "file": "static/js/cookbookServe.js",
-        "hash": "13120757335133630276"
-      },
-      {
-        "file": "static/js/editor/canvas-events.js",
-        "hash": "8778635601705120796"
-      },
-      {
-        "file": ".pi-subagents/artifacts/d42c2c73_backend-dev_0_input.md",
-        "hash": "17788425027238009717"
-      },
-      {
-        "file": "scripts/add_hwfit_models.py",
-        "hash": "6806912538020519374"
-      },
-      {
-        "file": "docs/notes.webm",
-        "hash": "10795198706176814932"
-      },
-      {
-        "file": "static/js/editor/fx/filter-string.js",
-        "hash": "9780726717849004012"
-      },
-      {
-        "file": ".pi-subagents/artifacts/30ae3539_backend-dev_0_transcript.jsonl",
-        "hash": "9095494789386394027"
-      },
-      {
-        "file": "static/lib/docx.umd.min.js",
-        "hash": "5851014784090365277"
-      },
-      {
-        "file": "docs/theme.webm",
-        "hash": "10502687655691397454"
-      },
-      {
-        "file": "static/js/workspace.js",
-        "hash": "17827765417752975936"
-      },
-      {
-        "file": "scripts/odysseus-gallery",
-        "hash": "3784656767622248626"
-      },
-      {
-        "file": ".pi/agents/scout.md",
-        "hash": "144104525129089593"
-      },
-      {
-        "file": "scripts/_completion/odysseus.zsh",
-        "hash": "4092445190456162222"
-      },
-      {
-        "file": "static/js/calendar.js",
-        "hash": "9348096784648691800"
-      },
-      {
-        "file": ".pi-subagents/artifacts/357b71ac_backend-dev_0_transcript.jsonl",
-        "hash": "10363950185796719920"
-      },
-      {
-        "file": "static/js/editor/harmonize-masks.js",
-        "hash": "9943283261402518133"
-      },
-      {
-        "file": "scripts/odysseus-cookbook",
-        "hash": "16295364334805039604"
-      },
-      {
-        "file": "static/js/modalSnap.js",
-        "hash": "5243281368631499063"
-      },
-      {
-        "file": "static/js/package.json",
-        "hash": "5649320037232165591"
+        "file": "static/js/editor/stroke-pipeline.js",
+        "hash": "17973876519136965431"
       },
       {
         "file": "scripts/hf_download.py",
         "hash": "3558727042987699467"
       },
       {
-        "file": ".github/workflows/docker-publish.yml",
-        "hash": "14715556903010400382"
+        "file": "static/js/compare/scoreboard.js",
+        "hash": "14640871453228228116"
       },
       {
-        "file": "tools/hooks/runtime_deps_guard.py",
-        "hash": "7927391435764388030"
+        "file": "static/icons/sglang-mark.png",
+        "hash": "4895137777437658064"
       },
       {
-        "file": "static/js/editor/mask-utils.js",
-        "hash": "1877980179938611929"
+        "file": "static/js/windowDrag.js",
+        "hash": "9896198006773268996"
       },
       {
-        "file": "static/js/colorPicker.js",
-        "hash": "13978529648027774720"
+        "file": "static/js/compare/panes.js",
+        "hash": "13227693606291067294"
       },
       {
-        "file": "static/js/editor/tools/crop.js",
-        "hash": "13098853898383609094"
+        "file": "static/lib/html2pdf.bundle.min.js",
+        "hash": "6723525824494856710"
       },
       {
-        "file": ".github/pull_request_review_template.md",
-        "hash": "5552770234654282381"
+        "file": ".pi-subagents/artifacts/outputs/397a3adf/plan.md",
+        "hash": "4122896669686278826"
       },
       {
-        "file": ".pi-subagents/artifacts/690fe593_adversarial-reviewer_0_transcript.jsonl",
-        "hash": "6702274276425615078"
+        "file": "scripts/demo_email/demo_account.py",
+        "hash": "9230561175246916706"
       },
       {
-        "file": "scripts/odysseus-memory",
-        "hash": "8458460389869839315"
+        "file": ".pi/agents/backend-dev.md",
+        "hash": "10468162411828257723"
       },
       {
-        "file": "static/js/editor/fx/adj-popup.js",
-        "hash": "7424431586387785954"
+        "file": ".pi-subagents/artifacts/eb6128e4_backend-dev_0_output.md",
+        "hash": "6824707267922109311"
       },
       {
-        "file": "static/js/fileHandler.js",
-        "hash": "16492595646538018328"
+        "file": "tools/hooks/domain_registry.json",
+        "hash": "12562344871295991829"
       },
       {
-        "file": "static/js/editor/tools/transform-session.js",
-        "hash": "10605462564722887993"
-      },
-      {
-        "file": ".env.example",
-        "hash": "4732082490273842972"
-      },
-      {
-        "file": "scripts/odysseus-research",
-        "hash": "14760746055978135210"
-      },
-      {
-        "file": "static/js/emojiShortcodes.js",
-        "hash": "9040982751866588374"
+        "file": "docs/adr/0011-database-management-and-schema-evolution.md",
+        "hash": "13490091765576843831"
       }
     ],
     "projectFileMap": {
-      "client-sdk": [
-        {
-          "file": "packages/client-sdk/.gitignore",
-          "hash": "6587066531560535966"
-        },
-        {
-          "file": "packages/client-sdk/generate.js",
-          "hash": "11161023919165855287"
-        },
-        {
-          "file": "packages/client-sdk/package.json",
-          "hash": "6607272619949571268",
-          "deps": [
-            "npm:openapi-typescript",
-            "npm:vitest",
-            "npm:openapi-fetch"
-          ]
-        },
-        {
-          "file": "packages/client-sdk/project.json",
-          "hash": "2195764566798019978"
-        },
-        {
-          "file": "packages/client-sdk/src/index.ts",
-          "hash": "2802418203527914473"
-        },
-        {
-          "file": "packages/client-sdk/tests/__snapshots__/sdk-snapshot.test.ts.snap",
-          "hash": "12085054779610294353"
-        },
-        {
-          "file": "packages/client-sdk/tests/sdk-snapshot.test.ts",
-          "hash": "15055765353908970498",
-          "deps": [
-            "npm:vitest"
-          ]
-        },
-        {
-          "file": "packages/client-sdk/tsconfig.json",
-          "hash": "4615747906102661058"
-        }
-      ],
       "api": [
         {
           "file": "apps/api/.python-version",
@@ -6526,50 +6504,6 @@
           "hash": "14747631426440683372"
         }
       ],
-      "contracts": [
-        {
-          "file": "packages/contracts/.gitignore",
-          "hash": "9659228171397656894"
-        },
-        {
-          "file": "packages/contracts/README.md",
-          "hash": "15611829874418421391"
-        },
-        {
-          "file": "packages/contracts/generate.js",
-          "hash": "2084531656631724403"
-        },
-        {
-          "file": "packages/contracts/openapi.json",
-          "hash": "8311389055551718481"
-        },
-        {
-          "file": "packages/contracts/package.json",
-          "hash": "15033246056646774219",
-          "deps": [
-            "npm:vitest"
-          ]
-        },
-        {
-          "file": "packages/contracts/project.json",
-          "hash": "14593997277488224909"
-        },
-        {
-          "file": "packages/contracts/tests/__snapshots__/openapi-snapshot.test.ts.snap",
-          "hash": "7362971045713569818"
-        },
-        {
-          "file": "packages/contracts/tests/openapi-snapshot.test.ts",
-          "hash": "11957701506842104256",
-          "deps": [
-            "npm:vitest"
-          ]
-        },
-        {
-          "file": "packages/contracts/tsconfig.json",
-          "hash": "7792710128501657438"
-        }
-      ],
       "config": [
         {
           "file": "packages/config/eslint-preset/index.js",
@@ -6605,6 +6539,216 @@
         {
           "file": "packages/config/vitest-preset/setup.ts",
           "hash": "14374101806784543137"
+        }
+      ],
+      "ui": [
+        {
+          "file": "packages/ui/.storybook/main.ts",
+          "hash": "14187287357989368765"
+        },
+        {
+          "file": "packages/ui/.storybook/preview.ts",
+          "hash": "10472881752232993550"
+        },
+        {
+          "file": "packages/ui/package-lock.json",
+          "hash": "8662729109757203097"
+        },
+        {
+          "file": "packages/ui/package.json",
+          "hash": "16388639772041392349",
+          "deps": [
+            "config",
+            "npm:typescript",
+            "npm:vite",
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/postcss.config.js",
+          "hash": "1886002347757770194"
+        },
+        {
+          "file": "packages/ui/project.json",
+          "hash": "9392917127438697761"
+        },
+        {
+          "file": "packages/ui/src/components/button.tsx",
+          "hash": "11747333295394387023"
+        },
+        {
+          "file": "packages/ui/src/components/combobox.tsx",
+          "hash": "3989258546896757839"
+        },
+        {
+          "file": "packages/ui/src/components/dialog.tsx",
+          "hash": "91877905078666155"
+        },
+        {
+          "file": "packages/ui/src/components/dropdown-menu.tsx",
+          "hash": "4084330246074380537"
+        },
+        {
+          "file": "packages/ui/src/components/input.tsx",
+          "hash": "5940044583997967983"
+        },
+        {
+          "file": "packages/ui/src/components/select.tsx",
+          "hash": "1602335426135311390"
+        },
+        {
+          "file": "packages/ui/src/components/tabs.tsx",
+          "hash": "15983461625722925156"
+        },
+        {
+          "file": "packages/ui/src/index.ts",
+          "hash": "14646852751345201276"
+        },
+        {
+          "file": "packages/ui/src/lib/utils.ts",
+          "hash": "14125226683600192530"
+        },
+        {
+          "file": "packages/ui/src/styles/globals.css",
+          "hash": "6257633203208031577"
+        },
+        {
+          "file": "packages/ui/src/test-setup.ts",
+          "hash": "14374101806784543137"
+        },
+        {
+          "file": "packages/ui/stories/button.stories.tsx",
+          "hash": "602590833839045349"
+        },
+        {
+          "file": "packages/ui/stories/combobox.stories.tsx",
+          "hash": "9779065306557246199"
+        },
+        {
+          "file": "packages/ui/stories/dialog.stories.tsx",
+          "hash": "10291783408376121458"
+        },
+        {
+          "file": "packages/ui/stories/dropdown-menu.stories.tsx",
+          "hash": "9686256341813970950"
+        },
+        {
+          "file": "packages/ui/stories/input.stories.tsx",
+          "hash": "5113035304086010968"
+        },
+        {
+          "file": "packages/ui/stories/select.stories.tsx",
+          "hash": "14932861846868986776"
+        },
+        {
+          "file": "packages/ui/stories/tabs.stories.tsx",
+          "hash": "11712887916044409564"
+        },
+        {
+          "file": "packages/ui/tailwind.config.js",
+          "hash": "3156545091824881970"
+        },
+        {
+          "file": "packages/ui/tests/button.test.tsx",
+          "hash": "18350602265519088100",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/combobox.test.tsx",
+          "hash": "16823253110383314490",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/dialog.test.tsx",
+          "hash": "5217487767121996703",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/dropdown-menu.test.tsx",
+          "hash": "12880252943368747784",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/input.test.tsx",
+          "hash": "16902577342019916821",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/select.test.tsx",
+          "hash": "128440370432541185",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tests/tabs.test.tsx",
+          "hash": "9520441042523832372",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/ui/tsconfig.json",
+          "hash": "9551838301047456067"
+        },
+        {
+          "file": "packages/ui/vitest.config.ts",
+          "hash": "1118427947654554602",
+          "deps": [
+            "npm:vitest"
+          ]
+        }
+      ],
+      "client-sdk": [
+        {
+          "file": "packages/client-sdk/.gitignore",
+          "hash": "6587066531560535966"
+        },
+        {
+          "file": "packages/client-sdk/generate.js",
+          "hash": "11161023919165855287"
+        },
+        {
+          "file": "packages/client-sdk/package.json",
+          "hash": "6607272619949571268",
+          "deps": [
+            "npm:openapi-typescript",
+            "npm:vitest",
+            "npm:openapi-fetch"
+          ]
+        },
+        {
+          "file": "packages/client-sdk/project.json",
+          "hash": "2195764566798019978"
+        },
+        {
+          "file": "packages/client-sdk/src/index.ts",
+          "hash": "2802418203527914473"
+        },
+        {
+          "file": "packages/client-sdk/tests/__snapshots__/sdk-snapshot.test.ts.snap",
+          "hash": "12085054779610294353"
+        },
+        {
+          "file": "packages/client-sdk/tests/sdk-snapshot.test.ts",
+          "hash": "15055765353908970498",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/client-sdk/tsconfig.json",
+          "hash": "4615747906102661058"
         }
       ],
       "web": [
@@ -6723,6 +6867,50 @@
           "deps": [
             "npm:vitest"
           ]
+        }
+      ],
+      "contracts": [
+        {
+          "file": "packages/contracts/.gitignore",
+          "hash": "9659228171397656894"
+        },
+        {
+          "file": "packages/contracts/README.md",
+          "hash": "15611829874418421391"
+        },
+        {
+          "file": "packages/contracts/generate.js",
+          "hash": "2084531656631724403"
+        },
+        {
+          "file": "packages/contracts/openapi.json",
+          "hash": "8311389055551718481"
+        },
+        {
+          "file": "packages/contracts/package.json",
+          "hash": "15033246056646774219",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/contracts/project.json",
+          "hash": "14593997277488224909"
+        },
+        {
+          "file": "packages/contracts/tests/__snapshots__/openapi-snapshot.test.ts.snap",
+          "hash": "7362971045713569818"
+        },
+        {
+          "file": "packages/contracts/tests/openapi-snapshot.test.ts",
+          "hash": "11957701506842104256",
+          "deps": [
+            "npm:vitest"
+          ]
+        },
+        {
+          "file": "packages/contracts/tsconfig.json",
+          "hash": "7792710128501657438"
         }
       ]
     }
